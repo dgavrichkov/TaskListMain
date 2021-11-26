@@ -18,6 +18,8 @@ export const tasksReducer = (
       return { ...state, isLoading: false, tasks: action.payload };
     case TasksActionTypes.FETCH_TASKS_ERROR:
       return { ...state, isLoading: false, tasks: action.payload };
+    case TasksActionTypes.FETCH_ADD_TASK:
+      return state;
     case TasksActionTypes.ADD_TASK:
       const newTask = { ...action.payload, done: false, id: nextId() };
       return { ...state, tasks: [newTask, ...state.tasks] };

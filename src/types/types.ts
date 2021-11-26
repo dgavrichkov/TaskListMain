@@ -38,6 +38,7 @@ export enum TasksActionTypes {
   FETCH_TASKS = "FETCH_TASKS",
   FETCH_TASKS_SUCCESS = "FETCH_TASKS_SUCCESS",
   FETCH_TASKS_ERROR = "FETCH_TASKS_ERROR",
+  FETCH_ADD_TASK = "FETCH_ADD_TASK",
   ADD_TASK = "ADD_TASK",
   DEL_TASK = "DEL_TASK",
   TOGGLE_TASK = "TOGGLE_TASK"
@@ -53,6 +54,9 @@ interface FetchTasksSuccessAction {
 interface FetchTasksErrorAction {
   type: TasksActionTypes.FETCH_TASKS_ERROR;
   payload: string;
+}
+interface FetchAddTaskAction {
+  type: TasksActionTypes.FETCH_ADD_TASK;
 }
 interface AddTaskAction {
   type: TasksActionTypes.ADD_TASK;
@@ -73,5 +77,6 @@ export type TasksAction =
   | FetchTasksErrorAction
   | AddTaskAction
   | DelTaskAction
-  | ToggleTaskAction;
+  | ToggleTaskAction
+  | FetchAddTaskAction;
   

@@ -1,0 +1,41 @@
+{
+    "posts": [
+      { "id": 1, "title": "json-server", "author": "typicode" }
+    ],
+    "comments": [
+      { "id": 1, "body": "some comment", "postId": 1 }
+    ],
+    "profile": { "name": "typicode" },
+    "tasks": [
+      {
+        "id": "1",
+        "name": "first task",
+        "tag": "regular",
+        "done": false
+      },
+      {
+        "id": "2",
+        "name": "second task",
+        "tag": "regular",
+        "done": true
+      },
+      {
+        "id": "3",
+        "name": "unusual task",
+        "tag": "extra",
+        "done": false
+      },
+      {
+        "id": "4",
+        "name": "another task",
+        "tag": "daily",
+        "done": false
+      },
+      {
+        "id": "5",
+        "name": "last task",
+        "tag": "daily",
+        "done": false
+      }
+    ]
+}
