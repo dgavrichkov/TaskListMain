@@ -82,14 +82,6 @@ export const App = function() {
     setFilter(tag);
   };
 
-  const filteredTasks = (tag: string) => {
-    if (tag !== "all") {
-      return [...tasks].filter((task) => task.tag === tag);
-    } else {
-      return tasks;
-    }
-  };
-
   const countAllTasks = () => {
     return tasks.length;
   };
@@ -120,7 +112,7 @@ export const App = function() {
           countAllTasks={countAllTasks()}
           countDoneTasks={countDoneTasks()}
         />
-        <TaskList pageClass="list" tasks={filteredTasks(filter)} />
+        <TaskList pageClass="list" filter={filter} />
         <TagFilter
           pageClass="filter"
           tasks={tasks}

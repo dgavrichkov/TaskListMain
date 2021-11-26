@@ -16,12 +16,12 @@ const StyledList = styled.ul`
 
 type ListProps = {
   pageClass: string;
-  tasks: ITask[];
+  filter: string;
 };
 
 type ItemsList = React.ReactNode;
 
-export const TaskList: FC<ListProps> = ({ pageClass }) => {
+export const TaskList: FC<ListProps> = ({ pageClass, filter }) => {
   const { tasks, isLoading } = useTypedSelector((state) => state.tasks);
   const { fetchTasks, toggleTaskAction, delTaskAction } = useActions();
 
@@ -29,9 +29,18 @@ export const TaskList: FC<ListProps> = ({ pageClass }) => {
     fetchTasks();
   }, []);
 
+  const filteredTasks = (tag: string) => {
+    if (tag !== "all") {
+      return [...tasks].filter((task) => task.tag === tag);
+    } else {
+      return tasks;
+    }
+  };
+
   let listItems: ItemsList = null;
+
   if (tasks.length > 0) {
-    listItems = tasks.map((task) => (
+    listItems = filteredTasks(filter).map((task) => (
       <li className="tasks-list__item" key={task.id}>
         <TaskItem
           name={task.name}
