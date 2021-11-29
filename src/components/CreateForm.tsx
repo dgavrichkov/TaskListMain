@@ -52,8 +52,8 @@ export const CreateForm: FC<FormProps> = React.memo(({ pageClass }) => {
         return;
       }
       addTaskAction({
-        name: name,
-        tag: tag
+        name,
+        tag
       });
       handleClear();
     };

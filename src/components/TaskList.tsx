@@ -1,7 +1,6 @@
 import React, { FC, useEffect } from "react";
 import { TaskItem } from "./TaskItem";
 import styled from "styled-components";
-import { ITask } from "../types/types";
 import { useTypedSelector } from "../hooks/useTypedSelector";
 import { useActions } from "../hooks/useActions";
 
@@ -60,3 +59,6 @@ export const TaskList: FC<ListProps> = ({ pageClass, filter }) => {
 
   return <StyledList className={pageClass}>{listItems}</StyledList>;
 };
+
+// TODO
+// оптимизировать извлечение задач из хранилища. Использовать способ с айдишниками из документации

@@ -1,4 +1,3 @@
-import nextId from "react-id-generator";
 import { TasksState, TasksAction, TasksActionTypes } from "../../types/types";
 
 const initialTasksState: TasksState = {
@@ -18,11 +17,8 @@ export const tasksReducer = (
       return { ...state, isLoading: false, tasks: action.payload };
     case TasksActionTypes.FETCH_TASKS_ERROR:
       return { ...state, isLoading: false, tasks: action.payload };
-    case TasksActionTypes.FETCH_ADD_TASK:
-      return state;
     case TasksActionTypes.ADD_TASK:
-      const newTask = { ...action.payload, done: false, id: nextId() };
-      return { ...state, tasks: [newTask, ...state.tasks] };
+      return { ...state, tasks: [...state.tasks, action.payload] };
     case TasksActionTypes.DEL_TASK:
       return {
         ...state,

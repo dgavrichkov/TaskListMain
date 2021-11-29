@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { IThemes } from "./types/types";
 import { useTypedSelector } from "./hooks/useTypedSelector";
-import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
 import { ThemeSwitcher } from "./components/ThemeSwitcher";
 import { TaskList } from "./components/TaskList";
 import { CreateForm } from "./components/CreateForm";
