@@ -1,13 +1,14 @@
 import React, { FC } from "react";
 import { Button } from "./Button";
 import styled from "styled-components";
+import { ITask } from "../types/types";
 
 type TaskProps = {
   name: string;
   tag: string;
   id: string;
   done: boolean;
-  onDoneTask: (id: string) => void;
+  onDoneTask: (task: ITask) => void;
   onDeleteTask: (id: string) => void;
 };
 
@@ -75,7 +76,7 @@ export const TaskItem: FC<TaskProps> = ({
         buttonType="button"
         className="done"
         onClick={() => {
-          onDoneTask(id);
+          onDoneTask({id, name, tag, done});
         }}
       >
         {!done ? "Done" : "Not Done"}

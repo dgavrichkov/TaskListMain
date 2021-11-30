@@ -1,14 +1,52 @@
 import { Dispatch } from "redux";
 import nextId from "react-id-generator";
 
-import { TNewTask, TasksAction, TasksActionTypes } from "../../types/types";
+import { TNewTask, TasksAction, TasksActionTypes, ITask } from "../../types/types";
 
-export function toggleTaskAction(id: string): TasksAction {
-  return { type: TasksActionTypes.TOGGLE_TASK, payload: id };
+
+// TODO
+// как-то это все неловко. Хорошо бы понять, как использовать текущее состояние getState и dispatch вместе
+export function toggleTaskAction(task: ITask) {
+  return (dispatch: Dispatch<TasksAction>) => {
+    try {
+      const updatedTask = {...task, done: !task.done};
+      fetch(`http://localhost:5000/tasks/${task.id}`, {
+        method: "PUT",
+        body: JSON.stringify(updatedTask),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        }
+      })
+        .then((response) => {
+          if(response.status === 200 && response.ok === true) {
+            dispatch({ type: TasksActionTypes.TOGGLE_TASK, payload: task.id });
+          }
+        })
+        .catch(e => console.log(e));
+    }
+    catch(e) {
+      console.log(e);
+    }
+  }
 }
 
-export function delTaskAction(id: string): TasksAction {
-  return { type: TasksActionTypes.DEL_TASK, payload: id };
+export function delTaskAction(id: string) {
+  return (dispatch: Dispatch<TasksAction>) => {
+    try {
+      fetch(`http://localhost:5000/tasks/${id}`, {
+        method: "DELETE",
+      })
+        .then((response) => {
+          if(response.status === 200 && response.ok === true) {
+            dispatch({ type: TasksActionTypes.DEL_TASK, payload: id });
+          }
+        })
+
+    } 
+    catch(e) {
+      console.log(e);
+    }
+  }
 }
 
 export function addTaskAction(task: TNewTask) {
