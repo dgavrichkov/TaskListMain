@@ -30,13 +30,11 @@ export type TNewTask = Pick<ITask, "name" | "tag">;
 
 export interface TasksState {
   tasks: ITask[];
-  error: string | null;
 }
 
 export enum TasksActionTypes {
   FETCH_TASKS = "FETCH_TASKS",
   FETCH_TASKS_SUCCESS = "FETCH_TASKS_SUCCESS",
-  FETCH_TASKS_ERROR = "FETCH_TASKS_ERROR",
   FETCH_ADD_TASK = "FETCH_ADD_TASK",
   ADD_TASK = "ADD_TASK",
   DEL_TASK = "DEL_TASK",
@@ -49,10 +47,6 @@ interface FetchTasksAction {
 interface FetchTasksSuccessAction {
   type: TasksActionTypes.FETCH_TASKS_SUCCESS;
   payload: ITask[];
-}
-interface FetchTasksErrorAction {
-  type: TasksActionTypes.FETCH_TASKS_ERROR;
-  payload: string;
 }
 interface FetchAddTaskAction {
   type: TasksActionTypes.FETCH_ADD_TASK;
@@ -73,7 +67,6 @@ interface ToggleTaskAction {
 export type TasksAction =
   | FetchTasksAction
   | FetchTasksSuccessAction
-  | FetchTasksErrorAction
   | AddTaskAction
   | DelTaskAction
   | ToggleTaskAction

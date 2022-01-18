@@ -23,8 +23,7 @@ const example = {
 // TODO - видимо, придется выносить в отдельные редьюсеры ошибку и статус загрузки - они задумывались как глобальное состояние, а не относящиеся конкретно к таскам.
 
 const initialTasksState: TasksState = {
-  tasks: [],
-  error: null
+  tasks: []
 };
 
 // Нормализация данных
@@ -41,8 +40,6 @@ export const tasksReducer = (
     case TasksActionTypes.FETCH_TASKS:
       return { ...state };
     case TasksActionTypes.FETCH_TASKS_SUCCESS:
-      return { ...state, tasks: action.payload };
-    case TasksActionTypes.FETCH_TASKS_ERROR:
       return { ...state, tasks: action.payload };
     case TasksActionTypes.ADD_TASK:
       return { ...state, tasks: [...state.tasks, action.payload] };

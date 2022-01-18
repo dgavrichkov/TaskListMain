@@ -88,10 +88,7 @@ export function fetchTasks() {
           })
         });
     } catch (e) {
-      dispatch({
-        type: TasksActionTypes.FETCH_TASKS_ERROR,
-        payload: "Произошла ошибка при загрузке тасков"
-      });
+      console.log("Произошла ошибка при загрузке тасков");
     }
   };
 }
