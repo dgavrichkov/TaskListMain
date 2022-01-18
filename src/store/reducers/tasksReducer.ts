@@ -24,7 +24,6 @@ const example = {
 
 const initialTasksState: TasksState = {
   tasks: [],
-  isLoading: false,
   error: null
 };
 
@@ -40,11 +39,11 @@ export const tasksReducer = (
 ) => {
   switch (action.type) {
     case TasksActionTypes.FETCH_TASKS:
-      return { ...state, isLoading: true };
+      return { ...state };
     case TasksActionTypes.FETCH_TASKS_SUCCESS:
-      return { ...state, isLoading: false, tasks: action.payload };
+      return { ...state, tasks: action.payload };
     case TasksActionTypes.FETCH_TASKS_ERROR:
-      return { ...state, isLoading: false, tasks: action.payload };
+      return { ...state, tasks: action.payload };
     case TasksActionTypes.ADD_TASK:
       return { ...state, tasks: [...state.tasks, action.payload] };
     case TasksActionTypes.DEL_TASK:

@@ -30,7 +30,6 @@ export type TNewTask = Pick<ITask, "name" | "tag">;
 
 export interface TasksState {
   tasks: ITask[];
-  isLoading: boolean;
   error: string | null;
 }
 

@@ -21,7 +21,7 @@ type ListProps = {
 type ItemsList = React.ReactNode;
 
 export const TaskList: FC<ListProps> = ({ pageClass, filter }) => {
-  const { tasks, isLoading } = useTypedSelector((state) => state.tasks);
+  const { tasks } = useTypedSelector((state) => state.tasks);
   const { fetchTasks, toggleTaskAction, delTaskAction } = useActions();
 
   useEffect(() => {
@@ -51,14 +51,9 @@ export const TaskList: FC<ListProps> = ({ pageClass, filter }) => {
         />
       </li>
     ));
-  } else if (isLoading) {
-    listItems = "Подождите, идет запрос";
   } else {
     listItems = "Задач нет";
   }
 
   return <StyledList className={pageClass}>{listItems}</StyledList>;
 };
-
-// TODO
-// оптимизировать извлечение задач из хранилища. Использовать способ с айдишниками из документации
