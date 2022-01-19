@@ -43,7 +43,9 @@ const THEMES: IThemes = {
 };
 
 const StyledPageWrap = styled.div`
-  padding: 10px;
+  max-width: 964px;
+  margin: 0 auto;
+  padding: 20px 32px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 30px;
