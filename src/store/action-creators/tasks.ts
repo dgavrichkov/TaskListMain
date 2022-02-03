@@ -4,8 +4,6 @@ import { tasksNormalizer } from "../../utils/tasksNormalizer";
 
 import { TNewTask, TasksAction, TasksActionTypes, ITask } from "../../types/types";
 
-
-// TODO
 export function toggleTaskAction(task: ITask) {
   return (dispatch: Dispatch<TasksAction>) => {
     try {

@@ -7,6 +7,7 @@ import { TaskList } from "./components/TaskList";
 import { CreateForm } from "./components/CreateForm";
 import { TagFilter } from "./components/TagFilter";
 import { TaskStat } from "./components/TaskStat";
+import { Notes } from "./components/Notes";
 import { GlobalStyles } from "./styles/globalStyles";
 
 const THEMES: IThemes = {
@@ -77,6 +78,7 @@ const StyledPageWrap = styled.div`
 
 export const App = function() {
   const { tasks } = useTypedSelector((state) => state.tasks);
+  
   const [filter, setFilter] = useState<string>("all");
   const [theme, setTheme] = useState<string>("dark");
 
@@ -122,6 +124,8 @@ export const App = function() {
           onPickTag={filterTasklist}
         />
       </StyledPageWrap>
+      <hr />
+      <Notes pageClass="notes"></Notes>
     </ThemeProvider>
   );
 }

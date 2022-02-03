@@ -4,5 +4,6 @@ import { TasksState } from "../types/types";
 
 // получаем типизированный хук-селектор
 export const useTypedSelector: TypedUseSelectorHook<{
-  tasks: TasksState;
+  tasks: TasksState,
+  notes: any;
 }> = useSelector;
