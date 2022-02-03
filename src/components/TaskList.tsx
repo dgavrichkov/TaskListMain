@@ -24,9 +24,13 @@ export const TaskList: FC<ListProps> = ({ pageClass, filter }) => {
   const { tasks } = useTypedSelector((state) => state.tasks);
   const { fetchTasks, toggleTaskAction, delTaskAction } = useActions();
 
+  // useEffect(() => {
+  //   fetchTasks();
+  // }, []);
+
   useEffect(() => {
-    fetchTasks();
-  }, []);
+    console.log(tasks);
+  }, [])
 
   const filteredTasks = (tag: string) => {
     if (tag !== "all") {

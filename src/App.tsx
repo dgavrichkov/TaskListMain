@@ -87,7 +87,8 @@ export const App = function() {
   };
 
   const countAllTasks = () => {
-    return tasks.length;
+    console.log(tasks)
+    return tasks.idList.length;
   };
 
   const countDoneTasks = () => {

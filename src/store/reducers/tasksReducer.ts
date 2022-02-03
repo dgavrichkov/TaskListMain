@@ -1,6 +1,11 @@
-import { TasksState, TasksAction, TasksActionTypes } from "../../types/types";
+import { TasksAction, TasksActionTypes, ITask, TasksStateType } from "../../types/types";
 
-const example = {
+// TODO - видимо, придется выносить в отдельные редьюсеры ошибку и статус загрузки - они задумывались как глобальное состояние, а не относящиеся конкретно к таскам.
+
+// const initialTasksState: TasksState = {
+//   tasks: []
+// };
+const initialTasksState: TasksStateType = {
   tasks: {
     data: {
       "task1": {
@@ -18,12 +23,6 @@ const example = {
     },
     idList: ["task1", "task2"]
   }
-}
-
-// TODO - видимо, придется выносить в отдельные редьюсеры ошибку и статус загрузки - они задумывались как глобальное состояние, а не относящиеся конкретно к таскам.
-
-const initialTasksState: TasksState = {
-  tasks: []
 };
 
 // Нормализация данных
@@ -37,28 +36,28 @@ export const tasksReducer = (
   action: TasksAction
 ) => {
   switch (action.type) {
-    case TasksActionTypes.FETCH_TASKS:
-      return { ...state };
-    case TasksActionTypes.FETCH_TASKS_SUCCESS:
-      return { ...state, tasks: action.payload };
-    case TasksActionTypes.ADD_TASK:
-      return { ...state, tasks: [...state.tasks, action.payload] };
-    case TasksActionTypes.DEL_TASK:
-      return {
-        ...state,
-        tasks: state.tasks.filter((task) => task.id !== action.payload)
-      };
-    case TasksActionTypes.TOGGLE_TASK:
-      const newTasks = state.tasks.map((task) => {
-        if (task.id === action.payload) {
-          task.done = !task.done;
-        }
-        return task;
-      });
-      return {
-        ...state,
-        tasks: newTasks
-      };
+    // case TasksActionTypes.FETCH_TASKS:
+    //   return { ...state };
+    // case TasksActionTypes.FETCH_TASKS_SUCCESS:
+    //   return { ...state, tasks: action.payload };
+    // case TasksActionTypes.ADD_TASK:
+    //   return { ...state, tasks: [...state.tasks, action.payload] };
+    // case TasksActionTypes.DEL_TASK:
+    //   return {
+    //     ...state,
+    //     tasks: state.tasks.filter((task: ITask) => task.id !== action.payload)
+    //   };
+    // case TasksActionTypes.TOGGLE_TASK:
+    //   const newTasks = state.tasks.map((task: ITask) => {
+    //     if (task.id === action.payload) {
+    //       task.done = !task.done;
+    //     }
+    //     return task;
+    //   });
+    //   return {
+    //     ...state,
+    //     tasks: newTasks
+    //   };
     default:
       return state;
   }

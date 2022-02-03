@@ -1,10 +1,10 @@
 import { combineReducers } from "redux";
-import { tasksReducer } from "./tasksReducer";
-import { notesReducer } from "./notesReducer";
+import { tasksReducer as tasks } from "./tasksReducer";
+import { notesReducer as notes } from "./notesReducer";
 
 export const rootReducer = combineReducers({
-  tasks: tasksReducer,
-  notes: notesReducer
+  tasks,
+  notes
 });
 
 // экспортируем тип корневого редусера, полученый от непосредственно от него

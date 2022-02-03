@@ -32,6 +32,15 @@ export interface TasksState {
   tasks: ITask[];
 }
 
+export interface TasksStateType {
+  tasks: {
+    data: {
+      [name: string]: ITask
+    },
+    idList: string[]
+  }
+}
+
 export enum TasksActionTypes {
   FETCH_TASKS = "FETCH_TASKS",
   FETCH_TASKS_SUCCESS = "FETCH_TASKS_SUCCESS",
