@@ -3,6 +3,8 @@ import { TaskItem } from "./TaskItem";
 import styled from "styled-components";
 import { useTypedSelector } from "../hooks/useTypedSelector";
 import { useActions } from "../hooks/useActions";
+import { getTasksFromState } from "../store/selectors/tasks";
+import { ITask } from "../types/types";
 
 const StyledList = styled.ul`
   display: grid;
@@ -21,7 +23,8 @@ type ListProps = {
 type ItemsList = React.ReactNode;
 
 export const TaskList: FC<ListProps> = ({ pageClass, filter }) => {
-  const { tasks } = useTypedSelector((state) => state.tasks);
+  const tasks = useTypedSelector(getTasksFromState);
+
   const { fetchTasks, toggleTaskAction, delTaskAction } = useActions();
 
   // useEffect(() => {
@@ -43,7 +46,7 @@ export const TaskList: FC<ListProps> = ({ pageClass, filter }) => {
   let listItems: ItemsList = null;
 
   if (tasks.length > 0) {
-    listItems = filteredTasks(filter).map((task) => (
+    listItems = filteredTasks(filter).map((task: ITask) => (
       <li className="tasks-list__item" key={task.id}>
         <TaskItem
           name={task.name}

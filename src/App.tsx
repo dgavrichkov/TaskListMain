@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { IThemes } from "./types/types";
+import { IThemes, ITask } from "./types/types";
 import { useTypedSelector } from "./hooks/useTypedSelector";
 import styled, { ThemeProvider } from "styled-components";
 import { ThemeSwitcher } from "./components/ThemeSwitcher";
@@ -9,6 +9,7 @@ import { TagFilter } from "./components/TagFilter";
 import { TaskStat } from "./components/TaskStat";
 import { Notes } from "./components/Notes";
 import { GlobalStyles } from "./styles/globalStyles";
+import { getTasksFromState } from "./store/selectors/tasks";
 
 const THEMES: IThemes = {
   light: {
@@ -77,7 +78,7 @@ const StyledPageWrap = styled.div`
 `;
 
 export const App = function() {
-  const { tasks } = useTypedSelector((state) => state.tasks);
+  const tasks = useTypedSelector(getTasksFromState);
   
   const [filter, setFilter] = useState<string>("all");
   const [theme, setTheme] = useState<string>("dark");
@@ -87,8 +88,7 @@ export const App = function() {
   };
 
   const countAllTasks = () => {
-    console.log(tasks)
-    return tasks.idList.length;
+    return tasks.length;
   };
 
   const countDoneTasks = () => {

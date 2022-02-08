@@ -1,35 +1,28 @@
 import { TasksAction, TasksActionTypes, ITask, TasksStateType } from "../../types/types";
 
-// TODO - видимо, придется выносить в отдельные редьюсеры ошибку и статус загрузки - они задумывались как глобальное состояние, а не относящиеся конкретно к таскам.
-
-// const initialTasksState: TasksState = {
-//   tasks: []
-// };
 const initialTasksState: TasksStateType = {
-  tasks: {
-    data: {
-      "task1": {
-        id: "task1",
-        name: "First task",
-        tag: "regular",
-        done: false
-      },
-      "task2": {
-        id: "task2",
-        name: "Second task",
-        tag: "regular",
-        done: false
-      }
+  data: {
+    "task1": {
+      id: "task1",
+      name: "First task",
+      tag: "regular",
+      done: false
     },
-    idList: ["task1", "task2"]
-  }
+    "task2": {
+      id: "task2",
+      name: "Second task",
+      tag: "regular",
+      done: false
+    },
+    "task3": {
+      id: "task3",
+      name: "Third task",
+      tag: "unusual",
+      done: true
+    }
+  },
+  idList: ["task1", "task2", "task3"]
 };
-
-// Нормализация данных
-// - массив айдишников задач
-// - объект data, где ключи - айди задач, значени - объекты задач.
-// - В таком случае можно будет обновлять в хранилище одиночную задачу, не пересоздавая весь массив
-// - тогда добавление или удаление будет состоять из двух частей - изменение массива айдишников и добавление/удаление объекта задачи
 
 export const tasksReducer = (
   state = initialTasksState,

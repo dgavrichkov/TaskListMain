@@ -32,13 +32,16 @@ export interface TasksState {
   tasks: ITask[];
 }
 
+export interface State {
+  tasks: TasksStateType,
+  notes: any
+}
+
 export interface TasksStateType {
-  tasks: {
-    data: {
-      [name: string]: ITask
-    },
-    idList: string[]
-  }
+  data: {
+    [name: string]: ITask
+  },
+  idList: string[]
 }
 
 export enum TasksActionTypes {
