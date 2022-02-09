@@ -65,7 +65,7 @@ interface FetchAddTaskAction {
 }
 interface AddTaskAction {
   type: TasksActionTypes.ADD_TASK;
-  payload: TNewTask;
+  payload: ITask;
 }
 interface DelTaskAction {
   type: TasksActionTypes.DEL_TASK;

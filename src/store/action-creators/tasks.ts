@@ -8,7 +8,6 @@ export function toggleTaskAction(task: ITask) {
   return (dispatch: Dispatch<TasksAction>) => {
     try {
       dispatch({ type: TasksActionTypes.TOGGLE_TASK, payload: task.id });
-
     }
     catch(e) {
       console.log(e);
