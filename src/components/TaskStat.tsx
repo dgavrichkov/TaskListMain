@@ -1,5 +1,7 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import styled from "styled-components";
+import { useTypedSelector } from "../hooks/useTypedSelector";
+import { getTasksFromState } from "../store/selectors/tasks";
 
 const StyledWrap = styled.div`
   border-radius: 4px;
@@ -17,19 +19,23 @@ const StyledWrap = styled.div`
 
 type StatProps = {
   pageClass: string;
-  countAllTasks: number;
-  countDoneTasks: number;
 };
 
-export const TaskStat: FC<StatProps> = ({
-  pageClass,
-  countAllTasks,
-  countDoneTasks
-}) => {
+export const TaskStat: FC<StatProps> = ({pageClass}) => {
+  const tasks = useTypedSelector(getTasksFromState);
+
+  const countAllTasks = () => {
+    return tasks.length;
+  };
+
+  const countDoneTasks = () => {
+    return tasks.filter((task) => task.done).length;
+  };
+
   return (
     <StyledWrap className={`${pageClass}`}>
-      <p>Всего - {countAllTasks}</p>
-      <p>Сделано - {countDoneTasks}</p>
+      <p>Всего - {countAllTasks()}</p>
+      <p>Сделано - {countDoneTasks()}</p>
     </StyledWrap>
   );
 };

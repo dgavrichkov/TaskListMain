@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { IThemes, ITask } from "./types/types";
+import { useState } from "react";
+import { IThemes } from "./types/types";
 import { useTypedSelector } from "./hooks/useTypedSelector";
 import styled, { ThemeProvider } from "styled-components";
 import { ThemeSwitcher } from "./components/ThemeSwitcher";
@@ -87,14 +87,6 @@ export const App = function() {
     setFilter(tag);
   };
 
-  const countAllTasks = () => {
-    return tasks.length;
-  };
-
-  const countDoneTasks = () => {
-    return tasks.filter((task) => task.done).length;
-  };
-
   const handleSwitchTheme = () => {
     if (theme === "light") {
       setTheme("dark");
@@ -114,8 +106,6 @@ export const App = function() {
         <CreateForm pageClass="form" />
         <TaskStat
           pageClass="stat"
-          countAllTasks={countAllTasks()}
-          countDoneTasks={countDoneTasks()}
         />
         <TaskList pageClass="list" filter={filter} />
         <TagFilter
