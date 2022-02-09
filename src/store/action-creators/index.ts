@@ -1,5 +1,7 @@
 import * as TasksActionCreators from "./tasks";
 
-export default {
+const actionCreators = {
   ...TasksActionCreators
-};
+}
+
+export default actionCreators;
