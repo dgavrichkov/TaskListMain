@@ -1,6 +1,8 @@
 import { ITask } from "../types/types";
 
 export const tasksNormalizer = function(tasks: ITask[]) {
-    console.log(tasks);
-    return tasks;
+    return {
+        data: Object.fromEntries(tasks.map(task => [task.id, task])),
+        idList: tasks.map(task => task.id)
+    };
 }

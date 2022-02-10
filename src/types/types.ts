@@ -28,21 +28,19 @@ export interface ITask {
 
 export type TNewTask = Pick<ITask, "name" | "tag">;
 
-export interface TasksState {
-  tasks: ITask[];
-}
-
-export interface State {
-  tasks: TasksStateType,
-  notes: any
-}
-
-export interface TasksStateType {
+export interface ITasksState {
   data: {
     [name: string]: ITask
   },
   idList: string[]
 }
+
+export interface State {
+  tasks: ITasksState,
+  notes: any
+}
+
+
 
 export enum TasksActionTypes {
   FETCH_TASKS = "FETCH_TASKS",
@@ -58,7 +56,7 @@ interface FetchTasksAction {
 }
 interface FetchTasksSuccessAction {
   type: TasksActionTypes.FETCH_TASKS_SUCCESS;
-  payload: ITask[];
+  payload: ITasksState;
 }
 interface FetchAddTaskAction {
   type: TasksActionTypes.FETCH_ADD_TASK;

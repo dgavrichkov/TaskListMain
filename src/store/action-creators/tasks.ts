@@ -55,10 +55,6 @@ export function fetchTasks() {
         })
         .catch(() => {
           console.log("Произошла чудовищная ошибка");
-          dispatch({
-            type: TasksActionTypes.FETCH_TASKS_SUCCESS,
-            payload: []
-          })
         })
     } catch (e) {
       console.log("Произошла ошибка при загрузке тасков");
