@@ -26,6 +26,13 @@ export interface ITask {
   done: boolean;
 }
 
+export interface INote {
+  id: string,
+  name: string,
+  text: string,
+  category: string | null
+}
+
 export type TNewTask = Pick<ITask, "name" | "tag">;
 
 export interface ITasksState {

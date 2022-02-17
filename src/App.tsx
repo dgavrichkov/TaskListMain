@@ -7,7 +7,7 @@ import { TaskList } from "./components/TaskList";
 import { CreateForm } from "./components/CreateForm";
 import { TagFilter } from "./components/TagFilter";
 import { TaskStat } from "./components/TaskStat";
-import { Notes } from "./components/Notes";
+import { NotesList } from "./components/NotesList";
 import { GlobalStyles } from "./styles/globalStyles";
 import { getTasksFromState } from "./store/selectors/tasks";
 
@@ -75,6 +75,10 @@ const StyledPageWrap = styled.div`
     grid-column: 2 / -1;
     grid-row: 3;
   }
+
+  .notes {
+    grid-column: 1 / -1;
+  }
 `;
 
 export const App = function() {
@@ -114,9 +118,8 @@ export const App = function() {
           currentFilter={filter}
           onPickTag={filterTasklist}
         />
+        <NotesList pageClass="notes" />
       </StyledPageWrap>
-      <hr />
-      <Notes pageClass="notes"></Notes>
     </ThemeProvider>
   );
 }
