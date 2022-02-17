@@ -27,9 +27,10 @@ export const TaskList: FC<ListProps> = ({ pageClass, filter }) => {
 
   const { fetchTasks, toggleTaskAction, delTaskAction } = useActions();
 
-  useEffect(() => {
-    fetchTasks();
-  }, []);
+  // Загрузка тасков временно отключена
+  // useEffect(() => {
+  //   fetchTasks();
+  // }, []);
 
   const filteredTasks = (tag: string) => {
     if (tag !== "all") {

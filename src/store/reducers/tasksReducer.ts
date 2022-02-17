@@ -46,37 +46,3 @@ export const tasksReducer = combineReducers({
   data,
   idList
 });
-
-
-// export const tasksReducer = (
-//   state = initialTasksState,
-//   action: TasksAction
-// ) => {
-//   switch (action.type) {
-//     // case TasksActionTypes.FETCH_TASKS:
-//     //   return { ...state };
-//     // case TasksActionTypes.FETCH_TASKS_SUCCESS:
-//     //   return { ...state, tasks: action.payload };
-//     // case TasksActionTypes.ADD_TASK:
-//     //   console.log(state);
-//     //   return {...state};
-//     // case TasksActionTypes.DEL_TASK:
-//     //   return {
-//     //     ...state,
-//     //     tasks: state.tasks.filter((task: ITask) => task.id !== action.payload)
-//     //   };
-//     // case TasksActionTypes.TOGGLE_TASK:
-//     //   const newTasks = state.tasks.map((task: ITask) => {
-//     //     if (task.id === action.payload) {
-//     //       task.done = !task.done;
-//     //     }
-//     //     return task;
-//     //   });
-//     //   return {
-//     //     ...state,
-//     //     tasks: newTasks
-//     //   };
-//     default:
-//       return state;
-//   }
-// };
