@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { Button } from "./Button";
 import nextId from "react-id-generator";
 import styled from "styled-components";
-import { ITask } from "../types/types";
+import { Task } from "../types/Task";
 
 const StyledWrap = styled.div`
   align-self: start;
@@ -25,7 +25,7 @@ const StyledWrap = styled.div`
 `;
 
 type FilterProps = {
-  tasks: ITask[];
+  tasks: Task[];
   pageClass: string;
   currentFilter: string;
   onPickTag: (tag: string) => void;

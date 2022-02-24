@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { INote } from "../types/types"
+import { Note as TypeNote }  from "../types/Note"
 
 const Article = styled.article`
     border-radius: 4px;
@@ -19,7 +19,7 @@ const Article = styled.article`
     }
 `
 
-export const Note = ({name, text, category} : INote) => {
+export const Note = ({name, text, category} : TypeNote) => {
     return (
         <Article>
             <h3 className="name">{name}</h3>

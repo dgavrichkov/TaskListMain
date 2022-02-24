@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { useTypedSelector } from "../hooks/useTypedSelector";
 import { useActions } from "../hooks/useActions";
 import { getTasksFromState } from "../store/selectors/tasks";
-import { ITask } from "../types/types";
+import { Task } from "../types/Task";
 
 const StyledList = styled.ul`
   display: grid;
@@ -38,7 +38,7 @@ export const TaskList = ({ pageClass, filter }: ListProps) => {
   let listItems: ItemsList = null;
 
   if (tasks.length > 0) {
-    listItems = filteredTasks(filter).map((task: ITask) => (
+    listItems = filteredTasks(filter).map((task: Task) => (
       <li className="tasks-list__item" key={task.id}>
         <TaskItem
           name={task.name}

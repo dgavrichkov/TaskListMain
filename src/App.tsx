@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { IThemes } from "./types/types";
+import { Themes } from "./types/Themes";
 import { useTypedSelector } from "./hooks/useTypedSelector";
 import styled, { ThemeProvider } from "styled-components";
 import { ThemeSwitcher } from "./components/ThemeSwitcher";
@@ -11,7 +11,7 @@ import { NotesList } from "./components/NotesList";
 import { GlobalStyles } from "./styles/globalStyles";
 import { getTasksFromState } from "./store/selectors/tasks";
 
-const THEMES: IThemes = {
+const THEMES: Themes = {
   light: {
     colors: {
       primary: "#EEEEEE",

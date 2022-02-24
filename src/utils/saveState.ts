@@ -1,4 +1,4 @@
-import { State } from "../types/types";
+import { State } from "../types/State";
 
 export const saveState = (state: State) => {
     try {

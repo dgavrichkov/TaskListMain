@@ -1,7 +1,9 @@
-import { TasksAction, TasksActionTypes, ITasksState } from "../../types/types";
+import { TasksState } from "../../types/TasksState";
+import { TasksActionTypes } from "../../types/TasksActionTypes";
+import { TasksAction } from "../../types/TasksAction";
 import { combineReducers } from 'redux';
 
-const initialTasksState: ITasksState = {
+const initialTasksState: TasksState = {
   data: {},
   idList: []
 };

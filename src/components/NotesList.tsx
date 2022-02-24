@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useTypedSelector } from "../hooks/useTypedSelector";
-import { INote } from "../types/types";
+import { Note as TypeNote } from "../types/Note";
 import { Note } from "./Note";
 
 const StyledNotes = styled.div`
@@ -27,7 +27,7 @@ export const NotesList = ({pageClass}: ListProps) => {
             <h2 className="title">Notes</h2>
             <div className="list">
                 {notes && (
-                    notes.map((note: INote) => (
+                    notes.map((note: TypeNote) => (
                         <Note key={note.id} id={note.id} name={note.name} text={note.text} category={note.category}/>
                     ))
                 )}

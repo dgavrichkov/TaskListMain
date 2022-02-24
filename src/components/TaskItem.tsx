@@ -1,13 +1,13 @@
 import { Button } from "./Button";
 import styled from "styled-components";
-import { ITask } from "../types/types";
+import { Task } from "../types/Task";
 
 type TaskProps = {
   name: string;
   tag: string;
   id: string;
   done: boolean;
-  onDoneTask: (task: ITask) => void;
+  onDoneTask: (task: Task) => void;
   onDeleteTask: (id: string) => void;
 };
 
