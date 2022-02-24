@@ -1,4 +1,3 @@
-import { FC } from "react"
 import styled from "styled-components"
 import { INote } from "../types/types"
 
@@ -20,7 +19,7 @@ const Article = styled.article`
     }
 `
 
-export const Note: FC<INote> = ({name, text, category}) => {
+export const Note = ({name, text, category} : INote) => {
     return (
         <Article>
             <h3 className="name">{name}</h3>

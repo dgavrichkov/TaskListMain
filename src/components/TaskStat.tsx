@@ -1,4 +1,3 @@
-import { FC } from "react";
 import styled from "styled-components";
 import { useTypedSelector } from "../hooks/useTypedSelector";
 import { getTasksFromState } from "../store/selectors/tasks";
@@ -21,7 +20,7 @@ type StatProps = {
   pageClass: string;
 };
 
-export const TaskStat: FC<StatProps> = ({pageClass}) => {
+export const TaskStat = ({pageClass}: StatProps) => {
   const tasks = useTypedSelector(getTasksFromState);
 
   const countAllTasks = () => {

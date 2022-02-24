@@ -1,4 +1,3 @@
-import React, { FC } from "react";
 import styled from "styled-components";
 import { useTypedSelector } from "../hooks/useTypedSelector";
 import { INote } from "../types/types";
@@ -21,7 +20,7 @@ type ListProps = {
     pageClass: string;
 }
 
-export const NotesList: FC<ListProps> = ({pageClass}) => {
+export const NotesList = ({pageClass}: ListProps) => {
     const { notes } = useTypedSelector((state) => state.notes);
     return (
         <StyledNotes className={pageClass}>

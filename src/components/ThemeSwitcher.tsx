@@ -1,11 +1,10 @@
-import React, { FC } from "react";
 import { Button } from "./Button";
 
 type SwitcherProps = {
   onThemeClick: () => void;
 };
 
-const ThemeSwitcher: FC<SwitcherProps> = ({ onThemeClick }) => {
+const ThemeSwitcher = ({ onThemeClick }: SwitcherProps) => {
   return (
     <Button
       onClick={() => {

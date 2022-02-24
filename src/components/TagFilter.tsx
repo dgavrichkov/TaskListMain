@@ -1,4 +1,4 @@
-import React, { Fragment, FC } from "react";
+import React, { Fragment } from "react";
 import { Button } from "./Button";
 import nextId from "react-id-generator";
 import styled from "styled-components";
@@ -31,8 +31,8 @@ type FilterProps = {
   onPickTag: (tag: string) => void;
 };
 
-export const TagFilter: FC<FilterProps> = React.memo(
-  ({ tasks, onPickTag, pageClass, currentFilter }) => {
+export const TagFilter = React.memo(
+  ({ tasks, onPickTag, pageClass, currentFilter }: FilterProps) => {
     const uniqtags = new Set(tasks.map((task: { tag: string }) => task.tag));
     const tags = Array.from(uniqtags).map((uniqtag) => {
       return { id: nextId(), tagname: uniqtag };

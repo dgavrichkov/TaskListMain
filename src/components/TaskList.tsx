@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from "react";
+import React from "react";
 import { TaskItem } from "./TaskItem";
 import styled from "styled-components";
 import { useTypedSelector } from "../hooks/useTypedSelector";
@@ -22,15 +22,10 @@ type ListProps = {
 
 type ItemsList = React.ReactNode;
 
-export const TaskList: FC<ListProps> = ({ pageClass, filter }) => {
+export const TaskList = ({ pageClass, filter }: ListProps) => {
   const tasks = useTypedSelector(getTasksFromState);
 
-  const { fetchTasks, toggleTaskAction, delTaskAction } = useActions();
-
-  // Загрузка тасков временно отключена
-  // useEffect(() => {
-  //   fetchTasks();
-  // }, []);
+  const { toggleTaskAction, delTaskAction } = useActions();
 
   const filteredTasks = (tag: string) => {
     if (tag !== "all") {

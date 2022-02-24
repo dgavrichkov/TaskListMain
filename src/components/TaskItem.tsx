@@ -1,4 +1,3 @@
-import React, { FC } from "react";
 import { Button } from "./Button";
 import styled from "styled-components";
 import { ITask } from "../types/types";
@@ -60,14 +59,14 @@ const StyledTaskItem = styled.div<StyledWrapProps>`
   `}
 `;
 
-export const TaskItem: FC<TaskProps> = ({
+export const TaskItem = ({
   name,
   tag,
   id,
   done,
   onDoneTask,
   onDeleteTask
-}) => {
+}: TaskProps) => {
   return (
     <StyledTaskItem className={`task-item`} done={done}>
       <b className="name">{name}</b>

@@ -1,4 +1,3 @@
-import React, { FC } from "react";
 import styled from "styled-components";
 
 const StyledButton = styled.button`
@@ -15,17 +14,18 @@ const StyledButton = styled.button`
 `;
 
 interface ButtonProps {
+  children?: any,
   className?: string;
   buttonType?: "button" | "submit" | "reset" | undefined;
   onClick: () => void;
 }
 
-export const Button: FC<ButtonProps> = ({
+export const Button = ({
   children,
   className,
   buttonType = "button",
   onClick
-}) => {
+}: ButtonProps) => {
   return (
     <StyledButton
       className={className}

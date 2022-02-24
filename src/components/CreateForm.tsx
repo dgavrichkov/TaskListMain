@@ -1,4 +1,4 @@
-import React, { useState, FC } from "react";
+import React, { useState } from "react";
 import { Button, BoldButton } from "./Button";
 import styled from "styled-components";
 import { useActions } from "../hooks/useActions";
@@ -28,7 +28,7 @@ type FormProps = {
     pageClass: string;
 };
 
-export const CreateForm: FC<FormProps> = React.memo(({ pageClass }) => {
+export const CreateForm = React.memo(({ pageClass }: FormProps) => {
     const [name, setName] = useState("");
     const [tag, setTag] = useState("");
   
