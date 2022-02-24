@@ -13,7 +13,7 @@ const StyledButton = styled.button`
   }
 `;
 
-interface ButtonProps {
+type ButtonProps = {
   children?: any,
   className?: string;
   buttonType?: "button" | "submit" | "reset" | undefined;

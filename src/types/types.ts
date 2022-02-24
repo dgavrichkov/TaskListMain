@@ -1,32 +1,32 @@
-interface Colors {
-    primary: string;
-    accent: string;
-    text: string;
-  }
-interface Shadows {
+type Colors = {
+  primary: string;
+  accent: string;
+  text: string;
+}
+type Shadows = {
   button: string;
   input: string;
   buttonInset: string;
 }
-export interface ITheme {
+export type ITheme = {
   colors: Colors;
   shadows: Shadows;
 }
 
-export interface IThemes {
+export type IThemes = {
   [key: string]: ITheme;
   light: ITheme;
   dark: ITheme;
 }
 
-export interface ITask {
+export type ITask = {
   id: string;
   name: string;
   tag: string;
   done: boolean;
 }
 
-export interface INote {
+export type INote = {
   id: string,
   name: string,
   text: string,
@@ -35,19 +35,17 @@ export interface INote {
 
 export type TNewTask = Pick<ITask, "name" | "tag">;
 
-export interface ITasksState {
+export type ITasksState = {
   data: {
     [name: string]: ITask
   },
   idList: string[]
 }
 
-export interface State {
+export type State = {
   tasks: ITasksState,
   notes: any
 }
-
-
 
 export enum TasksActionTypes {
   FETCH_TASKS = "FETCH_TASKS",
@@ -58,25 +56,25 @@ export enum TasksActionTypes {
   TOGGLE_TASK = "TOGGLE_TASK"
 }
 
-interface FetchTasksAction {
+type FetchTasksAction = {
   type: TasksActionTypes.FETCH_TASKS;
 }
-interface FetchTasksSuccessAction {
+type FetchTasksSuccessAction = {
   type: TasksActionTypes.FETCH_TASKS_SUCCESS;
   payload: ITasksState;
 }
-interface FetchAddTaskAction {
+type FetchAddTaskAction = {
   type: TasksActionTypes.FETCH_ADD_TASK;
 }
-interface AddTaskAction {
+type AddTaskAction = {
   type: TasksActionTypes.ADD_TASK;
   payload: ITask;
 }
-interface DelTaskAction {
+type DelTaskAction = {
   type: TasksActionTypes.DEL_TASK;
   payload: string;
 }
-interface ToggleTaskAction {
+type ToggleTaskAction = {
   type: TasksActionTypes.TOGGLE_TASK;
   payload: string;
 }
