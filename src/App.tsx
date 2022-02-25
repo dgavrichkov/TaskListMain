@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Themes } from "./types/Themes";
-import { useTypedSelector } from "./hooks/useTypedSelector";
 import styled, { ThemeProvider } from "styled-components";
 import { ThemeSwitcher } from "./components/ThemeSwitcher";
 import { TaskList } from "./components/TaskList";
@@ -9,7 +8,6 @@ import { TagFilter } from "./components/TagFilter";
 import { TaskStat } from "./components/TaskStat";
 import { NotesList } from "./components/NotesList";
 import { GlobalStyles } from "./styles/globalStyles";
-import { getTasksFromState } from "./store/selectors/tasks";
 
 const THEMES: Themes = {
   light: {
@@ -82,8 +80,6 @@ const StyledPageWrap = styled.div`
 `;
 
 export const App = function() {
-  const tasks = useTypedSelector(getTasksFromState);
-  
   const [filter, setFilter] = useState<string>("all");
   const [theme, setTheme] = useState<string>("dark");
 
@@ -114,7 +110,6 @@ export const App = function() {
         <TaskList pageClass="list" filter={filter} />
         <TagFilter
           pageClass="filter"
-          tasks={tasks}
           currentFilter={filter}
           onPickTag={filterTasklist}
         />

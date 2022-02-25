@@ -2,7 +2,8 @@ import React, { Fragment } from "react";
 import { Button } from "./Button";
 import nextId from "react-id-generator";
 import styled from "styled-components";
-import { Task } from "../types/Task";
+import { useTypedSelector } from "../hooks/useTypedSelector";
+import { getTasksFromState } from "../store/selectors/tasks";
 
 const StyledWrap = styled.div`
   align-self: start;
@@ -25,18 +26,19 @@ const StyledWrap = styled.div`
 `;
 
 type FilterProps = {
-  tasks: Task[];
   pageClass: string;
   currentFilter: string;
   onPickTag: (tag: string) => void;
 };
 
 export const TagFilter = React.memo(
-  ({ tasks, onPickTag, pageClass, currentFilter }: FilterProps) => {
+  ({ onPickTag, pageClass, currentFilter }: FilterProps) => {
+    const tasks = useTypedSelector(getTasksFromState);
     const uniqtags = new Set(tasks.map((task: { tag: string }) => task.tag));
     const tags = Array.from(uniqtags).map((uniqtag) => {
       return { id: nextId(), tagname: uniqtag };
     });
+
 
     const tagElems = tags.map((tag) => {
       return (
