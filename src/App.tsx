@@ -8,6 +8,7 @@ import { TagFilter } from "./components/TagFilter";
 import { TaskStat } from "./components/TaskStat";
 import { NotesList } from "./components/NotesList";
 import { GlobalStyles } from "./styles/globalStyles";
+import { useActions } from "./hooks/useActions";
 
 const THEMES: Themes = {
   light: {
@@ -87,13 +88,15 @@ export const App = function() {
     setFilter(tag);
   };
 
-  const handleSwitchTheme = () => {
-    if (theme === "light") {
-      setTheme("dark");
-    } else {
-      setTheme("light");
-    }
-  };
+  // const handleSwitchTheme = () => {
+  //   if (theme === "light") {
+  //     setTheme("dark");
+  //   } else {
+  //     setTheme("light");
+  //   }
+  // };
+
+  const { toggleThemeAction } = useActions();
 
   return (
     <ThemeProvider theme={THEMES[theme]}>
@@ -101,7 +104,7 @@ export const App = function() {
       <StyledPageWrap className="page">
         <header className="header">
           <h1>ToDo</h1>
-          <ThemeSwitcher onThemeClick={handleSwitchTheme} />
+          <ThemeSwitcher onThemeClick={toggleThemeAction} />
         </header>
         <CreateForm pageClass="form" />
         <TaskStat
