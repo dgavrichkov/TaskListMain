@@ -5,26 +5,6 @@ import styled from "styled-components";
 import { useTypedSelector } from "../hooks/useTypedSelector";
 import { getTasksFromState } from "../store/selectors/tasks";
 
-const StyledWrap = styled.div`
-  align-self: start;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: start;
-  justify-content: start;
-  padding: 14px;
-  border-radius: 4px;
-  background: ${(props) => props.theme.colors.primary};
-  box-shadow: ${(props) => props.theme.shadows.button};
-
-  .item {
-    margin: 10px;
-    cursor: pointer;
-    &--clear {
-      width: 100%;
-    }
-  }
-`;
-
 type FilterProps = {
   pageClass: string;
   currentFilter: string;
@@ -78,3 +58,23 @@ export const TagFilter = React.memo(
     );
   }
 );
+
+const StyledWrap = styled.div`
+  align-self: start;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: start;
+  justify-content: start;
+  padding: 14px;
+  border-radius: 4px;
+  background: ${(props) => props.theme.colors.primary};
+  box-shadow: ${(props) => props.theme.shadows.button};
+
+  .item {
+    margin: 10px;
+    cursor: pointer;
+    &--clear {
+      width: 100%;
+    }
+  }
+`;

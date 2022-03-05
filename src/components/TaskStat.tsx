@@ -2,20 +2,6 @@ import styled from "styled-components";
 import { useTypedSelector } from "../hooks/useTypedSelector";
 import { getTasksFromState } from "../store/selectors/tasks";
 
-const StyledWrap = styled.div`
-  border-radius: 4px;
-  box-shadow: ${(props) => props.theme.shadows.button};
-  padding: 14px;
-  p {
-    font-size: 18px;
-    margin: 0;
-    padding: 0;
-    &:not(:last-child) {
-      margin-bottom: 14px;
-    }
-  }
-`;
-
 type StatProps = {
   pageClass: string;
 };
@@ -38,3 +24,17 @@ export const TaskStat = ({pageClass}: StatProps) => {
     </StyledWrap>
   );
 };
+
+const StyledWrap = styled.div`
+  border-radius: 4px;
+  box-shadow: ${(props) => props.theme.shadows.button};
+  padding: 14px;
+  p {
+    font-size: 18px;
+    margin: 0;
+    padding: 0;
+    &:not(:last-child) {
+      margin-bottom: 14px;
+    }
+  }
+`;

@@ -3,19 +3,6 @@ import { useTypedSelector } from "../hooks/useTypedSelector";
 import { Note as TypeNote } from "../types/Note";
 import { Note } from "./Note";
 
-const StyledNotes = styled.div`
-    .title {
-        margin-bottom: 28px;
-    }
-
-    .list {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 14px;
-    }
-
-`
-
 type ListProps = {
     pageClass: string;
 }
@@ -35,3 +22,16 @@ export const NotesList = ({pageClass}: ListProps) => {
         </StyledNotes>
     )
 }
+
+const StyledNotes = styled.div`
+    .title {
+        margin-bottom: 28px;
+    }
+
+    .list {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+`

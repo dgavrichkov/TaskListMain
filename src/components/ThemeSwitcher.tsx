@@ -4,7 +4,7 @@ type SwitcherProps = {
   onThemeClick: () => void;
 };
 
-const ThemeSwitcher = ({ onThemeClick }: SwitcherProps) => {
+export const ThemeSwitcher = ({ onThemeClick }: SwitcherProps) => {
   return (
     <Button
       onClick={() => {
@@ -15,5 +15,3 @@ const ThemeSwitcher = ({ onThemeClick }: SwitcherProps) => {
     </Button>
   );
 };
-
-export { ThemeSwitcher };

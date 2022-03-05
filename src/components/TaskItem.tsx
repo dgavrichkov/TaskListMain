@@ -16,6 +16,40 @@ type StyledWrapProps = {
   done: boolean;
 };
 
+export const TaskItem = ({
+  name,
+  tag,
+  id,
+  done,
+  onDoneTask,
+  onDeleteTask
+}: TaskProps) => {
+  return (
+    <StyledTaskItem className={`task-item`} done={done}>
+      <b className="name">{name}</b>
+      <i className="tag">{tag}</i>
+      <Button
+        buttonType="button"
+        className="done"
+        onClick={() => {
+          onDoneTask({id, name, tag, done});
+        }}
+      >
+        {!done ? "Done" : "Not Done"}
+      </Button>
+      <Button
+        buttonType="button"
+        className="delete"
+        onClick={() => {
+          onDeleteTask(id);
+        }}
+      >
+        Delete
+      </Button>
+    </StyledTaskItem>
+  );
+};
+
 const StyledTaskItem = styled.div<StyledWrapProps>`
   border-radius: 4px;
   box-shadow: ${(props) => props.theme.shadows.button};
@@ -58,37 +92,3 @@ const StyledTaskItem = styled.div<StyledWrapProps>`
       }
   `}
 `;
-
-export const TaskItem = ({
-  name,
-  tag,
-  id,
-  done,
-  onDoneTask,
-  onDeleteTask
-}: TaskProps) => {
-  return (
-    <StyledTaskItem className={`task-item`} done={done}>
-      <b className="name">{name}</b>
-      <i className="tag">{tag}</i>
-      <Button
-        buttonType="button"
-        className="done"
-        onClick={() => {
-          onDoneTask({id, name, tag, done});
-        }}
-      >
-        {!done ? "Done" : "Not Done"}
-      </Button>
-      <Button
-        buttonType="button"
-        className="delete"
-        onClick={() => {
-          onDeleteTask(id);
-        }}
-      >
-        Delete
-      </Button>
-    </StyledTaskItem>
-  );
-};

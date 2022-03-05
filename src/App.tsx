@@ -11,6 +11,40 @@ import { GlobalStyles } from "./styles/globalStyles";
 import { useActions } from "./hooks/useActions";
 import { useTypedSelector } from "./hooks/useTypedSelector";
 
+export const App = function() {
+  const [filter, setFilter] = useState<string>("all");
+  const theme = useTypedSelector((state) => state.theme)
+
+  const filterTasklist = (tag: string) => {
+    setFilter(tag);
+  };
+
+  const { toggleThemeAction } = useActions();
+
+  return (
+    <ThemeProvider theme={THEMES[theme]}>
+      <GlobalStyles />
+      <StyledPageWrap className="page">
+        <header className="header">
+          <h1>ToDo</h1>
+          <ThemeSwitcher onThemeClick={toggleThemeAction} />
+        </header>
+        <CreateForm pageClass="form" />
+        <TaskStat
+          pageClass="stat"
+        />
+        <TaskList pageClass="list" filter={filter} />
+        <TagFilter
+          pageClass="filter"
+          currentFilter={filter}
+          onPickTag={filterTasklist}
+        />
+        <NotesList pageClass="notes" />
+      </StyledPageWrap>
+    </ThemeProvider>
+  );
+}
+
 const StyledPageWrap = styled.div`
   max-width: 964px;
   margin: 0 auto;
@@ -47,39 +81,3 @@ const StyledPageWrap = styled.div`
     grid-column: 1 / -1;
   }
 `;
-
-export const App = function() {
-  const [filter, setFilter] = useState<string>("all");
-  const theme = useTypedSelector((state) => state.theme)
-
-  const filterTasklist = (tag: string) => {
-    setFilter(tag);
-  };
-
-  const { toggleThemeAction } = useActions();
-
-  return (
-    <ThemeProvider theme={THEMES[theme]}>
-      <GlobalStyles />
-      <StyledPageWrap className="page">
-        <header className="header">
-          <h1>ToDo</h1>
-          <ThemeSwitcher onThemeClick={toggleThemeAction} />
-        </header>
-        <CreateForm pageClass="form" />
-        <TaskStat
-          pageClass="stat"
-        />
-        <TaskList pageClass="list" filter={filter} />
-        <TagFilter
-          pageClass="filter"
-          currentFilter={filter}
-          onPickTag={filterTasklist}
-        />
-        <NotesList pageClass="notes" />
-      </StyledPageWrap>
-    </ThemeProvider>
-  );
-}
-
-

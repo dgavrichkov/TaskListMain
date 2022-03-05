@@ -6,20 +6,10 @@ import { useActions } from "../hooks/useActions";
 import { getTasksFromState } from "../store/selectors/tasks";
 import { Task } from "../types/Task";
 
-const StyledList = styled.ul`
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 10px;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-`;
-
 type ListProps = {
   pageClass: string;
   filter: string;
 };
-
 type ItemsList = React.ReactNode;
 
 export const TaskList = ({ pageClass, filter }: ListProps) => {
@@ -56,3 +46,12 @@ export const TaskList = ({ pageClass, filter }: ListProps) => {
 
   return <StyledList className={pageClass}>{listItems}</StyledList>;
 };
+
+const StyledList = styled.ul`
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+`;

@@ -3,27 +3,6 @@ import { Button, BoldButton } from "./Button";
 import styled from "styled-components";
 import { useActions } from "../hooks/useActions";
 
-const StyledForm = styled.form`
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  row-gap: 20px;
-  column-gap: 30px;
-  input {
-    grid-column: span 4;
-    display: block;
-    border: none;
-    border-radius: 20px;
-    padding: 10px 25px;
-    font-size: 18px;
-    background: ${(props) => props.theme.colors.primary};
-    box-shadow: ${(props) => props.theme.shadows.input};
-    color: inherit;
-  }
-  button {
-    grid-column: span 2;
-  }
-`;
-
 type FormProps = {
     pageClass: string;
 };
@@ -59,7 +38,7 @@ export const CreateForm = React.memo(({ pageClass }: FormProps) => {
     };
   
     return (
-      <StyledForm className={`todo-create ${pageClass}`}>
+      <Form className={`todo-create ${pageClass}`}>
         <input
           type="text"
           placeholder="add task"
@@ -78,6 +57,27 @@ export const CreateForm = React.memo(({ pageClass }: FormProps) => {
         <Button buttonType="button" onClick={handleClear}>
           Clear
         </Button>
-      </StyledForm>
+      </Form>
     );
 });
+
+const Form = styled.form`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  row-gap: 20px;
+  column-gap: 30px;
+  input {
+    grid-column: span 4;
+    display: block;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 25px;
+    font-size: 18px;
+    background: ${(props) => props.theme.colors.primary};
+    box-shadow: ${(props) => props.theme.shadows.input};
+    color: inherit;
+  }
+  button {
+    grid-column: span 2;
+  }
+`;
