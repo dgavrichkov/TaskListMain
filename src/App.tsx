@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Themes } from "./types/Themes";
+import { THEMES } from "./constants/themes";
 import styled, { ThemeProvider } from "styled-components";
 import { ThemeSwitcher } from "./components/ThemeSwitcher";
 import { TaskList } from "./components/TaskList";
@@ -9,39 +9,7 @@ import { TaskStat } from "./components/TaskStat";
 import { NotesList } from "./components/NotesList";
 import { GlobalStyles } from "./styles/globalStyles";
 import { useActions } from "./hooks/useActions";
-
-const THEMES: Themes = {
-  light: {
-    colors: {
-      primary: "#EEEEEE",
-      accent: "#25CEDE",
-      text: "#687891"
-    },
-    shadows: {
-      button:
-        "-5.0934px -5.0934px 15.2802px rgba(255, 255, 255, 0.5), 5.0934px 5.0934px 15.2802px rgba(136, 160, 183, 0.25);",
-      input:
-        "inset -5.9893px -5.9893px 17.9679px rgba(255, 255, 255, 0.5), inset 5.9893px 5.9893px 17.9679px rgba(136, 160, 183, 0.25);",
-      buttonInset:
-        "inset -5.0934px -5.0934px 15.2802px rgba(255, 255, 255, 0.5),inset 5.0934px 5.0934px 15.2802px rgba(136, 160, 183, 0.25);"
-    }
-  },
-  dark: {
-    colors: {
-      primary: "#2C2F33",
-      accent: "#25CEDE",
-      text: "#eeeeee"
-    },
-    shadows: {
-      button:
-        "-6.22302px -6.22302px 18.6691px #3B4451, 6.22302px 6.22302px 18.6691px #000000;",
-      input:
-        "inset -6.22302px -6.22302px 18.6691px #3B4451, inset 6.22302px 6.22302px 18.6691px #000000;",
-      buttonInset:
-        "inset -6.22302px -6.22302px 18.6691px #3B4451, inset 6.22302px 6.22302px 18.6691px #000000;"
-    }
-  }
-};
+import { useTypedSelector } from "./hooks/useTypedSelector";
 
 const StyledPageWrap = styled.div`
   max-width: 964px;
@@ -82,19 +50,11 @@ const StyledPageWrap = styled.div`
 
 export const App = function() {
   const [filter, setFilter] = useState<string>("all");
-  const [theme, setTheme] = useState<string>("dark");
+  const theme = useTypedSelector((state) => state.theme)
 
   const filterTasklist = (tag: string) => {
     setFilter(tag);
   };
-
-  // const handleSwitchTheme = () => {
-  //   if (theme === "light") {
-  //     setTheme("dark");
-  //   } else {
-  //     setTheme("light");
-  //   }
-  // };
 
   const { toggleThemeAction } = useActions();
 
