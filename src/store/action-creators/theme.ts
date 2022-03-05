@@ -1,8 +1,9 @@
 import { Dispatch } from "redux";
+import { RootState } from "../reducers";
 
 export function toggleThemeAction() {
 
-    return (dispatch: Dispatch, getState: any) => {
+    return (dispatch: Dispatch, getState: () => RootState) => {
         let theme = getState().theme;
         if (theme === "light") {
             theme = "dark";
