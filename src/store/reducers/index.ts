@@ -9,6 +9,4 @@ export const rootReducer = combineReducers({
   theme
 });
 
-// экспортируем тип корневого редусера, полученый от непосредственно от него
-// пока его не использую, по какой-то причине тип там не такой, как надо
 export type RootState = ReturnType<typeof rootReducer>;

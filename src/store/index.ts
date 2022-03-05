@@ -16,6 +16,6 @@ store.subscribe(throttle(() => {
     const {tasks, notes} = store.getState();
     saveState({
         tasks,
-        notes
+        notes,
     })
 }, 1000));
