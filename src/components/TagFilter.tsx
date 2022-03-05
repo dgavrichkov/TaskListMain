@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import { Button } from "./Button";
+import { TagList } from "./TagList";
 import nextId from "react-id-generator";
 import styled from "styled-components";
 import { useTypedSelector } from "../hooks/useTypedSelector";
@@ -15,24 +16,9 @@ export const TagFilter = React.memo(
   ({ onPickTag, pageClass, currentFilter }: FilterProps) => {
     const tasks = useTypedSelector(getTasksFromState);
     const uniqtags = new Set(tasks.map((task: { tag: string }) => task.tag));
+    
     const tags = Array.from(uniqtags).map((uniqtag) => {
       return { id: nextId(), tagname: uniqtag };
-    });
-
-
-    const tagElems = tags.map((tag) => {
-      return (
-        <Button
-          buttonType="button"
-          className="item"
-          key={tag.id}
-          onClick={() => {
-            onPickTag(tag.tagname);
-          }}
-        >
-          {tag.tagname}
-        </Button>
-      );
     });
 
     return (
@@ -53,7 +39,7 @@ export const TagFilter = React.memo(
             </Button>
           </Fragment>
         }
-        {tagElems}
+        <TagList tags={tags} onPickTag={onPickTag}/>
       </StyledWrap>
     );
   }
