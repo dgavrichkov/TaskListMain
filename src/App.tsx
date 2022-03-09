@@ -1,28 +1,22 @@
 import { THEMES } from "./constants/themes";
 import styled, { ThemeProvider } from "styled-components";
-import { ThemeSwitcher } from "./components/ThemeSwitcher";
+import { Header } from "./components/Header";
 import { TaskList } from "./components/TaskList";
 import { CreateForm } from "./components/CreateForm";
 import { TagFilter } from "./components/TagFilter";
 import { TaskStat } from "./components/TaskStat";
 import { NotesList } from "./components/NotesList";
 import { GlobalStyles } from "./styles/globalStyles";
-import { useActions } from "./hooks/useActions";
 import { useTypedSelector } from "./hooks/useTypedSelector";
 
 export const App = function() {
   const theme = useTypedSelector((state) => state.theme)
 
-  const { toggleThemeAction } = useActions();
-
   return (
     <ThemeProvider theme={THEMES[theme]}>
       <GlobalStyles />
       <StyledPageWrap className="page">
-        <header className="header">
-          <h1>ToDo</h1>
-          <ThemeSwitcher onThemeClick={toggleThemeAction} />
-        </header>
+        <Header pageClass="header" />
         <CreateForm pageClass="form" />
         <TaskStat
           pageClass="stat"

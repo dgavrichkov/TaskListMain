@@ -1,14 +1,14 @@
+import { useActions } from "../hooks/useActions";
 import { Button } from "./Button";
 
-type SwitcherProps = {
-  onThemeClick: () => void;
-};
+export const ThemeSwitcher = () => {
 
-export const ThemeSwitcher = ({ onThemeClick }: SwitcherProps) => {
+  const { toggleThemeAction } = useActions();
+
   return (
     <Button
       onClick={() => {
-        onThemeClick();
+        toggleThemeAction();
       }}
     >
       Switch Theme
