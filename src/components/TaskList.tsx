@@ -6,12 +6,9 @@ import { useActions } from "../hooks/useActions";
 import { getTasksFromState } from "../store/selectors/tasks";
 import { Task } from "../types/Task";
 
-type ListProps = {
-  pageClass: string;
-};
 type ItemsList = React.ReactNode;
 
-export const TaskList = ({ pageClass }: ListProps) => {
+export const TaskList = () => {
   const tasks = useTypedSelector(getTasksFromState);
   const filter = useTypedSelector((state) => state.filter);
 
@@ -44,7 +41,7 @@ export const TaskList = ({ pageClass }: ListProps) => {
     listItems = "Задач нет";
   }
 
-  return <StyledList className={pageClass}>{listItems}</StyledList>;
+  return <StyledList>{listItems}</StyledList>;
 };
 
 const StyledList = styled.ul`

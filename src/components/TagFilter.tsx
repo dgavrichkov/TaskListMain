@@ -8,7 +8,7 @@ import { getTasksFromState } from "../store/selectors/tasks";
 import { useActions } from "../hooks/useActions";
 
 type FilterProps = {
-  pageClass: string;
+  pageClass?: string;
 };
 
 export const TagFilter = ({ pageClass }: FilterProps) => {

@@ -3,7 +3,7 @@ import { useTypedSelector } from "../hooks/useTypedSelector";
 import { getTasksFromState } from "../store/selectors/tasks";
 
 type StatProps = {
-  pageClass: string;
+  pageClass?: string;
 };
 
 export const TaskStat = ({pageClass}: StatProps) => {

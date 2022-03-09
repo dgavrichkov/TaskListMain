@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { useActions } from "../hooks/useActions";
 
 type FormProps = {
-    pageClass: string;
+    pageClass?: string;
 };
 
 export const CreateForm = ({ pageClass }: FormProps) => {

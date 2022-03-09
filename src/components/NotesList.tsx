@@ -4,14 +4,13 @@ import { Note as TypeNote } from "../types/Note";
 import { Note } from "./Note";
 
 type ListProps = {
-    pageClass: string;
+    pageClass?: string;
 }
 
 export const NotesList = ({pageClass}: ListProps) => {
     const { notes } = useTypedSelector((state) => state.notes);
     return (
         <StyledNotes className={pageClass}>
-            <h2 className="title">Notes</h2>
             <div className="list">
                 {notes && (
                     notes.map((note: TypeNote) => (
