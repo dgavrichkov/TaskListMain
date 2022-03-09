@@ -7,12 +7,12 @@ type FormProps = {
     pageClass: string;
 };
 
-export const CreateForm = React.memo(({ pageClass }: FormProps) => {
+export const CreateForm = ({ pageClass }: FormProps) => {
     const [name, setName] = useState("");
     const [tag, setTag] = useState("");
   
     const { addTaskAction } = useActions();
-  
+
     const handleClear = () => {
       setName("");
       setTag("");
@@ -59,7 +59,7 @@ export const CreateForm = React.memo(({ pageClass }: FormProps) => {
         </Button>
       </Form>
     );
-});
+};
 
 const Form = styled.form`
   display: grid;
