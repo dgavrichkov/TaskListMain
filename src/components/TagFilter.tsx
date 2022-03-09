@@ -5,16 +5,17 @@ import nextId from "react-id-generator";
 import styled from "styled-components";
 import { useTypedSelector } from "../hooks/useTypedSelector";
 import { getTasksFromState } from "../store/selectors/tasks";
+import { useActions } from "../hooks/useActions";
 
 type FilterProps = {
   pageClass: string;
-  currentFilter: string;
-  onPickTag: (tag: string) => void;
 };
 
 export const TagFilter = React.memo(
-  ({ onPickTag, pageClass, currentFilter }: FilterProps) => {
+  ({ pageClass }: FilterProps) => {
     const tasks = useTypedSelector(getTasksFromState);
+    const filter = useTypedSelector((state) => state.filter)
+    const { filterChangeAction } = useActions();
     const uniqtags = new Set(tasks.map((task: { tag: string }) => task.tag));
     
     const tags = Array.from(uniqtags).map((uniqtag) => {
@@ -26,20 +27,20 @@ export const TagFilter = React.memo(
         {
           <Fragment>
             <div className="tagfilter__title">
-              Текущий фильтр - {currentFilter}
+              Текущий фильтр - {filter}
             </div>
             <Button
               buttonType="button"
               className="item item--clear"
               onClick={() => {
-                onPickTag("all");
+                filterChangeAction("all");
               }}
             >
               Clear filter
             </Button>
           </Fragment>
         }
-        <TagList tags={tags} onPickTag={onPickTag}/>
+        <TagList tags={tags} />
       </StyledWrap>
     );
   }

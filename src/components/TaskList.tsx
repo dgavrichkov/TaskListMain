@@ -8,12 +8,12 @@ import { Task } from "../types/Task";
 
 type ListProps = {
   pageClass: string;
-  filter: string;
 };
 type ItemsList = React.ReactNode;
 
-export const TaskList = ({ pageClass, filter }: ListProps) => {
+export const TaskList = ({ pageClass }: ListProps) => {
   const tasks = useTypedSelector(getTasksFromState);
+  const filter = useTypedSelector((state) => state.filter);
 
   const { toggleTaskAction, delTaskAction } = useActions();
 

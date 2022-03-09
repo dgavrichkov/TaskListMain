@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { THEMES } from "./constants/themes";
 import styled, { ThemeProvider } from "styled-components";
 import { ThemeSwitcher } from "./components/ThemeSwitcher";
@@ -12,12 +11,7 @@ import { useActions } from "./hooks/useActions";
 import { useTypedSelector } from "./hooks/useTypedSelector";
 
 export const App = function() {
-  const [filter, setFilter] = useState<string>("all");
   const theme = useTypedSelector((state) => state.theme)
-
-  const filterTasklist = (tag: string) => {
-    setFilter(tag);
-  };
 
   const { toggleThemeAction } = useActions();
 
@@ -33,11 +27,9 @@ export const App = function() {
         <TaskStat
           pageClass="stat"
         />
-        <TaskList pageClass="list" filter={filter} />
+        <TaskList pageClass="list" />
         <TagFilter
           pageClass="filter"
-          currentFilter={filter}
-          onPickTag={filterTasklist}
         />
         <NotesList pageClass="notes" />
       </StyledPageWrap>

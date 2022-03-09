@@ -13,10 +13,11 @@ export const store = createStore(rootReducer, persistedState, composeWithDevTool
 
 // TODO - попробовать разделить сохранение тасков и заметок
 store.subscribe(throttle(() => {
-    const {tasks, notes, theme} = store.getState();
+    const {tasks, notes, theme, filter} = store.getState();
     saveState({
         tasks,
         notes,
-        theme
+        theme,
+        filter
     })
 }, 1000));

@@ -1,13 +1,14 @@
 import { Fragment } from "react";
+import { useActions } from "../hooks/useActions";
 import { Tag } from "../types/Tag";
 import { Button } from "./Button";
 
 type TagListProps = {
     tags: Tag[],
-    onPickTag: (tag: string) => void;
 }
 
-export const TagList = ({tags, onPickTag}: TagListProps) => {
+export const TagList = ({tags}: TagListProps) => {
+  const { filterChangeAction } = useActions();
     return (
       <Fragment>
         {tags.map((tag) => {
@@ -17,7 +18,7 @@ export const TagList = ({tags, onPickTag}: TagListProps) => {
               className="item"
               key={tag.id}
               onClick={() => {
-                onPickTag(tag.tagname);
+                filterChangeAction(tag.tagname)
               }}
             >
               {tag.tagname}
