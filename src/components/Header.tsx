@@ -1,5 +1,5 @@
 import { ThemeSwitcher } from "./ThemeSwitcher";
-import {Link} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 
 type HeaderProps = {
     pageClass: string,
@@ -8,10 +8,20 @@ type HeaderProps = {
 export const Header = ({pageClass} : HeaderProps) => {
     return (
         <header className={pageClass}>
-          <h1>ToDo</h1>
-          <Link to="/">Tasks</Link>
-          <Link to="notes">Notes</Link>
-          <ThemeSwitcher />
+            <h1>ToDo</h1>
+            <NavLink
+                to="tasks" 
+                className={({ isActive }) =>
+                    isActive ? "is-active" : ""
+                }
+            >Tasks</NavLink>
+            <NavLink
+                to="notes"
+                className={({ isActive }) =>
+                    isActive ? "is-active" : ""
+                }
+            >Notes</NavLink>
+            <ThemeSwitcher />
         </header>
     )
 }

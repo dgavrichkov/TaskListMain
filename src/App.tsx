@@ -1,12 +1,10 @@
 import { THEMES } from "./constants/themes";
 import styled, { ThemeProvider } from "styled-components";
 import { Header } from "./components/Header";
-import { NotesList } from "./components/NotesList";
 import { GlobalStyles } from "./styles/globalStyles";
 import { useTypedSelector } from "./hooks/useTypedSelector";
-import { Routes, Route } from "react-router-dom";
-import { TasksPage } from "./components/pages/TasksPage";
-import { NotesPage } from "./components/pages/NotesPage";
+import { Outlet } from "react-router-dom";
+
 
 export const App = function() {
   const theme = useTypedSelector((state) => state.theme)
@@ -17,17 +15,8 @@ export const App = function() {
       <StyledPageWrap className="page">
         <Header pageClass="header" />
         <main className="main">
-          <Routes>
-            <Route index element={<TasksPage />}/>
-            <Route path="tasks" element={<TasksPage />}/>
-            <Route path="notes" element={<NotesPage />}/>
-          </Routes>
+          <Outlet />
         </main>
-        {/* <Routes>
-          <Route index element={<TaskList pageClass="list" />}/>
-          <Route path="tasks" element={<TaskList pageClass="list" />}/>
-          <Route path="notes" element={<NotesList pageClass="notes"/>}/>
-        </Routes> */}
         <footer className="footer">
           <i>Just footer</i>
         </footer>
@@ -51,9 +40,12 @@ const StyledPageWrap = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-
+    /* TODO - вынести отдельно внутренние стили хедера */
     a {
       color: ${(props) => props.theme.colors.text || `#000`};
+      &.is-active {
+        color: ${(props: any) => props.theme.colors.accent};
+      }
     }
   }
   .main {
