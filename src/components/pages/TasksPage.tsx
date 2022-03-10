@@ -1,4 +1,4 @@
-import { CreateForm } from "../CreateForm"
+import { CreateTaskForm } from "../CreateTaskForm"
 import { TagFilter } from "../TagFilter"
 import { TaskList } from "../TaskList"
 import { TaskStat } from "../TaskStat"
@@ -8,7 +8,7 @@ export const TasksPage = () => {
         <>
             <h2 className="title">Tasks</h2>
             <section className="form">
-                <CreateForm />
+                <CreateTaskForm />
             </section>
             <section className="aside">
                 <TagFilter />

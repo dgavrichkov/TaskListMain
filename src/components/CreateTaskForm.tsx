@@ -7,7 +7,7 @@ type FormProps = {
     pageClass?: string;
 };
 
-export const CreateForm = ({ pageClass }: FormProps) => {
+export const CreateTaskForm = ({ pageClass }: FormProps) => {
     const [name, setName] = useState("");
     const [tag, setTag] = useState("");
   

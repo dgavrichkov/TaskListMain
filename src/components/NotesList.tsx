@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { useTypedSelector } from "../hooks/useTypedSelector";
+import { getNotesFromState } from "../store/selectors/notes";
 import { Note as TypeNote } from "../types/Note";
 import { Note } from "./Note";
 
@@ -8,7 +9,8 @@ type ListProps = {
 }
 
 export const NotesList = ({pageClass}: ListProps) => {
-    const { notes } = useTypedSelector((state) => state.notes);
+    const notes = useTypedSelector(getNotesFromState);
+
     return (
         <StyledNotes className={pageClass}>
             <div className="list">
