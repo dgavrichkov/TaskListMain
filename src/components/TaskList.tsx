@@ -1,36 +1,18 @@
-import React, { FC, useEffect } from "react";
+import React from "react";
 import { TaskItem } from "./TaskItem";
 import styled from "styled-components";
 import { useTypedSelector } from "../hooks/useTypedSelector";
 import { useActions } from "../hooks/useActions";
 import { getTasksFromState } from "../store/selectors/tasks";
-import { ITask } from "../types/types";
-
-const StyledList = styled.ul`
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 10px;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-`;
-
-type ListProps = {
-  pageClass: string;
-  filter: string;
-};
+import { Task } from "../types/Task";
 
 type ItemsList = React.ReactNode;
 
-export const TaskList: FC<ListProps> = ({ pageClass, filter }) => {
+export const TaskList = () => {
   const tasks = useTypedSelector(getTasksFromState);
+  const filter = useTypedSelector((state) => state.filter);
 
-  const { fetchTasks, toggleTaskAction, delTaskAction } = useActions();
-
-  // Загрузка тасков временно отключена
-  // useEffect(() => {
-  //   fetchTasks();
-  // }, []);
+  const { toggleTaskAction, delTaskAction } = useActions();
 
   const filteredTasks = (tag: string) => {
     if (tag !== "all") {
@@ -43,7 +25,7 @@ export const TaskList: FC<ListProps> = ({ pageClass, filter }) => {
   let listItems: ItemsList = null;
 
   if (tasks.length > 0) {
-    listItems = filteredTasks(filter).map((task: ITask) => (
+    listItems = filteredTasks(filter).map((task: Task) => (
       <li className="tasks-list__item" key={task.id}>
         <TaskItem
           name={task.name}
@@ -59,5 +41,14 @@ export const TaskList: FC<ListProps> = ({ pageClass, filter }) => {
     listItems = "Задач нет";
   }
 
-  return <StyledList className={pageClass}>{listItems}</StyledList>;
+  return <StyledList>{listItems}</StyledList>;
 };
+
+const StyledList = styled.ul`
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+`;

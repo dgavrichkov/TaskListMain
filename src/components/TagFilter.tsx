@@ -1,8 +1,50 @@
-import React, { Fragment, FC } from "react";
+import { Fragment } from "react";
 import { Button } from "./Button";
+import { TagList } from "./TagList";
 import nextId from "react-id-generator";
 import styled from "styled-components";
-import { ITask } from "../types/types";
+import { useTypedSelector } from "../hooks/useTypedSelector";
+import { getTasksFromState } from "../store/selectors/tasks";
+import { useActions } from "../hooks/useActions";
+
+type FilterProps = {
+  pageClass?: string;
+};
+
+export const TagFilter = ({ pageClass }: FilterProps) => {
+  const tasks = useTypedSelector(getTasksFromState);
+  const filter = useTypedSelector((state) => state.filter);
+
+  const { filterChangeAction } = useActions();
+
+  const uniqtags = new Set(tasks.map((task: { tag: string }) => task.tag));
+  
+  const tags = Array.from(uniqtags).map((uniqtag) => {
+    return { id: nextId(), tagname: uniqtag };
+  });
+
+  return (
+    <StyledWrap className={pageClass}>
+      {
+        <Fragment>
+          <div className="tagfilter__title">
+            Текущий фильтр - {filter}
+          </div>
+          <Button
+            buttonType="button"
+            className="item item--clear"
+            onClick={() => {
+              filterChangeAction("all");
+            }}
+          >
+            Clear filter
+          </Button>
+        </Fragment>
+      }
+      <TagList tags={tags} />
+    </StyledWrap>
+  );
+};
 
 const StyledWrap = styled.div`
   align-self: start;
@@ -23,56 +65,3 @@ const StyledWrap = styled.div`
     }
   }
 `;
-
-type FilterProps = {
-  tasks: ITask[];
-  pageClass: string;
-  currentFilter: string;
-  onPickTag: (tag: string) => void;
-};
-
-export const TagFilter: FC<FilterProps> = React.memo(
-  ({ tasks, onPickTag, pageClass, currentFilter }) => {
-    const uniqtags = new Set(tasks.map((task: { tag: string }) => task.tag));
-    const tags = Array.from(uniqtags).map((uniqtag) => {
-      return { id: nextId(), tagname: uniqtag };
-    });
-
-    const tagElems = tags.map((tag) => {
-      return (
-        <Button
-          buttonType="button"
-          className="item"
-          key={tag.id}
-          onClick={() => {
-            onPickTag(tag.tagname);
-          }}
-        >
-          {tag.tagname}
-        </Button>
-      );
-    });
-
-    return (
-      <StyledWrap className={pageClass}>
-        {
-          <Fragment>
-            <div className="tagfilter__title">
-              Текущий фильтр - {currentFilter}
-            </div>
-            <Button
-              buttonType="button"
-              className="item item--clear"
-              onClick={() => {
-                onPickTag("all");
-              }}
-            >
-              Clear filter
-            </Button>
-          </Fragment>
-        }
-        {tagElems}
-      </StyledWrap>
-    );
-  }
-);

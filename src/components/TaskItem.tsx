@@ -1,20 +1,53 @@
-import React, { FC } from "react";
 import { Button } from "./Button";
 import styled from "styled-components";
-import { ITask } from "../types/types";
+import { Task } from "../types/Task";
 
 type TaskProps = {
   name: string;
   tag: string;
   id: string;
   done: boolean;
-  onDoneTask: (task: ITask) => void;
+  onDoneTask: (task: Task) => void;
   onDeleteTask: (id: string) => void;
 };
 
 type StyledWrapProps = {
   className: string;
   done: boolean;
+};
+
+export const TaskItem = ({
+  name,
+  tag,
+  id,
+  done,
+  onDoneTask,
+  onDeleteTask
+}: TaskProps) => {
+  return (
+    <StyledTaskItem className={`task-item`} done={done}>
+      <b className="name">{name}</b>
+      <i className="tag">{tag}</i>
+      <Button
+        buttonType="button"
+        className="done"
+        onClick={() => {
+          onDoneTask({id, name, tag, done});
+        }}
+      >
+        {!done ? "Done" : "Not Done"}
+      </Button>
+      <Button
+        buttonType="button"
+        className="delete"
+        onClick={() => {
+          onDeleteTask(id);
+        }}
+      >
+        Delete
+      </Button>
+    </StyledTaskItem>
+  );
 };
 
 const StyledTaskItem = styled.div<StyledWrapProps>`
@@ -59,37 +92,3 @@ const StyledTaskItem = styled.div<StyledWrapProps>`
       }
   `}
 `;
-
-export const TaskItem: FC<TaskProps> = ({
-  name,
-  tag,
-  id,
-  done,
-  onDoneTask,
-  onDeleteTask
-}) => {
-  return (
-    <StyledTaskItem className={`task-item`} done={done}>
-      <b className="name">{name}</b>
-      <i className="tag">{tag}</i>
-      <Button
-        buttonType="button"
-        className="done"
-        onClick={() => {
-          onDoneTask({id, name, tag, done});
-        }}
-      >
-        {!done ? "Done" : "Not Done"}
-      </Button>
-      <Button
-        buttonType="button"
-        className="delete"
-        onClick={() => {
-          onDeleteTask(id);
-        }}
-      >
-        Delete
-      </Button>
-    </StyledTaskItem>
-  );
-};

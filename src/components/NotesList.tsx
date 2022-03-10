@@ -1,8 +1,26 @@
-import React, { FC } from "react";
 import styled from "styled-components";
 import { useTypedSelector } from "../hooks/useTypedSelector";
-import { INote } from "../types/types";
+import { Note as TypeNote } from "../types/Note";
 import { Note } from "./Note";
+
+type ListProps = {
+    pageClass?: string;
+}
+
+export const NotesList = ({pageClass}: ListProps) => {
+    const { notes } = useTypedSelector((state) => state.notes);
+    return (
+        <StyledNotes className={pageClass}>
+            <div className="list">
+                {notes && (
+                    notes.map((note: TypeNote) => (
+                        <Note key={note.id} id={note.id} name={note.name} text={note.text} category={note.category}/>
+                    ))
+                )}
+            </div>
+        </StyledNotes>
+    )
+}
 
 const StyledNotes = styled.div`
     .title {
@@ -16,23 +34,3 @@ const StyledNotes = styled.div`
     }
 
 `
-
-type ListProps = {
-    pageClass: string;
-}
-
-export const NotesList: FC<ListProps> = ({pageClass}) => {
-    const { notes } = useTypedSelector((state) => state.notes);
-    return (
-        <StyledNotes className={pageClass}>
-            <h2 className="title">Notes</h2>
-            <div className="list">
-                {notes && (
-                    notes.map((note: INote) => (
-                        <Note key={note.id} id={note.id} name={note.name} text={note.text} category={note.category}/>
-                    ))
-                )}
-            </div>
-        </StyledNotes>
-    )
-}

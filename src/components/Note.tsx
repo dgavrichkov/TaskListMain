@@ -1,6 +1,15 @@
-import { FC } from "react"
 import styled from "styled-components"
-import { INote } from "../types/types"
+import { Note as TypeNote }  from "../types/Note"
+
+export const Note = ({name, text, category} : TypeNote) => {
+    return (
+        <Article>
+            <h3 className="name">{name}</h3>
+            <p className="text">{text}</p>
+            {category && <i className="category">{category}</i>}
+        </Article>
+    )
+}
 
 const Article = styled.article`
     border-radius: 4px;
@@ -19,13 +28,3 @@ const Article = styled.article`
         }
     }
 `
-
-export const Note: FC<INote> = ({name, text, category}) => {
-    return (
-        <Article>
-            <h3 className="name">{name}</h3>
-            <p className="text">{text}</p>
-            {category && <i className="category">{category}</i>}
-        </Article>
-    )
-}

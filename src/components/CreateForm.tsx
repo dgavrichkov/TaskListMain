@@ -1,39 +1,18 @@
-import React, { useState, FC } from "react";
+import React, { useState } from "react";
 import { Button, BoldButton } from "./Button";
 import styled from "styled-components";
 import { useActions } from "../hooks/useActions";
 
-const StyledForm = styled.form`
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  row-gap: 20px;
-  column-gap: 30px;
-  input {
-    grid-column: span 4;
-    display: block;
-    border: none;
-    border-radius: 20px;
-    padding: 10px 25px;
-    font-size: 18px;
-    background: ${(props) => props.theme.colors.primary};
-    box-shadow: ${(props) => props.theme.shadows.input};
-    color: inherit;
-  }
-  button {
-    grid-column: span 2;
-  }
-`;
-
 type FormProps = {
-    pageClass: string;
+    pageClass?: string;
 };
 
-export const CreateForm: FC<FormProps> = React.memo(({ pageClass }) => {
+export const CreateForm = ({ pageClass }: FormProps) => {
     const [name, setName] = useState("");
     const [tag, setTag] = useState("");
   
     const { addTaskAction } = useActions();
-  
+
     const handleClear = () => {
       setName("");
       setTag("");
@@ -59,7 +38,7 @@ export const CreateForm: FC<FormProps> = React.memo(({ pageClass }) => {
     };
   
     return (
-      <StyledForm className={`todo-create ${pageClass}`}>
+      <Form className={`todo-create ${pageClass}`}>
         <input
           type="text"
           placeholder="add task"
@@ -78,6 +57,27 @@ export const CreateForm: FC<FormProps> = React.memo(({ pageClass }) => {
         <Button buttonType="button" onClick={handleClear}>
           Clear
         </Button>
-      </StyledForm>
+      </Form>
     );
-});
+};
+
+const Form = styled.form`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  row-gap: 20px;
+  column-gap: 30px;
+  input {
+    grid-column: span 4;
+    display: block;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 25px;
+    font-size: 18px;
+    background: ${(props) => props.theme.colors.primary};
+    box-shadow: ${(props) => props.theme.shadows.input};
+    color: inherit;
+  }
+  button {
+    grid-column: span 2;
+  }
+`;

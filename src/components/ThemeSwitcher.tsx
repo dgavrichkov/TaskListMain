@@ -1,20 +1,17 @@
-import React, { FC } from "react";
+import { useActions } from "../hooks/useActions";
 import { Button } from "./Button";
 
-type SwitcherProps = {
-  onThemeClick: () => void;
-};
+export const ThemeSwitcher = () => {
 
-const ThemeSwitcher: FC<SwitcherProps> = ({ onThemeClick }) => {
+  const { toggleThemeAction } = useActions();
+
   return (
     <Button
       onClick={() => {
-        onThemeClick();
+        toggleThemeAction();
       }}
     >
       Switch Theme
     </Button>
   );
 };
-
-export { ThemeSwitcher };
