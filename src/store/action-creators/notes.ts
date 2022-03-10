@@ -18,3 +18,17 @@ export function addNoteAction(note: NoteNew) {
         }
     })
 }
+
+export function delNoteAction(id: string) {
+    return((dispatch: Dispatch<NotesAction>) => {
+        try {
+            dispatch({
+                type: NotesActionTypes.DEL_NOTE,
+                payload: id
+            })
+        } catch (e) {
+            console.log(e);
+            
+        }
+    })
+}

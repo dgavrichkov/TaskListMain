@@ -30,6 +30,9 @@ const data = (state = initialNotesState.data, action: NotesAction) => {
                 ...state,
                 [action.payload.id]: action.payload
             }
+        case NotesActionTypes.DEL_NOTE:
+            const {[action.payload]: removedNote, ...restNotes} = state;
+            return restNotes;
         default:
             return state
     }
@@ -39,6 +42,8 @@ const idList = (state = initialNotesState.idList, action: NotesAction) => {
     switch(action.type) {
         case NotesActionTypes.ADD_NOTE:
             return [...state, action.payload.id]
+        case NotesActionTypes.DEL_NOTE:
+            return state.filter(noteId => noteId !== action.payload);
         default:
             return state
     }
