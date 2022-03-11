@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom"
 import styled from "styled-components"
 import { useActions } from "../hooks/useActions"
 import { Note as TypeNote }  from "../types/Note"
@@ -11,6 +12,7 @@ export const Note = ({id, name, text, category} : TypeNote) => {
             <h3 className="name">{name}</h3>
             <p className="text">{text}</p>
             {category && <i className="category">{category}</i>}
+            <NavLink to={id}>Открыть</NavLink>
             <Button
                 className="delete"
                 onClick={() => {
