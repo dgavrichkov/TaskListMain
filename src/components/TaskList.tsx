@@ -5,6 +5,7 @@ import { useTypedSelector } from "../hooks/useTypedSelector";
 import { useActions } from "../hooks/useActions";
 import { getTasks as getTasksFromState } from "../store/selectors/getTasks";
 import { Task } from "../types/Task";
+import { DEFAULT_FILTER } from "../constants/defaultFilterValue";
 
 type ItemsList = React.ReactNode;
 
@@ -15,7 +16,7 @@ export const TaskList = () => {
   const { toggleTaskAction, delTaskAction } = useActions();
 
   const filteredTasks = (tag: string) => {
-    if (tag !== "all") {
+    if (tag !== DEFAULT_FILTER) {
       return [...tasks].filter((task) => task.tag === tag);
     } else {
       return tasks;
