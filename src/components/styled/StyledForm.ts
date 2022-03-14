@@ -5,7 +5,8 @@ export const StyledForm = styled.form`
   grid-template-columns: repeat(4, 1fr);
   row-gap: 20px;
   column-gap: 30px;
-  input {
+  input,
+  textarea {
     grid-column: span 4;
     display: block;
     border: none;
@@ -15,6 +16,9 @@ export const StyledForm = styled.form`
     background: ${(props) => props.theme.colors.primary};
     box-shadow: ${(props) => props.theme.shadows.input};
     color: inherit;
+  }
+  textarea {
+    resize: none;
   }
   button {
     grid-column: span 2;
