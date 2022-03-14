@@ -50,25 +50,6 @@ const StyledPageWrap = styled.div`
   }
   .main {
     grid-column: 1 / -1;
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    grid-template-rows: auto;
-    align-content: start;
-    gap: 20px;
-    .title {
-      grid-column: 1 / -1;
-    }
-    .form {
-      grid-column: 1 / -1;
-    }
-    .aside {
-      grid-column: 1 / 2;
-      display: grid;
-      gap: 20px;
-    }
-    .content {
-      grid-column: 2 / -1;
-    }
   }
 
   .footer {

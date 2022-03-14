@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom"
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { getNoteFromState } from "../../store/selectors/note";
+import { StyledDetailPageWrap } from "../styled/StyledDetailPageWrap";
 
 type ParamTypes = {
     noteId: string
@@ -18,11 +19,14 @@ export const NotePage = () => {
 
     return (
         <>
-            {typeof note === "object" && 
-            <div>
-                <h3>{note.name}</h3>
-                <p>{note.text}</p>
-            </div>}
+            {
+                typeof note === "object" &&
+                <StyledDetailPageWrap>
+                    <h3>{note.name}</h3>
+                    <p>{note.text}</p>
+                </StyledDetailPageWrap>
+            }
         </>
+        
     )
 }
