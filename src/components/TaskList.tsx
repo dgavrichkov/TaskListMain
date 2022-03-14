@@ -3,14 +3,14 @@ import { TaskItem } from "./TaskItem";
 import styled from "styled-components";
 import { useTypedSelector } from "../hooks/useTypedSelector";
 import { useActions } from "../hooks/useActions";
-import { getTasksFromState } from "../store/selectors/tasks";
+import { getTasks as getTasksFromState } from "../store/selectors/getTasks";
 import { Task } from "../types/Task";
 
 type ItemsList = React.ReactNode;
 
 export const TaskList = () => {
   const tasks = useTypedSelector(getTasksFromState);
-  const filter = useTypedSelector((state) => state.filter);
+  const filter = useTypedSelector((state) => state.tasksFilter);
 
   const { toggleTaskAction, delTaskAction } = useActions();
 

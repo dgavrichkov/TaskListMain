@@ -5,19 +5,26 @@ import { saveState } from "../utils/saveState";
 import { loadState } from "../utils/loadState";
 import { rootReducer } from "./reducers";
 
-const throttle = require('lodash.throttle');
+const throttle = require("lodash.throttle");
 
 const persistedState = loadState();
 
-export const store = createStore(rootReducer, persistedState, composeWithDevTools(applyMiddleware(thunk)));
+export const store = createStore(
+  rootReducer,
+  persistedState,
+  composeWithDevTools(applyMiddleware(thunk))
+);
 
 // TODO - попробовать разделить сохранение тасков и заметок
-store.subscribe(throttle(() => {
-    const {tasks, notes, theme, filter} = store.getState();
+store.subscribe(
+  throttle(() => {
+    const { tasks, notes, theme, tasksFilter, notesFilter } = store.getState();
     saveState({
-        tasks,
-        notes,
-        theme,
-        filter
-    })
-}, 1000));
+      tasks,
+      notes,
+      theme,
+      tasksFilter,
+      notesFilter,
+    });
+  }, 1000)
+);
