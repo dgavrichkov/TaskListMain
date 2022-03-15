@@ -1,4 +1,5 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { useActions } from "../../hooks/useActions";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { getTask as getTaskFromState } from "../../store/selectors/getTask";
 import { Button } from "../Button";
@@ -11,7 +12,8 @@ type ParamTypes = {
 export const TaskPage = () => {
   const { taskId } = useParams<ParamTypes>();
   const task = useTypedSelector((state) => getTaskFromState(state, taskId));
-
+  const { delTaskAction, toggleTaskAction } = useActions();
+  const navigate = useNavigate();
   return (
     <>
       {typeof task === "object" && (
@@ -19,13 +21,23 @@ export const TaskPage = () => {
           <h3>{task.name}</h3>
           <p>{task.tag}</p>
           <i className="id">{task.id}</i>
+
           <Button
             buttonType="button"
             onClick={() => {
-              console.log("boo");
+              toggleTaskAction(task);
             }}
           >
             {!task.done ? "Done" : "Not done"}
+          </Button>
+          <Button
+            buttonType="button"
+            onClick={() => {
+              delTaskAction(task.id);
+              navigate("../tasks", { replace: true });
+            }}
+          >
+            Delete
           </Button>
         </StyledDetailPageWrap>
       )}
