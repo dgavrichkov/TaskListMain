@@ -1,12 +1,13 @@
-import ReactDOM from 'react-dom';
+import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-import {App} from './App';
+import { App } from "./App";
 import { store } from "./store";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { TasksPage } from "./components/pages/TasksPage";
-import { TaskPage } from './components/pages/TaskPage';
+import { TaskPage } from "./components/pages/TaskPage";
 import { NotesPage } from "./components/pages/NotesPage";
-import { NotePage } from './components/pages/NotePage';
+import { NotePage } from "./components/pages/NotePage";
+import { SignupForm } from "./components/SignupForm";
 
 ReactDOM.render(
   <Provider store={store}>
@@ -17,9 +18,10 @@ ReactDOM.render(
           <Route path="notes" element={<NotesPage />} />
           <Route path="tasks/:taskId" element={<TaskPage />} />
           <Route path="notes/:noteId" element={<NotePage />} />
+          <Route path="signup" element={<SignupForm />} />
         </Route>
       </Routes>
     </BrowserRouter>
   </Provider>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
