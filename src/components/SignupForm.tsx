@@ -1,24 +1,54 @@
-import React from "react";
 import { useFormik } from "formik";
+import { StyledForm } from "./styled/StyledForm";
+import { Button } from "./Button";
+
+/**
+ * Это просто форма, которая пока что ничего не делает.
+ */
+
+type Values = {
+  [key: string]: string;
+};
+
+// A custom validation function. This must return an object
+// which keys are symmetrical to our values/initialValues
+const validate = (values: Values) => {
+  const errors: Values = {};
+  if (!values.firstName) {
+    errors.firstName = "Required";
+  } else if (values.firstName.length > 15) {
+    errors.firstName = "Must be 15 characters or less";
+  }
+
+  if (!values.lastName) {
+    errors.lastName = "Required";
+  } else if (values.lastName.length > 20) {
+    errors.lastName = "Must be 20 characters or less";
+  }
+
+  if (!values.email) {
+    errors.email = "Required";
+  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+    errors.email = "Invalid email address";
+  }
+
+  return errors;
+};
 
 export const SignupForm = () => {
-  // Note that we have to initialize ALL of fields with values. These
-  // could come from props, but since we don’t want to prefill this form,
-  // we just use an empty string. If we don’t do this, React will yell
-  // at us.
   const formik = useFormik({
     initialValues: {
       firstName: "",
       lastName: "",
       email: "",
     },
+    validate,
     onSubmit: (values) => {
-      console.log(values);
-      alert(JSON.stringify(values, null, 2));
+      console.log(JSON.stringify(values, null, 2));
     },
   });
   return (
-    <form onSubmit={formik.handleSubmit}>
+    <StyledForm onSubmit={formik.handleSubmit}>
       <label htmlFor="firstName">First Name</label>
       <input
         id="firstName"
@@ -27,6 +57,9 @@ export const SignupForm = () => {
         onChange={formik.handleChange}
         value={formik.values.firstName}
       />
+      <b>
+        {formik.errors.firstName ? <div>{formik.errors.firstName}</div> : null}
+      </b>
 
       <label htmlFor="lastName">Last Name</label>
       <input
@@ -36,7 +69,9 @@ export const SignupForm = () => {
         onChange={formik.handleChange}
         value={formik.values.lastName}
       />
-
+      <b>
+        {formik.errors.lastName ? <div>{formik.errors.lastName}</div> : null}
+      </b>
       <label htmlFor="email">Email Address</label>
       <input
         id="email"
@@ -45,8 +80,8 @@ export const SignupForm = () => {
         onChange={formik.handleChange}
         value={formik.values.email}
       />
-
-      <button type="submit">Submit</button>
-    </form>
+      <b>{formik.errors.email ? <div>{formik.errors.email}</div> : null}</b>
+      <Button buttonType="submit">Submit</Button>
+    </StyledForm>
   );
 };

@@ -5,6 +5,13 @@ export const StyledForm = styled.form`
   grid-template-columns: repeat(4, 1fr);
   row-gap: 20px;
   column-gap: 30px;
+  label {
+    font-size: 12px;
+    margin-bottom: -10px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
   input,
   textarea {
     grid-column: span 4;

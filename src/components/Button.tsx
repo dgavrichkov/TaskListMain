@@ -1,23 +1,25 @@
 import styled from "styled-components";
 
 type ButtonProps = {
-  children?: React.ReactNode,
+  children?: React.ReactNode;
   className?: string;
   buttonType?: "button" | "submit" | "reset" | undefined;
-  onClick: () => void;
-}
+  onClick?: () => void;
+};
 
 export const Button = ({
   children,
   className,
   buttonType = "button",
-  onClick
+  onClick,
 }: ButtonProps) => {
   return (
     <StyledButton
       className={className}
       type={buttonType}
-      onClick={() => onClick()}
+      onClick={() => {
+        onClick && onClick();
+      }}
     >
       {children}
     </StyledButton>
