@@ -10,31 +10,29 @@ type ParamTypes = {
 };
 
 export const NotePage = () => {
-  // ??? noteId type
   const { noteId } = useParams<ParamTypes>();
   const note = useTypedSelector((state) => getNoteFromState(state, noteId));
   const { delNoteAction } = useActions();
   const navigate = useNavigate();
 
+  if (typeof note === "boolean") {
+    return null;
+  }
   return (
-    <>
-      {typeof note === "object" && (
-        <StyledDetailPageWrap>
-          <h3>{note.name}</h3>
-          <i>{note.category}</i>
-          <p>{note.text}</p>
-          <div className="btnGroup">
-            <Button
-              onClick={() => {
-                delNoteAction(note.id);
-                navigate("../notes", { replace: true });
-              }}
-            >
-              Удалить
-            </Button>
-          </div>
-        </StyledDetailPageWrap>
-      )}
-    </>
+    <StyledDetailPageWrap>
+      <h3>{note.name}</h3>
+      <i>{note.category}</i>
+      <p>{note.text}</p>
+      <div className="btnGroup">
+        <Button
+          onClick={() => {
+            delNoteAction(note.id);
+            navigate("../notes", { replace: true });
+          }}
+        >
+          Удалить
+        </Button>
+      </div>
+    </StyledDetailPageWrap>
   );
 };

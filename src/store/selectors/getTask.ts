@@ -1,7 +1,6 @@
 import { Task } from "../../types/Task";
 import { RootState } from "../reducers";
 
-// ??? id type
 export const getTask = (
   state: RootState,
   id: string | undefined
