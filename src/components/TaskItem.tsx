@@ -1,6 +1,7 @@
 import { Button } from "./Button";
 import styled from "styled-components";
 import { Task } from "../types/Task";
+import { NavLink } from "react-router-dom";
 
 type TaskProps = {
   name: string;
@@ -28,6 +29,7 @@ export const TaskItem = ({
     <StyledTaskItem className={`task-item`} done={done}>
       <b className="name">{name}</b>
       <i className="tag">{tag}</i>
+      <NavLink to={id}>Открыть</NavLink>
       <Button
         buttonType="button"
         className="done"

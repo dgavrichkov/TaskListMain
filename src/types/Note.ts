@@ -1,6 +1,6 @@
 export type Note = {
-    id: string,
-    name: string,
-    text: string,
-    category: string | null
-}
+  id: string;
+  name: string;
+  text: string;
+  category: string;
+};

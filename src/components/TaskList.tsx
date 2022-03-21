@@ -3,22 +3,20 @@ import { TaskItem } from "./TaskItem";
 import styled from "styled-components";
 import { useTypedSelector } from "../hooks/useTypedSelector";
 import { useActions } from "../hooks/useActions";
-import { getTasksFromState } from "../store/selectors/tasks";
+import { getTasks as getTasksFromState } from "../store/selectors/getTasks";
 import { Task } from "../types/Task";
+import { DEFAULT_FILTER } from "../constants/defaultFilterValue";
 
-type ListProps = {
-  pageClass: string;
-};
 type ItemsList = React.ReactNode;
 
-export const TaskList = ({ pageClass }: ListProps) => {
+export const TaskList = () => {
   const tasks = useTypedSelector(getTasksFromState);
-  const filter = useTypedSelector((state) => state.filter);
+  const filter = useTypedSelector((state) => state.tasksFilter);
 
   const { toggleTaskAction, delTaskAction } = useActions();
 
   const filteredTasks = (tag: string) => {
-    if (tag !== "all") {
+    if (tag !== DEFAULT_FILTER) {
       return [...tasks].filter((task) => task.tag === tag);
     } else {
       return tasks;
@@ -44,7 +42,7 @@ export const TaskList = ({ pageClass }: ListProps) => {
     listItems = "Задач нет";
   }
 
-  return <StyledList className={pageClass}>{listItems}</StyledList>;
+  return <StyledList>{listItems}</StyledList>;
 };
 
 const StyledList = styled.ul`
