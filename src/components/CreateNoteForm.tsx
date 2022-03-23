@@ -1,37 +1,28 @@
-import React, { useState } from "react";
 import { Button, BoldButton } from "./Button";
 import { useActions } from "../hooks/useActions";
 import { StyledForm } from "./styled/StyledForm";
+import { useInput } from "../hooks/useInput";
+import { useEffect } from "react";
 
 type FormProps = {
   pageClass?: string;
 };
 
 export const CreateNoteForm = ({ pageClass }: FormProps) => {
-  const [name, setName] = useState("");
-  const [category, setCategory] = useState("");
-  const [text, setText] = useState("");
+  const name = useInput("", { isRequired: true, minLength: 5 });
+  const text = useInput("", { minLength: 10 });
+  const category = useInput("");
 
   const { addNoteAction } = useActions();
 
+  useEffect(() => {
+    console.log(name);
+  }, [name.value]);
+
   const handleClear = () => {
-    setName("");
-    setText("");
-    setCategory("");
-  };
-
-  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setName(e.target.value);
-  };
-
-  const handleTextChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setText(e.target.value);
-  };
-
-  const handleCategoryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setCategory(e.target.value);
+    name.clearInput();
+    text.clearInput();
+    category.clearInput();
   };
 
   const handleAdd = () => {
@@ -39,32 +30,36 @@ export const CreateNoteForm = ({ pageClass }: FormProps) => {
       return;
     }
     addNoteAction({
-      name,
-      text,
-      category,
+      name: name.value,
+      text: text.value,
+      category: category.value,
     });
     handleClear();
   };
 
   return (
-    <StyledForm className={`todo-create ${pageClass}`}>
+    <StyledForm className={pageClass}>
       <input
+        className={name.isDirty && !name.validations.isValid ? "invalid" : ""}
         type="text"
         placeholder="add note title"
-        value={name}
-        onChange={handleNameChange}
+        value={name.value}
+        onChange={name.onChange}
+        onBlur={name.onBlur}
       />
       <input
         type="text"
         placeholder="category"
-        value={category}
-        onChange={handleCategoryChange}
+        value={category.value}
+        onChange={category.onChange}
+        onBlur={category.onBlur}
       />
       <textarea
         rows={3}
         placeholder="add note text"
-        value={text}
-        onChange={handleTextChange}
+        value={text.value}
+        onChange={text.onChange}
+        onBlur={text.onBlur}
       ></textarea>
       <BoldButton buttonType="button" onClick={handleAdd}>
         Add

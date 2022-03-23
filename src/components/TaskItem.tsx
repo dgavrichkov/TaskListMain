@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 
 type TaskProps = {
   name: string;
-  tag: string;
+  category: string;
   id: string;
   done: boolean;
   onDoneTask: (task: Task) => void;
@@ -19,22 +19,22 @@ type StyledWrapProps = {
 
 export const TaskItem = ({
   name,
-  tag,
+  category,
   id,
   done,
   onDoneTask,
-  onDeleteTask
+  onDeleteTask,
 }: TaskProps) => {
   return (
     <StyledTaskItem className={`task-item`} done={done}>
       <b className="name">{name}</b>
-      <i className="tag">{tag}</i>
+      <i className="category">{category}</i>
       <NavLink to={id}>Открыть</NavLink>
       <Button
         buttonType="button"
         className="done"
         onClick={() => {
-          onDoneTask({id, name, tag, done});
+          onDoneTask({ id, name, category, done });
         }}
       >
         {!done ? "Done" : "Not Done"}
@@ -67,7 +67,7 @@ const StyledTaskItem = styled.div<StyledWrapProps>`
     grid-column: 1 / -1;
   }
 
-  .tag {
+  .category {
     display: block;
     grid-column: 1;
     grid-row: 2;

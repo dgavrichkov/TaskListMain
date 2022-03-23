@@ -1,55 +1,49 @@
-import React, { useState } from "react";
 import { Button, BoldButton } from "./Button";
 import { useActions } from "../hooks/useActions";
 import { StyledForm } from "./styled/StyledForm";
+import { useInput } from "../hooks/useInput";
 
 type FormProps = {
   pageClass?: string;
 };
 
 export const CreateTaskForm = ({ pageClass }: FormProps) => {
-  const [name, setName] = useState("");
-  const [tag, setTag] = useState("");
+  const name = useInput("");
+  const category = useInput("");
 
   const { addTaskAction } = useActions();
 
   const handleClear = () => {
-    setName("");
-    setTag("");
-  };
-
-  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setName(e.target.value);
-  };
-
-  const handleTagChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTag(e.target.value);
+    name.clearInput();
+    category.clearInput();
   };
 
   const handleAdd = () => {
-    if (!name || !tag) {
+    if (!name.value || !category.value) {
       return;
     }
     addTaskAction({
-      name,
-      tag,
+      name: name.value,
+      category: category.value,
     });
     handleClear();
   };
 
   return (
-    <StyledForm className={`todo-create ${pageClass}`}>
+    <StyledForm className={pageClass}>
       <input
         type="text"
         placeholder="add task"
-        value={name}
-        onChange={handleNameChange}
+        value={name.value}
+        onChange={name.onChange}
+        onBlur={name.onBlur}
       />
       <input
         type="text"
         placeholder="tag"
-        value={tag}
-        onChange={handleTagChange}
+        value={category.value}
+        onChange={category.onChange}
+        onBlur={category.onBlur}
       />
       <BoldButton buttonType="button" onClick={handleAdd}>
         Add

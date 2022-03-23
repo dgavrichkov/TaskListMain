@@ -11,6 +11,7 @@ export const GlobalStyles = createGlobalStyle`
     background: ${(props: any) => props.theme.colors.primary};
   }
   a, button, input, textarea {
+    font-family: inherit;
     &:focus:not(:focus-visible) {
       outline: 0;
     }

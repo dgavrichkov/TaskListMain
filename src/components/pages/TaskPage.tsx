@@ -22,7 +22,7 @@ export const TaskPage = () => {
   return (
     <StyledDetailPageWrap className={task.done === true ? "is-done" : ""}>
       <h3>{task.name}</h3>
-      <p>{task.tag}</p>
+      <p>{task.category}</p>
       <i className="id">{task.id}</i>
 
       <Button
