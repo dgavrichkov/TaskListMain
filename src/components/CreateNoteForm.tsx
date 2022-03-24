@@ -2,7 +2,7 @@ import { Button, BoldButton } from "./Button";
 import { useActions } from "../hooks/useActions";
 import { StyledForm } from "./styled/StyledForm";
 import { useInput } from "../hooks/useInput";
-import { useEffect } from "react";
+import { FormField } from "./elements/FormField";
 
 type FormProps = {
   pageClass?: string;
@@ -11,13 +11,9 @@ type FormProps = {
 export const CreateNoteForm = ({ pageClass }: FormProps) => {
   const name = useInput("", { isRequired: true, minLength: 5 });
   const text = useInput("", { minLength: 10 });
-  const category = useInput("");
+  const category = useInput("", { isRequired: true });
 
   const { addNoteAction } = useActions();
-
-  useEffect(() => {
-    console.log(name);
-  }, [name.value]);
 
   const handleClear = () => {
     name.clearInput();
@@ -39,28 +35,32 @@ export const CreateNoteForm = ({ pageClass }: FormProps) => {
 
   return (
     <StyledForm className={pageClass}>
-      <input
-        className={name.isDirty && !name.validations.isValid ? "invalid" : ""}
+      <FormField
+        state={name}
+        tag="input"
+        title="note title"
         type="text"
+        id="note-name"
+        name="note-name"
         placeholder="add note title"
-        value={name.value}
-        onChange={name.onChange}
-        onBlur={name.onBlur}
       />
-      <input
+      <FormField
+        state={category}
+        tag="input"
+        title="note category"
         type="text"
+        id="note-category"
+        name="note-category"
         placeholder="category"
-        value={category.value}
-        onChange={category.onChange}
-        onBlur={category.onBlur}
       />
-      <textarea
-        rows={3}
+      <FormField
+        state={text}
+        tag="textarea"
+        title="note text"
+        id="note-text"
+        name="note-text"
         placeholder="add note text"
-        value={text.value}
-        onChange={text.onChange}
-        onBlur={text.onBlur}
-      ></textarea>
+      />
       <BoldButton buttonType="button" onClick={handleAdd}>
         Add
       </BoldButton>

@@ -29,4 +29,8 @@ export const StyledForm = styled.form`
   button {
     grid-column: span 2;
   }
+
+  .text-field {
+    grid-column: span 4;
+  }
 `;

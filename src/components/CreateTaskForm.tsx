@@ -8,8 +8,8 @@ type FormProps = {
 };
 
 export const CreateTaskForm = ({ pageClass }: FormProps) => {
-  const name = useInput("");
-  const category = useInput("");
+  const name = useInput("", { isRequired: true });
+  const category = useInput("", { isRequired: true });
 
   const { addTaskAction } = useActions();
 
