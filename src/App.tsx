@@ -3,12 +3,15 @@ import styled, { ThemeProvider } from "styled-components";
 import { Header } from "./components/Header";
 import { GlobalStyles } from "./styles/globalStyles";
 import { useTypedSelector } from "./hooks/useTypedSelector";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 
-
-export const App = function() {
-  const theme = useTypedSelector((state) => state.theme)
-
+export const App = function () {
+  const theme = useTypedSelector((state) => state.theme);
+  const location = useLocation();
+  useEffect(() => {
+    // console.log(location);
+  }, []);
   return (
     <ThemeProvider theme={THEMES[theme]}>
       <GlobalStyles />
@@ -23,7 +26,7 @@ export const App = function() {
       </StyledPageWrap>
     </ThemeProvider>
   );
-}
+};
 
 const StyledPageWrap = styled.div`
   max-width: 964px;
