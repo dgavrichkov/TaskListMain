@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { InputValidatorType } from "../../hooks/useInput";
+import { InputValidatorType } from "../../types/ValidationTypes";
 
 type FormFieldType = {
   id: string;
@@ -27,7 +27,9 @@ export const FormField = ({
       </label>
       {tag === "input" ? (
         <input
-          className={state.isDirty && !state.validator.isValid ? "invalid" : ""}
+          className={
+            state.isDirty && state.validator.isValid.isError ? "invalid" : ""
+          }
           value={state.value}
           type={type}
           id={id}
@@ -38,7 +40,9 @@ export const FormField = ({
         />
       ) : (
         <textarea
-          className={state.isDirty && !state.validator.isValid ? "invalid" : ""}
+          className={
+            state.isDirty && state.validator.isValid.isError ? "invalid" : ""
+          }
           value={state.value}
           id={id}
           name={name}
@@ -47,7 +51,11 @@ export const FormField = ({
           placeholder={placeholder}
         ></textarea>
       )}
-      <i className="text-field__message"></i>
+      <i className="text-field__message">
+        {state.isDirty && state.validator.isValid.isError
+          ? state.validator.isValid.message
+          : null}
+      </i>
     </StyledWrap>
   );
 };

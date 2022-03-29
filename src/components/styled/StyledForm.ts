@@ -17,7 +17,6 @@ export const StyledForm = styled.form`
     box-shadow: ${(props) => props.theme.shadows.input};
     color: inherit;
 
-    /* invalid styles */
     &.invalid {
       outline: 1px solid red;
       /* border-color: red; */

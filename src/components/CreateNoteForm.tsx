@@ -10,8 +10,8 @@ type FormProps = {
 
 export const CreateNoteForm = ({ pageClass }: FormProps) => {
   const name = useInput("", { isRequired: true, minLength: 5 });
-  const text = useInput("", { minLength: 10 });
   const category = useInput("", { isRequired: true });
+  const text = useInput("", { isRequired: true, minLength: 10 });
 
   const { addNoteAction } = useActions();
 

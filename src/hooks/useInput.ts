@@ -1,4 +1,14 @@
 import React, { useState } from "react";
+import {
+  VALIDATION_ERRORS,
+  VALIDATION_PRIORITIES,
+  VALIDATION_SUCCESS,
+} from "../constants/validationConstants";
+import {
+  InputValidatorType,
+  ValidationResult,
+  Validations,
+} from "../types/ValidationTypes";
 
 export const useInput = (
   initialValue: string,
@@ -34,44 +44,17 @@ export const useInput = (
   };
 };
 
-export type InputValidatorType = {
-  value: string;
-  isDirty: boolean;
-  onChange: (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => void;
-  onBlur: () => void;
-  clearInput: () => void;
-  validator: Validator;
-};
-
-export type Validations = {
-  isRequired?: boolean;
-  minLength?: number;
-  maxLength?: number;
-};
-
-type ValidationEntry = { isError: boolean; message: string };
-
-type ValidationResult = {
-  [key: string]: ValidationEntry;
-};
-
-export type Validator = {
-  [key: string]: ValidationResult | boolean;
-};
-
 const useValidator = (
   value: string,
   validationSettings?: Validations
-): Validator => {
+): ValidationResult => {
   if (!validationSettings) {
     return {
-      isValid: true,
+      isValid: { isError: false, message: VALIDATION_SUCCESS.allSuccess },
     };
   }
   const resultValids: ValidationResult = {};
-  let isValid = false;
+  let isValid = { isError: true, message: "default message" };
 
   for (const [validation, validationValue] of Object.entries(
     validationSettings
@@ -81,25 +64,25 @@ const useValidator = (
         if (value) {
           resultValids.isRequired = {
             isError: false,
-            message: "Поле заполнено верно",
+            message: VALIDATION_SUCCESS.commonFieldSuccess,
           };
         } else {
           resultValids.isRequired = {
             isError: true,
-            message: "Поле не заполнено",
+            message: VALIDATION_ERRORS.isRequired(),
           };
         }
         break;
       case "minLength":
         if (value.length < validationValue) {
-          resultValids.minLenght = {
+          resultValids.minLength = {
             isError: true,
-            message: `Минимальная длина - ${validationValue}`,
+            message: VALIDATION_ERRORS.minLength(validationValue),
           };
         } else {
-          resultValids.minLenght = {
+          resultValids.minLength = {
             isError: false,
-            message: "Поле заполнено верно",
+            message: VALIDATION_SUCCESS.commonFieldSuccess,
           };
         }
         break;
@@ -107,23 +90,26 @@ const useValidator = (
         if (value.length > validationValue) {
           resultValids.maxLenght = {
             isError: true,
-            message: `Максимальная длина - ${validationValue}`,
+            message: VALIDATION_ERRORS.maxLength(validationValue),
           };
         } else {
           resultValids.maxLenght = {
             isError: false,
-            message: "Поле заполнено верно",
+            message: VALIDATION_SUCCESS.commonFieldSuccess,
           };
         }
+        break;
     }
   }
 
-  for (const validationValue of Object.values(resultValids)) {
-    if (validationValue.isError) {
-      isValid = false;
-    } else {
-      isValid = true;
-    }
+  isValid.isError = Object.values(resultValids).some(
+    (validation) => validation.isError === true
+  );
+
+  if (!isValid.isError) {
+    isValid.message = VALIDATION_SUCCESS.allSuccess;
+  } else {
+    isValid.message = getPriorityError(resultValids);
   }
 
   return {
@@ -131,3 +117,34 @@ const useValidator = (
     isValid,
   };
 };
+
+function getPriorityError(validations: ValidationResult): string {
+  const failedValidations = Object.entries(validations).filter(
+    (entry) => entry[1].isError === true
+  );
+
+  const validationsWithPriority = failedValidations.map((entry) => {
+    const [key, validation] = entry;
+    return {
+      key,
+      priority: VALIDATION_PRIORITIES[key],
+      message: validation.message,
+    };
+  });
+
+  if (validationsWithPriority.length === 1) {
+    return validationsWithPriority[0].message;
+  }
+
+  validationsWithPriority.sort((a, b) => {
+    if (a.priority > b.priority) {
+      return 1;
+    }
+    if (a.priority < b.priority) {
+      return -1;
+    }
+    return 0;
+  });
+
+  return validationsWithPriority[0].message;
+}
