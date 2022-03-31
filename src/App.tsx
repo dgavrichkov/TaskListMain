@@ -4,11 +4,12 @@ import { Header } from "./components/Header";
 import { GlobalStyles } from "./styles/globalStyles";
 import { useTypedSelector } from "./hooks/useTypedSelector";
 import { Outlet } from "react-router-dom";
+import { useState } from "react";
+import { Modal } from "./components/Modal";
 
-
-export const App = function() {
-  const theme = useTypedSelector((state) => state.theme)
-
+export const App = function () {
+  const theme = useTypedSelector((state) => state.theme);
+  const [openPortal, setOpenPortal] = useState(false);
   return (
     <ThemeProvider theme={THEMES[theme]}>
       <GlobalStyles />
@@ -16,14 +17,20 @@ export const App = function() {
         <Header pageClass="header" />
         <main className="main">
           <Outlet />
+          <button onClick={() => setOpenPortal(true)}>Open Portal Modal</button>
         </main>
         <footer className="footer">
           <i>Just footer</i>
         </footer>
+        <Modal
+          message="Hello Portal"
+          onClose={() => setOpenPortal(false)}
+          isOpen={openPortal}
+        ></Modal>
       </StyledPageWrap>
     </ThemeProvider>
   );
-}
+};
 
 const StyledPageWrap = styled.div`
   max-width: 964px;
