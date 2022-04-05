@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import {
   VALIDATION_ERRORS,
   VALIDATION_PRIORITIES,
+  VALIDATION_PROPERTIES,
   VALIDATION_SUCCESS,
 } from "../constants/validationConstants";
 import {
@@ -60,40 +61,42 @@ const useValidator = (
     validationSettings
   )) {
     switch (validation) {
-      case "isRequired":
+      case VALIDATION_PROPERTIES.IS_REQUIRED:
         if (value) {
-          resultValids.isRequired = {
+          resultValids[VALIDATION_PROPERTIES.IS_REQUIRED] = {
             isError: false,
             message: VALIDATION_SUCCESS.commonFieldSuccess,
           };
         } else {
-          resultValids.isRequired = {
+          resultValids[VALIDATION_PROPERTIES.IS_REQUIRED] = {
             isError: true,
-            message: VALIDATION_ERRORS.isRequired(),
+            message: VALIDATION_ERRORS[VALIDATION_PROPERTIES.IS_REQUIRED](),
           };
         }
         break;
-      case "minLength":
+      case VALIDATION_PROPERTIES.MIN_LEN:
         if (value.length < validationValue) {
-          resultValids.minLength = {
+          resultValids[VALIDATION_PROPERTIES.MIN_LEN] = {
             isError: true,
-            message: VALIDATION_ERRORS.minLength(validationValue),
+            message:
+              VALIDATION_ERRORS[VALIDATION_PROPERTIES.MIN_LEN](validationValue),
           };
         } else {
-          resultValids.minLength = {
+          resultValids[VALIDATION_PROPERTIES.MIN_LEN] = {
             isError: false,
             message: VALIDATION_SUCCESS.commonFieldSuccess,
           };
         }
         break;
-      case "maxLength":
+      case VALIDATION_PROPERTIES.MAX_LEN:
         if (value.length > validationValue) {
-          resultValids.maxLenght = {
+          resultValids[VALIDATION_PROPERTIES.MAX_LEN] = {
             isError: true,
-            message: VALIDATION_ERRORS.maxLength(validationValue),
+            message:
+              VALIDATION_ERRORS[VALIDATION_PROPERTIES.MAX_LEN](validationValue),
           };
         } else {
-          resultValids.maxLenght = {
+          resultValids[VALIDATION_PROPERTIES.MAX_LEN] = {
             isError: false,
             message: VALIDATION_SUCCESS.commonFieldSuccess,
           };
