@@ -6,15 +6,16 @@ import {
   VALIDATION_SUCCESS,
 } from "../constants/validationConstants";
 import {
+  InputConfig,
   InputValidatorType,
   ValidationResult,
   Validations,
 } from "../types/ValidationTypes";
 
-export const useInput = (
-  initialValue: string,
-  validationSettings?: Validations
-): InputValidatorType => {
+export const useInput = ({
+  initialValue,
+  validationSettings,
+}: InputConfig): InputValidatorType => {
   const [value, setValue] = useState<string>(initialValue);
   const [isDirty, setIsDirty] = useState<boolean>(false);
 

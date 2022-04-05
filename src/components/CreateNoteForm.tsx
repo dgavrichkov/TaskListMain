@@ -3,17 +3,48 @@ import { useActions } from "../hooks/useActions";
 import { StyledForm } from "./styled/StyledForm";
 import { useInput } from "../hooks/useInput";
 import { FormField } from "./elements/FormField";
+import { useForm } from "../hooks/useForm";
+// import { useEffect } from "react";
 
 type FormProps = {
   pageClass?: string;
 };
 
+const formConfig = {
+  name: {
+    initialValue: "",
+    validationSettings: { isRequired: true, minLength: 5 },
+  },
+  category: {
+    initialValue: "",
+    validationSettings: { isRequired: true },
+  },
+  text: {
+    initialValue: "",
+    validationSettings: { isRequired: true, minLength: 10 },
+  },
+};
+
 export const CreateNoteForm = ({ pageClass }: FormProps) => {
-  const name = useInput("", { isRequired: true, minLength: 5 });
-  const category = useInput("", { isRequired: true });
-  const text = useInput("", { isRequired: true, minLength: 10 });
+  const form = useForm(formConfig);
+  const name = useInput({
+    initialValue: "",
+    validationSettings: { isRequired: true, minLength: 5 },
+  });
+  const category = useInput({
+    initialValue: "",
+    validationSettings: { isRequired: true },
+  });
+  const text = useInput({
+    initialValue: "",
+    validationSettings: { isRequired: true, minLength: 10 },
+  });
 
   const { addNoteAction } = useActions();
+
+  // useEffect(() => {
+  //   console.log(form);
+  // }, [form]);
 
   const handleClear = () => {
     name.clearInput();
