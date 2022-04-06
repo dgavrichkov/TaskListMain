@@ -42,8 +42,6 @@ export type InputConfig = {
 };
 
 export type ValidationForm = {
-  inputs: {
-    [key: string]: InputValidatorType;
-  };
-  formValidity: boolean;
+  validity: boolean;
+  touched: boolean;
 };

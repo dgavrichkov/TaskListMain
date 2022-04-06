@@ -1,23 +1,26 @@
 import styled from "styled-components";
 
 type ButtonProps = {
-  children?: React.ReactNode,
+  children?: React.ReactNode;
   className?: string;
   buttonType?: "button" | "submit" | "reset" | undefined;
+  disabled?: boolean;
   onClick: () => void;
-}
+};
 
 export const Button = ({
   children,
   className,
   buttonType = "button",
-  onClick
+  disabled,
+  onClick,
 }: ButtonProps) => {
   return (
     <StyledButton
       className={className}
       type={buttonType}
       onClick={() => onClick()}
+      disabled={disabled}
     >
       {children}
     </StyledButton>
@@ -41,5 +44,11 @@ const StyledButton = styled.button`
   }
   &:active {
     box-shadow: ${(props) => props.theme.shadows.buttonInset};
+  }
+
+  &[disabled] {
+    box-shadow: ${(props) => props.theme.shadows.buttonInset};
+    color: ${(props) => props.theme.colors.pale};
+    pointer-events: none;
   }
 `;

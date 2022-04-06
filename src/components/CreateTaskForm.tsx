@@ -2,6 +2,8 @@ import { Button, BoldButton } from "./Button";
 import { useActions } from "../hooks/useActions";
 import { StyledForm } from "./styled/StyledForm";
 import { useInput } from "../hooks/useInput";
+import { useForm } from "../hooks/useForm";
+import { FormField } from "./elements/FormField";
 
 type FormProps = {
   pageClass?: string;
@@ -16,6 +18,7 @@ export const CreateTaskForm = ({ pageClass }: FormProps) => {
     initialValue: "",
     validationSettings: { isRequired: true },
   });
+  const form = useForm(name, category);
 
   const { addTaskAction } = useActions();
 
@@ -37,24 +40,36 @@ export const CreateTaskForm = ({ pageClass }: FormProps) => {
 
   return (
     <StyledForm className={pageClass}>
-      <input
+      <FormField
+        state={name}
+        tag="input"
+        title="task title"
         type="text"
+        id="task-name"
+        name="task-name"
         placeholder="add task"
-        value={name.value}
-        onChange={name.onChange}
-        onBlur={name.onBlur}
       />
-      <input
+      <FormField
+        state={category}
+        tag="input"
+        title="task category"
         type="text"
-        placeholder="tag"
-        value={category.value}
-        onChange={category.onChange}
-        onBlur={category.onBlur}
+        id="task-category"
+        name="task-category"
+        placeholder="task category"
       />
-      <BoldButton buttonType="button" onClick={handleAdd}>
+      <BoldButton
+        buttonType="button"
+        onClick={handleAdd}
+        disabled={form.validity && form.touched ? false : true}
+      >
         Add
       </BoldButton>
-      <Button buttonType="button" onClick={handleClear}>
+      <Button
+        buttonType="button"
+        onClick={handleClear}
+        disabled={form.touched ? false : true}
+      >
         Clear
       </Button>
     </StyledForm>
