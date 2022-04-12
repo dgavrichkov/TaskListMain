@@ -1,60 +1,75 @@
-import React, { useState } from "react";
 import { Button, BoldButton } from "./Button";
 import { useActions } from "../hooks/useActions";
 import { StyledForm } from "./styled/StyledForm";
+import { useInput } from "../hooks/useInput";
+import { useForm } from "../hooks/useForm";
+import { FormField } from "./elements/FormField";
 
 type FormProps = {
   pageClass?: string;
 };
 
 export const CreateTaskForm = ({ pageClass }: FormProps) => {
-  const [name, setName] = useState("");
-  const [tag, setTag] = useState("");
+  const name = useInput({
+    initialValue: "",
+    validationSettings: { isRequired: true },
+  });
+  const category = useInput({
+    initialValue: "",
+    validationSettings: { isRequired: true },
+  });
+  const form = useForm(name, category);
 
   const { addTaskAction } = useActions();
 
   const handleClear = () => {
-    setName("");
-    setTag("");
-  };
-
-  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setName(e.target.value);
-  };
-
-  const handleTagChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTag(e.target.value);
+    name.clearInput();
+    category.clearInput();
   };
 
   const handleAdd = () => {
-    if (!name || !tag) {
+    if (!name.value || !category.value) {
       return;
     }
     addTaskAction({
-      name,
-      tag,
+      name: name.value,
+      category: category.value,
     });
     handleClear();
   };
 
   return (
-    <StyledForm className={`todo-create ${pageClass}`}>
-      <input
+    <StyledForm className={pageClass}>
+      <FormField
+        state={name}
+        tag="input"
+        title="task title"
         type="text"
+        id="task-name"
+        name="task-name"
         placeholder="add task"
-        value={name}
-        onChange={handleNameChange}
       />
-      <input
+      <FormField
+        state={category}
+        tag="input"
+        title="task category"
         type="text"
-        placeholder="tag"
-        value={tag}
-        onChange={handleTagChange}
+        id="task-category"
+        name="task-category"
+        placeholder="task category"
       />
-      <BoldButton buttonType="button" onClick={handleAdd}>
+      <BoldButton
+        buttonType="button"
+        onClick={handleAdd}
+        disabled={form.validity && form.touched ? false : true}
+      >
         Add
       </BoldButton>
-      <Button buttonType="button" onClick={handleClear}>
+      <Button
+        buttonType="button"
+        onClick={handleClear}
+        disabled={form.touched ? false : true}
+      >
         Clear
       </Button>
     </StyledForm>

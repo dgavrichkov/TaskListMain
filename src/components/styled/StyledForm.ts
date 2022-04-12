@@ -9,18 +9,27 @@ export const StyledForm = styled.form`
   textarea {
     grid-column: span 4;
     display: block;
-    border: none;
+    border: 1px solid transparent;
     border-radius: 20px;
     padding: 10px 25px;
     font-size: 18px;
     background: ${(props) => props.theme.colors.primary};
     box-shadow: ${(props) => props.theme.shadows.input};
     color: inherit;
+
+    &.invalid {
+      outline: 1px solid red;
+      /* border-color: red; */
+    }
   }
   textarea {
     resize: none;
   }
   button {
     grid-column: span 2;
+  }
+
+  .text-field {
+    grid-column: span 4;
   }
 `;

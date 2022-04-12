@@ -15,9 +15,9 @@ export const TaskList = () => {
 
   const { toggleTaskAction, delTaskAction } = useActions();
 
-  const filteredTasks = (tag: string) => {
-    if (tag !== DEFAULT_FILTER) {
-      return [...tasks].filter((task) => task.tag === tag);
+  const filteredTasks = (category: string) => {
+    if (category !== DEFAULT_FILTER) {
+      return [...tasks].filter((task) => task.category === category);
     } else {
       return tasks;
     }
@@ -30,7 +30,7 @@ export const TaskList = () => {
       <li className="tasks-list__item" key={task.id}>
         <TaskItem
           name={task.name}
-          tag={task.tag}
+          category={task.category}
           done={task.done}
           id={task.id}
           onDoneTask={toggleTaskAction}

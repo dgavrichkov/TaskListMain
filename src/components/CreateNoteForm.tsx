@@ -1,37 +1,35 @@
-import React, { useState } from "react";
 import { Button, BoldButton } from "./Button";
 import { useActions } from "../hooks/useActions";
 import { StyledForm } from "./styled/StyledForm";
+import { useInput } from "../hooks/useInput";
+import { FormField } from "./elements/FormField";
+import { useForm } from "../hooks/useForm";
 
 type FormProps = {
   pageClass?: string;
 };
 
 export const CreateNoteForm = ({ pageClass }: FormProps) => {
-  const [name, setName] = useState("");
-  const [category, setCategory] = useState("");
-  const [text, setText] = useState("");
+  const name = useInput({
+    initialValue: "",
+    validationSettings: { isRequired: true, minLength: 5 },
+  });
+  const category = useInput({
+    initialValue: "",
+    validationSettings: { isRequired: true },
+  });
+  const text = useInput({
+    initialValue: "",
+    validationSettings: { isRequired: true, minLength: 10 },
+  });
+  const form = useForm(name, category, text);
 
   const { addNoteAction } = useActions();
 
   const handleClear = () => {
-    setName("");
-    setText("");
-    setCategory("");
-  };
-
-  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setName(e.target.value);
-  };
-
-  const handleTextChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setText(e.target.value);
-  };
-
-  const handleCategoryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setCategory(e.target.value);
+    name.clearInput();
+    text.clearInput();
+    category.clearInput();
   };
 
   const handleAdd = () => {
@@ -39,37 +37,53 @@ export const CreateNoteForm = ({ pageClass }: FormProps) => {
       return;
     }
     addNoteAction({
-      name,
-      text,
-      category,
+      name: name.value,
+      text: text.value,
+      category: category.value,
     });
     handleClear();
   };
 
   return (
-    <StyledForm className={`todo-create ${pageClass}`}>
-      <input
+    <StyledForm className={pageClass}>
+      <FormField
+        state={name}
+        tag="input"
+        title="note title"
         type="text"
+        id="note-name"
+        name="note-name"
         placeholder="add note title"
-        value={name}
-        onChange={handleNameChange}
       />
-      <input
+      <FormField
+        state={category}
+        tag="input"
+        title="note category"
         type="text"
+        id="note-category"
+        name="note-category"
         placeholder="category"
-        value={category}
-        onChange={handleCategoryChange}
       />
-      <textarea
-        rows={3}
+      <FormField
+        state={text}
+        tag="textarea"
+        title="note text"
+        id="note-text"
+        name="note-text"
         placeholder="add note text"
-        value={text}
-        onChange={handleTextChange}
-      ></textarea>
-      <BoldButton buttonType="button" onClick={handleAdd}>
+      />
+      <BoldButton
+        buttonType="button"
+        onClick={handleAdd}
+        disabled={form.validity && form.touched ? false : true}
+      >
         Add
       </BoldButton>
-      <Button buttonType="button" onClick={handleClear}>
+      <Button
+        buttonType="button"
+        onClick={handleClear}
+        disabled={form.touched ? false : true}
+      >
         Clear
       </Button>
     </StyledForm>
