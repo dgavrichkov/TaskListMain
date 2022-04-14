@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@storybook/preset-create-react-app": "^4.1.0",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -18,7 +19,7 @@
     "react-id-generator": "^3.0.2",
     "react-redux": "^7.2.6",
     "react-router-dom": "^6.2.2",
-    "react-scripts": "4.0.3",
+    "react-scripts": "5.0.0",
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.0",
     "styled-components": "^5.3.3",
@@ -30,7 +31,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "eslintConfig": {
     "extends": [
@@ -61,7 +64,18 @@
     ]
   },
   "devDependencies": {
+    "@babel/core": "^7.17.9",
+    "@storybook/addon-actions": "^6.4.22",
+    "@storybook/addon-essentials": "^6.4.22",
+    "@storybook/addon-interactions": "^6.4.22",
+    "@storybook/addon-links": "^6.4.22",
+    "@storybook/builder-webpack5": "^6.4.22",
+    "@storybook/manager-webpack5": "^6.4.22",
+    "@storybook/react": "^6.4.22",
+    "@storybook/testing-library": "^0.0.9",
+    "babel-loader": "^8.1.0",
     "gh-pages": "^3.2.3",
-    "typescript": "^4.5.2"
+    "typescript": "^4.5.2",
+    "webpack": "5"
   }
 }
