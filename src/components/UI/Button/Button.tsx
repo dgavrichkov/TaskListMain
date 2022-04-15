@@ -1,10 +1,18 @@
 import styled from "styled-components";
+import cn from "classnames";
 
 type ButtonProps = {
   children?: React.ReactNode;
   className?: string;
   buttonType?: "button" | "submit" | "reset" | undefined;
   disabled?: boolean;
+  variant?:
+    | "standart"
+    | "primary"
+    | "secondary"
+    | "subtle"
+    | "text"
+    | undefined;
   onClick: () => void;
 };
 
@@ -13,11 +21,14 @@ export const Button = ({
   className,
   buttonType = "button",
   disabled,
+  variant = "standart",
   onClick,
 }: ButtonProps) => {
+  const classes = cn([className, variant]);
+
   return (
     <StyledButton
-      className={className}
+      className={classes}
       type={buttonType}
       onClick={() => onClick()}
       disabled={disabled}
@@ -27,13 +38,12 @@ export const Button = ({
   );
 };
 
-export const BoldButton = styled(Button)`
-  font-weight: 700;
-`;
-
 const StyledButton = styled.button`
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
   padding: 12px 18px;
-  border-radius: 20.3736px;
+  border-radius: 40px;
   border: none;
   cursor: pointer;
   box-shadow: ${(props) => props.theme.shadows.button || `0 0 0 3px #000`};
@@ -50,5 +60,38 @@ const StyledButton = styled.button`
     box-shadow: ${(props) => props.theme.shadows.buttonInset};
     color: ${(props) => props.theme.colors.pale};
     pointer-events: none;
+  }
+
+  &.primary {
+    &[disabled] {
+    }
+    &:hover {
+    }
+    &:active {
+    }
+  }
+  &.secondary {
+    &[disabled] {
+    }
+    &:hover {
+    }
+    &:active {
+    }
+  }
+  &.subtle {
+    &[disabled] {
+    }
+    &:hover {
+    }
+    &:active {
+    }
+  }
+  &.text {
+    &[disabled] {
+    }
+    &:hover {
+    }
+    &:active {
+    }
   }
 `;

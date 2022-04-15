@@ -1,4 +1,4 @@
-import { Button, BoldButton } from "./UI/Button/Button";
+import { Button } from "./UI/Button/Button";
 import { useActions } from "../hooks/useActions";
 import { StyledForm } from "./styled/StyledForm";
 import { useInput } from "../hooks/useInput";
@@ -72,13 +72,13 @@ export const CreateNoteForm = ({ pageClass }: FormProps) => {
         name="note-text"
         placeholder="add note text"
       />
-      <BoldButton
+      <Button
         buttonType="button"
         onClick={handleAdd}
         disabled={form.validity && form.touched ? false : true}
       >
         Add
-      </BoldButton>
+      </Button>
       <Button
         buttonType="button"
         onClick={handleClear}

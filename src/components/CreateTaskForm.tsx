@@ -1,4 +1,4 @@
-import { Button, BoldButton } from "./UI/Button/Button";
+import { Button } from "./UI/Button/Button";
 import { useActions } from "../hooks/useActions";
 import { StyledForm } from "./styled/StyledForm";
 import { useInput } from "../hooks/useInput";
@@ -58,13 +58,13 @@ export const CreateTaskForm = ({ pageClass }: FormProps) => {
         name="task-category"
         placeholder="task category"
       />
-      <BoldButton
+      <Button
         buttonType="button"
         onClick={handleAdd}
         disabled={form.validity && form.touched ? false : true}
       >
         Add
-      </BoldButton>
+      </Button>
       <Button
         buttonType="button"
         onClick={handleClear}
