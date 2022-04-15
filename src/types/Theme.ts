@@ -11,6 +11,7 @@ type Shadows = {
 };
 
 export type Theme = {
+  name: string;
   colors: Colors;
   shadows: Shadows;
 };

@@ -1,12 +1,12 @@
 import { Tag } from "../types/Tag";
-import { Button } from "./Button";
+import { Button } from "./UI/Button/Button";
 
 type TagListProps = {
-    tags: Tag[],
-    onClickAction: (name: string) => void,
-}
+  tags: Tag[];
+  onClickAction: (name: string) => void;
+};
 
-export const TagList = ({tags, onClickAction}: TagListProps) => {
+export const TagList = ({ tags, onClickAction }: TagListProps) => {
   return (
     <>
       {tags.map((tag) => {
@@ -16,7 +16,7 @@ export const TagList = ({tags, onClickAction}: TagListProps) => {
             className="item"
             key={tag.id}
             onClick={() => {
-              onClickAction(tag.tagname)
+              onClickAction(tag.tagname);
             }}
           >
             {tag.tagname}
@@ -24,5 +24,5 @@ export const TagList = ({tags, onClickAction}: TagListProps) => {
         );
       })}
     </>
-  )
-}
+  );
+};

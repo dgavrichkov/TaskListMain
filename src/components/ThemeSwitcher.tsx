@@ -1,8 +1,7 @@
 import { useActions } from "../hooks/useActions";
-import { Button } from "./Button";
+import { Button } from "./UI/Button/Button";
 
 export const ThemeSwitcher = () => {
-
   const { toggleThemeAction } = useActions();
 
   return (

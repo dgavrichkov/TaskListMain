@@ -2,6 +2,7 @@ import { Themes } from "../types/Themes";
 
 export const THEMES: Themes = {
   light: {
+    name: "light",
     colors: {
       primary: "#EEEEEE",
       accent: "#25CEDE",
@@ -18,6 +19,7 @@ export const THEMES: Themes = {
     },
   },
   dark: {
+    name: "dark",
     colors: {
       primary: "#2C2F33",
       accent: "#25CEDE",
