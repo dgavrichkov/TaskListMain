@@ -8,6 +8,7 @@ import { TaskPage } from './components/pages/TaskPage';
 import { NotesPage } from "./components/pages/NotesPage";
 import { NotePage } from './components/pages/NotePage';
 import { Greeting } from './components/pages/Greeting';
+import { Login } from './components/pages/Login';
 
 ReactDOM.render(
   <Provider store={store}>
@@ -19,6 +20,7 @@ ReactDOM.render(
           <Route path="notes" element={<NotesPage />} />
           <Route path="tasks/:taskId" element={<TaskPage />} />
           <Route path="notes/:noteId" element={<NotePage />} />
+          <Route path="login" element={<Login />} />
         </Route>
       </Routes>
     </BrowserRouter>
