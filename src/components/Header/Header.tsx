@@ -24,6 +24,8 @@ export const Header = ({ pageClass }: HeaderProps) => {
           }
         >Notes</NavLink>
       </Styled.Nav>
+      <div id="header-portal">
+      </div>
       <Styled.SwitcherWrap>
         <ThemeSwitcher />
       </Styled.SwitcherWrap>

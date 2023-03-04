@@ -1,4 +1,5 @@
 import nextId from "react-id-generator";
+import { Portal } from '../../entities/Portal';
 import { useActions } from "../../hooks/useActions";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { getTasksCategories } from "../../store/selectors/getTasksCategories";
@@ -35,6 +36,7 @@ export const TasksPage = () => {
       <section className="content">
         <TaskList />
       </section>
+      <Portal portalElement={<div>Tasks portal block</div>} portalId="header-portal" />
     </StyledListPageWrap>
   );
 };
