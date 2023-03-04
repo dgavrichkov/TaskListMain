@@ -1,12 +1,12 @@
 import { THEMES } from "./constants/themes";
 import styled, { ThemeProvider } from "styled-components";
-import { Header } from "./components/Header";
+import { Header } from "./components";
 import { GlobalStyles } from "./styles/globalStyles";
 import { useTypedSelector } from "./hooks/useTypedSelector";
 import { Outlet } from "react-router-dom";
 
 
-export const App = function() {
+export const App = function () {
   const theme = useTypedSelector((state) => state.theme)
 
   return (
@@ -37,16 +37,6 @@ const StyledPageWrap = styled.div`
   color: ${(props) => props.theme.colors.text || `#000`};
   .header {
     grid-column: 1 / -1;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    /* TODO - вынести отдельно внутренние стили хедера */
-    a {
-      color: ${(props) => props.theme.colors.text || `#000`};
-      &.is-active {
-        color: ${(props: any) => props.theme.colors.accent};
-      }
-    }
   }
   .main {
     grid-column: 1 / -1;
