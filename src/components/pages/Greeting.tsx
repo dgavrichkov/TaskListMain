@@ -7,15 +7,18 @@ export const Greeting = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch('http://localhost:1337/api/movies', {
-        headers: {
-          "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjc3ODMzODU4LCJleHAiOjE2ODA0MjU4NTh9.9gbUTkfurBEs2GrPDc2Ck6oRbe2SIdh8dZdwNmDvpAI"
-        }
-      });
-      const json = await response.json();
-      setData(json.data);
+      try {
+        const response = await fetch('http://localhost:1337/api/movies', {
+          headers: {
+            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjc3ODMzODU4LCJleHAiOjE2ODA0MjU4NTh9.9gbUTkfurBEs2GrPDc2Ck6oRbe2SIdh8dZdwNmDvpAI"
+          }
+        });
+        const json = await response.json();
+        setData(json.data);
+      } catch (error) {
+        console.log(error);
+      }
     }
-
     fetchData();
   }, []);
 
@@ -33,11 +36,11 @@ export const Greeting = () => {
         <Spacer />
         <p>Im trying backend, it works with local strapi host</p>
         <Spacer />
-        {data && data.map(item => (
+        {data ? data.map(item => (
           <div key={item.id}>
             <h4>{item.attributes.title}</h4>
           </div>
-        ))}
+        )) : <div>No films data</div>}
       </div>
     </section>
   )
