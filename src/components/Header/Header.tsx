@@ -23,6 +23,12 @@ export const Header = ({ pageClass }: HeaderProps) => {
             isActive ? "is-active" : ""
           }
         >Notes</NavLink>
+        <NavLink
+          to="posts"
+          className={({ isActive }) => isActive ? "is-active" : ""}
+        >
+          Posts
+        </NavLink>
       </Styled.Nav>
       <div id="header-portal">
       </div>
