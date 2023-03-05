@@ -7,9 +7,27 @@ export interface IPost {
   body: string;
 }
 
-export const fetchPosts = async (): Promise<IPost[]> => {
-  const response = await fetch(`${TYPICODE_BASE}/posts?_page=1&_limit=10`);
-  if (!response.ok) throw new Error("Failed to fetch posts");
+const PAGE_SIZE = 5;
 
-  return response.json();
+export interface IPostsResponse {
+  posts: IPost[];
+  nextPage: number;
+  hasNextPage: boolean;
+}
+
+export const fetchPosts = async ({
+  pageParam = 0,
+}): Promise<IPostsResponse> => {
+  const res = await fetch(
+    `${TYPICODE_BASE}/posts?_page=${pageParam + 1}&_limit=${PAGE_SIZE}`
+  );
+  const totalCount = parseInt(res.headers.get("x-total-count") || "");
+  const hasNextPage = (pageParam + 1) * PAGE_SIZE < totalCount;
+
+  const data = await res.json();
+  return {
+    posts: data,
+    nextPage: pageParam + 1,
+    hasNextPage,
+  };
 };
