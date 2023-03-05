@@ -30,7 +30,7 @@ export const Header = ({ pageClass }: HeaderProps) => {
           Posts
         </NavLink>
       </Styled.Nav>
-      <div id="header-portal">
+      <div id="header-portal" className='header__portal'>
       </div>
       <Styled.SwitcherWrap>
         <ThemeSwitcher />
