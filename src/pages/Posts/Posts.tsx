@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from '../../components/Button';
 import { Portal } from '../../entities/Portal';
 import { Spacer } from '../../shared/ui';
 import { usePosts } from './usePosts';
@@ -33,12 +34,10 @@ export const Posts = () => {
       )}
 
       <Portal portalId="header-portal">
-        <div>
-          {isFetching ? <div>Fetching...</div> : <div>Posts fetched</div>}
-          <button onClick={handleLoad} disabled={isFetchingNextPage}>
-            {isFetchingNextPage ? 'Loading more...' : 'Load More'}
-          </button>
-        </div>
+        <Button onClick={handleLoad} disabled={isFetchingNextPage}>
+          {isFetching ? <span title='Fetching...'>🔄</span> : <span title='Fetched'>💤</span>}
+          {isFetchingNextPage ? 'Loading more...' : 'Load More Posts'}
+        </Button>
       </Portal>
     </div>
   )
