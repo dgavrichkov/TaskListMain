@@ -1,6 +1,7 @@
 import { ThemeSwitcher } from "../ThemeSwitcher";
 import { NavLink, Link } from "react-router-dom";
 import { Styled } from './styled';
+import { Avatar } from '../../shared/ui/Avatar';
 
 type HeaderProps = {
   pageClass: string,
@@ -23,16 +24,19 @@ export const Header = ({ pageClass }: HeaderProps) => {
             isActive ? "is-active" : ""
           }
         >Notes</NavLink>
+      </Styled.Nav>
+      <Styled.SwitcherWrap>
+        <ThemeSwitcher />
+      </Styled.SwitcherWrap>
+      <Styled.ProfileArea>
+        <Avatar />
         <NavLink
           to="profile"
           className={({ isActive }) =>
             isActive ? "is-active" : ""
           }
         >Profile</NavLink>
-      </Styled.Nav>
-      <Styled.SwitcherWrap>
-        <ThemeSwitcher />
-      </Styled.SwitcherWrap>
+      </Styled.ProfileArea>
     </Styled.Header>
   )
 }
