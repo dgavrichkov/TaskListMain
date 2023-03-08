@@ -23,6 +23,12 @@ export const Header = ({ pageClass }: HeaderProps) => {
             isActive ? "is-active" : ""
           }
         >Notes</NavLink>
+        <NavLink
+          to="profile"
+          className={({ isActive }) =>
+            isActive ? "is-active" : ""
+          }
+        >Profile</NavLink>
       </Styled.Nav>
       <Styled.SwitcherWrap>
         <ThemeSwitcher />
