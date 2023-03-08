@@ -2,12 +2,15 @@ import { ThemeSwitcher } from "../ThemeSwitcher";
 import { NavLink, Link } from "react-router-dom";
 import { Styled } from './styled';
 import { Avatar } from '../../shared/ui/Avatar';
+import { useAuth } from '../../hooks/useAuth';
 
 type HeaderProps = {
   pageClass: string,
 }
 
 export const Header = ({ pageClass }: HeaderProps) => {
+  const { user } = useAuth();
+
   return (
     <Styled.Header className={pageClass}>
       <h1><Link to="/TaskListMain">ToDo</Link></h1>
@@ -29,13 +32,22 @@ export const Header = ({ pageClass }: HeaderProps) => {
         <ThemeSwitcher />
       </Styled.SwitcherWrap>
       <Styled.ProfileArea>
-        <Avatar />
-        <NavLink
-          to="profile"
-          className={({ isActive }) =>
+        {user ? (
+          <>
+            <Avatar />
+            <NavLink
+              to="profile"
+              className={({ isActive }) =>
+                isActive ? "is-active" : ""
+              }
+            >Profile</NavLink>
+          </>
+        ) : (
+          <NavLink to="login" className={({ isActive }) =>
             isActive ? "is-active" : ""
-          }
-        >Profile</NavLink>
+          }>Login</NavLink>
+        )}
+
       </Styled.ProfileArea>
     </Styled.Header>
   )
