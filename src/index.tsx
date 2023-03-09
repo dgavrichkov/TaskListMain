@@ -11,20 +11,20 @@ import { Greeting } from './components/pages/Greeting';
 import { Login } from './components/pages/Login';
 import { Profile } from './pages';
 import { ProtectedRoute } from './entities/ProtectedRoute';
+import { PATHS } from './shared/constants/paths';
 
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <Routes>
-        <Route path="/TaskListMain" element={<App />}>
+        <Route path={PATHS.ROOT} element={<App />}>
           <Route index element={<Greeting />} />
-          <Route path="tasks" element={<TasksPage />} />
-          <Route path="notes" element={<NotesPage />} />
-          <Route path="tasks/:taskId" element={<TaskPage />} />
-          <Route path="notes/:noteId" element={<NotePage />} />
-          <Route path="login" element={<Login />} />
-
-          <Route path="profile" element={
+          <Route path={PATHS.TASKS} element={<TasksPage />} />
+          <Route path={PATHS.NOTES} element={<NotesPage />} />
+          <Route path={`${PATHS.TASKS}/:taskId`} element={<TaskPage />} />
+          <Route path={`${PATHS.NOTES}/:noteId`} element={<NotePage />} />
+          <Route path={PATHS.LOGIN} element={<Login />} />
+          <Route path={PATHS.PROFILE} element={
             <ProtectedRoute>
               <Profile />
             </ProtectedRoute>

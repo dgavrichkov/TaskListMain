@@ -1,5 +1,6 @@
 import { createContext, FC, useContext, useMemo } from "react";
 import { useNavigate } from 'react-router-dom';
+import { PATHS } from '../shared/constants/paths';
 import { TDummyUser } from '../types/DummyUser';
 import { useLocalStorage } from './useLocalStorage';
 
@@ -11,13 +12,14 @@ export const AuthProvider: FC = ({ children }) => {
 
   const value = useMemo(() => {
     const login = async (data: TLoginData) => {
+      console.log(data);
       setUser(data);
-      navigate('/profile');
+      navigate(PATHS.PROFILE);
     }
 
     const logout = () => {
       setUser(null);
-      navigate('/', { replace: true });
+      navigate(PATHS.ROOT, { replace: true });
     }
 
     return {

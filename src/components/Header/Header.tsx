@@ -3,26 +3,28 @@ import { NavLink, Link } from "react-router-dom";
 import { Styled } from './styled';
 import { Avatar } from '../../shared/ui/Avatar';
 import { useAuth } from '../../hooks/useAuth';
+import { Button } from '../Button';
+import { PATHS } from '../../shared/constants/paths';
 
 type HeaderProps = {
   pageClass: string,
 }
 
 export const Header = ({ pageClass }: HeaderProps) => {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
 
   return (
     <Styled.Header className={pageClass}>
-      <h1><Link to="/TaskListMain">ToDo</Link></h1>
+      <h1><Link to={PATHS.ROOT}>ToDo</Link></h1>
       <Styled.Nav>
         <NavLink
-          to="tasks"
+          to={PATHS.TASKS}
           className={({ isActive }) =>
             isActive ? "is-active" : ""
           }
         >Tasks</NavLink>
         <NavLink
-          to="notes"
+          to={PATHS.NOTES}
           className={({ isActive }) =>
             isActive ? "is-active" : ""
           }
@@ -36,11 +38,14 @@ export const Header = ({ pageClass }: HeaderProps) => {
           <>
             <Avatar />
             <NavLink
-              to="profile"
+              to={PATHS.PROFILE}
               className={({ isActive }) =>
                 isActive ? "is-active" : ""
               }
             >Profile</NavLink>
+            <Button onClick={logout} >
+              Logout
+            </Button>
           </>
         ) : (
           <NavLink to="login" className={({ isActive }) =>

@@ -4,24 +4,27 @@ import { Header } from "./components";
 import { GlobalStyles } from "./styles/globalStyles";
 import { useTypedSelector } from "./hooks/useTypedSelector";
 import { Outlet } from "react-router-dom";
+import { AuthProvider } from './hooks/useAuth';
 
 
 export const App = function () {
   const theme = useTypedSelector((state) => state.theme)
 
   return (
-    <ThemeProvider theme={THEMES[theme]}>
-      <GlobalStyles />
-      <StyledPageWrap className="page">
-        <Header pageClass="header" />
-        <main className="main">
-          <Outlet />
-        </main>
-        <footer className="footer">
-          <i>Just footer</i>
-        </footer>
-      </StyledPageWrap>
-    </ThemeProvider>
+    <AuthProvider>
+      <ThemeProvider theme={THEMES[theme]}>
+        <GlobalStyles />
+        <StyledPageWrap className="page">
+          <Header pageClass="header" />
+          <main className="main">
+            <Outlet />
+          </main>
+          <footer className="footer">
+            <i>Just footer</i>
+          </footer>
+        </StyledPageWrap>
+      </ThemeProvider>
+    </AuthProvider>
   );
 }
 
