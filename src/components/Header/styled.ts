@@ -3,7 +3,7 @@ import styled from "styled-components";
 const Header = styled.header`
   display: grid;
   align-items: center;
-  grid-template-columns: auto auto 1fr;
+  grid-template-columns: auto auto 1fr auto;
   column-gap: 32px;
 
   a {
@@ -16,6 +16,7 @@ const Header = styled.header`
 
 const Nav = styled.nav`
   display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 14px;
 `;
 

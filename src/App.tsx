@@ -1,3 +1,4 @@
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { THEMES } from "./constants/themes";
 import styled, { ThemeProvider } from "styled-components";
 import { Header } from "./components";
@@ -5,23 +6,26 @@ import { GlobalStyles } from "./styles/globalStyles";
 import { useTypedSelector } from "./hooks/useTypedSelector";
 import { Outlet } from "react-router-dom";
 
+const queryClient = new QueryClient()
 
 export const App = function () {
   const theme = useTypedSelector((state) => state.theme)
 
   return (
-    <ThemeProvider theme={THEMES[theme]}>
-      <GlobalStyles />
-      <StyledPageWrap className="page">
-        <Header pageClass="header" />
-        <main className="main">
-          <Outlet />
-        </main>
-        <footer className="footer">
-          <i>Just footer</i>
-        </footer>
-      </StyledPageWrap>
-    </ThemeProvider>
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider theme={THEMES[theme]}>
+        <GlobalStyles />
+        <StyledPageWrap className="page">
+          <Header pageClass="header" />
+          <main className="main">
+            <Outlet />
+          </main>
+          <footer className="footer">
+            <i>Just footer</i>
+          </footer>
+        </StyledPageWrap>
+      </ThemeProvider>
+    </QueryClientProvider>
   );
 }
 
