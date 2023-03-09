@@ -33,11 +33,11 @@ export const Greeting = () => {
         <Spacer />
         <p>Im trying backend, it works with local strapi host</p>
         <Spacer />
-        {data && data.map(item => (
+        {data ? data.map(item => (
           <div key={item.id}>
             <h4>{item.attributes.title}</h4>
           </div>
-        ))}
+        )) : <div>No films data</div>}
       </div>
     </section>
   )

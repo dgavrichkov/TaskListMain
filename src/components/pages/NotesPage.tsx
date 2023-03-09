@@ -1,4 +1,5 @@
 import nextId from "react-id-generator";
+import { Portal } from '../../entities/Portal';
 import { useActions } from "../../hooks/useActions";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { getNotesCategories } from "../../store/selectors/getNotesCategories";
@@ -33,6 +34,7 @@ export const NotesPage = () => {
       <section className="content">
         <NotesList />
       </section>
+      <Portal portalElement={<div>Notes portal block</div>} portalId="header-portal" />
     </StyledListPageWrap>
   );
 };

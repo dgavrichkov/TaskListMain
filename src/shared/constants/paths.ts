@@ -4,4 +4,5 @@ export const PATHS = {
   NOTES: "notes",
   PROFILE: "profile",
   LOGIN: "login",
+  POSTS: "posts"
 };
