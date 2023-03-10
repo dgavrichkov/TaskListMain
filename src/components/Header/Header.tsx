@@ -11,7 +11,7 @@ type HeaderProps = {
 }
 
 export const Header = ({ pageClass }: HeaderProps) => {
-  const { user, logout } = useAuth();
+  const { isAuth, logout } = useAuth();
 
   return (
     <Styled.Header className={pageClass}>
@@ -42,7 +42,7 @@ export const Header = ({ pageClass }: HeaderProps) => {
         <ThemeSwitcher />
       </Styled.SwitcherWrap>
       <Styled.ProfileArea>
-        {user ? (
+        {isAuth ? (
           <>
             <Avatar />
             <NavLink
