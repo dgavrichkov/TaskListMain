@@ -21,3 +21,16 @@ export type TDummyUser = {
     state: string;
   };
 };
+
+export type TLoginData = {
+  login: string;
+  password: string;
+};
+
+export type TAuthData = {
+  isAuth: boolean;
+  isLoading: boolean;
+  user: TDummyUser;
+  login: (data: TLoginData) => void;
+  logout: () => void;
+};

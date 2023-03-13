@@ -10,7 +10,7 @@ import { NotePage } from './components/pages/NotePage';
 import { Greeting } from './components/pages/Greeting';
 import { Login } from './components/pages/Login';
 import { Profile, Posts, Tasks } from './pages';
-import { ProtectedRoute } from './entities/ProtectedRoute';
+import { ProtectedRoute } from './features/ProtectedRoute';
 import { PATHS } from './shared/constants/paths';
 
 ReactDOM.render(

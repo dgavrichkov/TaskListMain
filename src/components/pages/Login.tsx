@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { useAuth } from '../../hooks/useAuth';
+import { useAuth } from '../../entities';
 import { useInput } from '../../hooks/useInput';
 import { Button } from '../Button';
 import { FormField } from '../elements/FormField';

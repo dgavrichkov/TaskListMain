@@ -1,24 +1,10 @@
-import { createContext, FC, useContext, useEffect, useMemo, useState } from "react";
+import { FC, useEffect, useMemo, useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import { dummyFetchUser, dummyLogin } from '../shared/api/dummy';
-import { PATHS } from '../shared/constants/paths';
-import { TDummyUser } from '../types/DummyUser';
-import { useLocalStorage } from './useLocalStorage';
-
-type TAuthData = {
-  isAuth: boolean
-  isLoading: boolean
-  user: TDummyUser
-  login: (data: TLoginData) => void
-  logout: () => void
-}
-
-type TLoginData = {
-  login: string,
-  password: string
-}
-
-const AuthContext = createContext({} as TAuthData);
+import { useLocalStorage } from '../../hooks/useLocalStorage';
+import { dummyFetchUser, dummyLogin } from './api';
+import { PATHS } from '../../shared/constants/paths';
+import { AuthContext } from './AuthContext';
+import { TDummyUser, TLoginData } from './models';
 
 export const AuthProvider: FC = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -63,12 +49,10 @@ export const AuthProvider: FC = ({ children }) => {
   }, [user, navigate, isAuth, isLoading, setToken, setUser]);
 
   useEffect(() => {
-    if(token) {
+    if (token) {
       setIsAuth(true);
     }
   }, [token])
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }
-
-export const useAuth = () => useContext(AuthContext);

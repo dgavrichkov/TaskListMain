@@ -5,7 +5,7 @@ import { Header } from "./components";
 import { GlobalStyles } from "./styles/globalStyles";
 import { useTypedSelector } from "./hooks/useTypedSelector";
 import { Outlet } from "react-router-dom";
-import { AuthProvider } from './hooks/useAuth';
+import { AuthProvider } from './entities';
 
 const queryClient = new QueryClient()
 

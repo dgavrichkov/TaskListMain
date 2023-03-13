@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { useAuth } from '../../hooks/useAuth';
+import { useAuth } from '../../entities';
 
 export const ProtectedRoute: FC = ({ children }) => {
   const { isAuth } = useAuth();

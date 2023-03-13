@@ -2,9 +2,9 @@ import { ThemeSwitcher } from "../ThemeSwitcher";
 import { NavLink, Link } from "react-router-dom";
 import { Styled } from './styled';
 import { Avatar } from '../../shared/ui/Avatar';
-import { useAuth } from '../../hooks/useAuth';
 import { Button } from '../Button';
 import { PATHS } from '../../shared/constants/paths';
+import { useAuth } from '../../entities';
 
 type HeaderProps = {
   pageClass: string,
