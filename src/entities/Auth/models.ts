@@ -33,4 +33,5 @@ export type TAuthData = {
   user: TDummyUser;
   login: (data: TLoginData) => void;
   logout: () => void;
+  token: string;
 };

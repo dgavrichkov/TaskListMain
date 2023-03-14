@@ -2,12 +2,7 @@ import { useAuth } from '../../../entities';
 import { Styled } from './styled'
 
 export const ProfileInfo = () => {
-  const { user, isLoading } = useAuth();
-
-  if(isLoading) {
-    return <div className="loader"></div>
-  }
-  console.log(user);
+  const { user } = useAuth();
 
   return (
     <Styled.Wrap>
