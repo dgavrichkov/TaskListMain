@@ -1,11 +1,18 @@
 {
   "files": {
-    "main.js": "/TaskListMain/static/js/main.9b6847c4.js",
-    "service-worker.js": "/TaskListMain/service-worker.js",
+    "main.js": "/TaskListMain/static/js/main.60b648ed.chunk.js",
+    "main.js.map": "/TaskListMain/static/js/main.60b648ed.chunk.js.map",
+    "runtime-main.js": "/TaskListMain/static/js/runtime-main.6931641f.js",
+    "runtime-main.js.map": "/TaskListMain/static/js/runtime-main.6931641f.js.map",
+    "static/js/2.ea1f7732.chunk.js": "/TaskListMain/static/js/2.ea1f7732.chunk.js",
+    "static/js/2.ea1f7732.chunk.js.map": "/TaskListMain/static/js/2.ea1f7732.chunk.js.map",
     "index.html": "/TaskListMain/index.html",
-    "main.9b6847c4.js.map": "/TaskListMain/static/js/main.9b6847c4.js.map"
+    "static/js/2.ea1f7732.chunk.js.LICENSE.txt": "/TaskListMain/static/js/2.ea1f7732.chunk.js.LICENSE.txt",
+    "static/media/user-icon.780a52a3.svg": "/TaskListMain/static/media/user-icon.780a52a3.svg"
   },
   "entrypoints": [
-    "static/js/main.9b6847c4.js"
+    "static/js/runtime-main.6931641f.js",
+    "static/js/2.ea1f7732.chunk.js",
+    "static/js/main.60b648ed.chunk.js"
   ]
 }
