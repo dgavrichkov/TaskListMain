@@ -25,8 +25,10 @@ export const Portal: FC<IPortalProps> = ({ portalId, portalElement, children }) 
       } else {
         el = portalElement;
       }
-      setPortalTarget(el);
+      setPortalTarget(el || document.body);
+      return;
     }
+    setPortalTarget(document.body)
   }, [portalId, portalElement]);
 
   if (!portalTarget) {
