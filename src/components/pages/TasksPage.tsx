@@ -36,7 +36,7 @@ export const TasksPage = () => {
       <section className="content">
         <TaskList />
       </section>
-      <Portal portalElement={<div>Tasks portal block</div>} portalId="header-portal" />
+      <Portal portalId="header-portal"><div>Tasks portal block</div></Portal>
     </StyledListPageWrap>
   );
 };

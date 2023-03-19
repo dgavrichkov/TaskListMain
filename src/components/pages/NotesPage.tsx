@@ -34,7 +34,7 @@ export const NotesPage = () => {
       <section className="content">
         <NotesList />
       </section>
-      <Portal portalElement={<div>Notes portal block</div>} portalId="header-portal" />
+      <Portal portalId='header-portal'><div>Notes portal block</div></Portal>
     </StyledListPageWrap>
   );
 };
