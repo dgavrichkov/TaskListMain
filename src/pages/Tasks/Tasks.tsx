@@ -31,7 +31,7 @@ export const Tasks = () => {
           ))}
         </ul>
       )}
-      <Portal portalId=".header__portal">
+      <Portal portalElement=".header__portal">
         <Button onClick={handleLoad} disabled={isFetchingNextPage}>
           {isFetching ? <span title='Fetching...'>🔄</span> : <span title='Fetched'>💤</span>}
           {isFetchingNextPage ? 'Loading more...' : 'Load More Tasks'}

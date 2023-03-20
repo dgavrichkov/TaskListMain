@@ -1,27 +1,39 @@
-import { FC, ReactNode, useLayoutEffect, useState } from 'react';
+import { FC, useLayoutEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
+
+type TPortalElement = HTMLElement | Element | null;
 
 interface IPortalProps {
   portalId?: string;
-  portalElement?: ReactNode;
+  portalElement?: (() => TPortalElement) | HTMLElement | Element | string;
 }
 
 export const Portal: FC<IPortalProps> = ({ portalId, portalElement, children }) => {
-  const [portalTarget, setPortalTarget] = useState<HTMLElement | null>();
+  const [portalTarget, setPortalTarget] = useState<TPortalElement>();
   useLayoutEffect(() => {
     if (portalId) {
-      const regex = /^[^.#]+$/;
-      const isSelector = !regex.test(portalId);
-      const el = isSelector ? document.querySelector<HTMLElement>(portalId) : document.getElementById(portalId);
+      const el = document.getElementById(portalId)
       setPortalTarget(el);
+      return;
     }
-  }, [portalId]);
+    if (portalElement) {
+      let el: TPortalElement = null;
+      if (typeof portalElement === 'function') {
+        el = portalElement();
+      } else if (typeof portalElement === 'string') {
+        el = document.querySelector<HTMLElement>(portalElement)
+      } else {
+        el = portalElement;
+      }
+      setPortalTarget(el || document.body);
+      return;
+    }
+    setPortalTarget(document.body)
+  }, [portalId, portalElement]);
 
   if (!portalTarget) {
-    return <>No data for portal</>
+    return null
   }
 
-  return (
-    <div>{createPortal(portalElement || children, portalTarget)}</div>
-  )
+  return createPortal(children, portalTarget);
 };
