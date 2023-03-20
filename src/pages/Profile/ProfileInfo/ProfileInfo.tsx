@@ -3,7 +3,6 @@ import { Styled } from './styled'
 
 export const ProfileInfo = () => {
   const { user } = useAuth();
-  console.log(user);
 
   return (
     <Styled.Wrap>

@@ -2,10 +2,10 @@ import { FC } from 'react';
 import { useAuth } from '../../entities';
 
 export const ProtectedRoute: FC = ({ children }) => {
-  const { isAuth } = useAuth();
+  const { token } = useAuth();
 
-  if (!isAuth) {
-    return <div>Forbidden</div>;
+  if (!token) {
+    return <div>Forbidden, please log in</div>;
   }
 
   return (
