@@ -1,4 +1,4 @@
-import { ThemeSwitcher } from "../ThemeSwitcher";
+import { ThemeSwitcher } from "../../features/";
 import { NavLink, Link } from "react-router-dom";
 import { Styled } from './styled';
 import { Avatar } from '../../shared/ui/Avatar';
