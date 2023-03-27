@@ -14,8 +14,11 @@ export const AuthProvider: FC = ({ children }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    setToken(localStorage.getItem(DUMMY_TOKEN));
-    setUserId(JSON.parse(localStorage.getItem(DUMMY_USER_ID) || ''));
+    const token = localStorage.getItem(DUMMY_TOKEN);
+    if (token) {
+      setToken(token);
+      setUserId(JSON.parse(localStorage.getItem(DUMMY_USER_ID) || ''));
+    }
   }, []);
 
   useEffect(() => {
