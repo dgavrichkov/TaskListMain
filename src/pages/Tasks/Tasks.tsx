@@ -1,42 +1,42 @@
-import React from 'react';
-import { Button } from '../../shared/ui/';
+import nextId from "react-id-generator";
 import { Portal } from '../../entities/Portal';
-import { Spacer } from '../../shared/ui';
-import { useTasks } from './useTasks';
+import { useActions } from "../../hooks/useActions";
+import { useTypedSelector } from "../../hooks/useTypedSelector";
+import { getTasksCategories } from "../../store/selectors/getTasksCategories";
+import { CategoryFilter } from "../../components/CategoryFilter";
+import { CreateTaskForm } from "../../components/CreateTaskForm";
+import { StyledListPageWrap } from "../../components/styled/StyledListPageWrap";
+import { TaskList } from "../../components/TaskList";
+import { TaskStat } from "../../components/TaskStat";
 
 export const Tasks = () => {
-  const { data, status, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage } = useTasks();
-
-  const handleLoad = () => {
-    hasNextPage && fetchNextPage();
-  }
+  const filter = useTypedSelector((state) => state.tasksFilter);
+  const categories = useTypedSelector((state) =>
+    getTasksCategories(state.tasks)
+  );
+  const tags = Array.from(categories).map((category) => {
+    return { id: nextId(), tagname: category };
+  });
+  const { tasksFilterChangeAction } = useActions();
 
   return (
-    <div>
-      <h2>Tasks from typicode</h2>
-      <Spacer />
-      {status === "loading" ? (
-        <div>Loading...</div>
-      ) : (
-        <ul>
-          {data && data.pages.map((page, i) => (
-            <React.Fragment key={i}>
-              {page.tasks.map(task => (
-                <li key={task.id} style={{ padding: 20, border: '1px solid black' }}>
-                  <div><b>{task.id}. </b><span>{task.completed ? '✔️' : '❌'}</span>{task.title}</div>
-                  <Spacer />
-                </li>
-              ))}
-            </React.Fragment>
-          ))}
-        </ul>
-      )}
-      <Portal portalElement=".header__portal">
-        <Button onClick={handleLoad} disabled={isFetchingNextPage}>
-          {isFetching ? <span title='Fetching...'>🔄</span> : <span title='Fetched'>💤</span>}
-          {isFetchingNextPage ? 'Loading more...' : 'Load More Tasks'}
-        </Button>
-      </Portal>
-    </div>
-  )
+    <StyledListPageWrap>
+      <h2 className="title">Tasks</h2>
+      <section className="form">
+        <CreateTaskForm />
+      </section>
+      <section className="aside">
+        <CategoryFilter
+          filter={filter}
+          tags={tags}
+          onClickAction={tasksFilterChangeAction}
+        />
+        <TaskStat />
+      </section>
+      <section className="content">
+        <TaskList />
+      </section>
+      <Portal portalId="header-portal"><div>Tasks portal block</div></Portal>
+    </StyledListPageWrap>
+  );
 };

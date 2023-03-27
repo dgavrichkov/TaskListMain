@@ -2,14 +2,14 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useActions } from "../../hooks/useActions";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { getNote as getNoteFromState } from "../../store/selectors/getNote";
-import { Button } from "../../shared/ui/";
-import { StyledDetailPageWrap } from "../styled/StyledDetailPageWrap";
+import { Button } from "../../shared/ui";
+import { StyledDetailPageWrap } from "../../components/styled/StyledDetailPageWrap";
 
 type ParamTypes = {
   noteId: string;
 };
 
-export const NotePage = () => {
+export const Note = () => {
   const { noteId } = useParams<ParamTypes>();
   const note = useTypedSelector((state) => getNoteFromState(state, noteId));
   const { delNoteAction } = useActions();

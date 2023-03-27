@@ -3,12 +3,12 @@ import { Portal } from '../../entities/Portal';
 import { useActions } from "../../hooks/useActions";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { getNotesCategories } from "../../store/selectors/getNotesCategories";
-import { CategoryFilter } from "../CategoryFilter";
-import { CreateNoteForm } from "../CreateNoteForm";
-import { NotesList } from "../NotesList";
-import { StyledListPageWrap } from "../styled/StyledListPageWrap";
+import { CategoryFilter } from "../../components/CategoryFilter";
+import { CreateNoteForm } from "../../components/CreateNoteForm";
+import { NotesList } from "../../components/NotesList";
+import { StyledListPageWrap } from "../../components/styled/StyledListPageWrap";
 
-export const NotesPage = () => {
+export const Notes = () => {
   const filter = useTypedSelector((state) => state.notesFilter);
   const categories = useTypedSelector((state) =>
     getNotesCategories(state.notes)

@@ -2,14 +2,14 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useActions } from "../../hooks/useActions";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { getTask as getTaskFromState } from "../../store/selectors/getTask";
-import { Button } from "../../shared/ui/";
-import { StyledDetailPageWrap } from "../styled/StyledDetailPageWrap";
+import { Button } from "../../shared/ui";
+import { StyledDetailPageWrap } from "../../components/styled/StyledDetailPageWrap";
 
 type ParamTypes = {
   taskId: string;
 };
 
-export const TaskPage = () => {
+export const Task = () => {
   const { taskId } = useParams<ParamTypes>();
   const task = useTypedSelector((state) => getTaskFromState(state, taskId));
   const { delTaskAction, toggleTaskAction } = useActions();
