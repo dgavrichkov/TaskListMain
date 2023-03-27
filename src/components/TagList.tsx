@@ -1,5 +1,5 @@
 import { Tag } from "../types/Tag";
-import { Button } from "./Button";
+import { Button } from "../shared/ui/";
 
 type TagListProps = {
     tags: Tag[],

@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { useAuth } from '../../entities';
 import { useInput } from '../../hooks/useInput';
-import { Button } from '../Button';
+import { Button } from '../../shared/ui/';
 import { FormField } from '../elements/FormField';
 import { StyledForm } from '../styled/StyledForm';
 

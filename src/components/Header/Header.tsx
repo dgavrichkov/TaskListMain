@@ -2,7 +2,7 @@ import { ThemeSwitcher } from "../ThemeSwitcher";
 import { NavLink, Link } from "react-router-dom";
 import { Styled } from './styled';
 import { Avatar } from '../../shared/ui/Avatar';
-import { Button } from '../Button';
+import { Button } from '../../shared/ui/';
 import { PATHS } from '../../shared/constants/paths';
 import { useAuth } from '../../entities';
 

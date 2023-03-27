@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from '../../components/Button';
+import { Button } from '../../shared/ui/';
 import { Portal } from '../../entities/Portal';
 import { Spacer } from '../../shared/ui';
 import { usePosts } from './usePosts';

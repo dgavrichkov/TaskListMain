@@ -1,4 +1,4 @@
-import { Button } from "./Button";
+import { Button } from "../shared/ui/";
 import styled from "styled-components";
 import { Task } from "../types/Task";
 import { NavLink } from "react-router-dom";

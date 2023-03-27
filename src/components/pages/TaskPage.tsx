@@ -2,7 +2,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useActions } from "../../hooks/useActions";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { getTask as getTaskFromState } from "../../store/selectors/getTask";
-import { Button } from "../Button";
+import { Button } from "../../shared/ui/";
 import { StyledDetailPageWrap } from "../styled/StyledDetailPageWrap";
 
 type ParamTypes = {

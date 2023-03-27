@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom"
 import styled from "styled-components"
 import { useActions } from "../hooks/useActions"
 import { Note as TypeNote }  from "../types/Note"
-import { Button } from "./Button"
+import { Button } from "../shared/ui/"
 
 export const Note = ({id, name, text, category} : TypeNote) => {
     const { delNoteAction } = useActions();

@@ -1,5 +1,5 @@
 import { useActions } from "../hooks/useActions";
-import { Button } from "./Button";
+import { Button } from "../shared/ui/";
 
 export const ThemeSwitcher = () => {
 

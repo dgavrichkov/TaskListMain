@@ -1,4 +1,4 @@
-import { Button, BoldButton } from "./Button";
+import { Button, BoldButton } from "../shared/ui/";
 import { useActions } from "../hooks/useActions";
 import { StyledForm } from "./styled/StyledForm";
 import { useInput } from "../hooks/useInput";
