@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import { DEFAULT_FILTER } from "../constants/defaultFilterValue";
-import { Tag } from "../types/Tag";
-import { Button } from "../shared/ui/";
-import { TagList } from "./TagList";
+import { DEFAULT_FILTER } from "../../constants/defaultFilterValue";
+import { Tag } from "../../types/Tag";
+import { Button } from "../../shared/ui";
+import { TagList } from "../../components/TagList";
 
 type FilterProps = {
   filter: string;

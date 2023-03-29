@@ -3,8 +3,7 @@ import { Portal } from '../../entities/Portal';
 import { useActions } from "../../hooks/useActions";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { getNotesCategories } from "../../store/selectors/getNotesCategories";
-import { CategoryFilter } from "../../components/CategoryFilter";
-import { CreateNoteForm, NotesList } from "../../widgets";
+import { CreateNoteForm, NotesList, CategoryFilter } from "../../widgets";
 import { StyledListPageWrap } from "../../components/styled/StyledListPageWrap";
 
 export const Notes = () => {

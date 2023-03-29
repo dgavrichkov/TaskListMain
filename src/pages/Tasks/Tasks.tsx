@@ -3,8 +3,7 @@ import { Portal } from '../../entities/Portal';
 import { useActions } from "../../hooks/useActions";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { getTasksCategories } from "../../store/selectors/getTasksCategories";
-import { CategoryFilter } from "../../components/CategoryFilter";
-import { CreateTaskForm, TaskList } from "../../widgets";
+import { CreateTaskForm, TaskList, CategoryFilter } from "../../widgets";
 import { StyledListPageWrap } from "../../components/styled/StyledListPageWrap";
 import { TaskStat } from "../../components/TaskStat";
 

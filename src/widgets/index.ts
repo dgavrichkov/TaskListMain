@@ -5,3 +5,4 @@ export * from "./Note";
 export * from "./Task";
 export * from "./TaskList";
 export * from "./NotesList";
+export * from "./CategoryFilter";
