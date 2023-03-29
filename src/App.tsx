@@ -1,7 +1,7 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { THEMES } from "./constants/themes";
 import styled, { ThemeProvider } from "styled-components";
-import { Header } from "./components";
+import { Header } from "./widgets";
 import { GlobalStyles } from "./styles/globalStyles";
 import { useTypedSelector } from "./hooks/useTypedSelector";
 import { Outlet } from "react-router-dom";

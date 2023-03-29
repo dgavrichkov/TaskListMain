@@ -1,8 +1,8 @@
-import { ThemeSwitcher } from "../../features/";
+import { ThemeSwitcher } from "../../features";
 import { NavLink, Link } from "react-router-dom";
 import { Styled } from './styled';
 import { Avatar } from '../../shared/ui/Avatar';
-import { Button } from '../../shared/ui/';
+import { Button } from '../../shared/ui';
 import { PATHS } from '../../shared/constants/paths';
 import { useAuth } from '../../entities';
 
