@@ -1,9 +1,6 @@
 import { Button, BoldButton } from "../shared/ui/";
 import { useActions } from "../hooks/useActions";
-import { StyledForm } from "./styled/StyledForm";
-import { useInput } from "../hooks/useInput";
-import { FormField } from "./elements/FormField";
-import { useForm } from "../hooks/useForm";
+import { StyledForm, FormField, useInput, useForm } from "../shared/lib/Form";
 
 type FormProps = {
   pageClass?: string;

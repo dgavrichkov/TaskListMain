@@ -4,13 +4,13 @@ import {
   VALIDATION_PRIORITIES,
   VALIDATION_PROPERTIES,
   VALIDATION_SUCCESS,
-} from "../constants/validationConstants";
+} from "../../../constants/validationConstants";
 import {
   InputConfig,
   InputValidatorType,
   ValidationResult,
   Validations,
-} from "../types/ValidationTypes";
+} from "../../../types/ValidationTypes";
 
 export const useInput = ({
   initialValue,

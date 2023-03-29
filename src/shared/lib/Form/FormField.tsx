@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { InputValidatorType } from "../../types/ValidationTypes";
+import { InputValidatorType } from "../../../types/ValidationTypes";
 
 type FormFieldType = {
   id: string;
@@ -17,7 +17,7 @@ export const FormField = ({
   name,
   type,
   title,
-  tag,
+  tag = "input",
   placeholder,
 }: FormFieldType) => {
   return (

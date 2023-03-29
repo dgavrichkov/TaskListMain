@@ -1,9 +1,8 @@
 import { FC } from 'react'
 import { useAuth } from '../../entities';
-import { useInput } from '../../hooks/useInput';
+import { useInput } from '../../shared/lib/Form/useInput';
 import { Button } from '../../shared/ui';
-import { FormField } from '../../components/elements/FormField';
-import { StyledForm } from '../../components/styled/StyledForm';
+import { StyledForm, FormField } from '../../shared/lib/Form';
 
 export const Login: FC = () => {
   const loginfield = useInput({
