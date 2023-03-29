@@ -3,9 +3,8 @@ import { Portal } from '../../entities/Portal';
 import { useActions } from "../../hooks/useActions";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { getTasksCategories } from "../../store/selectors/getTasksCategories";
-import { CreateTaskForm, TaskList } from "../../widgets";
+import { CreateTaskForm, TaskList, TaskStat } from "../../widgets";
 import { StyledListPageWrap } from "../../components/styled/StyledListPageWrap";
-import { TaskStat } from "../../components/TaskStat";
 import { CategoryFilter } from '../../features';
 
 export const Tasks = () => {

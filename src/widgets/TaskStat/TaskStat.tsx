@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { useTypedSelector } from "../hooks/useTypedSelector";
-import { getTasks as getTasksFromState } from "../store/selectors/getTasks";
+import { useTypedSelector } from "../../hooks/useTypedSelector";
+import { getTasks as getTasksFromState } from "../../store/selectors/getTasks";
 
 type StatProps = {
   pageClass?: string;
