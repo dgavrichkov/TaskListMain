@@ -3,7 +3,7 @@ import { useActions } from "../../hooks/useActions";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { getTask as getTaskFromState } from "../../store/selectors/getTask";
 import { Button } from "../../shared/ui";
-import { StyledDetailPageWrap } from "../../components/styled/StyledDetailPageWrap";
+import { StyledDetailPageWrap } from "../../shared/layouts";
 
 type ParamTypes = {
   taskId: string;

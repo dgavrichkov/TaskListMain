@@ -3,7 +3,7 @@ import { useActions } from "../../hooks/useActions";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { getNote as getNoteFromState } from "../../store/selectors/getNote";
 import { Button } from "../../shared/ui";
-import { StyledDetailPageWrap } from "../../components/styled/StyledDetailPageWrap";
+import { StyledDetailPageWrap } from "../../shared/layouts";
 
 type ParamTypes = {
   noteId: string;
