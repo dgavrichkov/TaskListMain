@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from '../../shared/ui';
-import { Portal } from '../../entities/Portal';
+import { Portal } from '../../shared/lib/Portal';
 import { Spacer } from '../../shared/ui';
 import { useTasks } from './useTasks';
 

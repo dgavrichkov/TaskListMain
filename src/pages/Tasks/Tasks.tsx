@@ -1,5 +1,5 @@
 import nextId from "react-id-generator";
-import { Portal } from '../../entities/Portal';
+import { Portal } from '../../shared/lib/Portal';
 import { useActions } from "../../hooks/useActions";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { getTasksCategories } from "../../store/selectors/getTasksCategories";
