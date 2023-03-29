@@ -1,5 +1,5 @@
-import { Tag } from "../types/Tag";
-import { Button } from "../shared/ui/";
+import { Tag } from "../../../types/Tag";
+import { Button } from "..";
 
 type TagListProps = {
     tags: Tag[],
