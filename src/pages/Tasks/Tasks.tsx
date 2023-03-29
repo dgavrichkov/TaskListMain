@@ -4,9 +4,8 @@ import { useActions } from "../../hooks/useActions";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { getTasksCategories } from "../../store/selectors/getTasksCategories";
 import { CategoryFilter } from "../../components/CategoryFilter";
-import { CreateTaskForm } from "../../components/CreateTaskForm";
+import { CreateTaskForm, TaskList } from "../../widgets";
 import { StyledListPageWrap } from "../../components/styled/StyledListPageWrap";
-import { TaskList } from "../../components/TaskList";
 import { TaskStat } from "../../components/TaskStat";
 
 export const Tasks = () => {

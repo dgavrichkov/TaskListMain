@@ -4,8 +4,7 @@ import { useActions } from "../../hooks/useActions";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { getNotesCategories } from "../../store/selectors/getNotesCategories";
 import { CategoryFilter } from "../../components/CategoryFilter";
-import { CreateNoteForm } from "../../components/CreateNoteForm";
-import { NotesList } from "../../components/NotesList";
+import { CreateNoteForm, NotesList } from "../../widgets";
 import { StyledListPageWrap } from "../../components/styled/StyledListPageWrap";
 
 export const Notes = () => {

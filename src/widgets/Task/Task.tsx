@@ -1,6 +1,6 @@
-import { Button } from "../shared/ui/";
+import { Button } from "../../shared/ui";
 import styled from "styled-components";
-import { Task } from "../types/Task";
+import { TTask } from "../../types/Task";
 import { NavLink } from "react-router-dom";
 
 type TaskProps = {
@@ -8,7 +8,7 @@ type TaskProps = {
   category: string;
   id: string;
   done: boolean;
-  onDoneTask: (task: Task) => void;
+  onDoneTask: (task: TTask) => void;
   onDeleteTask: (id: string) => void;
 };
 
@@ -17,7 +17,7 @@ type StyledWrapProps = {
   done: boolean;
 };
 
-export const TaskItem = ({
+export const Task = ({
   name,
   category,
   id,

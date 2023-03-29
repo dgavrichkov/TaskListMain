@@ -1,6 +1,6 @@
 import { TasksActionTypes } from "./TasksActionTypes";
 import { TasksState } from "./TasksState"
-import { Task } from "./Task";
+import { TTask } from "./Task";
 
 type FetchTasksAction = {
     type: TasksActionTypes.FETCH_TASKS;
@@ -13,9 +13,9 @@ type FetchAddTaskAction = {
 type: TasksActionTypes.FETCH_ADD_TASK;
 }
 type AddTaskAction = {
-type: TasksActionTypes.ADD_TASK;
-payload: Task;
-}
+  type: TasksActionTypes.ADD_TASK;
+  payload: TTask;
+};
 type DelTaskAction = {
 type: TasksActionTypes.DEL_TASK;
 payload: string;

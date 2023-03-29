@@ -1,10 +1,10 @@
-import { Task } from "../../types/Task";
+import { TTask } from "../../types/Task";
 import { RootState } from "../reducers";
 
 export const getTask = (
   state: RootState,
   id: string | undefined
-): Task | false => {
+): TTask | false => {
   if (!id) return false;
   return state.tasks.data[id];
 };

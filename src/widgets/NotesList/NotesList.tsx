@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import { DEFAULT_FILTER } from "../constants/defaultFilterValue";
-import { useTypedSelector } from "../hooks/useTypedSelector";
-import { getNotes as getNotesFromState } from "../store/selectors/getNotes";
-import { Note as TypeNote } from "../types/Note";
-import { Note } from "./Note";
+import { DEFAULT_FILTER } from "../../constants/defaultFilterValue";
+import { useTypedSelector } from "../../hooks/useTypedSelector";
+import { getNotes as getNotesFromState } from "../../store/selectors/getNotes";
+import { Note as TypeNote } from "../../types/Note";
+import { Note } from "../Note/Note";
 
 type ListProps = {
   pageClass?: string;

@@ -1,11 +1,11 @@
 import React from "react";
-import { TaskItem } from "./TaskItem";
+import { Task } from "../Task/Task";
 import styled from "styled-components";
-import { useTypedSelector } from "../hooks/useTypedSelector";
-import { useActions } from "../hooks/useActions";
-import { getTasks as getTasksFromState } from "../store/selectors/getTasks";
-import { Task } from "../types/Task";
-import { DEFAULT_FILTER } from "../constants/defaultFilterValue";
+import { useTypedSelector } from "../../hooks/useTypedSelector";
+import { useActions } from "../../hooks/useActions";
+import { getTasks as getTasksFromState } from "../../store/selectors/getTasks";
+import { TTask } from "../../types/Task";
+import { DEFAULT_FILTER } from "../../constants/defaultFilterValue";
 
 type ItemsList = React.ReactNode;
 
@@ -26,9 +26,9 @@ export const TaskList = () => {
   let listItems: ItemsList = null;
 
   if (tasks.length > 0) {
-    listItems = filteredTasks(filter).map((task: Task) => (
+    listItems = filteredTasks(filter).map((task: TTask) => (
       <li className="tasks-list__item" key={task.id}>
-        <TaskItem
+        <Task
           name={task.name}
           category={task.category}
           done={task.done}

@@ -1,8 +1,8 @@
-import { Task } from "./Task";
+import { TTask } from "./Task";
 
 export type TasksState = {
     data: {
-      [name: string]: Task
+      [name: string]: TTask
     },
     idList: string[]
 }
