@@ -1,6 +1,7 @@
 import { Button, BoldButton } from "../../shared/ui";
 import { useActions } from "../../hooks/useActions";
-import { StyledForm, FormField, useInput, useForm } from "../../shared/lib/Form";
+import { FormField, useInput, useForm } from "../../shared/lib/Form";
+import { StyledCreateForm } from '../../shared/layouts';
 
 type FormProps = {
   pageClass?: string;
@@ -42,7 +43,7 @@ export const CreateNoteForm = ({ pageClass }: FormProps) => {
   };
 
   return (
-    <StyledForm className={pageClass}>
+    <StyledCreateForm className={pageClass}>
       <FormField
         state={name}
         title="note title"
@@ -79,6 +80,6 @@ export const CreateNoteForm = ({ pageClass }: FormProps) => {
       >
         Clear
       </Button>
-    </StyledForm>
+    </StyledCreateForm>
   );
 };

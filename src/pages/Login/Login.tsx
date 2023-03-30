@@ -2,7 +2,8 @@ import { FC } from 'react'
 import { useAuth } from '../../app/providers/AuthProvider';
 import { useInput } from '../../shared/lib/Form/useInput';
 import { Button } from '../../shared/ui';
-import { StyledForm, FormField } from '../../shared/lib/Form';
+import { FormField } from '../../shared/lib/Form';
+import { StyledCreateForm } from '../../shared/layouts';
 
 export const Login: FC = () => {
   const loginfield = useInput({
@@ -25,7 +26,7 @@ export const Login: FC = () => {
   }
 
   return (
-    <StyledForm>
+    <StyledCreateForm>
       <FormField
         id="loginform-login"
         tag='input'
@@ -47,6 +48,6 @@ export const Login: FC = () => {
       >
         Log In
       </Button>
-    </StyledForm>
+    </StyledCreateForm>
   )
 };

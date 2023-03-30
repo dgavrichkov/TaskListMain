@@ -5,7 +5,23 @@ const Field = styled.div`
   textarea {
     display: block;
     width: 100%;
+    border: 1px solid transparent;
+    border-radius: 20px;
+    padding: 10px 25px;
+    font-size: 18px;
+    background: ${(props) => props.theme.colors.primary};
+    box-shadow: ${(props) => props.theme.shadows.input};
+    color: inherit;
+
+    &.invalid {
+      outline: 1px solid ${(props) => props.theme.colors.error};
+    }
   }
+
+  textarea {
+    resize: none;
+  }
+
   label {
     display: block;
     margin-bottom: 4px;
@@ -13,4 +29,4 @@ const Field = styled.div`
   }
 `;
 
-export const Styled = { Field };
+export const Styled = {Field};

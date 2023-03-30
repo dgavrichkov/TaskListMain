@@ -7,6 +7,7 @@ export const THEMES: Themes = {
       accent: "#25CEDE",
       text: "#687891",
       pale: "rgba(104, 120, 145, 0.25)",
+      error: "#b14949",
     },
     shadows: {
       button:
@@ -23,6 +24,7 @@ export const THEMES: Themes = {
       accent: "#25CEDE",
       text: "#eeeeee",
       pale: "rgba(104, 120, 145, 0.25)",
+      error: "#b14949",
     },
     shadows: {
       button:

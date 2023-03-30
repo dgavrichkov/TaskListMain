@@ -3,6 +3,7 @@ type Colors = {
   accent: string;
   text: string;
   pale: string;
+  error: string;
 };
 type Shadows = {
   button: string;

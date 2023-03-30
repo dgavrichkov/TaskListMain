@@ -1,6 +1,7 @@
 import { Button, BoldButton } from "../../shared/ui";
 import { useActions } from "../../hooks/useActions";
-import { StyledForm, FormField, useForm, useInput } from "../../shared/lib/Form";
+import { FormField, useForm, useInput } from "../../shared/lib/Form";
+import { StyledCreateForm } from '../../shared/layouts';
 
 type FormProps = {
   pageClass?: string;
@@ -36,7 +37,7 @@ export const CreateTaskForm = ({ pageClass }: FormProps) => {
   };
 
   return (
-    <StyledForm className={pageClass}>
+    <StyledCreateForm className={pageClass}>
       <FormField
         state={name}
         title="task title"
@@ -65,6 +66,6 @@ export const CreateTaskForm = ({ pageClass }: FormProps) => {
       >
         Clear
       </Button>
-    </StyledForm>
+    </StyledCreateForm>
   );
 };
