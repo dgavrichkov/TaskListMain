@@ -39,18 +39,14 @@ export const CreateTaskForm = ({ pageClass }: FormProps) => {
     <StyledForm className={pageClass}>
       <FormField
         state={name}
-        tag="input"
         title="task title"
-        type="text"
         id="task-name"
         name="task-name"
         placeholder="add task"
       />
       <FormField
         state={category}
-        tag="input"
         title="task category"
-        type="text"
         id="task-category"
         name="task-category"
         placeholder="task category"

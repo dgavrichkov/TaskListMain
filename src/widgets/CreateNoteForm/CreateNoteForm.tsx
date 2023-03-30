@@ -45,18 +45,14 @@ export const CreateNoteForm = ({ pageClass }: FormProps) => {
     <StyledForm className={pageClass}>
       <FormField
         state={name}
-        tag="input"
         title="note title"
-        type="text"
         id="note-name"
         name="note-name"
         placeholder="add note title"
       />
       <FormField
         state={category}
-        tag="input"
         title="note category"
-        type="text"
         id="note-category"
         name="note-category"
         placeholder="category"
