@@ -3,7 +3,7 @@ import { NavLink, Link } from "react-router-dom";
 import { Styled } from './styled';
 import { Avatar, Button } from '../../shared/ui';
 import { PATHS } from '../../shared/constants/paths';
-import { useAuth } from '../../entities';
+import { useAuth } from '../../app/providers/AuthProvider';
 
 type HeaderProps = {
   pageClass: string,

@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { useAuth } from '../../entities';
+import { useAuth } from '../../app/providers/AuthProvider';
 import { useInput } from '../../shared/lib/Form/useInput';
 import { Button } from '../../shared/ui';
 import { StyledForm, FormField } from '../../shared/lib/Form';

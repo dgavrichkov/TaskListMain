@@ -1,4 +1,4 @@
-import { useAuth } from '../../../entities';
+import { useAuth } from '../../../app/providers/AuthProvider';
 import { Styled } from './styled'
 
 export const ProfileInfo = () => {

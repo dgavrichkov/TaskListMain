@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { dummyFetchUser, dummyLogin } from './api';
-import { PATHS } from '../../shared/constants/paths';
+import { PATHS } from '../../../shared/constants/paths';
 import { AuthContext } from './AuthContext';
 import { TDummyUser, TLoginData } from './models';
 import { DUMMY_TOKEN, DUMMY_USER_ID } from './constants';

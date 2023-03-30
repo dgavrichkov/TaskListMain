@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { useAuth } from '../../entities';
+import { useAuth } from '../../app/providers/AuthProvider';
 
 export const ProtectedRoute: FC = ({ children }) => {
   const { token } = useAuth();
