@@ -1,7 +1,7 @@
 import {
   ValidationErrors,
   ValidationPriorities,
-} from "../types/ValidationTypes";
+} from "./model";
 
 export enum VALIDATION_PROPERTIES {
   IS_REQUIRED = "isRequired",
@@ -20,6 +20,7 @@ export const VALIDATION_ERRORS: ValidationErrors = {
   [VALIDATION_PROPERTIES.MIN_LEN]: (value) => `Минимальная длина - ${value}`,
   [VALIDATION_PROPERTIES.MAX_LEN]: (value) => `Максимальная длина - ${value}`,
 };
+
 export const VALIDATION_SUCCESS = {
   commonFieldSuccess: "Поле заполнено верно",
   allSuccess: "Нет ошибок валидации",

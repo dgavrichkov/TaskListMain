@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import { InputValidatorType } from "../../../../types/ValidationTypes";
+import { InputValidatorType } from "../model";
 import { Styled } from './styled';
 
 type TFormFieldProps = {

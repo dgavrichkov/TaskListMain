@@ -15,7 +15,7 @@ export type Validations = {
   maxLength?: number;
 };
 
-export type ValidationEntry = {
+type ValidationEntry = {
   isError: boolean;
   message: string;
 };
@@ -30,10 +30,6 @@ export type ValidationErrors = {
 
 export type ValidationPriorities = {
   [key: string]: number;
-};
-
-export type FormConfig = {
-  [key: string]: InputConfig;
 };
 
 export type InputConfig = {

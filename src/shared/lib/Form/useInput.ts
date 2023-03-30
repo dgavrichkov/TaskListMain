@@ -1,16 +1,16 @@
-import React, { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import {
   VALIDATION_ERRORS,
   VALIDATION_PRIORITIES,
   VALIDATION_PROPERTIES,
   VALIDATION_SUCCESS,
-} from "../../../constants/validationConstants";
+} from "./constants";
 import {
   InputConfig,
   InputValidatorType,
   ValidationResult,
   Validations,
-} from "../../../types/ValidationTypes";
+} from "./model";
 
 export const useInput = ({
   initialValue,
@@ -22,7 +22,7 @@ export const useInput = ({
   const validator = useValidator(value, validationSettings);
 
   const onChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     setValue(e.target.value);
   };
