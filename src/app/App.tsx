@@ -1,28 +1,26 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Provider } from "react-redux";
-import { THEMES } from "../constants/themes";
-import { ThemeProvider } from "styled-components";
-import { GlobalStyles } from "../styles/globalStyles";
-import { useTypedSelector } from "../hooks/useTypedSelector";
 import { AuthProvider } from '../entities';
 import { store } from '../store';
-import { Layout } from './Layout';
+import { Router } from './Router';
+import { StyleProvider } from './providers/StyleProvider';
+import { BrowserRouter } from 'react-router-dom';
 
 const queryClient = new QueryClient()
 
 export const App = function () {
-  const theme = useTypedSelector((state) => state.theme)
 
   return (
-    <Provider store={store}>
-      <QueryClientProvider client={queryClient}>
-        <AuthProvider>
-          <ThemeProvider theme={THEMES[theme]}>
-            <GlobalStyles />
-            <Layout />
-          </ThemeProvider>
-        </AuthProvider>
-      </QueryClientProvider>
-    </Provider>
+    <BrowserRouter>
+      <Provider store={store}>
+        <QueryClientProvider client={queryClient}>
+          <AuthProvider>
+            <StyleProvider>
+              <Router />
+            </StyleProvider>
+          </AuthProvider>
+        </QueryClientProvider>
+      </Provider>
+    </BrowserRouter>
   );
 }

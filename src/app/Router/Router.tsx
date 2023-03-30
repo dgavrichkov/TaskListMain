@@ -1,12 +1,12 @@
-import { RouterProvider, createBrowserRouter, createRoutesFromElements, Route } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { Greeting, Login, Note, Notes, Posts, Profile, Task, Tasks } from '../../pages';
-import {App} from '../App';
 import { PATHS } from '../../shared/constants/paths';
 import { ProtectedRoute } from '../../features';
+import { Layout } from '../Layout';
 
-const router = createBrowserRouter(
-  createRoutesFromElements(
-    <Route path='/' element={<App />}>
+export const Router = () => (
+  <Routes>
+    <Route path='/' element={<Layout />}>
       <Route index element={<Greeting />} />
       <Route path={PATHS.TASKS} element={<Tasks />} />
       <Route path={PATHS.POSTS} element={<Posts />} />
@@ -20,9 +20,5 @@ const router = createBrowserRouter(
         </ProtectedRoute>
       } />
     </Route>
-  )
-);
-
-export const Router = () => (
-  <RouterProvider router={router} />
+  </Routes>
 )
