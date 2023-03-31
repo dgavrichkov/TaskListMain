@@ -1,6 +1,7 @@
 import cn from 'classnames';
 import { InputValidatorType } from "../model";
 import { Styled } from './styled';
+import { ForwardedRef, forwardRef } from 'react';
 
 type TFormFieldProps = {
   id: string;
@@ -12,7 +13,7 @@ type TFormFieldProps = {
   placeholder?: string;
 };
 
-export const FormField = ({
+export const FormField = forwardRef(({
   state,
   id,
   name,
@@ -20,7 +21,7 @@ export const FormField = ({
   title,
   tag = "input",
   placeholder,
-}: TFormFieldProps) => {
+}: TFormFieldProps, ref) => {
   const baseProps = {
     id,
     name,
@@ -39,8 +40,8 @@ export const FormField = ({
         {title}
       </label>
       {tag === "input"
-        ? <input {...baseProps} type={type} />
-        : <textarea {...baseProps}></textarea>
+        ? <input {...baseProps} type={type} ref={ref as ForwardedRef<HTMLInputElement>} />
+        : <textarea {...baseProps} ref={ref as ForwardedRef<HTMLTextAreaElement>}></textarea>
       }
       <i className="text-field__message">
         {state.isDirty && state.validator.isValid.isError
@@ -49,4 +50,4 @@ export const FormField = ({
       </i>
     </Styled.Field>
   );
-};
+});
