@@ -1,5 +1,5 @@
 export const PATHS = {
-  ROOT: "/TaskListMain",
+  ROOT: "/",
   TASKS: "tasks",
   NOTES: "notes",
   PROFILE: "profile",

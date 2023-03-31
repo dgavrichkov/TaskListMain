@@ -2,12 +2,12 @@ import { Dispatch } from "redux";
 import nextId from "react-id-generator";
 import { tasksNormalizer } from "../../utils/tasksNormalizer";
 
-import { Task } from "../../types/Task";
+import { TTask } from "../../types/Task";
 import { TaskNew } from "../../types/TaskNew";
 import { TasksActionTypes } from "../../types/TasksActionTypes";
 import { TasksAction } from "../../types/TasksAction";
 
-export function toggleTaskAction(task: Task) {
+export function toggleTaskAction(task: TTask) {
   return (dispatch: Dispatch<TasksAction>) => {
     try {
       dispatch({ type: TasksActionTypes.TOGGLE_TASK, payload: task.id });
@@ -22,7 +22,7 @@ export function delTaskAction(id: string) {
   return (dispatch: Dispatch<TasksAction>) => {
     try {
       dispatch({ type: TasksActionTypes.DEL_TASK, payload: id });
-    } 
+    }
     catch(e) {
       console.log(e);
     }

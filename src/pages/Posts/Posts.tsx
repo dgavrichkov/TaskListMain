@@ -1,7 +1,6 @@
 import React from 'react';
-import { Button } from '../../components/Button';
-import { Portal } from '../../entities/Portal';
-import { Spacer } from '../../shared/ui';
+import { Button, Spacer } from '../../shared/ui/';
+import { Portal } from '../../shared/lib/Portal';
 import { usePosts } from './usePosts';
 
 export const Posts = () => {

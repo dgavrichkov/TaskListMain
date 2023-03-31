@@ -1,3 +1,3 @@
-import { Task } from "./Task";
+import { TTask } from "./Task";
 
-export type TaskNew = Pick<Task, "name" | "category">;
+export type TaskNew = Pick<TTask, "name" | "category">;
