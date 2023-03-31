@@ -9,4 +9,6 @@ export const AuthContext = createContext<TAuthData>({
   token: '',
 });
 
+AuthContext.displayName = 'DummyAuthContext';
+
 export const useAuth = () => useContext(AuthContext);
