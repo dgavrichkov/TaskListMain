@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-type ButtonProps = {
+export type ButtonProps = {
   children?: React.ReactNode;
   className?: string;
   buttonType?: "button" | "submit" | "reset" | undefined;
