@@ -38,7 +38,7 @@ const StyledButton = styled.button`
   cursor: pointer;
   box-shadow: ${(props) => props.theme.shadows.button || `0 0 0 3px #000`};
   background: ${(props) => props.theme.colors.primary || `#000`};
-  color: inherit;
+  color: ${(props) => props.theme.colors.text || `#000`};
   &:hover {
     opacity: 0.8;
   }
