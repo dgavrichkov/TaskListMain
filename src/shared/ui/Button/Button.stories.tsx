@@ -12,3 +12,9 @@ export const Default = Template.bind({})
 Default.args = {
   children: 'Button',
 }
+
+export const Bold = Template.bind({})
+Bold.args = {
+  children: 'Bold Button',
+  isBold: true,
+}
