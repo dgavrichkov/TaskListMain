@@ -9,6 +9,12 @@ export const parameters = {
       date: /Date$/,
     },
   },
+  backgrounds: {
+    values: [
+      { name: "dark", value: THEMES.dark.colors.primary },
+      { name: "light", value: THEMES.light.colors.primary },
+    ]
+  }
 };
 
 export const globalTypes = {
