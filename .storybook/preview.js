@@ -1,5 +1,6 @@
 import { ThemeProvider } from "styled-components";
 import {THEMES} from "../src/app/styles/themes";
+import {GlobalStyles} from "../src/app/styles/globalStyles";
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -8,12 +9,6 @@ export const parameters = {
       color: /(background|color)$/i,
       date: /Date$/,
     },
-  },
-  backgrounds: {
-    values: [
-      { name: "dark", value: THEMES.dark.colors.primary },
-      { name: "light", value: THEMES.light.colors.primary },
-    ]
   }
 };
 
@@ -38,6 +33,7 @@ const withThemeProvider = (Story, context) => {
   const theme = context.globals.theme;
   return (
     <ThemeProvider theme={THEMES[theme]}>
+      <GlobalStyles />
       <Story />
     </ThemeProvider>
   );
