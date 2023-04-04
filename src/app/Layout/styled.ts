@@ -9,7 +9,6 @@ const Page = styled.div`
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr auto;
   gap: 20px;
-  color: ${(props) => props.theme.colors.text || `#000`};
   .header {
     grid-column: 1 / -1;
   }

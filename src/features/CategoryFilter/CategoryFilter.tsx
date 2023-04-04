@@ -45,9 +45,9 @@ const StyledWrap = styled.div`
   h4 {
     margin-bottom: 14px;
   }
+
   .item {
     margin: 10px;
-    cursor: pointer;
     &--clear {
       width: 100%;
     }

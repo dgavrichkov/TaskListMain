@@ -8,6 +8,7 @@ const Wrap = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  color: ${({ theme }) => theme.colors.text};
   svg {
     width: 75%;
     height: 75%;
