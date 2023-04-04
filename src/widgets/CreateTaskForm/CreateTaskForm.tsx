@@ -1,4 +1,4 @@
-import { Button, BoldButton } from "../../shared/ui";
+import { Button } from "../../shared/ui";
 import { useActions } from "../../hooks/useActions";
 import { FormField, useForm, useInput } from "../../shared/lib/Form";
 import { StyledCreateForm } from '../../shared/layouts';
@@ -52,13 +52,14 @@ export const CreateTaskForm = ({ pageClass }: FormProps) => {
         name="task-category"
         placeholder="task category"
       />
-      <BoldButton
+      <Button
         buttonType="button"
         onClick={handleAdd}
         disabled={form.validity && form.touched ? false : true}
+        isBold
       >
         Add
-      </BoldButton>
+      </Button>
       <Button
         buttonType="button"
         onClick={handleClear}

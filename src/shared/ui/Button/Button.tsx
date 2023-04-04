@@ -1,11 +1,12 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-type ButtonProps = {
+export type ButtonProps = {
   children?: React.ReactNode;
   className?: string;
   buttonType?: "button" | "submit" | "reset" | undefined;
   disabled?: boolean;
   onClick: () => void;
+  isBold?: boolean;
 };
 
 export const Button = ({
@@ -14,6 +15,7 @@ export const Button = ({
   buttonType = "button",
   disabled,
   onClick,
+  isBold = false,
 }: ButtonProps) => {
   return (
     <StyledButton
@@ -21,24 +23,30 @@ export const Button = ({
       type={buttonType}
       onClick={() => onClick()}
       disabled={disabled}
+      isBold={isBold}
     >
       {children}
     </StyledButton>
   );
 };
 
-export const BoldButton = styled(Button)`
-  font-weight: 700;
-`;
+type TStyledButtonProps = {
+  isBold: boolean;
+}
 
-const StyledButton = styled.button`
+const StyledButton = styled.button<TStyledButtonProps>`
   padding: 12px 18px;
   border-radius: 20.3736px;
   border: none;
   cursor: pointer;
   box-shadow: ${(props) => props.theme.shadows.button || `0 0 0 3px #000`};
   background: ${(props) => props.theme.colors.primary || `#000`};
-  color: inherit;
+  color: ${(props) => props.theme.colors.text || `#000`};
+
+  ${(props) => props.isBold && css`
+    font-weight: 700;
+  `}
+
   &:hover {
     opacity: 0.8;
   }

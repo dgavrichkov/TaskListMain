@@ -1,4 +1,4 @@
-import { Button, BoldButton } from "../../shared/ui";
+import { Button } from "../../shared/ui";
 import { useActions } from "../../hooks/useActions";
 import { FormField, useInput, useForm } from "../../shared/lib/Form";
 import { StyledCreateForm } from '../../shared/layouts';
@@ -66,13 +66,14 @@ export const CreateNoteForm = ({ pageClass }: FormProps) => {
         name="note-text"
         placeholder="add note text"
       />
-      <BoldButton
+      <Button
         buttonType="button"
         onClick={handleAdd}
         disabled={form.validity && form.touched ? false : true}
+        isBold
       >
         Add
-      </BoldButton>
+      </Button>
       <Button
         buttonType="button"
         onClick={handleClear}

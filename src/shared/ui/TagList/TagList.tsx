@@ -1,5 +1,6 @@
 import { Tag } from "../../../types/Tag";
 import { Button } from "..";
+import { Styled } from './styled';
 
 type TagListProps = {
     tags: Tag[],
@@ -8,12 +9,12 @@ type TagListProps = {
 
 export const TagList = ({tags, onClickAction}: TagListProps) => {
   return (
-    <>
+    <Styled.TagsWrap>
       {tags.map((tag) => {
         return (
           <Button
             buttonType="button"
-            className="item"
+            className="tag item"
             key={tag.id}
             onClick={() => {
               onClickAction(tag.tagname)
@@ -23,6 +24,6 @@ export const TagList = ({tags, onClickAction}: TagListProps) => {
           </Button>
         );
       })}
-    </>
+    </Styled.TagsWrap>
   )
 }
