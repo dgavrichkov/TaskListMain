@@ -15,14 +15,12 @@ export const store = createStore(
   composeWithDevTools(applyMiddleware(thunk))
 );
 
-// TODO - попробовать разделить сохранение тасков и заметок
 store.subscribe(
   throttle(() => {
-    const { tasks, notes, theme, tasksFilter, notesFilter } = store.getState();
+    const { tasks, notes, tasksFilter, notesFilter } = store.getState();
     saveState({
       tasks,
       notes,
-      theme,
       tasksFilter,
       notesFilter,
     });

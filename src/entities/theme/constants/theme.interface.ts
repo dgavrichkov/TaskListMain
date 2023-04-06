@@ -1,17 +1,22 @@
-type Colors = {
+type TColors = {
   primary: string;
   accent: string;
   text: string;
   pale: string;
   error: string;
 };
-type Shadows = {
+
+type TShadows = {
   button: string;
   input: string;
   buttonInset: string;
 };
 
-export type Theme = {
-  colors: Colors;
-  shadows: Shadows;
+export type TTheme = {
+  colors: TColors;
+  shadows: TShadows;
 };
+
+export type TThemeSlice = {
+  theme: string;
+}

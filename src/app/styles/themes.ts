@@ -1,4 +1,8 @@
-import { Themes } from "../../types/Themes";
+import { TTheme } from '../../entities/theme';
+
+type Themes = {
+  [key: string]: TTheme;
+}
 
 export const THEMES: Themes = {
   light: {
