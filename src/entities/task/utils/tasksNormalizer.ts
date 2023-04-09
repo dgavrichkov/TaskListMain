@@ -1,4 +1,4 @@
-import { TTask } from "../types/Task";
+import { TTask } from "../model/task.interface";
 
 export const tasksNormalizer = function(tasks: TTask[]) {
     return {

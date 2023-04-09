@@ -1,13 +1,12 @@
 import styled from "styled-components";
-import { useTypedSelector } from "../../hooks/useTypedSelector";
-import { getTasks as getTasksFromState } from "../../store/selectors/getTasks";
+import { useAppSelector } from '../../app/store';
 
 type StatProps = {
   pageClass?: string;
 };
 
 export const TaskStat = ({ pageClass }: StatProps) => {
-  const tasks = useTypedSelector(getTasksFromState);
+  const tasks = useAppSelector(state => state.tasks.idList.map((id: string) => state.tasks.data[id]));
 
   const countAllTasks = () => {
     return tasks.length;

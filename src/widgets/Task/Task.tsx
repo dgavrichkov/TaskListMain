@@ -1,6 +1,5 @@
 import { Button } from "../../shared/ui";
 import styled from "styled-components";
-import { TTask } from "../../types/Task";
 import { NavLink } from "react-router-dom";
 
 type TaskProps = {
@@ -8,8 +7,8 @@ type TaskProps = {
   category: string;
   id: string;
   done: boolean;
-  onDoneTask: (task: TTask) => void;
-  onDeleteTask: (id: string) => void;
+  onDoneTask: () => void;
+  onDeleteTask: () => void;
 };
 
 type StyledWrapProps = {
@@ -33,18 +32,14 @@ export const Task = ({
       <Button
         buttonType="button"
         className="done"
-        onClick={() => {
-          onDoneTask({ id, name, category, done });
-        }}
+        onClick={onDoneTask}
       >
         {!done ? "Done" : "Not Done"}
       </Button>
       <Button
         buttonType="button"
         className="delete"
-        onClick={() => {
-          onDeleteTask(id);
-        }}
+        onClick={onDeleteTask}
       >
         Delete
       </Button>

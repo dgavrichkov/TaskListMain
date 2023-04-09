@@ -1,13 +1,15 @@
 import { Button } from "../../shared/ui";
-import { useActions } from "../../hooks/useActions";
 import { FormField, useForm, useInput } from "../../shared/lib/Form";
 import { StyledCreateForm } from '../../shared/layouts';
+import { useAppDispatch } from '../../app/store';
+import { createTask } from '../../entities';
 
 type FormProps = {
   pageClass?: string;
 };
 
 export const CreateTaskForm = ({ pageClass }: FormProps) => {
+  const dispatch = useAppDispatch();
   const name = useInput({
     initialValue: "",
     validationSettings: { isRequired: true },
@@ -18,8 +20,6 @@ export const CreateTaskForm = ({ pageClass }: FormProps) => {
   });
   const form = useForm(name, category);
 
-  const { addTaskAction } = useActions();
-
   const handleClear = () => {
     name.clearInput();
     category.clearInput();
@@ -29,10 +29,10 @@ export const CreateTaskForm = ({ pageClass }: FormProps) => {
     if (!name.value || !category.value) {
       return;
     }
-    addTaskAction({
+    dispatch(createTask({
       name: name.value,
       category: category.value,
-    });
+    }));
     handleClear();
   };
 
