@@ -17,12 +17,10 @@ export const store = createStore(
 
 store.subscribe(
   throttle(() => {
-    const { tasks, notes, tasksFilter, notesFilter } = store.getState();
+    const { tasks, tasksFilter } = store.getState();
     saveState({
       tasks,
-      notes,
       tasksFilter,
-      notesFilter,
     });
   }, 1000)
 );

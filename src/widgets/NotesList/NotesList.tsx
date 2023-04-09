@@ -1,31 +1,19 @@
 import styled from "styled-components";
-import { DEFAULT_FILTER } from "../../constants/defaultFilterValue";
-import { useTypedSelector } from "../../hooks/useTypedSelector";
-import { getNotes as getNotesFromState } from "../../store/selectors/getNotes";
-import { Note as TypeNote } from "../../types/Note";
 import { Note } from "../Note/Note";
+import { useAppSelector } from '../../app/store';
 
 type ListProps = {
   pageClass?: string;
 };
 
 export const NotesList = ({ pageClass }: ListProps) => {
-  const notes = useTypedSelector(getNotesFromState);
-  const filter = useTypedSelector((state) => state.notesFilter);
-
-  const filterNotes = (tag: string) => {
-    if (tag !== DEFAULT_FILTER) {
-      return [...notes].filter((note) => note.category === tag);
-    } else {
-      return notes;
-    }
-  };
+  const notes = useAppSelector((state) => state.notes.idList.map((id: string) => state.notes.data[id]))
 
   return (
     <StyledNotes className={pageClass}>
       <div className="list">
         {notes &&
-          filterNotes(filter).map((note: TypeNote) => (
+          notes.map((note) => (
             <Note
               key={note.id}
               id={note.id}

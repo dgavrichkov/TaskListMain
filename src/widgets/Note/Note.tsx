@@ -1,26 +1,31 @@
 import { NavLink } from "react-router-dom"
 import styled from "styled-components"
-import { useActions } from "../../hooks/useActions"
-import { Note as TypeNote }  from "../../types/Note"
 import { Button } from "../../shared/ui"
+import { useAppDispatch } from '../../app/store'
+import { TNote } from '../../entities/note/model/note.interface'
+import { deleteNote } from '../../entities'
 
-export const Note = ({id, name, text, category} : TypeNote) => {
-    const { delNoteAction } = useActions();
+export const Note = ({ id, name, text, category }: TNote) => {
+  const dispatch = useAppDispatch();
 
-    return (
-        <Article>
-            <h3 className="name">{name}</h3>
-            <p className="text">{text}</p>
-            {category && <i className="category">{category}</i>}
-            <NavLink to={id}>Открыть</NavLink>
-            <Button
-                className="delete"
-                onClick={() => {
-                    delNoteAction(id)
-                }}
-            >Удалить</Button>
-        </Article>
-    )
+  const handleClick = () => {
+    dispatch(deleteNote(id));
+  }
+
+  return (
+    <Article>
+      <h3 className="name">{name}</h3>
+      <p className="text">{text}</p>
+      {category && <i className="category">{category}</i>}
+      <NavLink to={id}>Открыть</NavLink>
+      <Button
+        className="delete"
+        onClick={handleClick}
+      >
+        Удалить
+      </Button>
+    </Article>
+  )
 }
 
 const Article = styled.article`

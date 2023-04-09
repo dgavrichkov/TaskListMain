@@ -1,13 +1,15 @@
 import { Button } from "../../shared/ui";
-import { useActions } from "../../hooks/useActions";
 import { FormField, useInput, useForm } from "../../shared/lib/Form";
 import { StyledCreateForm } from '../../shared/layouts';
+import { useAppDispatch } from '../../app/store';
+import { createNote } from '../../entities';
 
 type FormProps = {
   pageClass?: string;
 };
 
 export const CreateNoteForm = ({ pageClass }: FormProps) => {
+  const dispatch = useAppDispatch();
   const name = useInput({
     initialValue: "",
     validationSettings: { isRequired: true, minLength: 5 },
@@ -22,7 +24,7 @@ export const CreateNoteForm = ({ pageClass }: FormProps) => {
   });
   const form = useForm(name, category, text);
 
-  const { addNoteAction } = useActions();
+
 
   const handleClear = () => {
     name.clearInput();
@@ -34,11 +36,11 @@ export const CreateNoteForm = ({ pageClass }: FormProps) => {
     if (!name || !category) {
       return;
     }
-    addNoteAction({
+    dispatch(createNote({
       name: name.value,
       text: text.value,
       category: category.value,
-    });
+    }))
     handleClear();
   };
 

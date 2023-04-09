@@ -7,9 +7,3 @@ export function tasksFilterChangeAction(filter: string) {
     dispatch({ type: FilterActionTypes.CHANGE_TASKS_FILTER, payload: filter });
   };
 }
-
-export function notesFilterChangeAction(filter: string) {
-  return (dispatch: Dispatch<FilterAction>) => {
-    dispatch({ type: FilterActionTypes.CHANGE_NOTES_FILTER, payload: filter });
-  };
-}
