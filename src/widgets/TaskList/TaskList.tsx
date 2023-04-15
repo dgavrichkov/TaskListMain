@@ -16,7 +16,7 @@ export const TaskList = () => {
       <li className="tasks-list__item" key={task.id}>
         <Task
           name={task.name}
-          category={task.category}
+          categoryID={task.categoryID}
           done={task.done}
           id={task.id}
           onDoneTask={() => dispatch(toggleTask(task.id))}

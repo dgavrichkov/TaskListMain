@@ -2,7 +2,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Button } from "../../shared/ui";
 import { StyledDetailPageWrap } from "../../shared/layouts";
 import { useAppDispatch, useAppSelector } from '../../app/store';
-import { deleteNote } from '../../entities';
+import { deleteNote, selectCategoryById } from '../../entities';
 
 type ParamTypes = {
   noteId: string;
@@ -13,6 +13,7 @@ export const Note = () => {
   const { noteId } = useParams<ParamTypes>();
   const note = useAppSelector(state => state.notes.data[noteId!]);
   const navigate = useNavigate();
+  const category = useAppSelector(selectCategoryById(note.categoryID));
 
   const handleDelete = () => {
     noteId && dispatch(deleteNote(noteId))
@@ -26,12 +27,10 @@ export const Note = () => {
   return (
     <StyledDetailPageWrap>
       <h3>{note.name}</h3>
-      <i>{note.category}</i>
+      <i>{category?.title}</i>
       <p>{note.text}</p>
       <div className="btnGroup">
-        <Button onClick={handleDelete}>
-          Удалить
-        </Button>
+        <Button onClick={handleDelete}>Удалить</Button>
       </div>
     </StyledDetailPageWrap>
   );

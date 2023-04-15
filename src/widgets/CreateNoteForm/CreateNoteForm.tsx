@@ -1,8 +1,10 @@
+import nextId from "react-id-generator";
 import { Button } from "../../shared/ui";
 import { FormField, useInput, useForm } from "../../shared/lib/Form";
 import { StyledCreateForm } from '../../shared/layouts';
-import { useAppDispatch } from '../../app/store';
-import { createNote } from '../../entities';
+import { useAppDispatch, useAppSelector } from '../../app/store';
+import { createCategory, createNote, findCategoryByTitle } from '../../entities';
+import { TCategory } from '../../entities/categories/model/categories.interface';
 
 type FormProps = {
   pageClass?: string;
@@ -10,6 +12,7 @@ type FormProps = {
 
 export const CreateNoteForm = ({ pageClass }: FormProps) => {
   const dispatch = useAppDispatch();
+  const categories = useAppSelector((state) => state.categories.categories);
   const name = useInput({
     initialValue: "",
     validationSettings: { isRequired: true, minLength: 5 },
@@ -24,8 +27,6 @@ export const CreateNoteForm = ({ pageClass }: FormProps) => {
   });
   const form = useForm(name, category, text);
 
-
-
   const handleClear = () => {
     name.clearInput();
     text.clearInput();
@@ -36,11 +37,22 @@ export const CreateNoteForm = ({ pageClass }: FormProps) => {
     if (!name || !category) {
       return;
     }
-    dispatch(createNote({
-      name: name.value,
-      text: text.value,
-      category: category.value,
-    }))
+    const preparedId = nextId();
+    const storedCategory = findCategoryByTitle(categories, category.value);
+    if(!storedCategory) {
+      const newCategory: TCategory = {
+        id: preparedId,
+        title: category.value,
+      };
+      dispatch(createCategory(newCategory));
+    }
+    dispatch(
+      createNote({
+        name: name.value,
+        text: text.value,
+        categoryID: storedCategory?.id || preparedId,
+      })
+    );
     handleClear();
   };
 

@@ -1,12 +1,10 @@
 import { Button } from "../../shared/ui";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
+import { TTask, selectCategoryById } from '../../entities';
+import { useAppSelector } from '../../app/store';
 
-type TaskProps = {
-  name: string;
-  category: string;
-  id: string;
-  done: boolean;
+type TaskProps = TTask & {
   onDoneTask: () => void;
   onDeleteTask: () => void;
 };
@@ -18,16 +16,18 @@ type StyledWrapProps = {
 
 export const Task = ({
   name,
-  category,
+  categoryID,
   id,
   done,
   onDoneTask,
   onDeleteTask,
 }: TaskProps) => {
+  const category = useAppSelector(selectCategoryById(categoryID));
+
   return (
     <StyledTaskItem className={`task-item`} done={done}>
       <b className="name">{name}</b>
-      <i className="category">{category}</i>
+      <i className="category">{category?.title}</i>
       <NavLink to={id}>Открыть</NavLink>
       <Button
         buttonType="button"

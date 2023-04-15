@@ -2,13 +2,13 @@ export type TNote = {
   id: string;
   name: string;
   text: string;
-  category: string;
+  categoryID: string;
 };
 
 export type TNoteNew = {
   name: string;
   text: string;
-  category: string;
+  categoryID: string;
 };
 
 export type TNotesState = {

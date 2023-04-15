@@ -19,7 +19,7 @@ export const NotesList = ({ pageClass }: ListProps) => {
               id={note.id}
               name={note.name}
               text={note.text}
-              category={note.category}
+              categoryID={note.categoryID}
             />
           ))}
       </div>

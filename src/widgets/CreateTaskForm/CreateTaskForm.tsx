@@ -1,8 +1,10 @@
+import nextId from "react-id-generator";
 import { Button } from "../../shared/ui";
 import { FormField, useForm, useInput } from "../../shared/lib/Form";
 import { StyledCreateForm } from '../../shared/layouts';
-import { useAppDispatch } from '../../app/store';
-import { createTask } from '../../entities';
+import { useAppDispatch, useAppSelector } from '../../app/store';
+import { createCategory, createTask, findCategoryByTitle } from '../../entities';
+import { TCategory } from '../../entities/categories/model/categories.interface';
 
 type FormProps = {
   pageClass?: string;
@@ -10,6 +12,7 @@ type FormProps = {
 
 export const CreateTaskForm = ({ pageClass }: FormProps) => {
   const dispatch = useAppDispatch();
+  const categories = useAppSelector((state) => state.categories.categories);
   const name = useInput({
     initialValue: "",
     validationSettings: { isRequired: true },
@@ -29,10 +32,21 @@ export const CreateTaskForm = ({ pageClass }: FormProps) => {
     if (!name.value || !category.value) {
       return;
     }
-    dispatch(createTask({
-      name: name.value,
-      category: category.value,
-    }));
+    const preparedId = nextId();
+    const storedCategory = findCategoryByTitle(categories, category.value);
+    if (!storedCategory) {
+      const newCategory: TCategory = {
+        id: preparedId,
+        title: category.value,
+      };
+      dispatch(createCategory(newCategory));
+    }
+    dispatch(
+      createTask({
+        name: name.value,
+        categoryID: storedCategory?.id || preparedId,
+      })
+    );
     handleClear();
   };
 
