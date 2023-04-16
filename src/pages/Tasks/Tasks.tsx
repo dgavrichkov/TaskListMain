@@ -12,7 +12,7 @@ export const Tasks = () => {
         <CreateTaskForm />
       </section>
       <section className="aside">
-        <Filter />
+        <Filter forPage='tasks' />
         <TaskStat />
       </section>
       <section className="content">

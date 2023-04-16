@@ -5,8 +5,8 @@ export type TCategory = {
 
 export type TCategoriesState = {
   categories: TCategory[],
-  selectedCategories: {
-    notes: string[],
-    tasks: string[],
-  }
+}
+
+export type TCategoryExtended = TCategory & {
+  selected: boolean;
 }

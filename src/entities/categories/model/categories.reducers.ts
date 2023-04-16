@@ -4,10 +4,6 @@ import { RootState } from '../../../app/store';
 
 const initialState: TCategoriesState = {
   categories: [],
-  selectedCategories: {
-    notes: [],
-    tasks: [],
-  }
 }
 
 const categoriesSlice = createSlice({

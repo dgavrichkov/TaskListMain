@@ -1,34 +1,37 @@
 import React from "react";
-import { Task } from "../Task/Task";
 import styled from "styled-components";
+import { Task } from "../Task/Task";
 import { useAppDispatch, useAppSelector } from '../../app/store';
 import { TTask, deleteTask, toggleTask } from '../../entities';
-
-type ItemsList = React.ReactNode;
 
 export const TaskList = () => {
   const dispatch = useAppDispatch();
   const tasks = useAppSelector(state => state.tasks.idList.map((id: string) => state.tasks.data[id]));
-  let listItems: ItemsList = null;
+  const filter = useAppSelector(state => state.filter.tasks);
+  const filteredTasks = filter.length > 0
+    ? tasks.filter((task) => filter.includes(task.categoryID))
+    : tasks;
 
-  if (tasks.length > 0) {
-    listItems = tasks.map((task: TTask) => (
-      <li className="tasks-list__item" key={task.id}>
-        <Task
-          name={task.name}
-          categoryID={task.categoryID}
-          done={task.done}
-          id={task.id}
-          onDoneTask={() => dispatch(toggleTask(task.id))}
-          onDeleteTask={() => dispatch(deleteTask(task.id))}
-        />
-      </li>
-    ));
-  } else {
-    listItems = "Задач нет";
-  }
 
-  return <StyledList>{listItems}</StyledList>;
+  return (
+    <StyledList>
+      {filteredTasks.length > 0
+        ? filteredTasks.map((task: TTask) => (
+            <li className="tasks-list__item" key={task.id}>
+              <Task
+                name={task.name}
+                categoryID={task.categoryID}
+                done={task.done}
+                id={task.id}
+                onDoneTask={() => dispatch(toggleTask(task.id))}
+                onDeleteTask={() => dispatch(deleteTask(task.id))}
+              />
+            </li>
+          ))
+        : 'No tasks'
+      }
+    </StyledList>
+  );
 };
 
 const StyledList = styled.ul`

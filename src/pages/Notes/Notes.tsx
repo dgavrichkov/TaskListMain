@@ -11,7 +11,7 @@ export const Notes = () => {
         <CreateNoteForm />
       </section>
       <section className="aside">
-        <Filter />
+        <Filter forPage='notes' />
       </section>
       <section className="content">
         <NotesList />

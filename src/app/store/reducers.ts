@@ -4,6 +4,7 @@ import {
   tasksReducer,
   themeReducer,
   categoriesReducer,
+  filterReducer,
 } from "../../entities";
 
 export const reducers = combineReducers({
@@ -11,4 +12,5 @@ export const reducers = combineReducers({
   notes: notesReducer,
   tasks: tasksReducer,
   categories: categoriesReducer,
+  filter: filterReducer,
 });
