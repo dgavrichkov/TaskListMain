@@ -10,6 +10,7 @@ type TShadows = {
   button: string;
   input: string;
   buttonInset: string;
+  accent: string;
 };
 
 export type TTheme = {

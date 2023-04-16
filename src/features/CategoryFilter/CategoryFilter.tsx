@@ -1,17 +1,14 @@
 import styled from "styled-components";
 import { DEFAULT_FILTER } from "../../constants/defaultFilterValue";
-import { Tag } from "../../types/Tag";
-import { TagList, Button } from "../../shared/ui";
+import { Button } from "../../shared/ui";
 
 type FilterProps = {
   filter: string;
-  tags: Tag[];
   onClickAction: (filter: string) => void;
 };
 
 export const CategoryFilter = ({
   filter,
-  tags,
   onClickAction,
 }: FilterProps) => {
   return (
@@ -27,7 +24,7 @@ export const CategoryFilter = ({
       >
         Clear filter
       </Button>
-      <TagList tags={tags} onClickAction={onClickAction}></TagList>
+
     </StyledWrap>
   );
 };
