@@ -1,4 +1,3 @@
-import nextId from "react-id-generator";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { TNoteNew, TNotesState } from './note.interface';
 
@@ -12,7 +11,7 @@ const notesSlice = createSlice({
   initialState,
   reducers: {
     createNote: (state, {payload}: PayloadAction<TNoteNew>) => {
-      const newNote = { id: nextId(), ...payload};
+      const newNote = { id: 'note-' + Date.now().toString(), ...payload };
       state.data[newNote.id] = newNote;
       state.idList.push(newNote.id);
     },

@@ -1,4 +1,3 @@
-import nextId from "react-id-generator";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { TTaskNew, TTasksState } from './task.interface';
 
@@ -12,7 +11,7 @@ const tasksSlice = createSlice({
   initialState,
   reducers: {
     createTask: (state, { payload }: PayloadAction<TTaskNew>) => {
-      const newTask = { id: nextId(), ...payload, done: false };
+      const newTask = { id: 'task-' + Date.now().toString(), ...payload, done: false };
       state.data[newTask.id] = newTask;
       state.idList.push(newTask.id);
     },

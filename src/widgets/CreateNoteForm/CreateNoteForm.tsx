@@ -1,4 +1,3 @@
-import nextId from "react-id-generator";
 import { Button } from "../../shared/ui";
 import { FormField, useInput, useForm } from "../../shared/lib/Form";
 import { StyledCreateForm } from '../../shared/layouts';
@@ -37,7 +36,7 @@ export const CreateNoteForm = ({ pageClass }: FormProps) => {
     if (!name || !category) {
       return;
     }
-    const preparedId = nextId();
+    const preparedId = 'category-id-' + Date.now().toString();
     const storedCategory = findCategoryByTitle(categories, category.value);
     if(!storedCategory) {
       const newCategory: TCategory = {
