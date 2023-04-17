@@ -1,48 +1,37 @@
 import React from "react";
-import { Task } from "../Task/Task";
 import styled from "styled-components";
-import { useTypedSelector } from "../../hooks/useTypedSelector";
-import { useActions } from "../../hooks/useActions";
-import { getTasks as getTasksFromState } from "../../store/selectors/getTasks";
-import { TTask } from "../../types/Task";
-import { DEFAULT_FILTER } from "../../constants/defaultFilterValue";
-
-type ItemsList = React.ReactNode;
+import { Task } from "../Task/Task";
+import { useAppDispatch, useAppSelector } from '../../app/store';
+import { TTask, deleteTask, toggleTask } from '../../entities';
 
 export const TaskList = () => {
-  const tasks = useTypedSelector(getTasksFromState);
-  const filter = useTypedSelector((state) => state.tasksFilter);
+  const dispatch = useAppDispatch();
+  const tasks = useAppSelector(state => state.tasks.idList.map((id: string) => state.tasks.data[id]));
+  const filter = useAppSelector(state => state.filter.tasks);
+  const filteredTasks = filter.length > 0
+    ? tasks.filter((task) => filter.includes(task.categoryID))
+    : tasks;
 
-  const { toggleTaskAction, delTaskAction } = useActions();
 
-  const filteredTasks = (category: string) => {
-    if (category !== DEFAULT_FILTER) {
-      return [...tasks].filter((task) => task.category === category);
-    } else {
-      return tasks;
-    }
-  };
-
-  let listItems: ItemsList = null;
-
-  if (tasks.length > 0) {
-    listItems = filteredTasks(filter).map((task: TTask) => (
-      <li className="tasks-list__item" key={task.id}>
-        <Task
-          name={task.name}
-          category={task.category}
-          done={task.done}
-          id={task.id}
-          onDoneTask={toggleTaskAction}
-          onDeleteTask={delTaskAction}
-        />
-      </li>
-    ));
-  } else {
-    listItems = "Задач нет";
-  }
-
-  return <StyledList>{listItems}</StyledList>;
+  return (
+    <StyledList>
+      {filteredTasks.length > 0
+        ? filteredTasks.map((task: TTask) => (
+            <li className="tasks-list__item" key={task.id}>
+              <Task
+                name={task.name}
+                categoryID={task.categoryID}
+                done={task.done}
+                id={task.id}
+                onDoneTask={() => dispatch(toggleTask(task.id))}
+                onDeleteTask={() => dispatch(deleteTask(task.id))}
+              />
+            </li>
+          ))
+        : 'No tasks'
+      }
+    </StyledList>
+  );
 };
 
 const StyledList = styled.ul`

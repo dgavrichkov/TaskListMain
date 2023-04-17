@@ -1,13 +1,17 @@
 import { Button } from "../../shared/ui";
-import { useActions } from "../../hooks/useActions";
 import { FormField, useForm, useInput } from "../../shared/lib/Form";
 import { StyledCreateForm } from '../../shared/layouts';
+import { useAppDispatch, useAppSelector } from '../../app/store';
+import { createCategory, createTask, findCategoryByTitle } from '../../entities';
+import { TCategory } from '../../entities/categories/model/categories.interface';
 
 type FormProps = {
   pageClass?: string;
 };
 
 export const CreateTaskForm = ({ pageClass }: FormProps) => {
+  const dispatch = useAppDispatch();
+  const categories = useAppSelector((state) => state.categories.categories);
   const name = useInput({
     initialValue: "",
     validationSettings: { isRequired: true },
@@ -18,8 +22,6 @@ export const CreateTaskForm = ({ pageClass }: FormProps) => {
   });
   const form = useForm(name, category);
 
-  const { addTaskAction } = useActions();
-
   const handleClear = () => {
     name.clearInput();
     category.clearInput();
@@ -29,10 +31,21 @@ export const CreateTaskForm = ({ pageClass }: FormProps) => {
     if (!name.value || !category.value) {
       return;
     }
-    addTaskAction({
-      name: name.value,
-      category: category.value,
-    });
+    const preparedId = 'category-id-' + Date.now().toString();
+    const storedCategory = findCategoryByTitle(categories, category.value);
+    if (!storedCategory) {
+      const newCategory: TCategory = {
+        id: preparedId,
+        title: category.value,
+      };
+      dispatch(createCategory(newCategory));
+    }
+    dispatch(
+      createTask({
+        name: name.value,
+        categoryID: storedCategory?.id || preparedId,
+      })
+    );
     handleClear();
   };
 

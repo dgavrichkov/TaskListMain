@@ -1,14 +1,14 @@
-import { useActions } from "../../hooks/useActions";
+import { useAppDispatch } from '../../app/store';
+import { toggleTheme } from '../../entities';
 import { Button } from "../../shared/ui";
 
 export const ThemeSwitcher = () => {
-
-  const { toggleThemeAction } = useActions();
+  const dispatch = useAppDispatch();
 
   return (
     <Button
       onClick={() => {
-        toggleThemeAction();
+        dispatch(toggleTheme())
       }}
     >
       Switch Theme

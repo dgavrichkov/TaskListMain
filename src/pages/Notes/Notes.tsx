@@ -1,22 +1,9 @@
-import nextId from "react-id-generator";
 import { Portal } from '../../shared/lib/Portal';
-import { useActions } from "../../hooks/useActions";
-import { useTypedSelector } from "../../hooks/useTypedSelector";
-import { getNotesCategories } from "../../store/selectors/getNotesCategories";
 import { CreateNoteForm, NotesList } from "../../widgets";
 import { StyledListPageWrap } from "../../shared/layouts";
-import { CategoryFilter } from '../../features';
+import { Filter } from '../../features';
 
 export const Notes = () => {
-  const filter = useTypedSelector((state) => state.notesFilter);
-  const categories = useTypedSelector((state) =>
-    getNotesCategories(state.notes)
-  );
-  const tags = Array.from(categories).map((category) => {
-    return { id: nextId(), tagname: category };
-  });
-  const { notesFilterChangeAction } = useActions();
-
   return (
     <StyledListPageWrap>
       <h2 className="title">Notes</h2>
@@ -24,11 +11,7 @@ export const Notes = () => {
         <CreateNoteForm />
       </section>
       <section className="aside">
-        <CategoryFilter
-          filter={filter}
-          tags={tags}
-          onClickAction={notesFilterChangeAction}
-        />
+        <Filter forPage='notes' />
       </section>
       <section className="content">
         <NotesList />

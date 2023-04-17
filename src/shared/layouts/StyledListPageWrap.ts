@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const StyledListPageWrap = styled.div`
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 250px 1fr;
   grid-template-rows: auto;
   align-content: start;
   gap: 20px;
@@ -15,6 +15,7 @@ export const StyledListPageWrap = styled.div`
   }
   .aside {
     grid-column: 1 / 2;
+    align-self: start;
     display: grid;
     gap: 20px;
   }
