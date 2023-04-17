@@ -3,11 +3,11 @@ import { FC } from 'react';
 import { Styled } from './styled';
 import { useAppDispatch, useAppSelector } from '../../app/store';
 import { Tag } from '../../shared/ui/Tag';
-import { clearFilterForNotes, clearFilterForTasks, selectCategoryForNotes, selectCategoryForTasks } from '../../entities';
+import { TFilterablePages, clearFilter, selectCategory } from '../../entities';
 import { TCategoryExtended } from '../../entities/categories/model/categories.interface';
 
 type TFilterProps = {
-  forPage: 'notes' | 'tasks';
+  forPage: TFilterablePages;
 };
 
 export const Filter: FC<TFilterProps> = ({forPage}) => {
@@ -42,29 +42,11 @@ export const Filter: FC<TFilterProps> = ({forPage}) => {
   const tags = defineTags();
 
   const handleTagClick = (id: string) => {
-    switch (forPage) {
-      case "notes":
-        dispatch(selectCategoryForNotes(id));
-        break;
-      case "tasks":
-        dispatch(selectCategoryForTasks(id));
-        break;
-      default:
-        return false;
-    }
+    dispatch(selectCategory({id, entityType: forPage}))
   }
 
   const handleClearFilter = () => {
-    switch (forPage) {
-      case "notes":
-        dispatch(clearFilterForNotes());
-        break;
-      case "tasks":
-        dispatch(clearFilterForTasks());
-        break;
-      default:
-        return false;
-    }
+    dispatch(clearFilter(forPage));
   }
 
   return (

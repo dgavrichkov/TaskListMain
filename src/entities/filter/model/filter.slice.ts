@@ -1,5 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { TFilterState } from './filter.interface';
+import { TFilterEntity, TFilterState, TFilterablePages } from './filter.interface';
+import { ENTITY_NAMES } from '../constants';
 
 const initialState: TFilterState = {
   notes: [],
@@ -10,35 +11,45 @@ const filterSlice = createSlice({
   name: "filter",
   initialState,
   reducers: {
-    selectCategoryForNotes: (state, {payload}: PayloadAction<string>) => {
-      const selected = state.notes.find((id) => id === payload);
-      if(selected) {
-        state.notes = state.notes.filter((id) => id !== payload);
-      } else {
-        state.notes.push(payload);
+    selectCategory: (state, {payload}: PayloadAction<TFilterEntity>) => {
+      switch (payload.entityType) {
+        case ENTITY_NAMES.NOTES:
+          const selectedNote = state.notes.find((id) => id === payload.id);
+          if (selectedNote) {
+            state.notes = state.notes.filter((id) => id !== payload.id);
+          } else {
+            state.notes.push(payload.id);
+          }
+          break;
+        case ENTITY_NAMES.TASKS:
+          const selectedTask = state.tasks.find((id) => id === payload.id);
+          if (selectedTask) {
+            state.tasks = state.tasks.filter((id) => id !== payload.id);
+          } else {
+            state.tasks.push(payload.id);
+          }
+          break;
+        default:
+          break;
       }
     },
-    selectCategoryForTasks: (state, {payload}: PayloadAction<string>) => {
-      const selected = state.tasks.find((id) => id === payload);
-      if (selected) {
-        state.tasks = state.tasks.filter((id) => id !== payload);
-      } else {
-        state.tasks.push(payload);
+    clearFilter: (state, {payload}: PayloadAction<TFilterablePages>) => {
+      switch (payload) {
+        case ENTITY_NAMES.NOTES:
+          state.notes = initialState.notes;
+          break;
+        case ENTITY_NAMES.TASKS:
+          state.tasks = initialState.tasks;
+          break;
+        default:
+          break;
       }
     },
-    clearFilterForNotes: (state) => {
-      state.notes = initialState.notes;
-    },
-    clearFilterForTasks: (state) => {
-      state.tasks = initialState.tasks;
-    }
   }
 })
 
 export const {
-  selectCategoryForNotes,
-  selectCategoryForTasks,
-  clearFilterForNotes,
-  clearFilterForTasks,
+  selectCategory,
+  clearFilter,
 } = filterSlice.actions;
 export const filterReducer = filterSlice.reducer;
