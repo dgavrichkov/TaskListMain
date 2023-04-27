@@ -1,1 +1,1 @@
-export * from "./TasksTypicode";
+export * from './TasksTypicode';

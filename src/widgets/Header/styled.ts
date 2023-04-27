@@ -13,7 +13,7 @@ const Header = styled.header`
   a {
     color: ${(props) => props.theme.colors.text || `#000`};
     &.is-active {
-      color: ${(props: any) => props.theme.colors.accent};
+      color: ${(props) => props.theme.colors.accent};
     }
   }
 `;

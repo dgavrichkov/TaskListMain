@@ -1,6 +1,11 @@
-import { createGlobalStyle } from 'styled-components';
+import { TTheme } from 'entities';
+import { createGlobalStyle, DefaultTheme } from 'styled-components';
 
-export const GlobalStyles = createGlobalStyle`
+type TGlobalStylesProps = DefaultTheme & {
+  theme: TTheme;
+};
+
+export const GlobalStyles = createGlobalStyle<TGlobalStylesProps>`
   * {
     margin: 0;
     padding: 0;
@@ -9,7 +14,7 @@ export const GlobalStyles = createGlobalStyle`
 
   body {
     font-family: "Rubik", sans-serif;
-    background: ${(props: any) => props.theme.colors.primary};
+    background: ${(props) => props.theme.colors.primary};
     color: ${(props) => props.theme.colors.text || `#000`};
   }
 
@@ -22,7 +27,7 @@ export const GlobalStyles = createGlobalStyle`
 
     &:focus-visible,
     &:-moz-focusring {
-      outline: 1px solid ${(props: any) => props.theme.colors.accent}
+      outline: 1px solid ${(props) => props.theme.colors.accent}
     }
   }
 

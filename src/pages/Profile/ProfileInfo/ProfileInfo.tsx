@@ -1,5 +1,6 @@
-import { useAuth } from '../../../app/providers/AuthProvider';
-import { Styled } from './styled'
+import React from 'react';
+import { useAuth } from 'app/providers/AuthProvider';
+import { Styled } from './styled';
 
 export const ProfileInfo = () => {
   const { user } = useAuth();
@@ -39,8 +40,8 @@ export const ProfileInfo = () => {
             </Styled.Entry>
           </Styled.InfoPanel>
           <Styled.PersonalPanel>
-            <div className='personal__image'>
-              <img width={100} height={100} src={user.image} alt="profile" />
+            <div className="personal__image">
+              <img alt="profile" height={100} src={user.image} width={100} />
             </div>
             <Styled.Entry>
               <span>First name</span>
@@ -54,5 +55,5 @@ export const ProfileInfo = () => {
         </>
       )}
     </Styled.Wrap>
-  )
-}
+  );
+};

@@ -1,11 +1,9 @@
 import { combineReducers } from '@reduxjs/toolkit';
-import {
-  notesReducer,
-  tasksReducer,
-  themeReducer,
-  categoriesReducer,
-  filterReducer,
-} from 'entities';
+import { categoriesReducer } from 'entities/categories';
+import { filterReducer } from 'entities/filter';
+import { notesReducer } from 'entities/note';
+import { tasksReducer } from 'entities/task';
+import { themeReducer } from 'entities/theme';
 
 export const reducers = combineReducers({
   theme: themeReducer,
