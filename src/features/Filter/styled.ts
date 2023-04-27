@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const Wrap = styled.div`
   display: grid;
@@ -9,6 +9,6 @@ const TagsList = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-`
+`;
 
-export const Styled = {Wrap, TagsList};
+export const Styled = { Wrap, TagsList };

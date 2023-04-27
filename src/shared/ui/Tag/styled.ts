@@ -1,8 +1,8 @@
-import styled, { css } from "styled-components";
+import styled, { css } from 'styled-components';
 
 type TTagProps = {
   isActive: boolean;
-}
+};
 
 const Tag = styled.button<TTagProps>`
   cursor: pointer;
@@ -24,9 +24,11 @@ const Tag = styled.button<TTagProps>`
     box-shadow: ${(props) => props.theme.shadows.buttonInset};
   }
 
-  ${(props) => props.isActive && css`
-    border: 1px solid ${props.theme.colors.accent};
-  `}
+  ${(props) =>
+    props.isActive &&
+    css`
+      border: 1px solid ${props.theme.colors.accent};
+    `}
 `;
 
-export const Styled = {Tag}
+export const Styled = { Tag };

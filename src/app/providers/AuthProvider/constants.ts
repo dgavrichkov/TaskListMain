@@ -1,2 +1,2 @@
-export const DUMMY_TOKEN = "dummyToken";
-export const DUMMY_USER_ID = "dummyUserID";
+export const DUMMY_TOKEN = 'dummyToken';
+export const DUMMY_USER_ID = 'dummyUserID';

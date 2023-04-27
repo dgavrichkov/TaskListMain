@@ -20,4 +20,4 @@ export type TTheme = {
 
 export type TThemeSlice = {
   theme: string;
-}
+};

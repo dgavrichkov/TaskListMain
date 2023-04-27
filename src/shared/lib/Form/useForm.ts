@@ -1,4 +1,4 @@
-import { InputValidatorType, ValidationForm } from "./model";
+import { InputValidatorType, ValidationForm } from './model';
 
 export const useForm = (...inputs: InputValidatorType[]): ValidationForm => {
   let validity = false;

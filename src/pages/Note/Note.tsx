@@ -1,8 +1,9 @@
-import { useNavigate, useParams } from "react-router-dom";
-import { Button } from "../../shared/ui";
-import { StyledDetailPageWrap } from "../../shared/layouts";
-import { useAppDispatch, useAppSelector } from '../../app/store';
-import { deleteNote, selectCategoryById } from '../../entities';
+import React from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from 'app/store';
+import { deleteNote, selectCategoryById } from 'entities';
+import { Button } from 'shared/ui';
+import { StyledDetailPageWrap } from 'shared/layouts';
 
 type ParamTypes = {
   noteId: string;
@@ -11,16 +12,16 @@ type ParamTypes = {
 export const Note = () => {
   const dispatch = useAppDispatch();
   const { noteId } = useParams<ParamTypes>();
-  const note = useAppSelector(state => state.notes.data[noteId!]);
+  const note = useAppSelector((state) => state.notes.data[noteId!]);
   const navigate = useNavigate();
   const category = useAppSelector(selectCategoryById(note.categoryID));
 
   const handleDelete = () => {
-    noteId && dispatch(deleteNote(noteId))
-    navigate("../notes", { replace: true });
-  }
+    noteId && dispatch(deleteNote(noteId));
+    navigate('../notes', { replace: true });
+  };
 
-  if (typeof note === "boolean") {
+  if (typeof note === 'boolean') {
     return null;
   }
 

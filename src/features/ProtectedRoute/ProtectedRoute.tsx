@@ -1,5 +1,5 @@
-import { FC } from 'react';
-import { useAuth } from '../../app/providers/AuthProvider';
+import React, { FC } from 'react';
+import { useAuth } from 'app/providers/AuthProvider';
 
 export const ProtectedRoute: FC = ({ children }) => {
   const { token } = useAuth();
@@ -8,9 +8,5 @@ export const ProtectedRoute: FC = ({ children }) => {
     return <div>Forbidden, please log in</div>;
   }
 
-  return (
-    <>
-      {children}
-    </>
-  )
+  return <>{children}</>;
 };

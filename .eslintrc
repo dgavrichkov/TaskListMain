@@ -1,0 +1,96 @@
+{
+  "extends": [
+    "react-app",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "plugins": ["react", "react-hooks", "import", "@typescript-eslint", "prettier"],
+  "rules": {
+    "eol-last": ["warn", "always"],
+    "prefer-const": "warn",
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": "warn",
+    "no-multiple-empty-lines": "warn",
+    "jsx-quotes": ["warn", "prefer-double"],
+    "react-hooks/rules-of-hooks": "warn",
+    "react-hooks/exhaustive-deps": "warn",
+    "@typescript-eslint/no-empty-function": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "react/display-name": "off",
+    "no-restricted-imports": [
+      "warn",
+      {
+        "patterns": [
+          {
+            "message": "Private imports are prohibited, use public imports instead",
+            "group": ["app/*/*/**"]
+          },
+          {
+            "message": "Private imports are prohibited, use public imports instead",
+            "group": ["processes/*/**"]
+          },
+          {
+            "message": "Private imports are prohibited, use public imports instead",
+            "group": ["pages/*/**"]
+          },
+          {
+            "message": "Private imports are prohibited, use public imports instead",
+            "group": ["widgets/*/**"]
+          },
+          {
+            "message": "Private imports are prohibited, use public imports instead",
+            "group": ["features/*/**"]
+          },
+          {
+            "message": "Private imports are prohibited, use public imports instead",
+            "group": ["entities/*/**"]
+          },
+          {
+            "message": "Private imports are prohibited, use public imports instead",
+            "group": ["shared/*/*/**"]
+          },
+
+          {
+            "message": "Prefer absolute imports instead of relatives (for root modules)",
+            "group": ["../**/app"]
+          },
+          {
+            "message": "Prefer absolute imports instead of relatives (for root modules)",
+            "group": ["../**/processes"]
+          },
+          {
+            "message": "Prefer absolute imports instead of relatives (for root modules)",
+            "group": ["../**/pages"]
+          },
+          {
+            "message": "Prefer absolute imports instead of relatives (for root modules)",
+            "group": ["../**/widgets"]
+          },
+          {
+            "message": "Prefer absolute imports instead of relatives (for root modules)",
+            "group": ["../**/features"]
+          },
+          {
+            "message": "Prefer absolute imports instead of relatives (for root modules)",
+            "group": ["../**/entities"]
+          },
+          {
+            "message": "Prefer absolute imports instead of relatives (for root modules)",
+            "group": ["../**/shared"]
+          }
+        ]
+      }
+    ],
+    "react/jsx-sort-props": [
+      "warn",
+      {
+        "callbacksLast": true,
+        "shorthandFirst": true,
+        "noSortAlphabetically": false
+      }
+    ],
+    "prettier/prettier": "warn"
+  }
+}

@@ -1,4 +1,4 @@
-const TYPICODE_BASE = "https://jsonplaceholder.typicode.com";
+const TYPICODE_BASE = 'https://jsonplaceholder.typicode.com';
 
 export interface IPost {
   userId: number;
@@ -15,13 +15,9 @@ export interface IPostsResponse {
   hasNextPage: boolean;
 }
 
-export const fetchPosts = async ({
-  pageParam = 0,
-}): Promise<IPostsResponse> => {
-  const res = await fetch(
-    `${TYPICODE_BASE}/posts?_page=${pageParam + 1}&_limit=${PAGE_SIZE}`
-  );
-  const totalCount = parseInt(res.headers.get("x-total-count") || "");
+export const fetchPosts = async ({ pageParam = 0 }): Promise<IPostsResponse> => {
+  const res = await fetch(`${TYPICODE_BASE}/posts?_page=${pageParam + 1}&_limit=${PAGE_SIZE}`);
+  const totalCount = parseInt(res.headers.get('x-total-count') || '');
   const hasNextPage = (pageParam + 1) * PAGE_SIZE < totalCount;
 
   const data = await res.json();
@@ -45,13 +41,9 @@ export interface ITasksResponse {
   hasNextPage: boolean;
 }
 
-export const fetchTasks = async ({
-  pageParam = 0,
-}): Promise<ITasksResponse> => {
-  const res = await fetch(
-    `${TYPICODE_BASE}/todos?_page=${pageParam + 1}&_limit=${PAGE_SIZE}`
-  );
-  const totalCount = parseInt(res.headers.get("x-total-count") || "");
+export const fetchTasks = async ({ pageParam = 0 }): Promise<ITasksResponse> => {
+  const res = await fetch(`${TYPICODE_BASE}/todos?_page=${pageParam + 1}&_limit=${PAGE_SIZE}`);
+  const totalCount = parseInt(res.headers.get('x-total-count') || '');
   const hasNextPage = (pageParam + 1) * PAGE_SIZE < totalCount;
 
   const data = await res.json();

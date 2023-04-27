@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyles = createGlobalStyle`
   * {
@@ -44,7 +44,7 @@ export const GlobalStyles = createGlobalStyle`
     height: 100%;
     border-radius: 100%;
     border: 10px solid transparent;
-    border-top-color: ${(props: any) => props.theme.colors.primary};
+    border-top-color: ${(props) => props.theme.colors.primary};
   }
 
   .loader:before {
@@ -53,7 +53,7 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   .loader:after {
-    border: 10px solid ${(props: any) => props.theme.colors.accent};
+    border: 10px solid ${(props) => props.theme.colors.accent};
   }
 
   @keyframes spin {

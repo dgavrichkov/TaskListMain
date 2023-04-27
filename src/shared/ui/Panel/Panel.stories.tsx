@@ -1,11 +1,12 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { Panel } from "./Panel";
+import React from 'react';
+import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { Panel } from './Panel';
 import { Spacer } from '../Spacer';
 
 export default {
   title: 'Panel',
   component: Panel,
-} as ComponentMeta<typeof Panel>
+} as ComponentMeta<typeof Panel>;
 
 const Template: ComponentStory<typeof Panel> = () => (
   <Panel>
@@ -15,4 +16,4 @@ const Template: ComponentStory<typeof Panel> = () => (
   </Panel>
 );
 
-export const Default = Template.bind({})
+export const Default = Template.bind({});

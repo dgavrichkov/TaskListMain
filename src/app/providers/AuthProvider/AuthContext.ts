@@ -1,4 +1,4 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext } from 'react';
 import { TAuthData, TDummyUser } from './models';
 
 export const AuthContext = createContext<TAuthData>({

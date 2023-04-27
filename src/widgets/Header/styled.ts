@@ -1,12 +1,12 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const Header = styled.header`
   display: grid;
   align-items: center;
   grid-template-columns: auto 1fr auto;
   grid-template-areas:
-    "logo navi profile"
-    "theme . profile";
+    'logo navi profile'
+    'theme . profile';
   column-gap: 32px;
   row-gap: 16px;
 
