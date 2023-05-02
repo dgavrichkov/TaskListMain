@@ -1,6 +1,11 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle, DefaultTheme } from 'styled-components';
+import { TTheme } from '../../entities/theme';
 
-export const GlobalStyles = createGlobalStyle`
+type TGlobalStyleProps = DefaultTheme & {
+  theme: TTheme;
+};
+
+export const GlobalStyles = createGlobalStyle<TGlobalStyleProps>`
   * {
     margin: 0;
     padding: 0;
@@ -9,7 +14,7 @@ export const GlobalStyles = createGlobalStyle`
 
   body {
     font-family: "Rubik", sans-serif;
-    background: ${(props: any) => props.theme.colors.primary};
+    background: ${(props) => props.theme.colors.primary};
     color: ${(props) => props.theme.colors.text || `#000`};
   }
 
@@ -22,7 +27,7 @@ export const GlobalStyles = createGlobalStyle`
 
     &:focus-visible,
     &:-moz-focusring {
-      outline: 1px solid ${(props: any) => props.theme.colors.accent}
+      outline: 1px solid ${(props) => props.theme.colors.accent}
     }
   }
 
@@ -44,7 +49,7 @@ export const GlobalStyles = createGlobalStyle`
     height: 100%;
     border-radius: 100%;
     border: 10px solid transparent;
-    border-top-color: ${(props: any) => props.theme.colors.primary};
+    border-top-color: ${(props) => props.theme.colors.primary};
   }
 
   .loader:before {
@@ -53,7 +58,7 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   .loader:after {
-    border: 10px solid ${(props: any) => props.theme.colors.accent};
+    border: 10px solid ${(props) => props.theme.colors.accent};
   }
 
   @keyframes spin {

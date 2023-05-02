@@ -1,10 +1,10 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { Spacer } from "./Spacer";
+import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { Spacer } from './Spacer';
 
 export default {
   title: 'Spacer',
   component: Spacer,
-} as ComponentMeta<typeof Spacer>
+} as ComponentMeta<typeof Spacer>;
 
 const Template: ComponentStory<typeof Spacer> = () => (
   <>
@@ -14,4 +14,4 @@ const Template: ComponentStory<typeof Spacer> = () => (
   </>
 );
 
-export const Default = Template.bind({})
+export const Default = Template.bind({});

@@ -5,7 +5,7 @@ import {
   themeReducer,
   categoriesReducer,
   filterReducer,
-} from "../../entities";
+} from '../../entities';
 
 export const reducers = combineReducers({
   theme: themeReducer,

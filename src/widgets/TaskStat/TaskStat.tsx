@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 import { useAppSelector } from '../../app/store';
 
 type StatProps = {
@@ -6,7 +6,9 @@ type StatProps = {
 };
 
 export const TaskStat = ({ pageClass }: StatProps) => {
-  const tasks = useAppSelector(state => state.tasks.idList.map((id: string) => state.tasks.data[id]));
+  const tasks = useAppSelector((state) =>
+    state.tasks.idList.map((id: string) => state.tasks.data[id]),
+  );
 
   const countAllTasks = () => {
     return tasks.length;

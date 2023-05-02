@@ -1,6 +1,6 @@
-import { Button } from "../../shared/ui";
-import styled from "styled-components";
-import { NavLink } from "react-router-dom";
+import { Button } from '../../shared/ui';
+import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 import { TTask, selectCategoryById } from '../../entities';
 import { useAppSelector } from '../../app/store';
 
@@ -14,14 +14,7 @@ type StyledWrapProps = {
   done: boolean;
 };
 
-export const Task = ({
-  name,
-  categoryID,
-  id,
-  done,
-  onDoneTask,
-  onDeleteTask,
-}: TaskProps) => {
+export const Task = ({ name, categoryID, id, done, onDoneTask, onDeleteTask }: TaskProps) => {
   const category = useAppSelector(selectCategoryById(categoryID));
 
   return (
@@ -29,18 +22,10 @@ export const Task = ({
       <b className="name">{name}</b>
       <i className="category">{category?.title}</i>
       <NavLink to={id}>Открыть</NavLink>
-      <Button
-        buttonType="button"
-        className="done"
-        onClick={onDoneTask}
-      >
-        {!done ? "Done" : "Not Done"}
+      <Button buttonType="button" className="done" onClick={onDoneTask}>
+        {!done ? 'Done' : 'Not Done'}
       </Button>
-      <Button
-        buttonType="button"
-        className="delete"
-        onClick={onDeleteTask}
-      >
+      <Button buttonType="button" className="delete" onClick={onDeleteTask}>
         Delete
       </Button>
     </StyledTaskItem>

@@ -1,6 +1,6 @@
-import { TDummyUser } from "./models";
+import { TDummyUser } from './models';
 
-const DUMMY_BASE = "https://dummyjson.com";
+const DUMMY_BASE = 'https://dummyjson.com';
 
 export const dummyFetchUser = async (id: number) => {
   const res = await fetch(`${DUMMY_BASE}/users/${id}`);
@@ -22,8 +22,8 @@ type TLoginOutput = {
 
 export const dummyLogin = async (login: string, password: string) => {
   const res = await fetch(`${DUMMY_BASE}/auth/login`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       username: login,
       password,

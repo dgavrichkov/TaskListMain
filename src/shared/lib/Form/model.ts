@@ -1,9 +1,7 @@
 export type InputValidatorType = {
   value: string;
   isDirty: boolean;
-  onChange: (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => void;
+  onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   onBlur: () => void;
   clearInput: () => void;
   validator: ValidationResult;

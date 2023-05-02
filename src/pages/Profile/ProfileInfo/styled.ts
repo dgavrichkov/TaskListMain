@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { Panel } from "../../../shared/ui";
+import styled from 'styled-components';
+import { Panel } from '../../../shared/ui';
 
 const Wrap = styled.div`
   display: grid;
@@ -37,6 +37,6 @@ const Entry = styled.div`
   div {
     font-weight: bold;
   }
-`
+`;
 
 export const Styled = { Wrap, InfoPanel, PersonalPanel, Entry };

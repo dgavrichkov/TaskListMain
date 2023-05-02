@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const Field = styled.div`
   input,
@@ -29,4 +29,4 @@ const Field = styled.div`
   }
 `;
 
-export const Styled = {Field};
+export const Styled = { Field };

@@ -3,5 +3,5 @@ export const Greeting = () => {
     <section>
       <h2>Welcome to the task manager and notes keeper</h2>
     </section>
-  )
-}
+  );
+};

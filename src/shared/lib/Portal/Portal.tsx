@@ -12,7 +12,7 @@ export const Portal: FC<IPortalProps> = ({ portalId, portalElement, children }) 
   const [portalTarget, setPortalTarget] = useState<TPortalElement>();
   useLayoutEffect(() => {
     if (portalId) {
-      const el = document.getElementById(portalId)
+      const el = document.getElementById(portalId);
       setPortalTarget(el);
       return;
     }
@@ -21,18 +21,18 @@ export const Portal: FC<IPortalProps> = ({ portalId, portalElement, children }) 
       if (typeof portalElement === 'function') {
         el = portalElement();
       } else if (typeof portalElement === 'string') {
-        el = document.querySelector<HTMLElement>(portalElement)
+        el = document.querySelector<HTMLElement>(portalElement);
       } else {
         el = portalElement;
       }
       setPortalTarget(el || document.body);
       return;
     }
-    setPortalTarget(document.body)
+    setPortalTarget(document.body);
   }, [portalId, portalElement]);
 
   if (!portalTarget) {
-    return null
+    return null;
   }
 
   return createPortal(children, portalTarget);

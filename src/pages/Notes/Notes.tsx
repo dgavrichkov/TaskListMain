@@ -1,6 +1,6 @@
 import { Portal } from '../../shared/lib/Portal';
-import { CreateNoteForm, NotesList } from "../../widgets";
-import { StyledListPageWrap } from "../../shared/layouts";
+import { CreateNoteForm, NotesList } from '../../widgets';
+import { StyledListPageWrap } from '../../shared/layouts';
 import { Filter } from '../../features';
 
 export const Notes = () => {
@@ -11,12 +11,14 @@ export const Notes = () => {
         <CreateNoteForm />
       </section>
       <section className="aside">
-        <Filter forPage='notes' />
+        <Filter forPage="notes" />
       </section>
       <section className="content">
         <NotesList />
       </section>
-      <Portal portalId='header-portal'><div>Notes portal block</div></Portal>
+      <Portal portalId="header-portal">
+        <div>Notes portal block</div>
+      </Portal>
     </StyledListPageWrap>
   );
 };

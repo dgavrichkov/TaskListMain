@@ -1,6 +1,6 @@
 import { useAppDispatch } from '../../app/store';
 import { toggleTheme } from '../../entities';
-import { Button } from "../../shared/ui";
+import { Button } from '../../shared/ui';
 
 export const ThemeSwitcher = () => {
   const dispatch = useAppDispatch();
@@ -8,7 +8,7 @@ export const ThemeSwitcher = () => {
   return (
     <Button
       onClick={() => {
-        dispatch(toggleTheme())
+        dispatch(toggleTheme());
       }}
     >
       Switch Theme

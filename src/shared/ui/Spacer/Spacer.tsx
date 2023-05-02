@@ -1,5 +1,3 @@
 import { Styled } from './styled';
 
-export const Spacer = () => (
-  <Styled.Spacer />
-)
+export const Spacer = () => <Styled.Spacer />;

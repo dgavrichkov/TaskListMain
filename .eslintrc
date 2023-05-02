@@ -19,6 +19,7 @@
     "@typescript-eslint/no-empty-function": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "react/display-name": "off",
+    "react/react-in-jsx-scope": "off",
     "react/jsx-sort-props": [
       "warn",
       {

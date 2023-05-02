@@ -5,7 +5,7 @@ export type TTask = {
   done: boolean;
 };
 
-export type TTaskNew = Pick<TTask, "name" | "categoryID">;
+export type TTaskNew = Pick<TTask, 'name' | 'categoryID'>;
 
 export type TTasksState = {
   data: {

@@ -1,5 +1,5 @@
-import { Button } from "../../shared/ui";
-import { FormField, useInput, useForm } from "../../shared/lib/Form";
+import { Button } from '../../shared/ui';
+import { FormField, useInput, useForm } from '../../shared/lib/Form';
 import { StyledCreateForm } from '../../shared/layouts';
 import { useAppDispatch, useAppSelector } from '../../app/store';
 import { createCategory, createNote, findCategoryByTitle } from '../../entities';
@@ -13,15 +13,15 @@ export const CreateNoteForm = ({ pageClass }: FormProps) => {
   const dispatch = useAppDispatch();
   const categories = useAppSelector((state) => state.categories.categories);
   const name = useInput({
-    initialValue: "",
+    initialValue: '',
     validationSettings: { isRequired: true, minLength: 5 },
   });
   const category = useInput({
-    initialValue: "",
+    initialValue: '',
     validationSettings: { isRequired: true },
   });
   const text = useInput({
-    initialValue: "",
+    initialValue: '',
     validationSettings: { isRequired: true, minLength: 10 },
   });
   const form = useForm(name, category, text);
@@ -38,7 +38,7 @@ export const CreateNoteForm = ({ pageClass }: FormProps) => {
     }
     const preparedId = 'category-id-' + Date.now().toString();
     const storedCategory = findCategoryByTitle(categories, category.value);
-    if(!storedCategory) {
+    if (!storedCategory) {
       const newCategory: TCategory = {
         id: preparedId,
         title: category.value,
@@ -50,7 +50,7 @@ export const CreateNoteForm = ({ pageClass }: FormProps) => {
         name: name.value,
         text: text.value,
         categoryID: storedCategory?.id || preparedId,
-      })
+      }),
     );
     handleClear();
   };
@@ -58,40 +58,36 @@ export const CreateNoteForm = ({ pageClass }: FormProps) => {
   return (
     <StyledCreateForm className={pageClass}>
       <FormField
-        state={name}
-        title="note title"
         id="note-name"
         name="note-name"
         placeholder="add note title"
+        state={name}
+        title="note title"
       />
       <FormField
-        state={category}
-        title="note category"
         id="note-category"
         name="note-category"
         placeholder="category"
+        state={category}
+        title="note category"
       />
       <FormField
-        state={text}
-        tag="textarea"
-        title="note text"
         id="note-text"
         name="note-text"
         placeholder="add note text"
+        state={text}
+        tag="textarea"
+        title="note text"
       />
       <Button
-        buttonType="button"
-        onClick={handleAdd}
-        disabled={form.validity && form.touched ? false : true}
         isBold
+        buttonType="button"
+        disabled={form.validity && form.touched ? false : true}
+        onClick={handleAdd}
       >
         Add
       </Button>
-      <Button
-        buttonType="button"
-        onClick={handleClear}
-        disabled={form.touched ? false : true}
-      >
+      <Button buttonType="button" disabled={form.touched ? false : true} onClick={handleClear}>
         Clear
       </Button>
     </StyledCreateForm>
