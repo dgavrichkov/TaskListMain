@@ -1,9 +1,10 @@
 import { ValidationErrors, ValidationPriorities } from './model';
 
+// eslint-disable-next-line no-unused-vars
 export enum VALIDATION_PROPERTIES {
-  IS_REQUIRED = 'isRequired',
-  MIN_LEN = 'minLength',
-  MAX_LEN = 'maxLenght',
+  IS_REQUIRED = 'isRequired', // eslint-disable-line no-unused-vars
+  MIN_LEN = 'minLength', // eslint-disable-line no-unused-vars
+  MAX_LEN = 'maxLenght', // eslint-disable-line no-unused-vars
 }
 
 export const VALIDATION_PRIORITIES: ValidationPriorities = {

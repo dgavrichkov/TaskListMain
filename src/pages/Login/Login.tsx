@@ -18,7 +18,6 @@ export const Login: FC = () => {
 
   const handleLogin = async () => {
     try {
-      // Mock login
       login({ login: loginfield.value, password: passwordfield.value });
     } catch (err) {
       console.log(err);
