@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Button } from '../../shared/ui';
 import { StyledDetailPageWrap } from '../../shared/layouts';
@@ -8,7 +9,7 @@ type ParamTypes = {
   noteId: string;
 };
 
-export const Note = () => {
+export const Note: FC = () => {
   const dispatch = useAppDispatch();
   const { noteId } = useParams<ParamTypes>();
   // TODO: fix architecture for awoiding that dirt

@@ -1,7 +1,8 @@
+import { FC } from 'react';
 import { useAuth } from '../../../app/providers/AuthProvider';
 import { Styled } from './styled';
 
-export const ProfileInfo = () => {
+export const ProfileInfo: FC = () => {
   const { user } = useAuth();
 
   return (

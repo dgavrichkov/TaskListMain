@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 import { Note } from '../Note/Note';
 import { useAppSelector } from '../../app/store';
+import { FC } from 'react';
 
-type ListProps = {
+type TListProps = {
   pageClass?: string;
 };
 
-export const NotesList = ({ pageClass }: ListProps) => {
+export const NotesList: FC<TListProps> = ({ pageClass }) => {
   const notes = useAppSelector((state) =>
     state.notes.idList.map((id: string) => state.notes.data[id]),
   );

@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Button } from '../../shared/ui';
 import { StyledDetailPageWrap } from '../../shared/layouts';
@@ -8,7 +9,7 @@ type ParamTypes = {
   taskId: string;
 };
 
-export const Task = () => {
+export const Task: FC = () => {
   const dispatch = useAppDispatch();
   const { taskId } = useParams<ParamTypes>();
   // TODO: fix architecture for awoiding that dirt

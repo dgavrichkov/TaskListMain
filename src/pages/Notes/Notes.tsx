@@ -1,9 +1,10 @@
+import { FC } from 'react';
 import { Portal } from '../../shared/lib/Portal';
 import { CreateNoteForm, NotesList } from '../../widgets';
 import { StyledListPageWrap } from '../../shared/layouts';
 import { Filter } from '../../features';
 
-export const Notes = () => {
+export const Notes: FC = () => {
   return (
     <StyledListPageWrap>
       <h2 className="title">Notes</h2>

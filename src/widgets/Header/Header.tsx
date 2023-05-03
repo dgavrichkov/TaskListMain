@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import { ThemeSwitcher } from '../../features';
 import { NavLink, Link } from 'react-router-dom';
 import { Styled } from './styled';
@@ -5,11 +6,11 @@ import { Avatar, Button } from '../../shared/ui';
 import { PATHS } from '../../shared/constants/paths';
 import { useAuth } from '../../app/providers/AuthProvider';
 
-type HeaderProps = {
+type THeaderProps = {
   pageClass: string;
 };
 
-export const Header = ({ pageClass }: HeaderProps) => {
+export const Header: FC<THeaderProps> = ({ pageClass }) => {
   const { token, logout } = useAuth();
 
   return (

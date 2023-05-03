@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import { Button } from '../../shared/ui';
 import { FormField, useInput, useForm } from '../../shared/lib/Form';
 import { StyledCreateForm } from '../../shared/layouts';
@@ -5,11 +6,11 @@ import { useAppDispatch, useAppSelector } from '../../app/store';
 import { createCategory, createNote, findCategoryByTitle } from '../../entities';
 import { TCategory } from '../../entities/categories/model/categories.interface';
 
-type FormProps = {
+type TFormProps = {
   pageClass?: string;
 };
 
-export const CreateNoteForm = ({ pageClass }: FormProps) => {
+export const CreateNoteForm: FC<TFormProps> = ({ pageClass }) => {
   const dispatch = useAppDispatch();
   const categories = useAppSelector((state) => state.categories.categories);
   const name = useInput({

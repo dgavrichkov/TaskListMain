@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Button } from '../../shared/ui';
 import { Portal } from '../../shared/lib/Portal';
 import { Spacer } from '../../shared/ui';
 import { useTasks } from './useTasks';
 
-export const TasksTypicode = () => {
+export const TasksTypicode: FC = () => {
   const { data, status, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage } = useTasks();
 
   const handleLoad = () => {

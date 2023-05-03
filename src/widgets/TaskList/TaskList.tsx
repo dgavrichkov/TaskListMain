@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { FC } from 'react';
 import styled from 'styled-components';
 import { Task } from '../Task/Task';
 import { useAppDispatch, useAppSelector } from '../../app/store';
 import { TTask, deleteTask, toggleTask } from '../../entities';
 
-export const TaskList = () => {
+export const TaskList: FC = () => {
   const dispatch = useAppDispatch();
   const tasks = useAppSelector((state) =>
     state.tasks.idList.map((id: string) => state.tasks.data[id]),

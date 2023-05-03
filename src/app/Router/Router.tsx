@@ -1,10 +1,11 @@
+import { FC } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { Greeting, Login, Note, Notes, Posts, Profile, Task, Tasks } from '../../pages';
 import { PATHS } from '../../shared/constants/paths';
 import { ProtectedRoute } from '../../features';
 import { Layout } from '../Layout';
 
-export const Router = () => (
+export const Router: FC = () => (
   <Routes>
     <Route element={<Layout />} path="/">
       <Route index element={<Greeting />} />

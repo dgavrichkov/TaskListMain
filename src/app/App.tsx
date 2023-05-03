@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Provider } from 'react-redux';
 import { Router } from './Router';
@@ -9,7 +10,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 
 const queryClient = new QueryClient();
 
-export const App = function () {
+export const App: FC = function () {
   return (
     <BrowserRouter>
       <Provider store={store}>

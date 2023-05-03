@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Button, Spacer } from '../../shared/ui/';
 import { Portal } from '../../shared/lib/Portal';
 import { usePosts } from './usePosts';
 
-export const Posts = () => {
+export const Posts: FC = () => {
   const { data, status, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage } = usePosts();
 
   const handleLoad = () => {

@@ -1,11 +1,12 @@
+import { FC } from 'react';
 import styled from 'styled-components';
 import { useAppSelector } from '../../app/store';
 
-type StatProps = {
+type TStatProps = {
   pageClass?: string;
 };
 
-export const TaskStat = ({ pageClass }: StatProps) => {
+export const TaskStat: FC<TStatProps> = ({ pageClass }) => {
   const tasks = useAppSelector((state) =>
     state.tasks.idList.map((id: string) => state.tasks.data[id]),
   );

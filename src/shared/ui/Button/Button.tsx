@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import styled, { css } from 'styled-components';
 
 export type ButtonProps = {
@@ -9,14 +10,14 @@ export type ButtonProps = {
   isBold?: boolean;
 };
 
-export const Button = ({
+export const Button: FC<ButtonProps> = ({
   children,
   className,
   buttonType = 'button',
   disabled,
   onClick,
   isBold = false,
-}: ButtonProps) => {
+}) => {
   return (
     <StyledButton
       className={className}

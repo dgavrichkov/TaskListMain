@@ -1,8 +1,9 @@
+import { FC } from 'react';
 import { useAuth } from '../../app/providers/AuthProvider';
 import { Spacer } from '../../shared/ui';
 import { ProfileInfo } from './ProfileInfo';
 
-export const Profile = () => {
+export const Profile: FC = () => {
   const { isLoading } = useAuth();
 
   if (isLoading) {

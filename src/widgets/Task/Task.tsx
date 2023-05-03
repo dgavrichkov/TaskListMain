@@ -3,18 +3,14 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { TTask, selectCategoryById } from '../../entities';
 import { useAppSelector } from '../../app/store';
+import { FC } from 'react';
 
-type TaskProps = TTask & {
+type TTaskProps = TTask & {
   onDoneTask: () => void;
   onDeleteTask: () => void;
 };
 
-type StyledWrapProps = {
-  className: string;
-  done: boolean;
-};
-
-export const Task = ({ name, categoryID, id, done, onDoneTask, onDeleteTask }: TaskProps) => {
+export const Task: FC<TTaskProps> = ({ name, categoryID, id, done, onDoneTask, onDeleteTask }) => {
   const category = useAppSelector(selectCategoryById(categoryID));
 
   return (
@@ -32,7 +28,12 @@ export const Task = ({ name, categoryID, id, done, onDoneTask, onDeleteTask }: T
   );
 };
 
-const StyledTaskItem = styled.div<StyledWrapProps>`
+type TStyledWrapProps = {
+  className: string;
+  done: boolean;
+};
+
+const StyledTaskItem = styled.div<TStyledWrapProps>`
   border-radius: 4px;
   box-shadow: ${(props) => props.theme.shadows.button};
   padding: 14px;

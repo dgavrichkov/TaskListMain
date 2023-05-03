@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { Button } from '../../shared/ui';
@@ -5,7 +6,7 @@ import { useAppDispatch, useAppSelector } from '../../app/store';
 import { TNote } from '../../entities/note/model/note.interface';
 import { deleteNote, selectCategoryById } from '../../entities';
 
-export const Note = ({ id, name, text, categoryID }: TNote) => {
+export const Note: FC<TNote> = ({ id, name, text, categoryID }) => {
   const dispatch = useAppDispatch();
   const category = useAppSelector(selectCategoryById(categoryID));
 
