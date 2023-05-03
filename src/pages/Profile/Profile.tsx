@@ -1,12 +1,13 @@
-import { useAuth } from '../../app/providers/AuthProvider'
-import { Spacer } from '../../shared/ui'
-import { ProfileInfo } from './ProfileInfo'
+import { FC } from 'react';
+import { useAuth } from '../../app/providers/AuthProvider';
+import { Spacer } from '../../shared/ui';
+import { ProfileInfo } from './ProfileInfo';
 
-export const Profile = () => {
-  const {isLoading} = useAuth();
+export const Profile: FC = () => {
+  const { isLoading } = useAuth();
 
-  if(isLoading) {
-    return <div className='loader'></div>
+  if (isLoading) {
+    return <div className="loader"></div>;
   }
 
   return (
@@ -19,5 +20,5 @@ export const Profile = () => {
         <ProfileInfo />
       </div>
     </section>
-  )
-}
+  );
+};

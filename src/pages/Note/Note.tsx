@@ -1,6 +1,7 @@
-import { useNavigate, useParams } from "react-router-dom";
-import { Button } from "../../shared/ui";
-import { StyledDetailPageWrap } from "../../shared/layouts";
+import { FC } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { Button } from '../../shared/ui';
+import { StyledDetailPageWrap } from '../../shared/layouts';
 import { useAppDispatch, useAppSelector } from '../../app/store';
 import { deleteNote, selectCategoryById } from '../../entities';
 
@@ -8,19 +9,21 @@ type ParamTypes = {
   noteId: string;
 };
 
-export const Note = () => {
+export const Note: FC = () => {
   const dispatch = useAppDispatch();
   const { noteId } = useParams<ParamTypes>();
-  const note = useAppSelector(state => state.notes.data[noteId!]);
+  // TODO: fix architecture for awoiding that dirt
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  const note = useAppSelector((state) => state.notes.data[noteId!]);
   const navigate = useNavigate();
   const category = useAppSelector(selectCategoryById(note.categoryID));
 
   const handleDelete = () => {
-    noteId && dispatch(deleteNote(noteId))
-    navigate("../notes", { replace: true });
-  }
+    noteId && dispatch(deleteNote(noteId));
+    navigate('../notes', { replace: true });
+  };
 
-  if (typeof note === "boolean") {
+  if (typeof note === 'boolean') {
     return null;
   }
 

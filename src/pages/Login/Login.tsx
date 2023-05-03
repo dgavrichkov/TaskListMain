@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC } from 'react';
 import { useAuth } from '../../app/providers/AuthProvider';
 import { useInput } from '../../shared/lib/Form/useInput';
 import { Button } from '../../shared/ui';
@@ -18,36 +18,32 @@ export const Login: FC = () => {
 
   const handleLogin = async () => {
     try {
-      // Mock login
       login({ login: loginfield.value, password: passwordfield.value });
     } catch (err) {
       console.log(err);
     }
-  }
+  };
 
   return (
     <StyledCreateForm>
       <FormField
         id="loginform-login"
-        tag='input'
-        title='Login'
+        placeholder="login"
         state={loginfield}
+        tag="input"
+        title="Login"
         type="text"
-        placeholder='login'
       />
       <FormField
         id="loginform-password"
-        tag='input'
-        title='Password'
+        placeholder="Password"
         state={passwordfield}
-        placeholder='Password'
+        tag="input"
+        title="Password"
       />
-      <Button
-        buttonType='button'
-        onClick={handleLogin}
-      >
+      <Button buttonType="button" onClick={handleLogin}>
         Log In
       </Button>
     </StyledCreateForm>
-  )
+  );
 };

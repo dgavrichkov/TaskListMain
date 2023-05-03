@@ -1,13 +1,13 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { TThemeSlice } from "./theme.interface";
+import { createSlice } from '@reduxjs/toolkit';
+import { TThemeSlice } from './theme.interface';
 import { THEMES_NAMES } from '../constants/themes';
 
 const initialState: TThemeSlice = {
   theme: THEMES_NAMES.DARK,
-}
+};
 
 const themeSlice = createSlice({
-  name: "theme",
+  name: 'theme',
   initialState,
   reducers: {
     toggleTheme: (state) => {
@@ -16,9 +16,9 @@ const themeSlice = createSlice({
       } else {
         state.theme = THEMES_NAMES.LIGHT;
       }
-    }
-  }
-})
+    },
+  },
+});
 
-export const {toggleTheme} = themeSlice.actions;
+export const { toggleTheme } = themeSlice.actions;
 export const themeReducer = themeSlice.reducer;

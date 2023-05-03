@@ -25,4 +25,4 @@ const Page = styled.div`
   }
 `;
 
-export const Styled = {Page}
+export const Styled = { Page };

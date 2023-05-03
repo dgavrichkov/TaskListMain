@@ -1,18 +1,14 @@
-import { FC, DetailedHTMLProps, HTMLAttributes } from "react";
-import { Styled } from "./styled";
+import { FC, DetailedHTMLProps, HTMLAttributes } from 'react';
+import { Styled } from './styled';
 
 type TTagProps = DetailedHTMLProps<HTMLAttributes<HTMLButtonElement>, HTMLButtonElement> & {
   isActive?: boolean;
 };
 
-export const Tag: FC<TTagProps> = ({children, onClick, isActive = false}) => {
+export const Tag: FC<TTagProps> = ({ children, onClick, isActive = false }) => {
   return (
-    <Styled.Tag
-      onClick={onClick}
-      type="button"
-      isActive={isActive}
-    >
+    <Styled.Tag isActive={isActive} type="button" onClick={onClick}>
       {children}
     </Styled.Tag>
-  )
-}
+  );
+};

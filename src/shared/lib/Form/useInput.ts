@@ -1,29 +1,19 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useState } from 'react';
 import {
   VALIDATION_ERRORS,
   VALIDATION_PRIORITIES,
   VALIDATION_PROPERTIES,
   VALIDATION_SUCCESS,
-} from "./constants";
-import {
-  InputConfig,
-  InputValidatorType,
-  ValidationResult,
-  Validations,
-} from "./model";
+} from './constants';
+import { InputConfig, InputValidatorType, ValidationResult, Validations } from './model';
 
-export const useInput = ({
-  initialValue,
-  validationSettings,
-}: InputConfig): InputValidatorType => {
+export const useInput = ({ initialValue, validationSettings }: InputConfig): InputValidatorType => {
   const [value, setValue] = useState<string>(initialValue);
   const [isDirty, setIsDirty] = useState<boolean>(false);
 
   const validator = useValidator(value, validationSettings);
 
-  const onChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  const onChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setValue(e.target.value);
   };
 
@@ -32,7 +22,7 @@ export const useInput = ({
   };
 
   const clearInput = () => {
-    setValue("");
+    setValue('');
     setIsDirty(false);
   };
 
@@ -46,21 +36,16 @@ export const useInput = ({
   };
 };
 
-const useValidator = (
-  value: string,
-  validationSettings?: Validations
-): ValidationResult => {
+const useValidator = (value: string, validationSettings?: Validations): ValidationResult => {
   if (!validationSettings) {
     return {
       isValid: { isError: false, message: VALIDATION_SUCCESS.allSuccess },
     };
   }
   const resultValids: ValidationResult = {};
-  let isValid = { isError: true, message: "default message" };
+  const isValid = { isError: true, message: 'default message' };
 
-  for (const [validation, validationValue] of Object.entries(
-    validationSettings
-  )) {
+  for (const [validation, validationValue] of Object.entries(validationSettings)) {
     switch (validation) {
       case VALIDATION_PROPERTIES.IS_REQUIRED:
         if (value) {
@@ -79,8 +64,7 @@ const useValidator = (
         if (value.length < validationValue) {
           resultValids[VALIDATION_PROPERTIES.MIN_LEN] = {
             isError: true,
-            message:
-              VALIDATION_ERRORS[VALIDATION_PROPERTIES.MIN_LEN](validationValue),
+            message: VALIDATION_ERRORS[VALIDATION_PROPERTIES.MIN_LEN](validationValue),
           };
         } else {
           resultValids[VALIDATION_PROPERTIES.MIN_LEN] = {
@@ -93,8 +77,7 @@ const useValidator = (
         if (value.length > validationValue) {
           resultValids[VALIDATION_PROPERTIES.MAX_LEN] = {
             isError: true,
-            message:
-              VALIDATION_ERRORS[VALIDATION_PROPERTIES.MAX_LEN](validationValue),
+            message: VALIDATION_ERRORS[VALIDATION_PROPERTIES.MAX_LEN](validationValue),
           };
         } else {
           resultValids[VALIDATION_PROPERTIES.MAX_LEN] = {
@@ -106,9 +89,7 @@ const useValidator = (
     }
   }
 
-  isValid.isError = Object.values(resultValids).some(
-    (validation) => validation.isError === true
-  );
+  isValid.isError = Object.values(resultValids).some((validation) => validation.isError === true);
 
   if (!isValid.isError) {
     isValid.message = VALIDATION_SUCCESS.allSuccess;
@@ -124,7 +105,7 @@ const useValidator = (
 
 function getPriorityError(validations: ValidationResult): string {
   const failedValidations = Object.entries(validations).filter(
-    (entry) => entry[1].isError === true
+    (entry) => entry[1].isError === true,
   );
 
   const validationsWithPriority = failedValidations.map((entry) => {

@@ -1,29 +1,30 @@
-import styled, { css } from "styled-components";
+import { FC } from 'react';
+import styled, { css } from 'styled-components';
 
 export type ButtonProps = {
   children?: React.ReactNode;
   className?: string;
-  buttonType?: "button" | "submit" | "reset" | undefined;
+  buttonType?: 'button' | 'submit' | 'reset' | undefined;
   disabled?: boolean;
   onClick: () => void;
   isBold?: boolean;
 };
 
-export const Button = ({
+export const Button: FC<ButtonProps> = ({
   children,
   className,
-  buttonType = "button",
+  buttonType = 'button',
   disabled,
   onClick,
   isBold = false,
-}: ButtonProps) => {
+}) => {
   return (
     <StyledButton
       className={className}
-      type={buttonType}
-      onClick={() => onClick()}
       disabled={disabled}
       isBold={isBold}
+      type={buttonType}
+      onClick={() => onClick()}
     >
       {children}
     </StyledButton>
@@ -32,7 +33,7 @@ export const Button = ({
 
 type TStyledButtonProps = {
   isBold: boolean;
-}
+};
 
 const StyledButton = styled.button<TStyledButtonProps>`
   padding: 12px 18px;
@@ -43,9 +44,11 @@ const StyledButton = styled.button<TStyledButtonProps>`
   background: ${(props) => props.theme.colors.primary || `#000`};
   color: ${(props) => props.theme.colors.text || `#000`};
 
-  ${(props) => props.isBold && css`
-    font-weight: 700;
-  `}
+  ${(props) =>
+    props.isBold &&
+    css`
+      font-weight: 700;
+    `}
 
   &:hover {
     opacity: 0.8;

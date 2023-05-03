@@ -1,24 +1,28 @@
-import { Route, Routes } from "react-router-dom";
+import { FC } from 'react';
+import { Route, Routes } from 'react-router-dom';
 import { Greeting, Login, Note, Notes, Posts, Profile, Task, Tasks } from '../../pages';
 import { PATHS } from '../../shared/constants/paths';
 import { ProtectedRoute } from '../../features';
 import { Layout } from '../Layout';
 
-export const Router = () => (
+export const Router: FC = () => (
   <Routes>
-    <Route path='/' element={<Layout />}>
+    <Route element={<Layout />} path="/">
       <Route index element={<Greeting />} />
-      <Route path={PATHS.TASKS} element={<Tasks />} />
-      <Route path={PATHS.POSTS} element={<Posts />} />
-      <Route path={PATHS.NOTES} element={<Notes />} />
-      <Route path={`${PATHS.TASKS}/:taskId`} element={<Task />} />
-      <Route path={`${PATHS.NOTES}/:noteId`} element={<Note />} />
-      <Route path={PATHS.LOGIN} element={<Login />} />
-      <Route path={PATHS.PROFILE} element={
-        <ProtectedRoute>
-          <Profile />
-        </ProtectedRoute>
-      } />
+      <Route element={<Tasks />} path={PATHS.TASKS} />
+      <Route element={<Posts />} path={PATHS.POSTS} />
+      <Route element={<Notes />} path={PATHS.NOTES} />
+      <Route element={<Task />} path={`${PATHS.TASKS}/:taskId`} />
+      <Route element={<Note />} path={`${PATHS.NOTES}/:noteId`} />
+      <Route element={<Login />} path={PATHS.LOGIN} />
+      <Route
+        element={
+          <ProtectedRoute>
+            <Profile />
+          </ProtectedRoute>
+        }
+        path={PATHS.PROFILE}
+      />
     </Route>
   </Routes>
-)
+);

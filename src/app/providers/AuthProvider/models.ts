@@ -30,7 +30,7 @@ export type TLoginData = {
 export type TAuthData = {
   isLoading: boolean;
   user: TDummyUser;
+  token: string | null;
   login: (data: TLoginData) => void;
   logout: () => void;
-  token: string | null;
 };

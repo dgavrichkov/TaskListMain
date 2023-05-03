@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { dummyFetchUser, dummyLogin } from './api';
 import { PATHS } from '../../../shared/constants/paths';
@@ -30,13 +30,13 @@ export const AuthProvider: FC = ({ children }) => {
           setUser(userResponse);
         }
       } catch (error) {
-        console.log(error)
+        console.log(error);
       } finally {
         setIsLoading(false);
       }
-    }
-    checkAuth()
-  }, [userId])
+    };
+    checkAuth();
+  }, [userId]);
 
   const login = async (data: TLoginData) => {
     setIsLoading(true);
@@ -45,29 +45,33 @@ export const AuthProvider: FC = ({ children }) => {
       localStorage.setItem(DUMMY_TOKEN, loggedData.token);
       setToken(loggedData.token);
       localStorage.setItem(DUMMY_USER_ID, JSON.stringify(loggedData.id));
-      setUserId(loggedData.id)
+      setUserId(loggedData.id);
       navigate(PATHS.PROFILE);
     } catch (error) {
       console.log(error);
     } finally {
       setIsLoading(false);
     }
-  }
+  };
   const logout = () => {
     localStorage.setItem(DUMMY_TOKEN, '');
     setToken('');
     localStorage.setItem(DUMMY_USER_ID, '');
-    setUserId(null)
+    setUserId(null);
     navigate(PATHS.ROOT, { replace: true });
-  }
+  };
 
-  return <AuthContext.Provider value={{
-    user,
-    isLoading,
-    login,
-    logout,
-    token
-  }}>
-    {children}
-  </AuthContext.Provider>
-}
+  return (
+    <AuthContext.Provider
+      value={{
+        user,
+        isLoading,
+        login,
+        logout,
+        token,
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
+};

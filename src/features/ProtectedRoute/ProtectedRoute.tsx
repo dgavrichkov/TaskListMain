@@ -8,9 +8,5 @@ export const ProtectedRoute: FC = ({ children }) => {
     return <div>Forbidden, please log in</div>;
   }
 
-  return (
-    <>
-      {children}
-    </>
-  )
+  return <>{children}</>;
 };

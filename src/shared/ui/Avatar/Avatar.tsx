@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Styled } from './styled'
+import { Styled } from './styled';
 import { ReactComponent as UserIcon } from './user-icon.svg';
 
 type TAvatarProps = {
@@ -7,11 +7,5 @@ type TAvatarProps = {
 };
 
 export const Avatar: FC<TAvatarProps> = ({ image }) => {
-  return (
-    <Styled.Wrap>
-      {image ? (
-        <img src={image} alt="userpic" />
-      ) : <UserIcon />}
-    </Styled.Wrap>
-  )
-}
+  return <Styled.Wrap>{image ? <img alt="userpic" src={image} /> : <UserIcon />}</Styled.Wrap>;
+};

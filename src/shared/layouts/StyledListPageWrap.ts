@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const StyledListPageWrap = styled.div`
   display: grid;
@@ -22,4 +22,4 @@ export const StyledListPageWrap = styled.div`
   .content {
     grid-column: 2 / -1;
   }
-`
+`;
