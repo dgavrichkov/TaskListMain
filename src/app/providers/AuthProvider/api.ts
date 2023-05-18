@@ -1,34 +1,16 @@
-import { TDummyUser } from './models';
-
-const DUMMY_BASE = 'https://dummyjson.com';
-
-export const dummyFetchUser = async (id: number): Promise<TDummyUser> => {
-  const res = await fetch(`${DUMMY_BASE}/users/${id}`);
-  const user = await res.json();
-
-  return user;
+type TLoginData = {
+  identifier: string;
+  password: string;
 };
 
-type TLoginOutput = {
-  id: number;
-  username: string;
-  email: string;
-  firstName: string;
-  lastName: string;
-  gender: string;
-  image: string;
-  token: string;
-};
-
-export const dummyLogin = async (login: string, password: string): Promise<TLoginOutput> => {
-  const res = await fetch(`${DUMMY_BASE}/auth/login`, {
+export const loginApi = async (dataToPost: TLoginData) => {
+  const response = await fetch(process.env.REACT_APP_API_URL + '/api/auth/local', {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      username: login,
-      password,
-    }),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(dataToPost),
   });
-  const loggedData = await res.json();
-  return loggedData;
+  const data = await response.json();
+  return data;
 };
