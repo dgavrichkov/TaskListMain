@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { format } from 'date-fns';
 import jwt_decode from 'jwt-decode';
 import { FC, useEffect, useState } from 'react';
@@ -47,33 +46,10 @@ export const AuthProvider: FC = ({ children }) => {
     navigate(PATHS.ROOT, { replace: true });
   };
 
-  // for some reasons cookie token not valid at any time. Maybe i wrote bad backend service
-  const getRefreshToken = async () => {
-    try {
-      const token = localStorage.getItem('token');
-      const data = {
-        refreshToken: token,
-      };
-      const options = {
-        'Access-Control-Allow-Credentials': true,
-        withCredentials: true,
-      };
-      const res = await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/token/refresh`,
-        data,
-        options,
-      );
-      localStorage.setItem('token', res.data.jwt);
-      console.log('TOKEN REFRESHED I THINK', res.data);
-      setIsDialog(false);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   useEffect(() => {
     const token = localStorage.getItem('token');
-    const user = JSON.parse(localStorage.getItem('user') || '');
+    const user = JSON.parse(localStorage.getItem('user') as string);
+
     if (token && user) {
       setToken(token);
       setUser(user as TUser);
@@ -85,7 +61,6 @@ export const AuthProvider: FC = ({ children }) => {
       setIsLoading(true);
       try {
         if (token) {
-          getRefreshToken();
           const jwtPayload: IJWT_PAYLOAD = jwt_decode(token);
           const currentDate = new Date();
 

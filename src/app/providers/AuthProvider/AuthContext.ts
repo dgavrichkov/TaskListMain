@@ -9,6 +9,6 @@ export const AuthContext = createContext<TAuthData>({
   logout: () => console.log(''),
 });
 
-AuthContext.displayName = 'DummyAuthContext';
+AuthContext.displayName = 'AuthContext';
 
 export const useAuth = (): TAuthData => useContext(AuthContext);
