@@ -1,23 +1,15 @@
-import { format } from 'date-fns';
-import jwt_decode from 'jwt-decode';
 import { FC, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PATHS } from '../../../shared/constants/paths';
-import { Dialog } from '../../../shared/ui/Dialog';
 import { loginApi } from './api';
 import { AuthContext } from './AuthContext';
 import { TUser, TLoginData } from './models';
-
-interface IJWT_PAYLOAD {
-  exp: number;
-}
 
 export const AuthProvider: FC = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [user, setUser] = useState({} as TUser);
   const [token, setToken] = useState<string | null>(null);
   const navigate = useNavigate();
-  const [isDialog, setIsDialog] = useState(false);
 
   const login = async (data: TLoginData) => {
     setIsLoading(true);
@@ -61,14 +53,7 @@ export const AuthProvider: FC = ({ children }) => {
       setIsLoading(true);
       try {
         if (token) {
-          const jwtPayload: IJWT_PAYLOAD = jwt_decode(token);
-          const currentDate = new Date();
-
-          if (jwtPayload.exp * 1000 < currentDate.getTime()) {
-            console.log('TOKEN EXPIRED', format(jwtPayload.exp * 1000, 'Pp'));
-            logout();
-            setIsDialog(true);
-          }
+          console.log('user logged');
         }
       } catch (error) {
         console.log(error);
@@ -92,17 +77,6 @@ export const AuthProvider: FC = ({ children }) => {
       }}
     >
       {children}
-      <Dialog open={isDialog}>
-        <h3>Токен здох(</h3>
-        <button
-          onClick={() => {
-            navigate(PATHS.LOGIN);
-            setIsDialog(false);
-          }}
-        >
-          Будем логиниться заново, куда деваться
-        </button>
-      </Dialog>
     </AuthContext.Provider>
   );
 };
