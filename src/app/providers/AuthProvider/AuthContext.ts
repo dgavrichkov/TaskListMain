@@ -1,14 +1,14 @@
 import { createContext, useContext } from 'react';
-import { TAuthData, TDummyUser } from './models';
+import { TAuthData, TUser } from './models';
 
 export const AuthContext = createContext<TAuthData>({
-  user: {} as TDummyUser,
+  user: {} as TUser,
   isLoading: false,
   token: '',
   login: () => console.log(''),
   logout: () => console.log(''),
 });
 
-AuthContext.displayName = 'DummyAuthContext';
+AuthContext.displayName = 'AuthContext';
 
 export const useAuth = (): TAuthData => useContext(AuthContext);

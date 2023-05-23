@@ -1,51 +1,29 @@
 import { FC, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { dummyFetchUser, dummyLogin } from './api';
 import { PATHS } from '../../../shared/constants/paths';
+import { loginApi } from './api';
 import { AuthContext } from './AuthContext';
-import { TDummyUser, TLoginData } from './models';
-import { DUMMY_TOKEN, DUMMY_USER_ID } from './constants';
+import { TUser, TLoginData } from './models';
 
 export const AuthProvider: FC = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [user, setUser] = useState({} as TDummyUser);
+  const [user, setUser] = useState({} as TUser);
   const [token, setToken] = useState<string | null>(null);
-  const [userId, setUserId] = useState<number | null>(null);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const token = localStorage.getItem(DUMMY_TOKEN);
-    if (token) {
-      setToken(token);
-      setUserId(JSON.parse(localStorage.getItem(DUMMY_USER_ID) || ''));
-    }
-  }, []);
-
-  useEffect(() => {
-    const checkAuth = async () => {
-      setIsLoading(true);
-      try {
-        if (userId) {
-          const userResponse = await dummyFetchUser(userId);
-          setUser(userResponse);
-        }
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    checkAuth();
-  }, [userId]);
 
   const login = async (data: TLoginData) => {
     setIsLoading(true);
     try {
-      const loggedData = await dummyLogin(data.login, data.password);
-      localStorage.setItem(DUMMY_TOKEN, loggedData.token);
-      setToken(loggedData.token);
-      localStorage.setItem(DUMMY_USER_ID, JSON.stringify(loggedData.id));
-      setUserId(loggedData.id);
+      const dataToPost = {
+        identifier: data.login,
+        password: data.password,
+      };
+      const res = await loginApi(dataToPost);
+      localStorage.setItem('token', res.jwt);
+      localStorage.setItem('user', JSON.stringify(res.user));
+      setToken(res.jwt);
+      setUser(res.user);
+
       navigate(PATHS.PROFILE);
     } catch (error) {
       console.log(error);
@@ -53,13 +31,40 @@ export const AuthProvider: FC = ({ children }) => {
       setIsLoading(false);
     }
   };
+
   const logout = () => {
-    localStorage.setItem(DUMMY_TOKEN, '');
+    localStorage.setItem('token', '');
     setToken('');
-    localStorage.setItem(DUMMY_USER_ID, '');
-    setUserId(null);
     navigate(PATHS.ROOT, { replace: true });
   };
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    const user = JSON.parse(localStorage.getItem('user') as string);
+
+    if (token && user) {
+      setToken(token);
+      setUser(user as TUser);
+    }
+  }, []);
+
+  useEffect(() => {
+    const checkAuth = async () => {
+      setIsLoading(true);
+      try {
+        if (token) {
+          console.log('user logged');
+        }
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    checkAuth();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [token]);
 
   return (
     <AuthContext.Provider

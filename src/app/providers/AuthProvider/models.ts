@@ -1,25 +1,12 @@
-export type TDummyUser = {
-  id: number;
-  firstName: string;
-  lastName: string;
-  age: number;
-  gender: string;
+export type TUser = {
+  blocked: boolean;
+  confirmed: boolean;
+  createdAt: string;
   email: string;
-  phone: string;
+  id: number;
+  provider: string;
+  updatedAt: string;
   username: string;
-  password: string;
-  birthDate: string;
-  image: string;
-  address: {
-    address: string;
-    city: string;
-    coordinates: {
-      lat: number;
-      lng: number;
-    };
-    postalCode: string;
-    state: string;
-  };
 };
 
 export type TLoginData = {
@@ -29,7 +16,7 @@ export type TLoginData = {
 
 export type TAuthData = {
   isLoading: boolean;
-  user: TDummyUser;
+  user: TUser;
   token: string | null;
   login: (data: TLoginData) => void;
   logout: () => void;
