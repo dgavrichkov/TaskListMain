@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Styled } from './styled';
-import { ReactComponent as UserIcon } from './user-icon.svg';
+import UserIcon from './user-icon.svg';
 
 type TAvatarProps = {
   image?: string;
