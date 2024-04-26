@@ -1,5 +1,6 @@
 import BuggyCounter from './ui/BuggyCounter';
 import CounterErrorBoundary from './ui/CounterErrorBoundary';
+import Oldschool from './ui/Oldschool';
 
 export const Experiments = () => {
   return (
@@ -8,6 +9,7 @@ export const Experiments = () => {
       <hr />
       <CounterErrorBoundary>
         <BuggyCounter />
+        <Oldschool />
       </CounterErrorBoundary>
     </>
   );
