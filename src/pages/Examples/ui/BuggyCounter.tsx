@@ -1,4 +1,5 @@
 import React from 'react';
+import CounterErrorBoundary from './CounterErrorBoundary';
 
 class BuggyCounter extends React.Component {
   state = {

@@ -28,8 +28,8 @@ export const Header: FC<THeaderProps> = ({ pageClass }) => {
         <NavLink className={({ isActive }) => (isActive ? 'is-active' : '')} to={PATHS.POSTS}>
           Posts
         </NavLink>
-        <NavLink className={({ isActive }) => (isActive ? 'is-active' : '')} to={PATHS.EXPERIMENTS}>
-          Experiments
+        <NavLink className={({ isActive }) => (isActive ? 'is-active' : '')} to={PATHS.EXAMPLES}>
+          Examples
         </NavLink>
       </Styled.Nav>
       <div className="header__portal" id="header-portal"></div>
