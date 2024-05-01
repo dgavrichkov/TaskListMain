@@ -5,5 +5,5 @@ export const PATHS = {
   PROFILE: 'profile',
   LOGIN: 'login',
   POSTS: 'posts',
-  EXPERIMENTS: 'experiments',
+  EXAMPLES: 'examples',
 };
