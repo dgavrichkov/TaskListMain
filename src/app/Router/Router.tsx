@@ -5,6 +5,7 @@ import { Examples } from '../../pages/Examples';
 import { PATHS } from '../../shared/constants/paths';
 import { ProtectedRoute } from '../../features';
 import { Layout } from '../Layout';
+import { MasonryDemo } from '../../pages/MasonryDemo/MasonryDemo';
 
 export const Router: FC = () => (
   <Routes>
@@ -20,6 +21,7 @@ export const Router: FC = () => (
         <Route element={<Profile />} path={PATHS.PROFILE} />
       </Route>
       <Route element={<Examples />} path={PATHS.EXAMPLES} />
+      <Route element={<MasonryDemo />} path={PATHS.MASONRY} />
     </Route>
   </Routes>
 );

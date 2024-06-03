@@ -31,6 +31,9 @@ export const Header: FC<THeaderProps> = ({ pageClass }) => {
         <NavLink className={({ isActive }) => (isActive ? 'is-active' : '')} to={PATHS.EXAMPLES}>
           Examples
         </NavLink>
+        <NavLink className={({ isActive }) => (isActive ? 'is-active' : '')} to={PATHS.MASONRY}>
+          Masonry
+        </NavLink>
       </Styled.Nav>
       <div className="header__portal" id="header-portal"></div>
       <Styled.SwitcherWrap>
