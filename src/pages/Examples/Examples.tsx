@@ -7,13 +7,13 @@ export const Examples = () => {
   return (
     <>
       <h1>Examples</h1>
-      <hr style={{margin: '12px 0'}} />
+      <hr style={{ margin: '12px 0' }} />
       <ExampleContainer>
         <CounterErrorBoundary>
           <BuggyCounter />
         </CounterErrorBoundary>
       </ExampleContainer>
-      <hr style={{margin: '12px 0'}} />
+      <hr style={{ margin: '12px 0' }} />
       <ExampleContainer>
         <TaskApp />
       </ExampleContainer>

@@ -1,25 +1,25 @@
 import { useContext, useState } from 'react';
 import { TasksContext, TasksDispatchContext } from './TasksContext';
-import { Task } from './types';
-
+import { TTask } from './types';
 
 export default function TaskList() {
   const tasks = useContext(TasksContext);
 
   return (
-    <ul style={{marginLeft: 14}}>
-      {tasks && tasks.map(task => (
-        <li key={task.id}>
-          <Task task={task} />
-        </li>
-      ))}
+    <ul style={{ marginLeft: 14 }}>
+      {tasks &&
+        tasks.map((task) => (
+          <li key={task.id}>
+            <Task task={task} />
+          </li>
+        ))}
     </ul>
   );
 }
 
 type TTaskProps = {
-  task: Task;
-}
+  task: TTask;
+};
 
 function Task({ task }: TTaskProps) {
   const [isEditing, setIsEditing] = useState(false);
@@ -32,53 +32,52 @@ function Task({ task }: TTaskProps) {
       <>
         <input
           value={task.text}
-          onChange={e => {
+          onChange={(e) => {
             dispatch({
               type: 'changed',
               task: {
                 ...task,
-                text: e.target.value
-              }
+                text: e.target.value,
+              },
             });
-          }} />
-        <button onClick={() => setIsEditing(false)}>
-          Save
-        </button>
+          }}
+        />
+        <button onClick={() => setIsEditing(false)}>Save</button>
       </>
     );
   } else {
     taskContent = (
       <>
         {task.text}
-        <button onClick={() => setIsEditing(true)}>
-          Edit
-        </button>
+        <button onClick={() => setIsEditing(true)}>Edit</button>
       </>
     );
   }
 
   return (
-    <label style={{display: 'block', margin: '5px 0'}}>
+    <label style={{ display: 'block', margin: '5px 0' }}>
       <input
-        type="checkbox"
         checked={task.done}
-        onChange={e => {
+        type="checkbox"
+        onChange={(e) => {
           dispatch({
             type: 'changed',
             task: {
               ...task,
-              done: e.target.checked
-            }
+              done: e.target.checked,
+            },
           });
         }}
       />
       {taskContent}
-      <button onClick={() => {
-        dispatch({
-          type: 'deleted',
-          id: task.id
-        });
-      }}>
+      <button
+        onClick={() => {
+          dispatch({
+            type: 'deleted',
+            id: task.id,
+          });
+        }}
+      >
         Delete
       </button>
     </label>
