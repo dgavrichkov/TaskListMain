@@ -2,42 +2,10 @@
   "name": "task-list-app",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "@reduxjs/toolkit": "^1.9.3",
-    "@tanstack/react-query": "^4.26.0",
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
-    "@types/react": "^17.0.37",
-    "@types/react-dom": "^17.0.11",
-    "@types/react-redux": "^7.1.20",
-    "@types/styled-components": "^5.1.15",
-    "@vitejs/plugin-react-swc": "^3.6.0",
-    "axios": "^1.4.0",
-    "classnames": "^2.3.2",
-    "date-fns": "^2.30.0",
-    "json-server": "^0.17.0",
-    "jwt-decode": "^3.1.2",
-    "lodash.throttle": "^4.1.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-id-generator": "^3.0.2",
-    "react-redux": "^7.2.6",
-    "react-router-dom": "^6.10.0",
-    "redux-devtools-extension": "^2.13.9",
-    "redux-persist": "^6.0.0",
-    "redux-thunk": "^2.4.0",
-    "styled-components": "^5.3.3",
-    "vite": "^5.2.9",
-    "vite-plugin-svgr": "^4.2.0",
-    "vite-tsconfig-paths": "^4.3.2"
-  },
   "scripts": {
     "start": "vite",
     "build": "tsc && vite build",
-    "serve": "vite preview",
-    "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public"
+    "serve": "vite preview"
   },
   "eslintConfig": {
     "extends": [
@@ -67,21 +35,37 @@
       "last 1 safari version"
     ]
   },
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.9.3",
+    "@tanstack/react-query": "^4.26.0",
+    "@types/react": "^17.0.37",
+    "@types/react-dom": "^17.0.11",
+    "@types/react-redux": "^7.1.20",
+    "@types/styled-components": "^5.1.15",
+    "@vitejs/plugin-react-swc": "^3.6.0",
+    "axios": "^1.4.0",
+    "classnames": "^2.3.2",
+    "date-fns": "^2.30.0",
+    "json-server": "^0.17.0",
+    "lodash.throttle": "^4.1.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-id-generator": "^3.0.2",
+    "react-redux": "^7.2.6",
+    "react-router-dom": "^6.10.0",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-persist": "^6.0.0",
+    "redux-thunk": "^2.4.0",
+    "styled-components": "^5.3.3",
+    "vite": "^5.2.9",
+    "vite-plugin-svgr": "^4.2.0",
+    "vite-tsconfig-paths": "^4.3.2"
+  },
   "devDependencies": {
-    "@storybook/addon-actions": "^6.5.16",
-    "@storybook/addon-essentials": "^6.5.16",
-    "@storybook/addon-interactions": "^6.5.16",
-    "@storybook/addon-links": "^6.5.16",
-    "@storybook/builder-webpack4": "^6.5.16",
-    "@storybook/manager-webpack4": "^6.5.16",
-    "@storybook/node-logger": "^6.5.16",
-    "@storybook/preset-create-react-app": "^3.2.0",
-    "@storybook/react": "^6.5.16",
-    "@storybook/testing-library": "^0.0.13",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.2.1",
-    "gh-pages": "^3.2.3",
     "prettier": "^2.8.8",
-    "typescript": "^4.5.2"
+    "typescript": "^4.5.2",
+    "vite-plugin-eslint": "^1.8.1"
   }
 }
