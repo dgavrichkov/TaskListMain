@@ -1,10 +1,6 @@
 import { useContext, useState } from 'react';
 import { TasksDispatchContext } from './TasksContext';
 
-type TAddTaskProps = {
-  onAddTask: (text: string) => void;
-};
-
 let nextId = 3;
 
 export default function AddTask() {

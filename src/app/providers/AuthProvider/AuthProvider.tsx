@@ -1,11 +1,11 @@
-import { FC, useEffect, useState } from 'react';
+import { PropsWithChildren, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PATHS } from '../../../shared/constants/paths';
 import { loginApi } from './api';
 import { AuthContext } from './AuthContext';
 import { TUser, TLoginData } from './models';
 
-export const AuthProvider: FC = ({ children }) => {
+export const AuthProvider = ({ children }: PropsWithChildren) => {
   const [isLoading, setIsLoading] = useState(false);
   const [user, setUser] = useState({} as TUser);
   const [token, setToken] = useState<string | null>(null);

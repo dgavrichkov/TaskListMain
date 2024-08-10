@@ -1,4 +1,4 @@
-import { createContext, useReducer, Dispatch, FC } from 'react';
+import { createContext, useReducer, Dispatch, PropsWithChildren } from 'react';
 import { TTask } from './types';
 
 export const TasksContext = createContext<TTask[]>([]);
@@ -10,7 +10,7 @@ const initialTasks: TTask[] = [
   { id: 2, text: 'Drink matcha', done: false },
 ];
 
-export const TasksProvider: FC = ({ children }) => {
+export const TasksProvider = ({ children }: PropsWithChildren) => {
   const [tasks, dispatch] = useReducer(tasksReducer, initialTasks);
 
   return (
