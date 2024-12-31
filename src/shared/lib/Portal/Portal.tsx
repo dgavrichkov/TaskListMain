@@ -1,4 +1,4 @@
-import { FC, useLayoutEffect, useState } from 'react';
+import { FC, PropsWithChildren, useLayoutEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 
 type TPortalElement = HTMLElement | Element | null;
@@ -8,7 +8,11 @@ interface IPortalProps {
   portalElement?: (() => TPortalElement) | HTMLElement | Element | string;
 }
 
-export const Portal: FC<IPortalProps> = ({ portalId, portalElement, children }) => {
+export const Portal: FC<PropsWithChildren<IPortalProps>> = ({
+  portalId,
+  portalElement,
+  children,
+}) => {
   const [portalTarget, setPortalTarget] = useState<TPortalElement>();
   useLayoutEffect(() => {
     if (portalId) {
