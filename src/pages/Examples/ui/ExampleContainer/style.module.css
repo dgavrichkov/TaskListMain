@@ -1,4 +1,8 @@
 .wrap {
   border: 1px solid white;
   padding: 12px 14px;
+
+  display: grid;
+  grid-template-columns: repeat(var(--col-num), 1fr);
+  gap: 24px;
 }
