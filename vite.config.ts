@@ -9,4 +9,7 @@ export default defineConfig({
   root: 'src',
   plugins: [react(), eslint()],
   publicDir: resolve(process.cwd(), 'public'),
+  build: {
+    outDir: '../dist',
+  },
 });
