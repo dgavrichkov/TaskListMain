@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { Greeting, Login, Note, Notes, Posts, Profile, Task, Tasks } from '../../pages';
 import { Examples } from '../../pages/Examples';
+import { Verbs } from '../../pages/Verbs';
 import { PATHS } from '../../shared/constants/paths';
 // import { ProtectedRoute } from '../../features';
 import { Layout } from '../Layout';
@@ -20,6 +21,7 @@ export const Router: FC = () => (
       <Route element={<Profile />} path={PATHS.PROFILE} />
       {/* </Route> */}
       <Route element={<Examples />} path={PATHS.EXAMPLES} />
+      <Route element={<Verbs />} path={PATHS.VERBS} />
     </Route>
   </Routes>
 );

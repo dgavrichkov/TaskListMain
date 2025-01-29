@@ -8,6 +8,7 @@ export default defineConfig({
   base: '/',
   root: 'src',
   plugins: [react(), eslint()],
+  envDir: process.cwd(),
   publicDir: resolve(process.cwd(), 'public'),
   build: {
     outDir: '../dist',

@@ -1,41 +1,219 @@
 {
-    "posts": [
-      { "id": 1, "title": "json-server", "author": "typicode" }
-    ],
-    "comments": [
-      { "id": 1, "body": "some comment", "postId": 1 }
-    ],
-    "profile": { "name": "typicode" },
-    "tasks": [
-      {
-        "id": "1",
-        "name": "first task",
-        "tag": "regular",
-        "done": false
+  "posts": [{ "id": 1, "title": "json-server", "author": "typicode" }],
+  "comments": [{ "id": 1, "body": "some comment", "postId": 1 }],
+  "profile": { "name": "typicode" },
+  "tasks": [
+    {
+      "id": "1",
+      "name": "first task",
+      "tag": "regular",
+      "done": false
+    },
+    {
+      "id": "2",
+      "name": "second task",
+      "tag": "regular",
+      "done": true
+    },
+    {
+      "id": "3",
+      "name": "unusual task",
+      "tag": "extra",
+      "done": false
+    },
+    {
+      "id": "4",
+      "name": "another task",
+      "tag": "daily",
+      "done": false
+    },
+    {
+      "id": "5",
+      "name": "last task",
+      "tag": "daily",
+      "done": false
+    }
+  ],
+  "words": [
+    {
+      "id": "1",
+      "label": "run"
+    },
+    {
+      "id": "2",
+      "label": "out"
+    },
+    {
+      "id": "3",
+      "label": "of"
+    },
+    {
+      "id": "4",
+      "label": "get"
+    },
+    {
+      "id": "5",
+      "label": "along"
+    },
+    {
+      "id": "6",
+      "label": "with"
+    },
+    {
+      "id": "7",
+      "label": "put"
+    },
+    {
+      "id": "8",
+      "label": "up"
+    },
+    {
+      "id": "9",
+      "label": "bring"
+    },
+    {
+      "id": "10",
+      "label": "back"
+    },
+    {
+      "id": "11",
+      "label": "away"
+    },
+    {
+      "id": "12",
+      "label": "breack"
+    },
+    {
+      "id": "13",
+      "label": "be"
+    },
+    {
+      "id": "14",
+      "label": "off"
+    },
+    {
+      "id": "15",
+      "label": "over"
+    },
+    {
+      "id": "16",
+      "label": "to"
+    },
+    {
+      "id": "17",
+      "label": "down"
+    },
+    {
+      "id": "18",
+      "label": "blow"
+    },
+    {
+      "id": "19",
+      "label": "calm"
+    },
+    {
+      "id": "20",
+      "label": "clean"
+    },
+    {
+      "id": "21",
+      "label": "count"
+    },
+    {
+      "id": "22",
+      "label": "on"
+    },
+    {
+      "id": "23",
+      "label": "call"
+    },
+    {
+      "id": "24",
+      "label": "check"
+    },
+    {
+      "id": "25",
+      "label": "in"
+    },
+    {
+      "id": "26",
+      "label": "carry"
+    },
+    {
+      "id": "27",
+      "label": "around"
+    },
+    {
+      "id": "28",
+      "label": "come"
+    },
+    {
+      "id": "29",
+      "label": "across"
+    },
+    {
+      "id": "30",
+      "label": "from"
+    },
+    {
+      "id": "31",
+      "label": "cut"
+    },
+    {
+      "id": "32",
+      "label": "end"
+    },
+    {
+      "id": "33",
+      "label": "figure"
+    },
+    {
+      "id": "34",
+      "label": "find"
+    },
+    {
+      "id": "35",
+      "label": "give"
+    },
+    {
+      "id": "36",
+      "label": "go"
+    },
+    {
+      "id": "37",
+      "label": "through"
+    },
+    {
+      "id": "38",
+      "label": "hang"
+    },
+    {
+      "id": "39",
+      "label": "hold"
+    },
+    {
+      "id": "40",
+      "label": ""
+    }
+  ],
+  "phrasals": [
+    {
+      "id": "1",
+      "words": ["1", "2", "3"],
+      "meaning": "",
+      "translation": {
+        "ru": "что-то закончилось"
       },
-      {
-        "id": "2",
-        "name": "second task",
-        "tag": "regular",
-        "done": true
+      "examples": ["We ran out of milk"]
+    },
+    {
+      "id": "2",
+      "words": ["4", "5", "6"],
+      "meaning": "",
+      "translation": {
+        "ru": "ладить с кем-то"
       },
-      {
-        "id": "3",
-        "name": "unusual task",
-        "tag": "extra",
-        "done": false
-      },
-      {
-        "id": "4",
-        "name": "another task",
-        "tag": "daily",
-        "done": false
-      },
-      {
-        "id": "5",
-        "name": "last task",
-        "tag": "daily",
-        "done": false
-      }
-    ]
+      "examples": ["She gets along with her colleagues"]
+    }
+  ]
 }
