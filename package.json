@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "vite",
+    "dev": "vite",
     "build": "tsc && vite build",
     "serve": "vite preview",
     "mock-server": "json-server --watch db.json --port 5400"
