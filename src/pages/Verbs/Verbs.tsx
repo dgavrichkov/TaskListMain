@@ -1,23 +1,23 @@
 import { useEffect, useState } from 'react';
-import { loadPhrasalVerbs, loadWords } from './api';
-import { TPharasalVerb, TWord } from './types';
+import { useAppDispatch, useAppSelector } from '../../app/store';
+import { verbModel } from '../../entities/verb';
+import { TPhrasalVerb } from '../../entities/verb/model/interface';
+import { loadPhrasalVerbs } from './api';
+
 import styles from './Verbs.module.scss';
 
 export const Verbs = () => {
-  const [words, setWords] = useState<TWord[]>([]);
-  const [phrasals, setPhrasals] = useState<TPharasalVerb[]>([]);
+  const dispatch = useAppDispatch();
+  const words = useAppSelector((state) =>
+    state.verb.wordReference.idList.map((id: string) => state.verb.wordReference.data[id]),
+  );
+  const [phrasals, setPhrasals] = useState<TPhrasalVerb[]>([]);
 
   useEffect(() => {
+    dispatch<any>(verbModel.actions.getWordReference());
+
     const controller = new AbortController();
     const { signal } = controller;
-
-    loadWords(signal)
-      .then((data) => {
-        setWords(data);
-      })
-      .catch((error) => {
-        console.error('Error in words loading', error);
-      });
 
     loadPhrasalVerbs(signal)
       .then((data) => {
@@ -28,7 +28,7 @@ export const Verbs = () => {
       });
 
     return () => controller.abort();
-  }, []);
+  }, [dispatch]);
 
   return (
     <div>
