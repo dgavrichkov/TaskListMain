@@ -10,6 +10,34 @@ type THeaderProps = {
   pageClass: string;
 };
 
+const MAIN_MENU_ITEMS = [
+  {
+    id: 1,
+    label: 'Tasks',
+    path: PATHS.TASKS,
+  },
+  {
+    id: 2,
+    label: 'Notes',
+    path: PATHS.NOTES,
+  },
+  {
+    id: 3,
+    label: 'Posts',
+    path: PATHS.POSTS,
+  },
+  {
+    id: 4,
+    label: 'Examples',
+    path: PATHS.EXAMPLES,
+  },
+  {
+    id: 5,
+    label: 'Verbs',
+    path: PATHS.VERBS,
+  },
+];
+
 export const Header: FC<THeaderProps> = ({ pageClass }) => {
   const { token, logout } = useAuth();
 
@@ -19,21 +47,15 @@ export const Header: FC<THeaderProps> = ({ pageClass }) => {
         <Link to={PATHS.ROOT}>ToDo</Link>
       </h1>
       <Styled.Nav>
-        <NavLink className={({ isActive }) => (isActive ? 'is-active' : '')} to={PATHS.TASKS}>
-          Tasks
-        </NavLink>
-        <NavLink className={({ isActive }) => (isActive ? 'is-active' : '')} to={PATHS.NOTES}>
-          Notes
-        </NavLink>
-        <NavLink className={({ isActive }) => (isActive ? 'is-active' : '')} to={PATHS.POSTS}>
-          Posts
-        </NavLink>
-        <NavLink className={({ isActive }) => (isActive ? 'is-active' : '')} to={PATHS.EXAMPLES}>
-          Examples
-        </NavLink>
-        <NavLink className={({ isActive }) => (isActive ? 'is-active' : '')} to={PATHS.VERBS}>
-          Verbs
-        </NavLink>
+        {MAIN_MENU_ITEMS.map((item) => (
+          <NavLink
+            className={({ isActive }) => (isActive ? 'is-active' : '')}
+            key={item.id}
+            to={item.path}
+          >
+            {item.label}
+          </NavLink>
+        ))}
       </Styled.Nav>
       <div className="header__portal" id="header-portal"></div>
       <Styled.SwitcherWrap>

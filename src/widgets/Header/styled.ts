@@ -3,10 +3,8 @@ import styled from 'styled-components';
 const Header = styled.header`
   display: grid;
   align-items: center;
-  grid-template-columns: auto 1fr auto;
-  grid-template-areas:
-    'logo navi profile'
-    'theme . profile';
+  grid-template-columns: auto auto 1fr auto;
+  grid-template-areas: 'logo theme navi profile';
   column-gap: 32px;
   row-gap: 16px;
 
