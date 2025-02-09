@@ -2,15 +2,15 @@ import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/store';
 import { verbModel } from '../../entities/verb';
 import { TPhrasalVerb } from '../../entities/verb/model/interface';
+import { selectWordReference } from '../../entities/verb/model/selectors';
 import { loadPhrasalVerbs } from './api';
 
 import styles from './Verbs.module.scss';
 
 export const Verbs = () => {
   const dispatch = useAppDispatch();
-  const words = useAppSelector((state) =>
-    state.verb.wordReference.idList.map((id: string) => state.verb.wordReference.data[id]),
-  );
+  const words = useAppSelector(selectWordReference);
+
   const [phrasals, setPhrasals] = useState<TPhrasalVerb[]>([]);
 
   useEffect(() => {
