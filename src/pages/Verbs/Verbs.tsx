@@ -32,13 +32,13 @@ export const Verbs = () => {
 
   return (
     <div>
-      <h1>Verbs</h1>
+      <h1 className={styles.title}>Verbs</h1>
       <section className={styles.container}>
         <h2>Words for phrasal verbs</h2>
-        <ul>
+        <ul className={styles.wordsList}>
           {words.map((word) => (
             <li className={styles.word} key={word.id}>
-              {word.label}
+              <button className={styles.wordButton}>{word.label}</button>
             </li>
           ))}
         </ul>

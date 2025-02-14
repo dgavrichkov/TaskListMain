@@ -1,0 +1,33 @@
+.title {
+  margin-bottom: 24px;
+}
+
+.container {
+  display: grid;
+  gap: 24px;
+}
+
+.wordsList {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+  gap: 12px;
+}
+
+.wordButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: max-content;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 4px 8px;
+  font-size: 12px;
+  color: #333;
+  text-decoration: none;
+  transition: background-color 0.3s;
+  cursor: pointer;
+}

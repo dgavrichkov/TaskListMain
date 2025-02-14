@@ -3,6 +3,7 @@ import { loadWords } from '../../../pages/Verbs/api';
 import { TWord } from './interface';
 
 export const setWordReference = createAction<TWord[]>('verb/setWordReference');
+export const clearWordsReference = createAction('verb/clearWordsReference');
 
 export const getWordReference = createAsyncThunk(
   'verb/getWordReference',

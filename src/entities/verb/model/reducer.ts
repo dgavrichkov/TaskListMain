@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { setWordReference } from './actions';
-import { TVerbState } from './interface';
+import { clearWordsReference, setWordReference } from './actions';
+import { TVerbState, TWord } from './interface';
 
 const initialState: TVerbState = {
   wordReference: {
@@ -18,12 +18,18 @@ const verbSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(setWordReference, (state, { payload }) => {
-      payload.forEach((word) => {
-        state.wordReference.data[word.id] = word;
-        state.wordReference.idList.push(word.id);
+    builder
+      .addCase(setWordReference, (state, { payload }) => {
+        const res = payload.reduce((byId, word) => {
+          byId[word.id] = word;
+          return byId;
+        }, {} as Record<string, TWord>);
+        state.wordReference.data = res;
+        state.wordReference.idList = Object.keys(res);
+      })
+      .addCase(clearWordsReference, (state) => {
+        state.wordReference = initialState.wordReference;
       });
-    });
   },
 });
 
