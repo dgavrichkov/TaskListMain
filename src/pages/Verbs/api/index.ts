@@ -1,4 +1,4 @@
-import { TPharasalVerb, TWord } from '../types';
+import { TWord, TPhrasalVerb } from '../../../entities/verb/model/interface';
 
 const BASE_URL = import.meta.env.VITE_APP_API_URL;
 
@@ -15,7 +15,7 @@ export const loadWords = async (signal?: AbortSignal): Promise<TWord[]> => {
   return words;
 };
 
-export const loadPhrasalVerbs = async (signal?: AbortSignal): Promise<TPharasalVerb[]> => {
+export const loadPhrasalVerbs = async (signal?: AbortSignal): Promise<TPhrasalVerb[]> => {
   const response = await fetch(`${BASE_URL}/phrasals`, { signal });
 
   if (!response.ok) {

@@ -210,6 +210,16 @@
         "ru": "ладить с кем-то"
       },
       "examples": ["She gets along with her colleagues"]
+    },
+    {
+      "id": "3",
+      "title": "back off",
+      "words": ["10", "14"],
+      "meaning": "to stop being involved in a situation, especially in order to allow other people to deal with it themselves",
+      "translation": {
+        "ru": "отступать"
+      },
+      "examples": ["The police told the crowd to back off"]
     }
   ]
 }

@@ -1,8 +1,14 @@
-.title {
-  margin-bottom: 24px;
+.wrap {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: 1fr 2fr;
 }
 
-.container {
+.title {
+  grid-column: 1 / -1;
+}
+
+.words {
   display: grid;
   gap: 24px;
 }
@@ -10,7 +16,6 @@
 .wordsList {
   display: flex;
   flex-wrap: wrap;
-  margin: 0 auto;
   padding: 0;
   list-style: none;
   gap: 12px;
@@ -25,9 +30,40 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 4px 8px;
-  font-size: 12px;
+  font-size: 14px;
   color: #333;
   text-decoration: none;
   transition: background-color 0.3s;
   cursor: pointer;
+
+  &.active {
+    background-color: yellowgreen;
+  }
+}
+
+.phrasals {
+  display: grid;
+  gap: 24px;
+  align-content: start;
+}
+
+.phrasalsList {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.phrasal {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 4px 8px;
+  color: #333;
+}
+
+.pharasalExamples {
+  display: grid;
+  gap: 8px;
+  list-style: none;
 }
