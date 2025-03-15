@@ -4,3 +4,6 @@ export const selectWordsMap = (state: RootState) => state.verb.wordReference.dat
 
 export const selectWordsList = (state: RootState) =>
   state.verb.wordReference.idList.map((id: string) => state.verb.wordReference.data[id]);
+
+export const selectPhrasals = (state: RootState) =>
+  state.verb.phrasalVerbs.idList.map((id: string) => state.verb.phrasalVerbs.data[id]);
