@@ -1,14 +1,112 @@
+import styles from './VerbAdmin.module.scss';
+import { useForm } from '@tanstack/react-form';
+
 export const VerbAdmin = () => {
+  const { Field, Subscribe, handleSubmit, reset } = useForm({
+    defaultValues: {
+      title: '',
+      words: [],
+      meaning: '',
+      translation: '',
+      examples: [''] as Array<string>,
+    },
+    onSubmit: async ({ value }) => {
+      // Do something with form data
+      console.log(value);
+    },
+  });
+
   return (
-    <div>
-      <div>Verb Admin Form</div>
-      <ul>
-        <li>title</li>
-        <li>words array (pick from reference)</li>
-        <li>meaning (description/explanation)</li>
-        <li>ru translation</li>
-        <li>list of examples</li>
-      </ul>
-    </div>
+    <form
+      className={styles.form}
+      onSubmit={(e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        handleSubmit();
+      }}
+    >
+      <Field name="title">
+        {({ state, handleChange, handleBlur }) => (
+          <div>
+            <label>Title</label>
+            <input
+              placeholder="title"
+              type="text"
+              value={state.value}
+              onBlur={handleBlur}
+              onChange={(e) => handleChange(e.target.value)}
+            />
+          </div>
+        )}
+      </Field>
+      <Field name="meaning">
+        {({ state, handleChange, handleBlur }) => (
+          <div>
+            <label>Meaning</label>
+            <input
+              placeholder="meaning"
+              type="text"
+              value={state.value}
+              onBlur={handleBlur}
+              onChange={(e) => handleChange(e.target.value)}
+            />
+          </div>
+        )}
+      </Field>
+      <Field name="translation">
+        {({ state, handleChange, handleBlur }) => (
+          <div>
+            <label>Ru Translation</label>
+            <input
+              placeholder="ru translation"
+              type="text"
+              value={state.value}
+              onBlur={handleBlur}
+              onChange={(e) => handleChange(e.target.value)}
+            />
+          </div>
+        )}
+      </Field>
+      <Field mode="array" name="examples">
+        {(field) => (
+          <div>
+            {field.state.value.map((_, i) => {
+              return (
+                <Field key={i} name={`examples[${i}]`}>
+                  {(subField) => {
+                    return (
+                      <div>
+                        <label>
+                          <div>Example {i}</div>
+                          <input
+                            value={subField.state.value}
+                            onChange={(e) => subField.handleChange(e.target.value)}
+                          />
+                        </label>
+                      </div>
+                    );
+                  }}
+                </Field>
+              );
+            })}
+            <button type="button" onClick={() => field.pushValue('')}>
+              Add example
+            </button>
+          </div>
+        )}
+      </Field>
+      <Subscribe selector={(state) => [state.canSubmit, state.isSubmitting]}>
+        {([canSubmit, isSubmitting]) => (
+          <>
+            <button disabled={!canSubmit} type="submit">
+              {isSubmitting ? '...' : 'Submit'}
+            </button>
+            <button type="reset" onClick={() => reset()}>
+              Reset
+            </button>
+          </>
+        )}
+      </Subscribe>
+    </form>
   );
 };
