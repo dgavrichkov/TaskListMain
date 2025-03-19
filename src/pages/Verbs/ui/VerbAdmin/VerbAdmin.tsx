@@ -1,3 +1,4 @@
+import { Input } from '@/shared/shadcn/ui/Input';
 import styles from './VerbAdmin.module.scss';
 import { useForm } from '@tanstack/react-form';
 
@@ -29,7 +30,7 @@ export const VerbAdmin = () => {
         {({ state, handleChange, handleBlur }) => (
           <div>
             <label>Title</label>
-            <input
+            <Input
               placeholder="title"
               type="text"
               value={state.value}
@@ -43,7 +44,7 @@ export const VerbAdmin = () => {
         {({ state, handleChange, handleBlur }) => (
           <div>
             <label>Meaning</label>
-            <input
+            <Input
               placeholder="meaning"
               type="text"
               value={state.value}
@@ -57,7 +58,7 @@ export const VerbAdmin = () => {
         {({ state, handleChange, handleBlur }) => (
           <div>
             <label>Ru Translation</label>
-            <input
+            <Input
               placeholder="ru translation"
               type="text"
               value={state.value}
@@ -78,7 +79,7 @@ export const VerbAdmin = () => {
                       <div>
                         <label>
                           <div>Example {i}</div>
-                          <input
+                          <Input
                             value={subField.state.value}
                             onChange={(e) => subField.handleChange(e.target.value)}
                           />
