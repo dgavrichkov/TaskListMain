@@ -1,6 +1,7 @@
 import { Input } from '@/shared/shadcn/ui/Input';
 import styles from './VerbAdmin.module.scss';
 import { useForm } from '@tanstack/react-form';
+import { Button } from '@/shared/shadcn/ui/button';
 
 export const VerbAdmin = () => {
   const { Field, Subscribe, handleSubmit, reset } = useForm({
@@ -28,7 +29,7 @@ export const VerbAdmin = () => {
     >
       <Field name="title">
         {({ state, handleChange, handleBlur }) => (
-          <div>
+          <div className={styles.field}>
             <label>Title</label>
             <Input
               placeholder="title"
@@ -99,12 +100,12 @@ export const VerbAdmin = () => {
       <Subscribe selector={(state) => [state.canSubmit, state.isSubmitting]}>
         {([canSubmit, isSubmitting]) => (
           <>
-            <button disabled={!canSubmit} type="submit">
+            <Button disabled={!canSubmit} type="submit">
               {isSubmitting ? '...' : 'Submit'}
-            </button>
-            <button type="reset" onClick={() => reset()}>
+            </Button>
+            <Button type="reset" onClick={() => reset()}>
               Reset
-            </button>
+            </Button>
           </>
         )}
       </Subscribe>
