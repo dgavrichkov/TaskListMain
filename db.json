@@ -36,166 +36,166 @@
   ],
   "words": [
     {
-      "id": "1",
+      "id": 1,
       "label": "run"
     },
     {
-      "id": "2",
+      "id": 2,
       "label": "out"
     },
     {
-      "id": "3",
+      "id": 3,
       "label": "of"
     },
     {
-      "id": "4",
+      "id": 4,
       "label": "get"
     },
     {
-      "id": "5",
+      "id": 5,
       "label": "along"
     },
     {
-      "id": "6",
+      "id": 6,
       "label": "with"
     },
     {
-      "id": "7",
+      "id": 7,
       "label": "put"
     },
     {
-      "id": "8",
+      "id": 8,
       "label": "up"
     },
     {
-      "id": "9",
+      "id": 9,
       "label": "bring"
     },
     {
-      "id": "10",
+      "id": 10,
       "label": "back"
     },
     {
-      "id": "11",
+      "id": 11,
       "label": "away"
     },
     {
-      "id": "12",
+      "id": 12,
       "label": "breack"
     },
     {
-      "id": "13",
+      "id": 13,
       "label": "be"
     },
     {
-      "id": "14",
+      "id": 14,
       "label": "off"
     },
     {
-      "id": "15",
+      "id": 15,
       "label": "over"
     },
     {
-      "id": "16",
+      "id": 16,
       "label": "to"
     },
     {
-      "id": "17",
+      "id": 17,
       "label": "down"
     },
     {
-      "id": "18",
+      "id": 18,
       "label": "blow"
     },
     {
-      "id": "19",
+      "id": 19,
       "label": "calm"
     },
     {
-      "id": "20",
+      "id": 20,
       "label": "clean"
     },
     {
-      "id": "21",
+      "id": 21,
       "label": "count"
     },
     {
-      "id": "22",
+      "id": 22,
       "label": "on"
     },
     {
-      "id": "23",
+      "id": 23,
       "label": "call"
     },
     {
-      "id": "24",
+      "id": 24,
       "label": "check"
     },
     {
-      "id": "25",
+      "id": 25,
       "label": "in"
     },
     {
-      "id": "26",
+      "id": 26,
       "label": "carry"
     },
     {
-      "id": "27",
+      "id": 27,
       "label": "around"
     },
     {
-      "id": "28",
+      "id": 28,
       "label": "come"
     },
     {
-      "id": "29",
+      "id": 29,
       "label": "across"
     },
     {
-      "id": "30",
+      "id": 30,
       "label": "from"
     },
     {
-      "id": "31",
+      "id": 31,
       "label": "cut"
     },
     {
-      "id": "32",
+      "id": 32,
       "label": "end"
     },
     {
-      "id": "33",
+      "id": 33,
       "label": "figure"
     },
     {
-      "id": "34",
+      "id": 34,
       "label": "find"
     },
     {
-      "id": "35",
+      "id": 35,
       "label": "give"
     },
     {
-      "id": "36",
+      "id": 36,
       "label": "go"
     },
     {
-      "id": "37",
+      "id": 37,
       "label": "through"
     },
     {
-      "id": "38",
+      "id": 38,
       "label": "hang"
     },
     {
-      "id": "39",
+      "id": 39,
       "label": "hold"
     }
   ],
   "phrasals": [
     {
-      "id": "1",
-      "words": ["1", "2", "3"],
+      "id": 1,
+      "words": [1, 2, 3],
       "meaning": "",
       "translation": {
         "ru": "что-то закончилось"
@@ -203,8 +203,8 @@
       "examples": ["We ran out of milk"]
     },
     {
-      "id": "2",
-      "words": ["4", "5", "6"],
+      "id": 2,
+      "words": [4, 5, 6],
       "meaning": "",
       "translation": {
         "ru": "ладить с кем-то"
@@ -212,9 +212,9 @@
       "examples": ["She gets along with her colleagues"]
     },
     {
-      "id": "3",
+      "id": 3,
       "title": "back off",
-      "words": ["10", "14"],
+      "words": [10, 14],
       "meaning": "to stop being involved in a situation, especially in order to allow other people to deal with it themselves",
       "translation": {
         "ru": "отступать"

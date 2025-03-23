@@ -26,3 +26,23 @@ export const loadPhrasalVerbs = async (signal?: AbortSignal): Promise<TPhrasalVe
 
   return pharasals;
 };
+
+export const postNewWord = async (word: string): Promise<TWord> => {
+  const response = await fetch(`${BASE_URL}/words`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      label: word,
+    }),
+  });
+
+  const data = await response.json();
+
+  console.log('new word added', data);
+
+  return data;
+};
+
+// export const postNewPhrasal;

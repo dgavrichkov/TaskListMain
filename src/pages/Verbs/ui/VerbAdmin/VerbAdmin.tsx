@@ -13,7 +13,10 @@ export const VerbAdmin = () => {
       examples: [''] as Array<string>,
     },
     onSubmit: async ({ value }) => {
-      // Do something with form data
+      // нужно проверить, что такого фразовика еще нет
+      // нужно разложить глагол на слова и проверить, что все слова есть в базе
+      // если нет - добавить
+      // если есть - добавить фразовик
       console.log(value);
     },
   });
@@ -43,7 +46,7 @@ export const VerbAdmin = () => {
       </Field>
       <Field name="meaning">
         {({ state, handleChange, handleBlur }) => (
-          <div>
+          <div className={styles.field}>
             <label>Meaning</label>
             <Input
               placeholder="meaning"
@@ -57,7 +60,7 @@ export const VerbAdmin = () => {
       </Field>
       <Field name="translation">
         {({ state, handleChange, handleBlur }) => (
-          <div>
+          <div className={styles.field}>
             <label>Ru Translation</label>
             <Input
               placeholder="ru translation"
@@ -77,23 +80,21 @@ export const VerbAdmin = () => {
                 <Field key={i} name={`examples[${i}]`}>
                   {(subField) => {
                     return (
-                      <div>
-                        <label>
-                          <div>Example {i}</div>
-                          <Input
-                            value={subField.state.value}
-                            onChange={(e) => subField.handleChange(e.target.value)}
-                          />
-                        </label>
+                      <div className={styles.field}>
+                        <label>Example {i}</label>
+                        <Input
+                          value={subField.state.value}
+                          onChange={(e) => subField.handleChange(e.target.value)}
+                        />
                       </div>
                     );
                   }}
                 </Field>
               );
             })}
-            <button type="button" onClick={() => field.pushValue('')}>
+            <Button className="mt-2" type="button" onClick={() => field.pushValue('')}>
               Add example
-            </button>
+            </Button>
           </div>
         )}
       </Field>

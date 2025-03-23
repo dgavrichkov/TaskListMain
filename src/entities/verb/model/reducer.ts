@@ -21,7 +21,7 @@ const verbSlice = createSlice({
     builder
       .addCase(setWordReference, (state, { payload }) => {
         const res = payload.reduce((byId, word) => {
-          byId[word.id] = word;
+          byId[String(word.id)] = word;
           return byId;
         }, {} as Record<string, TWord>);
         state.wordReference.data = res;
@@ -32,7 +32,7 @@ const verbSlice = createSlice({
       })
       .addCase(setPhrasalVerbsReference, (state, { payload }) => {
         const res = payload.reduce((byId, phrasal) => {
-          byId[phrasal.id] = phrasal;
+          byId[String(phrasal.id)] = phrasal;
           return byId;
         }, {} as Record<string, TPhrasalVerb>);
 

@@ -14,13 +14,13 @@ export type TVerbState = {
 };
 
 export type TWord = {
-  id: string;
+  id: number;
   label: string;
 };
 
 export type TPhrasalVerb = {
-  id: string;
-  words: string[];
+  id: number;
+  words: number[];
   meaning: string;
   translation: {
     ru: string;

@@ -49,3 +49,13 @@
   grid-template-columns: 1fr 1fr;
   gap: 24px;
 }
+
+.listHeader {
+  display: flex;
+  justify-content: space-between;
+}
+
+.listViewBtns {
+  display: flex;
+  gap: 4px;
+}

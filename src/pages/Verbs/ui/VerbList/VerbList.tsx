@@ -4,6 +4,7 @@ import { useAppSelector } from '../../../../app/store';
 import { VerbCard } from '../VerbCard';
 import styles from './VerbList.module.scss';
 import { verbModel } from '../../../../entities/verb';
+import { Button } from '@/shared/shadcn/ui/button';
 
 export const VerbList = () => {
   const wordsmap = useAppSelector(verbModel.selectors.selectWordsMap);
@@ -11,7 +12,7 @@ export const VerbList = () => {
   const phrasals = useAppSelector(verbModel.selectors.selectPhrasals);
 
   const [wordFilter, setWordFilter] = useState('');
-  const [phrasalFilter, setPhrasalFilter] = useState('');
+  const [phrasalFilter, setPhrasalFilter] = useState(0);
 
   const filteredWords = wordFilter
     ? words.filter((word) => word.label.includes(wordFilter))
@@ -25,9 +26,9 @@ export const VerbList = () => {
     setWordFilter(event.target.value);
   };
 
-  const handleFilterPhrasals = (wordId: string) => {
+  const handleFilterPhrasals = (wordId: number) => {
     if (phrasalFilter === wordId) {
-      setPhrasalFilter('');
+      setPhrasalFilter(0);
       return;
     } else {
       setPhrasalFilter(wordId);
@@ -59,7 +60,13 @@ export const VerbList = () => {
         </ul>
       </section>
       <section className={styles.phrasals}>
-        <h2>Phrasal verbs list</h2>
+        <header className={styles.listHeader}>
+          <h2>Phrasal verbs list</h2>
+          <div className={styles.listViewBtns}>
+            <Button>grid</Button>
+            <Button>list</Button>
+          </div>
+        </header>
         {filteredPhrasals && filteredPhrasals.length ? (
           <ul className={styles.phrasalsList}>
             {filteredPhrasals.map((phrasals) => (
