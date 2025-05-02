@@ -45,4 +45,18 @@ export const postNewWord = async (word: string): Promise<TWord> => {
   return data;
 };
 
-// export const postNewPhrasal;
+export const postNewPhrasal = async (phrasal: Omit<TPhrasalVerb, 'id'>): Promise<TPhrasalVerb> => {
+  const response = await fetch(`${BASE_URL}/phrasals`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(phrasal),
+  });
+
+  const data = await response.json();
+
+  console.log('new phrasal added', data);
+
+  return data;
+};

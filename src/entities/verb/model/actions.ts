@@ -1,5 +1,5 @@
 import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
-import { loadWords, loadPhrasalVerbs } from '../../../pages/Verbs/api';
+import { loadWords, loadPhrasalVerbs, postNewPhrasal, postNewWord } from '../../../pages/Verbs/api';
 import { TPhrasalVerb, TWord } from './interface';
 
 export const setWordReference = createAction<TWord[]>('verb/setWordReference');
@@ -23,5 +23,22 @@ export const getPhrasalVerbsReference = createAsyncThunk(
     const data = await loadPhrasalVerbs();
 
     return dispatch(setPhrasalVerbsReference(data));
+  },
+);
+
+export const postWord = createAsyncThunk('verb/postWord', async (word: string, { dispatch }) => {
+  const res = await postNewWord(word);
+  dispatch(getWordReference());
+  return res;
+});
+
+export const postPharasVerb = createAsyncThunk(
+  'verb/postPharasVerb',
+  async (data: Omit<TPhrasalVerb, 'id'>, { dispatch }) => {
+    const res = await postNewPhrasal(data);
+
+    dispatch(getPhrasalVerbsReference());
+
+    return res;
   },
 );

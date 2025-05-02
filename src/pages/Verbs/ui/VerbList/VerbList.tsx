@@ -12,7 +12,7 @@ export const VerbList = () => {
   const phrasals = useAppSelector(verbModel.selectors.selectPhrasals);
 
   const [wordFilter, setWordFilter] = useState('');
-  const [phrasalFilter, setPhrasalFilter] = useState(0);
+  const [phrasalFilter, setPhrasalFilter] = useState('');
 
   const filteredWords = wordFilter
     ? words.filter((word) => word.label.includes(wordFilter))
@@ -26,9 +26,9 @@ export const VerbList = () => {
     setWordFilter(event.target.value);
   };
 
-  const handleFilterPhrasals = (wordId: number) => {
+  const handleFilterPhrasals = (wordId: string) => {
     if (phrasalFilter === wordId) {
-      setPhrasalFilter(0);
+      setPhrasalFilter('');
       return;
     } else {
       setPhrasalFilter(wordId);
