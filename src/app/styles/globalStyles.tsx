@@ -6,11 +6,7 @@ type TGlobalStyleProps = DefaultTheme & {
 };
 
 export const GlobalStyles = createGlobalStyle<TGlobalStyleProps>`
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+
 
   body {
     font-family: "Rubik", sans-serif;

@@ -1,0 +1,21 @@
+.wrap {
+  display: grid;
+  gap: 24px;
+}
+
+.tabItem {
+  background: none;
+  border: none;
+  font-size: 20px;
+  line-height: 1.5;
+  color: rgb(238, 238, 238);
+  cursor: pointer;
+
+  &:not(:last-child) {
+    margin-right: 16px;
+  }
+
+  &.active {
+    color: rgb(37, 206, 222);
+  }
+}

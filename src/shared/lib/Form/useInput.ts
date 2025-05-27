@@ -61,7 +61,7 @@ const useValidator = (value: string, validationSettings?: Validations): Validati
         }
         break;
       case VALIDATION_PROPERTIES.MIN_LEN:
-        if (value.length < validationValue) {
+        if (value.length < (validationValue as number)) {
           resultValids[VALIDATION_PROPERTIES.MIN_LEN] = {
             isError: true,
             message: VALIDATION_ERRORS[VALIDATION_PROPERTIES.MIN_LEN](validationValue),
@@ -74,7 +74,7 @@ const useValidator = (value: string, validationSettings?: Validations): Validati
         }
         break;
       case VALIDATION_PROPERTIES.MAX_LEN:
-        if (value.length > validationValue) {
+        if (value.length > (validationValue as number)) {
           resultValids[VALIDATION_PROPERTIES.MAX_LEN] = {
             isError: true,
             message: VALIDATION_ERRORS[VALIDATION_PROPERTIES.MAX_LEN](validationValue),

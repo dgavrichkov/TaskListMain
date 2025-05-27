@@ -4,7 +4,7 @@ type TLoginData = {
 };
 
 export const loginApi = async (dataToPost: TLoginData) => {
-  const response = await fetch(process.env.REACT_APP_API_URL + '/api/auth/local', {
+  const response = await fetch(import.meta.env.VITE_REACT_APP_API_URL + '/api/auth/local', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
