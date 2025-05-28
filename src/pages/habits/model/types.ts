@@ -9,8 +9,8 @@ export interface IHabit {
 
 // Тип для записи о выполнении привычки
 export interface IEntry {
-  id: number;
-  habitId: number;
+  id: string;
+  habitId: string;
   date: string;
   completed: boolean;
 }

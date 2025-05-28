@@ -1,3 +1,4 @@
+import { sign } from 'crypto';
 import { IHabit } from '../model/types';
 
 const BASE_URL = import.meta.env.VITE_APP_API_URL;
@@ -42,4 +43,16 @@ export const deleteHabit = async (habitId: string) => {
   }
 
   return response.json();
+};
+
+export const loadHabitEntries = async (habitId: string) => {
+  const response = await fetch(`${BASE_URL}/habit-entries?habitId=${habitId}`);
+
+  if (!response.ok) {
+    throw new Error('Error in Habit Entries loading');
+  }
+
+  const result = await response.json();
+  console.log(`habit ${habitId} entries`, result);
+  return result;
 };

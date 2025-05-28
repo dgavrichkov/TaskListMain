@@ -18,7 +18,7 @@ export const HabitList = observer(() => {
       <ul>
         {habitStore.habits.map((habit) => (
           <li key={habit.id}>
-            <HabitItem {...habit} />
+            <HabitItem habit={habit} />
           </li>
         ))}
       </ul>

@@ -210,49 +210,32 @@
     {
       "id": "1",
       "title": "run out of",
-      "words": [
-        "1",
-        "2",
-        "3"
-      ],
+      "words": ["1", "2", "3"],
       "meaning": "",
       "translation": {
         "ru": "что-то закончилось"
       },
-      "examples": [
-        "We ran out of milk"
-      ]
+      "examples": ["We ran out of milk"]
     },
     {
       "id": "2",
       "title": "get along with",
-      "words": [
-        "4",
-        "5",
-        "6"
-      ],
+      "words": ["4", "5", "6"],
       "meaning": "",
       "translation": {
         "ru": "ладить с кем-то"
       },
-      "examples": [
-        "She gets along with her colleagues"
-      ]
+      "examples": ["She gets along with her colleagues"]
     },
     {
       "id": "3",
       "title": "back off",
-      "words": [
-        "10",
-        "14"
-      ],
+      "words": ["10", "14"],
       "meaning": "to stop being involved in a situation, especially in order to allow other people to deal with it themselves",
       "translation": {
         "ru": "отступать"
       },
-      "examples": [
-        "The police told the crowd to back off"
-      ]
+      "examples": ["The police told the crowd to back off"]
     }
   ],
   "habits": [
@@ -269,20 +252,26 @@
       "description": "5 минут каждый день",
       "createdAt": "2025-05-26T09:00:00Z",
       "archived": false
+    }
+  ],
+  "habit-entries": [
+    {
+      "id": "1",
+      "habitId": "1",
+      "date": "2025-05-27",
+      "completed": true
     },
     {
-      "id": "8ac3",
-      "title": "test habit 1",
-      "description": "",
-      "createdAt": "2025-05-28T12:11:19.672Z",
-      "archived": false
+      "id": "2",
+      "habitId": "2",
+      "date": "2025-05-27",
+      "completed": true
     },
     {
-      "id": "6d0c",
-      "title": "test habit 2",
-      "description": "ass ass ass",
-      "createdAt": "2025-05-28T12:11:33.216Z",
-      "archived": false
+      "id": "3",
+      "habitId": "1",
+      "date": "2025-05-26",
+      "completed": true
     }
   ]
 }

@@ -1,10 +1,61 @@
-import { makeAutoObservable } from 'mobx';
-import { IHabit } from './types';
-import { deleteHabit, loadHabits, postNewHabit } from '../api';
+import { flow, makeAutoObservable } from 'mobx';
+import { IEntry, IHabit } from './types';
+import { deleteHabit, loadHabitEntries, loadHabits, postNewHabit } from '../api';
+export class HabitModel {
+  id: string;
+  title: string;
+  description?: string;
+  createdAt: string;
+  archived: boolean;
+
+  entries: IEntry[] = [];
+
+  constructor(data: IHabit) {
+    this.id = data.id;
+    this.title = data.title;
+    this.description = data.description;
+    this.createdAt = data.createdAt;
+    this.archived = data.archived;
+
+    makeAutoObservable(this, {
+      loadEntries: flow,
+      // toggleEntry: flow
+    });
+  }
+
+  *loadEntries() {
+    const data: IEntry[] = yield loadHabitEntries(this.id);
+    this.entries = data;
+  }
+
+  getEntryByDate(date: string): IEntry | undefined {
+    return this.entries.find((e) => e.date === date);
+  }
+
+  // *toggleEntry(date: string) {
+  //   const existing = this.getEntryByDate(date);
+  //   if (existing) {
+  //     const updated: IEntry = yield api.patch(`/entries/${existing.id}`, {
+  //       completed: !existing.completed
+  //     });
+  //     existing.completed = updated.completed;
+  //   } else {
+  //     const newEntry: Omit<IEntry, 'id'> = {
+  //       habitId: this.id,
+  //       date,
+  //       completed: true
+  //     };
+  //     const created: IEntry = yield api.post('/entries', newEntry);
+  //     this.entries.push(created);
+  //   }
+  // }
+}
 
 class Habit {
-  habits: IHabit[] = [];
+  habits: HabitModel[] = [];
   isLoading = false;
+
+  entries: IEntry[] = [];
 
   constructor() {
     makeAutoObservable(this);
@@ -13,8 +64,8 @@ class Habit {
   *loadHabits() {
     this.isLoading = true;
     try {
-      const data: IHabit[] = yield loadHabits();
-      this.habits = data;
+      const raw: IHabit[] = yield loadHabits();
+      this.habits = raw.map((h: IHabit) => new HabitModel(h));
     } finally {
       this.isLoading = false;
     }
@@ -28,8 +79,8 @@ class Habit {
       archived: false,
     };
 
-    const created: IHabit = yield postNewHabit(newHabit);
-    this.habits.push(created);
+    const createdHabit: IHabit = yield postNewHabit(newHabit);
+    this.habits.push(new HabitModel(createdHabit));
   }
 
   *deleteHabit(id: string) {
