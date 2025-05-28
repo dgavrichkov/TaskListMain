@@ -271,10 +271,17 @@
       "archived": false
     },
     {
-      "id": "bc01",
-      "title": "test 2",
-      "description": "test habit",
-      "createdAt": "2025-05-28T10:54:36.329Z",
+      "id": "8ac3",
+      "title": "test habit 1",
+      "description": "",
+      "createdAt": "2025-05-28T12:11:19.672Z",
+      "archived": false
+    },
+    {
+      "id": "6d0c",
+      "title": "test habit 2",
+      "description": "ass ass ass",
+      "createdAt": "2025-05-28T12:11:33.216Z",
       "archived": false
     }
   ]

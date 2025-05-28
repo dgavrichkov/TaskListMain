@@ -3,7 +3,7 @@ import { IHabit } from '../model/types';
 import { differenceInCalendarDays, format, parseISO } from 'date-fns';
 import { observer } from 'mobx-react-lite';
 import { Button } from '@/shared/shadcn/ui/button';
-import { habitStore } from '../model/store';
+import { HabitItemDelete } from './HabitItemDelete';
 
 type Props = IHabit;
 
@@ -19,17 +19,10 @@ export const HabitItem = observer((habit: Props) => {
       <p>Дата создания: {formatedCreated}</p>
       <p>Day count: {dayCount}</p>
       <div>TODO: Таблица отметок привычки</div>
-      <Button type="button" variant={'default'}>
+      <Button className="cursor-pointer" type="button" variant={'default'}>
         Выполнить
       </Button>
-      <Button
-        className="cursor-pointer"
-        type="button"
-        variant={'destructive'}
-        onClick={() => habitStore.deleteHabit(habit.id)}
-      >
-        Удалить
-      </Button>
+      <HabitItemDelete {...habit} />
     </Card>
   );
 });
