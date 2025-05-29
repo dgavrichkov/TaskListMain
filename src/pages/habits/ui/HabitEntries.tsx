@@ -1,6 +1,7 @@
 import { HabitModel } from '../model/store';
 import { observer } from 'mobx-react-lite';
 import { differenceInCalendarDays, format, parseISO } from 'date-fns';
+import { HabitEntry } from './HabitEntry';
 
 type Props = {
   habit: HabitModel;
@@ -20,13 +21,14 @@ export const HabitEntries = observer(({ habit }: Props) => {
   }
   return (
     <div>
-      <p>Создано: {formatedCreated}</p>
-      <ul>
+      <p className="mb-2">Создано: {formatedCreated}</p>
+      {/* view - месяц */}
+      <ul className="grid grid-cols-31 gap-2">
         {dates.map((date) => {
           const entry = habit.getEntryByDate(date);
           return (
-            <li key={date}>
-              {format(parseISO(date), 'dd.MM.yyyy')} — {entry?.completed ? '✅' : '⬜️'}
+            <li key={date} title={format(parseISO(date), 'dd.MM.yyyy')}>
+              {entry ? <HabitEntry habitEntry={entry} /> : <span>⬜️</span>}
             </li>
           );
         })}
