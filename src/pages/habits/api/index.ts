@@ -1,5 +1,4 @@
-import { sign } from 'crypto';
-import { IHabit } from '../model/types';
+import { IEntry, IHabit } from '../model/types';
 
 const BASE_URL = import.meta.env.VITE_APP_API_URL;
 
@@ -53,6 +52,38 @@ export const loadHabitEntries = async (habitId: string) => {
   }
 
   const result = await response.json();
-  console.log(`habit ${habitId} entries`, result);
+
+  return result;
+};
+
+export const postHabitEntry = async (newEntry: Omit<IEntry, 'id'>) => {
+  const response = await fetch(`${BASE_URL}/habit-entries`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(newEntry),
+  });
+  if (!response.ok) {
+    throw new Error('Error in Habit Entry creation');
+  }
+  const result = await response.json();
+
+  return result;
+};
+
+export const patchHabitEntryCompletion = async (entryId: string, completed: boolean) => {
+  const response = await fetch(`${BASE_URL}/habit-entries/${entryId}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ completed }),
+  });
+  if (!response.ok) {
+    throw new Error('Error in Habit Entry completion update');
+  }
+  const result = await response.json();
+
   return result;
 };

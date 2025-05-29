@@ -1,7 +1,8 @@
 import { HabitModel } from '../model/store';
 import { observer } from 'mobx-react-lite';
-import { differenceInCalendarDays, format, parseISO } from 'date-fns';
+import { differenceInCalendarDays, format, parseISO, startOfWeek } from 'date-fns';
 import { HabitEntry } from './HabitEntry';
+import { cn } from '@/shared/shadcn/utils';
 
 type Props = {
   habit: HabitModel;
@@ -12,13 +13,16 @@ export const HabitEntries = observer(({ habit }: Props) => {
   const formatedCreated = format(isoCreated, 'dd-MM-yyyy');
   const dayCount = differenceInCalendarDays(new Date(), isoCreated);
   const dates: string[] = [];
+  // const createdWeekStartDate = startOfWeek(isoCreated);
+  // const currentWeekStartData = startOfWeek(new Date());
 
   // Генерируем список дат от создания до сегодня
-  for (let i = 1; i <= dayCount; i++) {
+  for (let i = 0; i <= dayCount; i++) {
     const date = new Date();
     date.setDate(date.getDate() - i);
     dates.unshift(format(date, 'yyyy-MM-dd')); // от старых к новым
   }
+
   return (
     <div>
       <p className="mb-2">Создано: {formatedCreated}</p>
@@ -27,8 +31,8 @@ export const HabitEntries = observer(({ habit }: Props) => {
         {dates.map((date) => {
           const entry = habit.getEntryByDate(date);
           return (
-            <li key={date} title={format(parseISO(date), 'dd.MM.yyyy')}>
-              {entry ? <HabitEntry habitEntry={entry} /> : <span>⬜️</span>}
+            <li className="flex" key={date} title={format(parseISO(date), 'dd.MM.yyyy')}>
+              <HabitEntry date={date} habit={habit} habitEntry={entry} />
             </li>
           );
         })}

@@ -1,6 +1,13 @@
 import { flow, makeAutoObservable } from 'mobx';
 import { IEntry, IHabit } from './types';
-import { deleteHabit, loadHabitEntries, loadHabits, postNewHabit } from '../api';
+import {
+  deleteHabit,
+  loadHabitEntries,
+  loadHabits,
+  patchHabitEntryCompletion,
+  postHabitEntry,
+  postNewHabit,
+} from '../api';
 export class HabitModel {
   id: string;
   title: string;
@@ -19,7 +26,7 @@ export class HabitModel {
 
     makeAutoObservable(this, {
       loadEntries: flow,
-      // toggleEntry: flow
+      toggleEntry: flow,
     });
   }
 
@@ -32,23 +39,25 @@ export class HabitModel {
     return this.entries.find((e) => e.date === date);
   }
 
-  // *toggleEntry(date: string) {
-  //   const existing = this.getEntryByDate(date);
-  //   if (existing) {
-  //     const updated: IEntry = yield api.patch(`/entries/${existing.id}`, {
-  //       completed: !existing.completed
-  //     });
-  //     existing.completed = updated.completed;
-  //   } else {
-  //     const newEntry: Omit<IEntry, 'id'> = {
-  //       habitId: this.id,
-  //       date,
-  //       completed: true
-  //     };
-  //     const created: IEntry = yield api.post('/entries', newEntry);
-  //     this.entries.push(created);
-  //   }
-  // }
+  *toggleEntry(date: string) {
+    const existing = this.getEntryByDate(date);
+    if (existing) {
+      const updated: IEntry = yield patchHabitEntryCompletion(existing.id, !existing.completed);
+
+      const updIndex = this.entries.findIndex((e) => e.id === updated.id);
+      if (updIndex !== -1) {
+        this.entries[updIndex] = updated;
+      }
+    } else {
+      const newEntry: Omit<IEntry, 'id'> = {
+        habitId: this.id,
+        date,
+        completed: true,
+      };
+      const created: IEntry = yield postHabitEntry(newEntry);
+      this.entries.push(created);
+    }
+  }
 }
 
 class Habit {
