@@ -301,6 +301,12 @@
       "habitId": "2",
       "date": "2025-05-30",
       "completed": false
+    },
+    {
+      "id": "302d",
+      "habitId": "1",
+      "date": "2025-05-25",
+      "completed": false
     }
   ]
 }

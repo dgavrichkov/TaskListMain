@@ -5,7 +5,8 @@ import { HabitItemDelete } from './HabitItemDelete';
 import { HabitEntries } from './HabitEntries';
 import { HabitModel } from '../model/store';
 import { useEffect } from 'react';
-import { CheckCircle, CircleIcon, PanelLeft } from 'lucide-react';
+import { PanelLeft } from 'lucide-react';
+import { HabitTodayButton } from './HabitTodayButton/HabitTodayButton';
 
 type Props = {
   habit: HabitModel;
@@ -23,15 +24,7 @@ export const HabitItem = observer(({ habit }: Props) => {
           <PanelLeft />
         </Button>
         <CardTitle>{habit.title}</CardTitle>
-        <Button
-          className="cursor-pointer ml-auto"
-          size="icon"
-          title="Выполнить"
-          type="button"
-          variant="default"
-        >
-          <CircleIcon />
-        </Button>
+        <HabitTodayButton habit={habit} />
       </CardHeader>
       {habit.description && <p>{habit.description}</p>}
       <HabitEntries habit={habit} />
