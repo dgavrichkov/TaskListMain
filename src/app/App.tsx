@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { QueryClientProvider } from '@tanstack/react-query';
 import { Provider } from 'react-redux';
 import { Router } from './Router';
 import { StyleProvider } from './providers/StyleProvider';
@@ -9,8 +9,7 @@ import { persistor, store } from './store';
 import { PersistGate } from 'redux-persist/integration/react';
 import { ErrorBoundary } from '../shared/ui/ErrorBoundary';
 import './styles/index.css';
-
-const queryClient = new QueryClient();
+import { queryClient } from '@/shared/api/client';
 
 export const App: FC = function () {
   return (

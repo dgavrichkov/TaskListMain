@@ -1,6 +1,5 @@
+import { BASE_URL } from '@/shared/api/client';
 import { IEntry, IHabit } from '../model/types';
-
-const BASE_URL = import.meta.env.VITE_APP_API_URL;
 
 export const loadHabits = async (signal?: AbortSignal): Promise<IHabit[]> => {
   const response = await fetch(`${BASE_URL}/habits`, { signal });
