@@ -8,23 +8,23 @@ import { HabitModel } from '../../model/store';
 type Props = {
   date: string;
   habit: HabitModel;
-  habitEntry: IEntry | undefined | null;
+  habitEntries: IEntry[];
 };
 
-export const HabitEntry = ({ date, habitEntry, habit }: Props) => {
+export const HabitDaymark = ({ date, habitEntries, habit }: Props) => {
   const todayString = format(new Date(), 'yyyy-MM-dd');
+  const isMultiple = habit.countToComplete > 1;
 
   const handleEntryToggle = () => {
-    habit.toggleEntry(date);
+    // habit.toggleEntry(date);
   };
 
   return (
     <div className={cn('flex')}>
-      {habitEntry && habitEntry.completed ? (
+      {habitEntries.length > 0 ? (
         <Button
           className={cn('bg-green-600 hover:bg-green-700 text-white')}
           size="icon"
-          // style={{ width: 22, height: 22 }}
           variant="secondary"
           onClick={handleEntryToggle}
         >

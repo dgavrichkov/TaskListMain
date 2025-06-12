@@ -1,7 +1,7 @@
 import { HabitModel } from '../model/store';
 import { observer } from 'mobx-react-lite';
 import { differenceInCalendarDays, format, parseISO, startOfWeek } from 'date-fns';
-import { HabitEntry } from './HabitEntry';
+import { HabitDaymark } from './HabitEntry';
 import { cn } from '@/shared/shadcn/utils';
 
 type Props = {
@@ -27,12 +27,12 @@ export const HabitEntries = observer(({ habit }: Props) => {
     <div>
       <p className="mb-2">Создано: {formatedCreated}</p>
       {/* view - месяц */}
-      <ul className="grid grid-cols-31 gap-2">
+      <ul className="grid grid-cols-31 gap-2" style={{ width: 'max-content' }}>
         {dates.map((date) => {
-          const entry = habit.getEntryByDate(date);
+          const entries = habit.getEntriesByDate(date);
           return (
             <li className="flex" key={date} title={format(parseISO(date), 'dd.MM.yyyy')}>
-              <HabitEntry date={date} habit={habit} habitEntry={entry} />
+              <HabitDaymark date={date} habit={habit} habitEntries={entries} />
             </li>
           );
         })}

@@ -5,6 +5,7 @@ export interface IHabit {
   description?: string;
   createdAt: string;
   archived: boolean;
+  countToComplete: number;
 }
 
 // Тип для записи о выполнении привычки

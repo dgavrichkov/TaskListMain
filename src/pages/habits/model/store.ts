@@ -2,6 +2,7 @@ import { flow, makeAutoObservable } from 'mobx';
 import { IEntry, IHabit } from './types';
 import {
   deleteHabit,
+  deleteHabitEntry,
   loadHabitEntries,
   loadHabits,
   patchHabitEntryCompletion,
@@ -14,6 +15,7 @@ export class HabitModel {
   description?: string;
   createdAt: string;
   archived: boolean;
+  countToComplete: number;
 
   entries: IEntry[] = [];
 
@@ -23,10 +25,12 @@ export class HabitModel {
     this.description = data.description;
     this.createdAt = data.createdAt;
     this.archived = data.archived;
+    this.countToComplete = data.countToComplete || 1;
 
     makeAutoObservable(this, {
       loadEntries: flow,
-      toggleEntry: flow,
+      createEntryCompletion: flow,
+      deleteEntryCompletion: flow,
     });
   }
 
@@ -35,29 +39,41 @@ export class HabitModel {
     this.entries = data;
   }
 
-  getEntryByDate(date: string): IEntry | undefined {
-    return this.entries.find((e) => e.date === date);
+  getEntriesByDate(date: string): IEntry[] {
+    return this.entries.filter((e) => e.date === date);
   }
 
-  *toggleEntry(date: string) {
-    const existing = this.getEntryByDate(date);
-    if (existing) {
-      const updated: IEntry = yield patchHabitEntryCompletion(existing.id, !existing.completed);
+  *createEntryCompletion(date: string) {
+    const newEntry: Omit<IEntry, 'id'> = {
+      habitId: this.id,
+      date,
+      completed: true,
+    };
+    const created: IEntry = yield postHabitEntry(newEntry);
+    this.entries.push(created);
+  }
 
-      const updIndex = this.entries.findIndex((e) => e.id === updated.id);
-      if (updIndex !== -1) {
-        this.entries[updIndex] = updated;
-      }
-    } else {
-      const newEntry: Omit<IEntry, 'id'> = {
-        habitId: this.id,
-        date,
-        completed: true,
-      };
-      const created: IEntry = yield postHabitEntry(newEntry);
-      this.entries.push(created);
+  *deleteEntryCompletion(date: string) {
+    const existingEntries = this.getEntriesByDate(date);
+
+    const entryToDelete = existingEntries[0];
+
+    yield deleteHabitEntry(entryToDelete.id);
+    this.entries = this.entries.filter((e) => e.id !== entryToDelete.id);
+  }
+
+  deleteDailyCompletions = flow(function* (
+    this: HabitModel,
+    date: string,
+  ): Generator<Promise<void>, void, any> {
+    const entriesToDelete = this.entries.filter((entry) => entry.date === date);
+
+    for (const entry of entriesToDelete) {
+      yield deleteHabitEntry(entry.id);
     }
-  }
+
+    this.entries = this.entries.filter((e) => e.date !== date);
+  });
 }
 
 class Habit {
@@ -80,12 +96,13 @@ class Habit {
     }
   }
 
-  *createHabit(title: string, description = '') {
+  *createHabit(title: string, description = '', countToComplete = 1) {
     const newHabit: Omit<IHabit, 'id'> = {
       title,
       description,
       createdAt: new Date().toISOString(),
       archived: false,
+      countToComplete,
     };
 
     const createdHabit: IHabit = yield postNewHabit(newHabit);

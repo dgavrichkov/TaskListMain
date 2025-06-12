@@ -71,6 +71,17 @@ export const postHabitEntry = async (newEntry: Omit<IEntry, 'id'>) => {
   return result;
 };
 
+export const deleteHabitEntry = async (entryId: string) => {
+  const response = await fetch(`${BASE_URL}/habit-entries/${entryId}`, {
+    method: 'DELETE',
+  });
+  if (!response.ok) {
+    throw new Error('Error in Habit Entry deletion');
+  }
+  const result = await response.json();
+  return result;
+};
+
 export const patchHabitEntryCompletion = async (entryId: string, completed: boolean) => {
   const response = await fetch(`${BASE_URL}/habit-entries/${entryId}`, {
     method: 'PATCH',
