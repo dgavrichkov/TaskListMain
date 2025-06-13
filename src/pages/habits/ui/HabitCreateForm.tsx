@@ -26,11 +26,10 @@ export const HabitCreateForm = () => {
         handleSubmit();
       }}
     >
-      <div>create habit</div>
       <Field name="title">
         {({ state, handleChange, handleBlur }) => (
           <Input
-            className="input input-bordered w-full max-w-xs"
+            className="input input-bordered w-full"
             placeholder="Название привычки"
             type="text"
             value={state.value}
@@ -42,7 +41,7 @@ export const HabitCreateForm = () => {
       <Field name="description">
         {({ state, handleChange, handleBlur }) => (
           <Input
-            className="input input-bordered w-full max-w-xs"
+            className="input input-bordered w-full"
             placeholder="Описание привычки"
             type="text"
             value={state.value}
@@ -54,11 +53,8 @@ export const HabitCreateForm = () => {
       <Subscribe selector={(state) => [state.canSubmit, state.isSubmitting]}>
         {([canSubmit, isSubmitting]) => (
           <>
-            <Button disabled={!canSubmit} type="submit">
+            <Button className="mt-4 cursor-pointer" disabled={!canSubmit} type="submit">
               {isSubmitting ? '...' : 'Submit'}
-            </Button>
-            <Button type="reset" onClick={() => reset()}>
-              Reset
             </Button>
           </>
         )}

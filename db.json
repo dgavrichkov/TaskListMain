@@ -293,6 +293,14 @@
       "createdAt": "2025-05-26T09:00:00Z",
       "archived": false,
       "countToComplete": 1
+    },
+    {
+      "id": "47d1",
+      "title": "Пить чай",
+      "description": "Кто не пьет чай - тот чмо",
+      "createdAt": "2025-06-13T22:36:53.848Z",
+      "archived": false,
+      "countToComplete": 1
     }
   ],
   "habit-entries": [
@@ -345,15 +353,21 @@
       "completed": true
     },
     {
-      "id": "3d2a",
+      "id": "c10d",
       "habitId": "1",
       "date": "2025-06-13",
       "completed": true
     },
     {
-      "id": "086a",
+      "id": "48a1",
       "habitId": "1",
       "date": "2025-06-13",
+      "completed": true
+    },
+    {
+      "id": "20f5",
+      "habitId": "47d1",
+      "date": "2025-06-14",
       "completed": true
     }
   ]
