@@ -2,11 +2,11 @@ import { Card, CardFooter, CardHeader, CardTitle } from '@/shared/shadcn/ui/card
 import { observer } from 'mobx-react-lite';
 import { Button } from '@/shared/shadcn/ui/button';
 import { HabitItemDelete } from './HabitItemDelete';
-import { HabitEntries } from './HabitEntries';
 import { HabitModel } from '../model/store';
 import { useEffect } from 'react';
 import { PanelLeft } from 'lucide-react';
 import { HabitTodayButton } from './HabitTodayButton/HabitTodayButton';
+import { HabitCalendar } from './HabitCalendar';
 
 type Props = {
   habit: HabitModel;
@@ -18,7 +18,7 @@ export const HabitItem = observer(({ habit }: Props) => {
   }, [habit]);
 
   return (
-    <Card className="mb-4 px-2 py-3 gap-2">
+    <Card className="mb-4 px-4 py-4 gap-2">
       <CardHeader className="flex gap-2 items-center p-0">
         <Button className="mr-2 cursor-pointer" size="icon" title="menu" variant="ghost">
           <PanelLeft />
@@ -27,7 +27,7 @@ export const HabitItem = observer(({ habit }: Props) => {
         <HabitTodayButton habit={habit} />
       </CardHeader>
       {habit.description && <p>{habit.description}</p>}
-      <HabitEntries habit={habit} />
+      <HabitCalendar habit={habit} />
       <CardFooter className="p-0">
         <HabitItemDelete {...habit} />
       </CardFooter>
