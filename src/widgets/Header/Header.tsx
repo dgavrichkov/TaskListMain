@@ -36,6 +36,11 @@ const MAIN_MENU_ITEMS = [
     label: 'Verbs',
     path: PATHS.VERBS,
   },
+  {
+    id: 6,
+    label: 'Habits',
+    path: PATHS.HABITS,
+  },
 ];
 
 export const Header: FC<THeaderProps> = ({ pageClass }) => {

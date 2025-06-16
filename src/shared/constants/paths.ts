@@ -7,4 +7,5 @@ export const PATHS = {
   POSTS: 'posts',
   EXAMPLES: 'examples',
   VERBS: 'verbs',
+  HABITS: 'habits',
 };

@@ -16,6 +16,28 @@
   "profile": {
     "name": "typicode"
   },
+  "users": [
+    {
+      "id": "1",
+      "name": "John Doe"
+    },
+    {
+      "id": "2",
+      "name": "Jane Smith"
+    },
+    {
+      "id": "3",
+      "name": "Alice Johnson"
+    },
+    {
+      "id": "4",
+      "name": "Bob Brown"
+    },
+    {
+      "id": "5",
+      "name": "Charlie White"
+    }
+  ],
   "tasks": [
     {
       "id": "1",
@@ -210,32 +232,155 @@
     {
       "id": "1",
       "title": "run out of",
-      "words": ["1", "2", "3"],
+      "words": [
+        "1",
+        "2",
+        "3"
+      ],
       "meaning": "",
       "translation": {
         "ru": "что-то закончилось"
       },
-      "examples": ["We ran out of milk"]
+      "examples": [
+        "We ran out of milk"
+      ]
     },
     {
       "id": "2",
       "title": "get along with",
-      "words": ["4", "5", "6"],
+      "words": [
+        "4",
+        "5",
+        "6"
+      ],
       "meaning": "",
       "translation": {
         "ru": "ладить с кем-то"
       },
-      "examples": ["She gets along with her colleagues"]
+      "examples": [
+        "She gets along with her colleagues"
+      ]
     },
     {
       "id": "3",
       "title": "back off",
-      "words": ["10", "14"],
+      "words": [
+        "10",
+        "14"
+      ],
       "meaning": "to stop being involved in a situation, especially in order to allow other people to deal with it themselves",
       "translation": {
         "ru": "отступать"
       },
-      "examples": ["The police told the crowd to back off"]
+      "examples": [
+        "The police told the crowd to back off"
+      ]
+    }
+  ],
+  "habits": [
+    {
+      "id": "1",
+      "title": "Чистка зубов",
+      "description": "Дважды в день, но пока без учёта зарядов",
+      "createdAt": "2025-05-25T08:00:00Z",
+      "archived": false,
+      "countToComplete": 2
+    },
+    {
+      "id": "2",
+      "title": "Медитация",
+      "description": "5 минут каждый день",
+      "createdAt": "2025-05-26T09:00:00Z",
+      "archived": false,
+      "countToComplete": 1
+    },
+    {
+      "id": "47d1",
+      "title": "Пить чай",
+      "description": "Кто не пьет чай - тот чмо",
+      "createdAt": "2024-06-13T22:36:53.848Z",
+      "archived": false,
+      "countToComplete": 1
+    }
+  ],
+  "habit-entries": [
+    {
+      "id": "1",
+      "habitId": "1",
+      "date": "2025-05-27",
+      "completed": true
+    },
+    {
+      "id": "2",
+      "habitId": "2",
+      "date": "2025-05-27",
+      "completed": true
+    },
+    {
+      "id": "3",
+      "habitId": "1",
+      "date": "2025-05-26",
+      "completed": true
+    },
+    {
+      "id": "4d53",
+      "habitId": "1",
+      "date": "2025-05-30",
+      "completed": true
+    },
+    {
+      "id": "0446",
+      "habitId": "2",
+      "date": "2025-05-30",
+      "completed": false
+    },
+    {
+      "id": "302d",
+      "habitId": "1",
+      "date": "2025-05-25",
+      "completed": false
+    },
+    {
+      "id": "0920",
+      "habitId": "1",
+      "date": "2025-05-31",
+      "completed": false
+    },
+    {
+      "id": "c6b9",
+      "habitId": "1",
+      "date": "2025-06-12",
+      "completed": true
+    },
+    {
+      "id": "c10d",
+      "habitId": "1",
+      "date": "2025-06-13",
+      "completed": true
+    },
+    {
+      "id": "48a1",
+      "habitId": "1",
+      "date": "2025-06-13",
+      "completed": true
+    },
+    {
+      "id": "20f5",
+      "habitId": "47d1",
+      "date": "2025-06-14",
+      "completed": true
+    },
+    {
+      "id": "ce3b",
+      "habitId": "1",
+      "date": "2025-06-14",
+      "completed": true
+    },
+    {
+      "id": "09fa",
+      "habitId": "1",
+      "date": "2025-06-14",
+      "completed": true
     }
   ]
 }

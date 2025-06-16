@@ -1,0 +1,38 @@
+{
+  "habits": [
+    {
+      "id": 1,
+      "title": "Чистка зубов",
+      "description": "Дважды в день, но пока без учёта зарядов",
+      "createdAt": "2025-05-25T08:00:00Z",
+      "archived": false
+    },
+    {
+      "id": 2,
+      "title": "Медитация",
+      "description": "5 минут каждый день",
+      "createdAt": "2025-05-26T09:00:00Z",
+      "archived": false
+    }
+  ],
+  "entries": [
+    {
+      "id": 1,
+      "habitId": 1,
+      "date": "2025-05-27",
+      "completed": true
+    },
+    {
+      "id": 2,
+      "habitId": 2,
+      "date": "2025-05-27",
+      "completed": false
+    },
+    {
+      "id": 3,
+      "habitId": 1,
+      "date": "2025-05-26",
+      "completed": true
+    }
+  ]
+}
