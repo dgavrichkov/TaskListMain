@@ -17,16 +17,20 @@ export const HabitCalendar = observer(({ habit }: Props) => {
   const dayCount = differenceInCalendarDays(currentEndOfWeek, createdWeekStartDate);
   const dates: string[] = [];
 
-  // Генерируем список дат от создания до сегодня
+  // Генерируем список дат от creaedWeekStartDate до текущей даты
   for (let i = 0; i <= dayCount; i++) {
-    const date = new Date();
-    date.setDate(date.getDate() - i);
-    dates.unshift(format(date, 'yyyy-MM-dd')); // от старых к новым
+    const date = format(
+      new Date(createdWeekStartDate.getTime() + i * 24 * 60 * 60 * 1000),
+      'yyyy-MM-dd',
+    );
+    dates.push(date);
   }
 
   return (
     <div>
-      <p className="mb-2">Создано: {formatedCreated}</p>
+      <p className="mb-2">
+        Создано: {formatedCreated}, ПН - {format(createdWeekStartDate, 'dd.MM.yyyy')}
+      </p>
       <div className={css.calendarBox}>
         <ul className={css.legend}>
           <li>Mon</li>
