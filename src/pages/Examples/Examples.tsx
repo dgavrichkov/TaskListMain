@@ -1,3 +1,4 @@
+import { SearchComponent } from '@/pages/Examples/ui/SearchComponent';
 import { SimpleTicker, IntervalTicker } from '../../features/Clock';
 import { CounterWithCustomStore } from '../../features/CounterWithCustomStore';
 import TaskApp from './ReducerContext';
@@ -28,9 +29,14 @@ export const Examples = () => {
         <hr style={{ margin: '12px 0' }} />
         <CounterWithCustomStore />
       </ExampleContainer>
-      <ExampleContainer columns={3}>
+      <hr style={{ margin: '12px 0' }} />
+      <ExampleContainer columns={2}>
         <SimpleTicker />
         <IntervalTicker />
+      </ExampleContainer>
+      <hr style={{ margin: '12px 0' }} />
+      <ExampleContainer>
+        <SearchComponent />
       </ExampleContainer>
     </>
   );
