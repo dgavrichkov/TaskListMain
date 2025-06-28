@@ -14,7 +14,7 @@ export const Posts: FC = () => {
     <div>
       <h2>Posts from typicode</h2>
       <Spacer />
-      {status === 'loading' ? (
+      {status === 'pending' ? (
         <div>Loading...</div>
       ) : (
         <section>
