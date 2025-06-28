@@ -1,9 +1,9 @@
-import { Button } from '@/shared/shadcn/ui/button';
 import { CheckCircleIcon, CircleIcon } from 'lucide-react';
 import { HabitModel } from '../../model/store';
 import { format } from 'date-fns';
 import { cn } from '@/shared/shadcn/utils';
 import { observer } from 'mobx-react-lite';
+import { Button } from '@/shared/ui';
 
 type Props = {
   habit: HabitModel;

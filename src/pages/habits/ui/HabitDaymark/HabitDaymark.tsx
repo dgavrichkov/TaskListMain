@@ -1,8 +1,8 @@
 import { IEntry } from '../../model/types';
 import { cn } from '@/shared/shadcn/utils';
-import { Button } from '@/shared/shadcn/ui/button';
 import { CheckIcon, CircleDashedIcon } from 'lucide-react';
 import { HabitModel } from '../../model/store';
+import { Button } from '@/shared/ui';
 
 type Props = {
   date: string;

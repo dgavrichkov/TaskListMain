@@ -33,10 +33,10 @@ export const Task: FC = () => {
       <h3>{task.name}</h3>
       <p>{category?.title}</p>
       <i className="id">Task id: {task.id}</i>
-      <Button buttonType="button" onClick={handleToggle}>
+      <Button type="button" onClick={handleToggle}>
         {!task.done ? 'Done' : 'Not done'}
       </Button>
-      <Button buttonType="button" onClick={handleDelete}>
+      <Button type="button" onClick={handleDelete}>
         Delete
       </Button>
     </StyledDetailPageWrap>

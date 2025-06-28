@@ -61,7 +61,7 @@ export const Filter: FC<TFilterProps> = ({ forPage }) => {
               </Tag>
             ))}
         </Styled.TagsList>
-        <Button buttonType="button" className="item item--clear" onClick={handleClearFilter}>
+        <Button className="item item--clear" type="button" onClick={handleClearFilter}>
           Clear filter
         </Button>
       </Styled.Wrap>

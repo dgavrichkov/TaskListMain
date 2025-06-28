@@ -1,12 +1,12 @@
 import { Card, CardFooter, CardHeader, CardTitle } from '@/shared/shadcn/ui/card';
 import { observer } from 'mobx-react-lite';
-import { Button } from '@/shared/shadcn/ui/button';
 import { HabitItemDelete } from './HabitItemDelete';
 import { HabitModel } from '../model/store';
 import { useEffect } from 'react';
 import { PanelLeft } from 'lucide-react';
 import { HabitTodayButton } from './HabitTodayButton/HabitTodayButton';
 import { HabitCalendar } from './HabitCalendar';
+import { Button } from '@/shared/ui';
 
 type Props = {
   habit: HabitModel;

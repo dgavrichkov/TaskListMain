@@ -41,7 +41,7 @@ export const Login: FC = () => {
         tag="input"
         title="Password"
       />
-      <Button buttonType="button" onClick={handleLogin}>
+      <Button type="button" onClick={handleLogin}>
         Log In
       </Button>
     </StyledCreateForm>

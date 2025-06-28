@@ -1,7 +1,7 @@
-import { Button } from '@/shared/shadcn/ui/button';
 import { Input } from '@/shared/shadcn/ui/Input';
 import { useForm } from '@tanstack/react-form';
 import { habitStore } from '../model/store';
+import { Button } from '@/shared/ui';
 
 export const HabitCreateForm = () => {
   const { Field, Subscribe, handleSubmit, reset } = useForm({
