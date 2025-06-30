@@ -1,5 +1,5 @@
 import { FC, DetailedHTMLProps, HTMLAttributes } from 'react';
-import { Styled } from './styled';
+import { Badge } from '../Badge';
 
 type TTagProps = DetailedHTMLProps<HTMLAttributes<HTMLButtonElement>, HTMLButtonElement> & {
   isActive?: boolean;
@@ -7,8 +7,8 @@ type TTagProps = DetailedHTMLProps<HTMLAttributes<HTMLButtonElement>, HTMLButton
 
 export const Tag: FC<TTagProps> = ({ children, onClick, isActive = false }) => {
   return (
-    <Styled.Tag isActive={isActive} type="button" onClick={onClick}>
+    <Badge variant={isActive ? 'default' : 'secondary'} onClick={onClick}>
       {children}
-    </Styled.Tag>
+    </Badge>
   );
 };
