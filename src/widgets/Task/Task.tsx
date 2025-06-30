@@ -1,9 +1,10 @@
-import { Button } from '../../shared/ui';
-import styled from 'styled-components';
+import { Button, Panel } from '../../shared/ui';
 import { NavLink } from 'react-router-dom';
 import { TTask, selectCategoryById } from '../../entities';
 import { useAppSelector } from '../../app/store';
 import { FC } from 'react';
+import { Card, CardFooter, CardHeader } from '@/shared/ui/Card';
+import { cn } from '@/shared/shadcn/utils';
 
 type TTaskProps = TTask & {
   onDoneTask: () => void;
@@ -14,64 +15,25 @@ export const Task: FC<TTaskProps> = ({ name, categoryID, id, done, onDoneTask, o
   const category = useAppSelector(selectCategoryById(categoryID));
 
   return (
-    <StyledTaskItem className={`task-item`} done={done}>
-      <b className="name">{name}</b>
-      <i className="category">{category?.title}</i>
-      <NavLink to={id}>Открыть</NavLink>
-      <Button buttonType="button" className="done" onClick={onDoneTask}>
-        {!done ? 'Done' : 'Not Done'}
-      </Button>
-      <Button buttonType="button" className="delete" onClick={onDeleteTask}>
-        Delete
-      </Button>
-    </StyledTaskItem>
+    <Card className={cn({ 'bg-gray-200 inset-shadow-xs': done })}>
+      <CardHeader>
+        <b className="name">{name}</b>
+        <div>
+          <i className="category">{category?.title}</i>
+        </div>
+        <div>
+          <NavLink to={id}>Открыть</NavLink>
+        </div>
+      </CardHeader>
+
+      <CardFooter className="gap-2">
+        <Button className="done" type="button" onClick={onDoneTask}>
+          {!done ? 'Done' : 'Not Done'}
+        </Button>
+        <Button className="delete" type="button" onClick={onDeleteTask}>
+          Delete
+        </Button>
+      </CardFooter>
+    </Card>
   );
 };
-
-type TStyledWrapProps = {
-  className: string;
-  done: boolean;
-};
-
-const StyledTaskItem = styled.div<TStyledWrapProps>`
-  border-radius: 4px;
-  box-shadow: ${(props) => props.theme.shadows.button};
-  padding: 14px;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 7px;
-  column-gap: 14px;
-  border: 1px solid transparent;
-
-  & > .name {
-    display: block;
-    grid-column: 1 / -1;
-  }
-
-  .category {
-    display: block;
-    grid-column: 1;
-    grid-row: 2;
-  }
-
-  .done {
-    grid-row: 3;
-    grid-column: 1;
-  }
-
-  .delete {
-    grid-column: 2;
-    grid-row: 3;
-  }
-
-  ${(props) =>
-    props.done &&
-    `
-      box-shadow: ${props.theme.shadows.buttonInset}
-      opacity: 0.5;
-      .name {
-        text-decoration: line-through;
-        opacity: 0.6;
-      }
-  `}
-`;

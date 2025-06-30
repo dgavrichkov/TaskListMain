@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-import styled from 'styled-components';
 import { Task } from '../Task/Task';
 import { useAppDispatch, useAppSelector } from '../../app/store';
 import { TTask, deleteTask, toggleTask } from '../../entities';
@@ -14,10 +13,10 @@ export const TaskList: FC = () => {
     filter.length > 0 ? tasks.filter((task) => filter.includes(task.categoryID)) : tasks;
 
   return (
-    <StyledList>
+    <ul className="flex flex-col gap-4">
       {filteredTasks.length > 0
         ? filteredTasks.map((task: TTask) => (
-            <li className="tasks-list__item" key={task.id}>
+            <li key={task.id}>
               <Task
                 categoryID={task.categoryID}
                 done={task.done}
@@ -29,15 +28,6 @@ export const TaskList: FC = () => {
             </li>
           ))
         : 'No tasks'}
-    </StyledList>
+    </ul>
   );
 };
-
-const StyledList = styled.ul`
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 10px;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-`;
