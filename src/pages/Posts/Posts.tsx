@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import { Button, Spacer } from '../../shared/ui/';
 import { Portal } from '../../shared/lib/Portal';
 import { usePosts } from './usePosts';
+import { Card, CardContent } from '@/shared/ui/Card';
 
 export const Posts: FC = () => {
   const { data, status, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage } = usePosts();
@@ -22,14 +23,15 @@ export const Posts: FC = () => {
             data.pages.map((page, i) => (
               <React.Fragment key={i}>
                 {page.posts.map((post) => (
-                  <article key={post.id} style={{ padding: 20, border: '1px solid black' }}>
-                    <h3>
-                      <b>{post.id}. </b>
-                      {post.title}
-                    </h3>
-                    <Spacer />
-                    <p>{post.body}</p>
-                  </article>
+                  <Card className="mb-4" key={post.id}>
+                    <CardContent>
+                      <h3>
+                        <b>{post.id}. </b>
+                        {post.title}
+                      </h3>
+                      <p>{post.body}</p>
+                    </CardContent>
+                  </Card>
                 ))}
               </React.Fragment>
             ))}

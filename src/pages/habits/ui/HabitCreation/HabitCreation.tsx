@@ -1,4 +1,4 @@
-import { Dialog, DialogContent, DialogTrigger } from '@/shared/shadcn/ui/dialog';
+import { Dialog, DialogContent, DialogTrigger } from '@/shared/ui/Dialog';
 import { HabitCreateForm } from '../HabitCreateForm';
 import { SquarePlusIcon } from 'lucide-react';
 import { Button } from '@/shared/ui';

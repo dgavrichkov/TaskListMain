@@ -1,4 +1,4 @@
-import { Button, Panel } from '../../shared/ui';
+import { Button } from '../../shared/ui';
 import { NavLink } from 'react-router-dom';
 import { TTask, selectCategoryById } from '../../entities';
 import { useAppSelector } from '../../app/store';

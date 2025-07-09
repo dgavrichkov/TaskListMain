@@ -1,7 +1,6 @@
 import { FC } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Button } from '../../shared/ui';
-import { StyledDetailPageWrap } from '../../shared/layouts';
 import { useAppDispatch, useAppSelector } from '../../app/store';
 import { deleteTask, selectCategoryById, toggleTask } from '../../entities';
 
@@ -29,7 +28,7 @@ export const Task: FC = () => {
   };
 
   return (
-    <StyledDetailPageWrap className={task.done === true ? 'is-done' : ''}>
+    <div className={task.done === true ? 'is-done' : ''}>
       <h3>{task.name}</h3>
       <p>{category?.title}</p>
       <i className="id">Task id: {task.id}</i>
@@ -39,6 +38,6 @@ export const Task: FC = () => {
       <Button type="button" onClick={handleDelete}>
         Delete
       </Button>
-    </StyledDetailPageWrap>
+    </div>
   );
 };

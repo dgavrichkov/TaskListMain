@@ -1,6 +1,5 @@
 import { Button, Panel } from '../../shared/ui';
 import { FC } from 'react';
-import { Styled } from './styled';
 import { useAppDispatch, useAppSelector } from '../../app/store';
 import { Tag } from '../../shared/ui/Tag';
 import { TFilterablePages, clearFilter, selectCategory } from '../../entities';
@@ -51,20 +50,20 @@ export const Filter: FC<TFilterProps> = ({ forPage }) => {
 
   return (
     <Panel>
-      <Styled.Wrap>
+      <div>
         <h4>Categories:</h4>
-        <Styled.TagsList>
+        <div>
           {tags &&
             tags.map((ctg) => (
               <Tag isActive={ctg?.selected} key={ctg.id} onClick={() => handleTagClick(ctg.id)}>
                 {ctg.title}
               </Tag>
             ))}
-        </Styled.TagsList>
+        </div>
         <Button className="item item--clear" type="button" onClick={handleClearFilter}>
           Clear filter
         </Button>
-      </Styled.Wrap>
+      </div>
     </Panel>
   );
 };

@@ -1,7 +1,6 @@
 import { FC } from 'react';
 import { Button } from '../../shared/ui';
 import { FormField, useInput, useForm } from '../../shared/lib/Form';
-import { StyledCreateForm } from '../../shared/layouts';
 import { useAppDispatch, useAppSelector } from '../../app/store';
 import { createCategory, createNote, findCategoryByTitle } from '../../entities';
 import { TCategory } from '../../entities/categories/model/categories.interface';
@@ -57,7 +56,7 @@ export const CreateNoteForm: FC<TFormProps> = ({ pageClass }) => {
   };
 
   return (
-    <StyledCreateForm className={pageClass}>
+    <div className={pageClass}>
       <FormField
         id="note-name"
         name="note-name"
@@ -81,16 +80,15 @@ export const CreateNoteForm: FC<TFormProps> = ({ pageClass }) => {
         title="note text"
       />
       <Button
-        isBold
-        buttonType="button"
         disabled={form.validity && form.touched ? false : true}
+        type="button"
         onClick={handleAdd}
       >
         Add
       </Button>
-      <Button buttonType="button" disabled={form.touched ? false : true} onClick={handleClear}>
+      <Button disabled={form.touched ? false : true} type="button" onClick={handleClear}>
         Clear
       </Button>
-    </StyledCreateForm>
+    </div>
   );
 };

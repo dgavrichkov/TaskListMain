@@ -18,9 +18,7 @@ export const Tasks: FC = () => {
       <section className="content">
         <TaskList />
       </section>
-      <Portal portalId="header-portal">
-        <div>Tasks portal block</div>
-      </Portal>
+      <Portal portalId="header-portal"></Portal>
     </StyledListPageWrap>
   );
 };

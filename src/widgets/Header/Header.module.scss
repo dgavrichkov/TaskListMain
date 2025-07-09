@@ -1,0 +1,35 @@
+.header {
+  display: grid;
+  align-items: center;
+  grid-template-columns: auto auto 1fr auto;
+  grid-template-areas: 'logo theme navi profile';
+  column-gap: 32px;
+  row-gap: 16px;
+
+  a {
+    color: #000;
+
+    &.isActive {
+      text-decoration: underline;
+    }
+  }
+}
+
+.nav {
+  display: flex;
+  gap: 16px;
+  grid-area: navi;
+}
+
+.switch {
+  justify-self: end;
+  grid-area: theme;
+}
+
+.profile {
+  grid-area: profile;
+
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
