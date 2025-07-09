@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import styled from 'styled-components';
 import { useAppSelector } from '../../app/store';
+import { Card, CardContent } from '@/shared/ui/Card';
 
 type TStatProps = {
   pageClass?: string;
@@ -20,23 +20,11 @@ export const TaskStat: FC<TStatProps> = ({ pageClass }) => {
   };
 
   return (
-    <StyledWrap className={`${pageClass}`}>
-      <p>Всего - {countAllTasks()}</p>
-      <p>Сделано - {countDoneTasks()}</p>
-    </StyledWrap>
+    <Card className={`${pageClass}`}>
+      <CardContent>
+        <p>Всего - {countAllTasks()}</p>
+        <p>Сделано - {countDoneTasks()}</p>
+      </CardContent>
+    </Card>
   );
 };
-
-const StyledWrap = styled.div`
-  border-radius: 4px;
-  box-shadow: ${(props) => props.theme.shadows.button};
-  padding: 14px;
-  p {
-    font-size: 18px;
-    margin: 0;
-    padding: 0;
-    &:not(:last-child) {
-      margin-bottom: 14px;
-    }
-  }
-`;

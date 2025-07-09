@@ -17,9 +17,7 @@ export const Notes: FC = () => {
       <section className="content">
         <NotesList />
       </section>
-      <Portal portalId="header-portal">
-        <div>Notes portal block</div>
-      </Portal>
+      <Portal portalId="header-portal"></Portal>
     </StyledListPageWrap>
   );
 };

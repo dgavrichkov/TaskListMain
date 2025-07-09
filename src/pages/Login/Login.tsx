@@ -3,7 +3,6 @@ import { useAuth } from '../../app/providers/AuthProvider';
 import { useInput } from '../../shared/lib/Form/useInput';
 import { Button } from '../../shared/ui';
 import { FormField } from '../../shared/lib/Form';
-import { StyledCreateForm } from '../../shared/layouts';
 
 export const Login: FC = () => {
   const loginfield = useInput({
@@ -25,7 +24,7 @@ export const Login: FC = () => {
   };
 
   return (
-    <StyledCreateForm>
+    <div>
       <FormField
         id="loginform-login"
         placeholder="login"
@@ -41,9 +40,9 @@ export const Login: FC = () => {
         tag="input"
         title="Password"
       />
-      <Button buttonType="button" onClick={handleLogin}>
+      <Button type="button" onClick={handleLogin}>
         Log In
       </Button>
-    </StyledCreateForm>
+    </div>
   );
 };

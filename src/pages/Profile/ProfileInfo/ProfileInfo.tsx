@@ -1,26 +1,25 @@
 import { FC } from 'react';
 import { useAuth } from '../../../app/providers/AuthProvider';
-import { Styled } from './styled';
 
 export const ProfileInfo: FC = () => {
   const { user } = useAuth();
 
   return (
-    <Styled.Wrap>
+    <div>
       {user && (
         <>
-          <Styled.InfoPanel>
-            <Styled.Entry>
+          <div>
+            <div>
               <span>email</span>
               <div>{user.email}</div>
-            </Styled.Entry>
-            <Styled.Entry>
+            </div>
+            <div>
               <span>username</span>
               <div>{user.username}</div>
-            </Styled.Entry>
-          </Styled.InfoPanel>
+            </div>
+          </div>
         </>
       )}
-    </Styled.Wrap>
+    </div>
   );
 };

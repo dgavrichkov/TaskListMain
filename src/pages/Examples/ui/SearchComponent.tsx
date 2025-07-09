@@ -3,7 +3,7 @@ import { useSearch } from '../../../shared/lib/Search/hooks/useSearch';
 import { search } from '../../../shared/lib/Search/utils/search';
 import { paginate } from '../../../shared/lib/Search/utils/paginate';
 import { Input } from '@/shared/shadcn/ui/Input';
-import { Button } from '@/shared/shadcn/ui/button';
+import { Button } from '@/shared/ui';
 
 type TItem = { name: string };
 // Example data array

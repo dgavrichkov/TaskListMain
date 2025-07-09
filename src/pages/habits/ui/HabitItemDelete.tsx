@@ -1,5 +1,4 @@
 import { habitStore } from '../model/store';
-import { Button } from '@/shared/shadcn/ui/button';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -12,6 +11,7 @@ import {
 } from '@/shared/shadcn/ui/alert-dialog';
 import { IHabit } from '../model/types';
 import { TrashIcon } from 'lucide-react';
+import { Button } from '@/shared/ui';
 
 type Props = IHabit;
 

@@ -1,7 +1,6 @@
 import { FC } from 'react';
 import { Button } from '../../shared/ui';
 import { FormField, useForm, useInput } from '../../shared/lib/Form';
-import { StyledCreateForm } from '../../shared/layouts';
 import { useAppDispatch, useAppSelector } from '../../app/store';
 import { createCategory, createTask, findCategoryByTitle } from '../../entities';
 import { TCategory } from '../../entities/categories/model/categories.interface';
@@ -51,7 +50,7 @@ export const CreateTaskForm: FC<TFormProps> = ({ pageClass }) => {
   };
 
   return (
-    <StyledCreateForm className={pageClass}>
+    <div className={pageClass}>
       <FormField
         id="task-name"
         name="task-name"
@@ -67,16 +66,15 @@ export const CreateTaskForm: FC<TFormProps> = ({ pageClass }) => {
         title="task category"
       />
       <Button
-        isBold
-        buttonType="button"
         disabled={form.validity && form.touched ? false : true}
+        type="button"
         onClick={handleAdd}
       >
         Add
       </Button>
-      <Button buttonType="button" disabled={form.touched ? false : true} onClick={handleClear}>
+      <Button disabled={form.touched ? false : true} type="button" onClick={handleClear}>
         Clear
       </Button>
-    </StyledCreateForm>
+    </div>
   );
 };

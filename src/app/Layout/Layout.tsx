@@ -2,10 +2,10 @@ import { FC } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Panel } from '../../shared/ui';
 import { Header } from '../../widgets';
-import { Styled } from './styled';
+import styles from './Layout.module.scss';
 
 export const Layout: FC = () => (
-  <Styled.Page>
+  <div className={styles.page}>
     <Panel>
       <Header pageClass="header" />
     </Panel>
@@ -15,5 +15,5 @@ export const Layout: FC = () => (
     <footer className="footer">
       <i>Just footer</i>
     </footer>
-  </Styled.Page>
+  </div>
 );

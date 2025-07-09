@@ -381,6 +381,30 @@
       "habitId": "1",
       "date": "2025-06-14",
       "completed": true
+    },
+    {
+      "id": "de7a",
+      "habitId": "47d1",
+      "date": "2025-06-28",
+      "completed": true
+    },
+    {
+      "id": "bbe1",
+      "habitId": "1",
+      "date": "2025-06-28",
+      "completed": true
+    },
+    {
+      "id": "1f20",
+      "habitId": "1",
+      "date": "2025-06-28",
+      "completed": true
+    },
+    {
+      "id": "8971",
+      "habitId": "2",
+      "date": "2025-06-28",
+      "completed": true
     }
   ]
 }

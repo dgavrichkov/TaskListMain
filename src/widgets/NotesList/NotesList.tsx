@@ -1,4 +1,3 @@
-import styled from 'styled-components';
 import { Note } from '../Note/Note';
 import { useAppSelector } from '../../app/store';
 import { FC } from 'react';
@@ -16,7 +15,7 @@ export const NotesList: FC<TListProps> = ({ pageClass }) => {
     filter.length > 0 ? notes.filter((note) => filter.includes(note.categoryID)) : notes;
 
   return (
-    <StyledNotes className={pageClass}>
+    <div className={pageClass}>
       <div className="list">
         {filteredNotes.length > 0
           ? filteredNotes.map((note) => (
@@ -30,18 +29,6 @@ export const NotesList: FC<TListProps> = ({ pageClass }) => {
             ))
           : 'No notes'}
       </div>
-    </StyledNotes>
+    </div>
   );
 };
-
-const StyledNotes = styled.div`
-  .title {
-    margin-bottom: 28px;
-  }
-
-  .list {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 14px;
-  }
-`;

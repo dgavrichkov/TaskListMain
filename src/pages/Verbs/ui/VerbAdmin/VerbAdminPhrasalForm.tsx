@@ -3,7 +3,7 @@ import styles from './VerbAdmin.module.scss';
 import { useAppDispatch, useAppSelector } from '@/app/store';
 import { useForm } from '@tanstack/react-form';
 import { verbModel } from '@/entities/verb';
-import { Button } from '@/shared/shadcn/ui/button';
+import { Button } from '@/shared/ui';
 
 export const PhrasalVerbAdminForm = () => {
   const dispatch = useAppDispatch();

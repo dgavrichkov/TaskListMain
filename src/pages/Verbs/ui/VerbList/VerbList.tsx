@@ -4,7 +4,7 @@ import { useAppSelector } from '../../../../app/store';
 import { VerbCard } from '../VerbCard';
 import styles from './VerbList.module.scss';
 import { verbModel } from '../../../../entities/verb';
-import { Button } from '@/shared/shadcn/ui/button';
+import { Button } from '@/shared/ui';
 
 export const VerbList = () => {
   const wordsmap = useAppSelector(verbModel.selectors.selectWordsMap);

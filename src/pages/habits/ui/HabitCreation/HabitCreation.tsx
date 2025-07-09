@@ -1,7 +1,7 @@
-import { Dialog, DialogContent, DialogTrigger } from '@/shared/shadcn/ui/dialog';
+import { Dialog, DialogContent, DialogTrigger } from '@/shared/ui/Dialog';
 import { HabitCreateForm } from '../HabitCreateForm';
-import { Button } from '@/shared/shadcn/ui/button';
 import { SquarePlusIcon } from 'lucide-react';
+import { Button } from '@/shared/ui';
 
 export const HabitCreation = () => {
   return (

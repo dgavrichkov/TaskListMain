@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from '@/app/store';
 import { verbModel } from '@/entities/verb';
 import { Input } from '@/shared/shadcn/ui/Input';
 import styles from './VerbAdmin.module.scss';
-import { Button } from '@/shared/shadcn/ui/button';
+import { Button } from '@/shared/ui';
 
 export const VerbAdminWordForm = () => {
   const dispatch = useAppDispatch();

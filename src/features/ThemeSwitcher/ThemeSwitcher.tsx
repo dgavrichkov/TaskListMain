@@ -8,6 +8,7 @@ export const ThemeSwitcher: FC = () => {
 
   return (
     <Button
+      disabled
       onClick={() => {
         dispatch(toggleTheme());
       }}
