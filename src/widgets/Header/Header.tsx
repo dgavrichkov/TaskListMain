@@ -7,43 +7,11 @@ import { PATHS } from '../../shared/constants/paths';
 import { useAuth } from '../../app/providers/AuthProvider';
 
 import styles from './Header.module.scss';
+import { MAIN_MENU_ITEMS } from './menuItems';
 
 type THeaderProps = {
   pageClass: string;
 };
-
-const MAIN_MENU_ITEMS = [
-  {
-    id: 1,
-    label: 'Tasks',
-    path: PATHS.TASKS,
-  },
-  {
-    id: 2,
-    label: 'Notes',
-    path: PATHS.NOTES,
-  },
-  {
-    id: 3,
-    label: 'Posts',
-    path: PATHS.POSTS,
-  },
-  {
-    id: 4,
-    label: 'Examples',
-    path: PATHS.EXAMPLES,
-  },
-  {
-    id: 5,
-    label: 'Verbs',
-    path: PATHS.VERBS,
-  },
-  {
-    id: 6,
-    label: 'Habits',
-    path: PATHS.HABITS,
-  },
-];
 
 export const Header: FC<THeaderProps> = ({ pageClass }) => {
   const { token, logout } = useAuth();
