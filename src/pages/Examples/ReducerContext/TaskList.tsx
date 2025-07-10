@@ -1,6 +1,8 @@
 import { useContext, useState } from 'react';
 import { TasksContext, TasksDispatchContext } from './TasksContext';
 import { TTask } from './types';
+import { Input } from '@/shared/ui/Input';
+import { Button } from '@/shared/ui';
 
 export default function TaskList() {
   const tasks = useContext(TasksContext);
@@ -30,7 +32,7 @@ function Task({ task }: TTaskProps) {
   if (isEditing) {
     taskContent = (
       <>
-        <input
+        <Input
           value={task.text}
           onChange={(e) => {
             dispatch({
@@ -42,14 +44,14 @@ function Task({ task }: TTaskProps) {
             });
           }}
         />
-        <button onClick={() => setIsEditing(false)}>Save</button>
+        <Button onClick={() => setIsEditing(false)}>Save</Button>
       </>
     );
   } else {
     taskContent = (
       <>
         {task.text}
-        <button onClick={() => setIsEditing(true)}>Edit</button>
+        <Button onClick={() => setIsEditing(true)}>Edit</Button>
       </>
     );
   }
@@ -70,7 +72,7 @@ function Task({ task }: TTaskProps) {
         }}
       />
       {taskContent}
-      <button
+      <Button
         onClick={() => {
           dispatch({
             type: 'deleted',
@@ -79,7 +81,7 @@ function Task({ task }: TTaskProps) {
         }}
       >
         Delete
-      </button>
+      </Button>
     </label>
   );
 }
