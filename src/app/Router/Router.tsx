@@ -7,6 +7,7 @@ import { PATHS } from '../../shared/constants/paths';
 // import { ProtectedRoute } from '../../features';
 import { Layout } from '../Layout';
 import { Habits } from '@/pages/habits';
+import { Training } from '@/pages/Training';
 
 export const Router: FC = () => (
   <Routes>
@@ -24,6 +25,7 @@ export const Router: FC = () => (
       <Route element={<Examples />} path={PATHS.EXAMPLES} />
       <Route element={<Verbs />} path={PATHS.VERBS} />
       <Route element={<Habits />} path={PATHS.HABITS} />
+      <Route element={<Training />} path={PATHS.TRAINING} />
     </Route>
   </Routes>
 );

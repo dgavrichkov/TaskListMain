@@ -8,4 +8,5 @@ export const PATHS = {
   EXAMPLES: 'examples',
   VERBS: 'verbs',
   HABITS: 'habits',
+  TRAINING: 'training',
 };

@@ -232,49 +232,32 @@
     {
       "id": "1",
       "title": "run out of",
-      "words": [
-        "1",
-        "2",
-        "3"
-      ],
+      "words": ["1", "2", "3"],
       "meaning": "",
       "translation": {
         "ru": "что-то закончилось"
       },
-      "examples": [
-        "We ran out of milk"
-      ]
+      "examples": ["We ran out of milk"]
     },
     {
       "id": "2",
       "title": "get along with",
-      "words": [
-        "4",
-        "5",
-        "6"
-      ],
+      "words": ["4", "5", "6"],
       "meaning": "",
       "translation": {
         "ru": "ладить с кем-то"
       },
-      "examples": [
-        "She gets along with her colleagues"
-      ]
+      "examples": ["She gets along with her colleagues"]
     },
     {
       "id": "3",
       "title": "back off",
-      "words": [
-        "10",
-        "14"
-      ],
+      "words": ["10", "14"],
       "meaning": "to stop being involved in a situation, especially in order to allow other people to deal with it themselves",
       "translation": {
         "ru": "отступать"
       },
-      "examples": [
-        "The police told the crowd to back off"
-      ]
+      "examples": ["The police told the crowd to back off"]
     }
   ],
   "habits": [
@@ -405,6 +388,89 @@
       "habitId": "2",
       "date": "2025-06-28",
       "completed": true
+    }
+  ],
+  "kettlebell-sessions": [
+    {
+      "id": "kettlebell-session-1",
+      "name": "Дорога к 10000 махов день 1",
+      "clusters": [
+        {
+          "id": "kettlebell-session-1-cluster-1",
+          "sets": [
+            {
+              "id": "kt-s1-c1-set-1",
+              "exerciseId": "kettlebell-swing",
+              "count": 10
+            },
+            {
+              "id": "kt-s1-c1-set-2",
+              "exerciseId": "kettlebell-swing",
+              "count": 15
+            },
+            {
+              "id": "kt-s1-c1-set-3",
+              "exerciseId": "kettlebell-swing",
+              "count": 25
+            },
+            {
+              "id": "kt-s1-c1-set-4",
+              "exerciseId": "kettlebell-swing",
+              "count": 50
+            }
+          ]
+        },
+        {
+          "id": "kettlebell-session-1-cluster-2",
+          "sets": [
+            {
+              "id": "kt-s1-c2-set-1",
+              "exerciseId": "kettlebell-swing",
+              "count": 10
+            },
+            {
+              "id": "kt-s1-c2-set-2",
+              "exerciseId": "kettlebell-swing",
+              "count": 15
+            },
+            {
+              "id": "kt-s1-c2-set-3",
+              "exerciseId": "kettlebell-swing",
+              "count": 25
+            },
+            {
+              "id": "kt-s1-c2-set-4",
+              "exerciseId": "kettlebell-swing",
+              "count": 50
+            }
+          ]
+        },
+        {
+          "id": "kettlebell-session-1-cluster-3",
+          "sets": [
+            {
+              "id": "kt-s1-c3-set-1",
+              "exerciseId": "kettlebell-swing",
+              "count": 10
+            },
+            {
+              "id": "kt-s1-c3-set-2",
+              "exerciseId": "kettlebell-swing",
+              "count": 15
+            },
+            {
+              "id": "kt-s1-c3-set-3",
+              "exerciseId": "kettlebell-swing",
+              "count": 25
+            },
+            {
+              "id": "kt-s1-c3-set-4",
+              "exerciseId": "kettlebell-swing",
+              "count": 50
+            }
+          ]
+        }
+      ]
     }
   ]
 }

@@ -1,5 +1,7 @@
 import { useContext, useState } from 'react';
 import { TasksDispatchContext } from './TasksContext';
+import { Button } from '@/shared/ui';
+import { Input } from '@/shared/ui/Input';
 
 let nextId = 3;
 
@@ -8,9 +10,9 @@ export default function AddTask() {
   const dispatch = useContext(TasksDispatchContext);
 
   return (
-    <div style={{ padding: '10px 0' }}>
-      <input placeholder="Add task" value={text} onChange={(e) => setText(e.target.value)} />
-      <button
+    <div className="flex gap-2">
+      <Input placeholder="Add task" value={text} onChange={(e) => setText(e.target.value)} />
+      <Button
         onClick={() => {
           setText('');
           dispatch({
@@ -21,7 +23,7 @@ export default function AddTask() {
         }}
       >
         Add
-      </button>
+      </Button>
     </div>
   );
 }
