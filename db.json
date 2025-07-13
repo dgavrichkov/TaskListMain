@@ -390,10 +390,11 @@
       "completed": true
     }
   ],
-  "kettlebell-sessions": [
+  "training-sessions": [
     {
       "id": "kettlebell-session-1",
       "name": "Дорога к 10000 махов день 1",
+      "isComplete": false,
       "clusters": [
         {
           "id": "kettlebell-session-1-cluster-1",

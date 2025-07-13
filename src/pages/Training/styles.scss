@@ -1,0 +1,32 @@
+.title {
+  font-size: 24px;
+  margin-bottom: 24px;
+}
+
+.session {
+  padding: 10px;
+  // border: 1px solid brown;
+  border-radius: 14px;
+}
+
+.session__clusters {
+  display: grid;
+  gap: 24px;
+}
+
+.cluster {
+  padding: 24px;
+  border: 1px solid brown;
+  border-radius: 14px;
+}
+
+.cluster__sets {
+  display: grid;
+  gap: 8px;
+}
+
+.set {
+  padding: 10px;
+  border: 1px solid brown;
+  border-radius: 14px;
+}
