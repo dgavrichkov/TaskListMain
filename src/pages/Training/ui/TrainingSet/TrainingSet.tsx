@@ -1,3 +1,4 @@
+import { Checkbox } from '@/shared/ui/Checkbox';
 import { TTrainingSet } from '../../model/interfaces';
 
 type Props = {
@@ -6,8 +7,9 @@ type Props = {
 
 export const TrainingSet = ({ data }: Props) => {
   return (
-    <div className="set">
-      <div>count: {data.count}</div>
+    <div className="set" title={data.exerciseId}>
+      <div>{data.count}</div>
+      <Checkbox className="size-6 cursor-pointer" />
     </div>
   );
 };

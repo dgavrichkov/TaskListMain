@@ -1,10 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
 import { getSessions, TRAINING_QUERY_KEY } from './api';
-import { Loader } from 'lucide-react';
-import { TrainingSession } from './ui/TrainingSession';
-import { TrainingSet } from './ui/TrainingSet';
+import { CheckIcon, CircleDashedIcon, Loader } from 'lucide-react';
 
 import './styles.scss';
+import { TrainingCluster } from './ui/TrainingCluster/TrainingCluster';
+import { Button } from '@/shared/ui/Button';
 
 export const Training = () => {
   const { isPending, error, data, isFetching } = useQuery({
@@ -27,19 +27,16 @@ export const Training = () => {
         {data.length &&
           data.map((session) => (
             <div className="session" key={session.id}>
-              <h2 className="title">{session.name}</h2>
-              <ul className="session__clusters">
+              <header className="session__header">
+                <h2 className="session__title">{session.name}</h2>
+                <Button>{session.isCompleted ? <CheckIcon /> : <CircleDashedIcon />}</Button>
+              </header>
+
+              <div className="session__clusters">
                 {session.clusters.map((cluster, idx) => (
-                  <li className="cluster" key={cluster.id}>
-                    <div>#{idx}</div>
-                    <ul className="cluster__sets">
-                      {cluster.sets.map((set) => (
-                        <TrainingSet data={set} key={set.id} />
-                      ))}
-                    </ul>
-                  </li>
+                  <TrainingCluster data={cluster} key={cluster.id} />
                 ))}
-              </ul>
+              </div>
             </div>
           ))}
       </ul>

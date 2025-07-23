@@ -15,12 +15,14 @@ export type TTrainingSet = {
 /** Row of training sets */
 export type TTrainingCluster = {
   id: string;
+  /** Если все упражнения одинаковы */
+  isMonocluster: boolean;
   sets: TTrainingSet[];
 };
 
 export type TTrainingSession = {
   id: string;
   name: string;
-  isComplete: boolean;
+  isCompleted: boolean;
   clusters: TTrainingCluster[];
 };

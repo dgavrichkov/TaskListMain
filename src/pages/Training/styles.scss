@@ -1,32 +1,38 @@
-.title {
-  font-size: 24px;
-  margin-bottom: 24px;
-}
-
 .session {
-  padding: 10px;
-  // border: 1px solid brown;
-  border-radius: 14px;
-}
-
-.session__clusters {
-  display: grid;
-  gap: 24px;
-}
-
-.cluster {
-  padding: 24px;
+  padding: 12px;
   border: 1px solid brown;
   border-radius: 14px;
 }
 
-.cluster__sets {
+.session__title {
+  font-size: 24px;
+}
+
+.session__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.session__clusters {
   display: grid;
+  gap: 18px;
+}
+
+.cluster {
+}
+
+.cluster__sets {
+  // border: 1px solid brown;
+  border-radius: 12px;
+  display: flex;
   gap: 8px;
 }
 
 .set {
   padding: 10px;
-  border: 1px solid brown;
   border-radius: 14px;
+  display: grid;
+  justify-items: center;
 }

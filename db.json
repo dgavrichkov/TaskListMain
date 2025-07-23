@@ -394,10 +394,11 @@
     {
       "id": "kettlebell-session-1",
       "name": "Дорога к 10000 махов день 1",
-      "isComplete": false,
+      "isCompleted": false,
       "clusters": [
         {
           "id": "kettlebell-session-1-cluster-1",
+          "isMonocluster": true,
           "sets": [
             {
               "id": "kt-s1-c1-set-1",
@@ -423,6 +424,7 @@
         },
         {
           "id": "kettlebell-session-1-cluster-2",
+          "isMonocluster": true,
           "sets": [
             {
               "id": "kt-s1-c2-set-1",
@@ -448,6 +450,7 @@
         },
         {
           "id": "kettlebell-session-1-cluster-3",
+          "isMonocluster": true,
           "sets": [
             {
               "id": "kt-s1-c3-set-1",
