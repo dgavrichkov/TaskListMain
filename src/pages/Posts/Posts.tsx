@@ -3,6 +3,7 @@ import { Button, Spacer } from '../../shared/ui/';
 import { Portal } from '../../shared/lib/Portal';
 import { usePosts } from './usePosts';
 import { Card, CardContent } from '@/shared/ui/Card';
+import { PostsList } from './ui/PostsList';
 
 export const Posts: FC = () => {
   const { data, status, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage } = usePosts();
@@ -37,6 +38,12 @@ export const Posts: FC = () => {
             ))}
         </section>
       )}
+
+      <Spacer />
+
+      <h2>Local Posts</h2>
+      <Spacer />
+      <PostsList />
 
       <Portal portalId="header-portal">
         <Button disabled={isFetchingNextPage} onClick={handleLoad}>
