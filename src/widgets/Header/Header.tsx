@@ -18,9 +18,11 @@ export const Header: FC<THeaderProps> = ({ pageClass }) => {
 
   return (
     <header className={cn(pageClass, styles.header)}>
-      <h1>
-        <Link to={PATHS.ROOT}>ToDo</Link>
-      </h1>
+      <div>
+        <Link to={PATHS.ROOT}>
+          <img alt="logo" className="rounded-lg" height="100" src="./lantern.webp" width="100" />
+        </Link>
+      </div>
       <div className={styles.nav}>
         {MAIN_MENU_ITEMS.map((item) => (
           <NavLink
