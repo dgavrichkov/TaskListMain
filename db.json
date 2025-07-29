@@ -484,6 +484,144 @@
           ]
         }
       ]
+    },
+    {
+      "id": "morning-routine-session-1",
+      "name": "Утренняя разминка",
+      "isCompleted": false,
+      "clusters": [
+        {
+          "id": "morning-routine-session-1-cluster-1",
+          "isMonocluster": false,
+          "sets": [
+            {
+              "id": "mr-s1-c2-set-1",
+              "exerciseId": "squats",
+              "count": 30
+            },
+            {
+              "id": "mr-s1-c2-set-2",
+              "exerciseId": "lower-back-roll",
+              "count": 20
+            },
+            {
+              "id": "mr-s1-c2-set-3",
+              "exerciseId": "stretches",
+              "count": 25
+            },
+            {
+              "id": "mr-s1-c2-set-4",
+              "exerciseId": "pushups",
+              "count": 30
+            },
+            {
+              "id": "mr-s1-c2-set-5",
+              "exerciseId": "kettlebell-around",
+              "count": 40
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "circle-session-1",
+      "name": "Домашняя тренировка (Круговая)",
+      "isCompleted": false,
+      "clusters": [
+        {
+          "id": "circle-session-1-cluster-1",
+          "isMonocluster": false,
+          "sets": [
+            {
+              "id": "c-s1-c1-set-1",
+              "exerciseId": "squats",
+              "count": 30
+            },
+            {
+              "id": "c-s1-c1-set-2",
+              "exerciseId": "pulls",
+              "count": 20
+            },
+            {
+              "id": "c-s1-c1-set-3",
+              "exerciseId": "bycep-crunch",
+              "count": 25
+            },
+            {
+              "id": "c-s1-c1-set-4",
+              "exerciseId": "narrow-pushup",
+              "count": 25
+            },
+            {
+              "id": "c-s1-c1-set-5",
+              "exerciseId": "delts-pull",
+              "count": 30
+            }
+          ]
+        },
+        {
+          "id": "circle-session-1-cluster-2",
+          "isMonocluster": false,
+          "sets": [
+            {
+              "id": "c-s1-c2-set-1",
+              "exerciseId": "squats",
+              "count": 30
+            },
+            {
+              "id": "c-s1-c2-set-2",
+              "exerciseId": "pulls",
+              "count": 20
+            },
+            {
+              "id": "c-s1-c2-set-3",
+              "exerciseId": "bycep-crunch",
+              "count": 25
+            },
+            {
+              "id": "c-s1-c2-set-4",
+              "exerciseId": "narrow-pushup",
+              "count": 25
+            },
+            {
+              "id": "c-s1-c2-set-5",
+              "exerciseId": "delts-pull",
+              "count": 30
+            }
+          ]
+        },
+        {
+          "id": "circle-session-1-cluster-3",
+          "isMonocluster": false,
+          "sets": [
+            {
+              "id": "c-s1-c3-set-1",
+              "exerciseId": "squats",
+              "count": 30
+            },
+            {
+              "id": "c-s1-c3-set-2",
+              "exerciseId": "pulls",
+              "count": 20
+            },
+            {
+              "id": "c-s1-c3-set-3",
+              "exerciseId": "bycep-crunch",
+              "count": 25
+            },
+            {
+              "id": "c-s1-c3-set-4",
+              "exerciseId": "narrow-pushup",
+              "count": 25
+            },
+            {
+              "id": "c-s1-c3-set-5",
+              "exerciseId": "delts-pull",
+              "count": 30
+            }
+          ]
+        }
+      ]
     }
   ]
 }

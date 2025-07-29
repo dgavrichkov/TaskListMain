@@ -5,6 +5,7 @@ import { CheckIcon, CircleDashedIcon, Loader } from 'lucide-react';
 import './styles.scss';
 import { TrainingCluster } from './ui/TrainingCluster/TrainingCluster';
 import { Button } from '@/shared/ui/Button';
+import { Card, CardContent, CardHeader } from '@/shared/ui/Card';
 
 export const Training = () => {
   const { isPending, error, data, isFetching } = useQuery({
@@ -23,23 +24,21 @@ export const Training = () => {
 
   return (
     <div className="training">
-      <ul>
-        {data.length &&
-          data.map((session) => (
-            <div className="session" key={session.id}>
-              <header className="session__header">
-                <h2 className="session__title">{session.name}</h2>
-                <Button>{session.isCompleted ? <CheckIcon /> : <CircleDashedIcon />}</Button>
-              </header>
+      {data.length &&
+        data.map((session) => (
+          <Card className="session" key={session.id}>
+            <CardHeader className="session__header">
+              <h2 className="session__title">{session.name}</h2>
+              <Button>{session.isCompleted ? <CheckIcon /> : <CircleDashedIcon />}</Button>
+            </CardHeader>
 
-              <div className="session__clusters">
-                {session.clusters.map((cluster, idx) => (
-                  <TrainingCluster data={cluster} key={cluster.id} />
-                ))}
-              </div>
-            </div>
-          ))}
-      </ul>
+            <CardContent className="session__clusters">
+              {session.clusters.map((cluster, idx) => (
+                <TrainingCluster data={cluster} key={cluster.id} num={idx + 1} />
+              ))}
+            </CardContent>
+          </Card>
+        ))}
     </div>
   );
 };
