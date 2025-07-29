@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import { Button, Spacer } from '../../shared/ui/';
-import { Portal } from '../../shared/lib/Portal';
 import { usePosts } from './usePosts';
 import { Card, CardContent } from '@/shared/ui/Card';
 import { PostsList } from './ui/PostsList';
@@ -15,6 +14,10 @@ export const Posts: FC = () => {
   return (
     <div>
       <h2>Posts from typicode</h2>
+      <Button disabled={isFetchingNextPage} onClick={handleLoad}>
+        {isFetching ? <span title="Fetching...">🔄</span> : <span title="Fetched">💤</span>}
+        {isFetchingNextPage ? 'Loading more...' : 'Load More Posts'}
+      </Button>
       <Spacer />
       {status === 'pending' ? (
         <div>Loading...</div>
@@ -44,13 +47,6 @@ export const Posts: FC = () => {
       <h2>Local Posts</h2>
       <Spacer />
       <PostsList />
-
-      <Portal portalId="header-portal">
-        <Button disabled={isFetchingNextPage} onClick={handleLoad}>
-          {isFetching ? <span title="Fetching...">🔄</span> : <span title="Fetched">💤</span>}
-          {isFetchingNextPage ? 'Loading more...' : 'Load More Posts'}
-        </Button>
-      </Portal>
     </div>
   );
 };
