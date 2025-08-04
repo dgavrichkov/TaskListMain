@@ -15,7 +15,7 @@ export const TasksTypicode: FC = () => {
     <div>
       <h2>Tasks from typicode</h2>
       <Spacer />
-      {status === 'loading' ? (
+      {status === 'pending' ? (
         <div>Loading...</div>
       ) : (
         <ul>

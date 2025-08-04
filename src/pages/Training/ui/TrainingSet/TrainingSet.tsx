@@ -5,10 +5,10 @@ import { cn } from '@/shared/shadcn/utils';
 
 type Props = {
   data: TTrainingSet;
-  isMonocluster: boolean;
+  isMonocluster?: boolean;
 };
 
-export const TrainingSet = ({ data, isMonocluster }: Props) => {
+export const TrainingSet = ({ data, isMonocluster = false }: Props) => {
   return (
     <div className={cn('set', { 'set--horizontal': !isMonocluster })} title={data.exerciseId}>
       {!isMonocluster && <Badge>{data.exerciseId}</Badge>}
