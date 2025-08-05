@@ -3,8 +3,8 @@ import { PropsWithChildren } from 'react';
 
 export const Panel = ({ children }: PropsWithChildren) => {
   return (
-    <Card>
-      <CardContent>{children}</CardContent>
+    <Card className="p-2">
+      <CardContent className="p-0">{children}</CardContent>
     </Card>
   );
 };

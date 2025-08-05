@@ -18,7 +18,7 @@ export const Header: FC<THeaderProps> = ({ pageClass }) => {
 
   return (
     <header className={cn(pageClass, styles.header)}>
-      <div>
+      <div className={styles.logo}>
         <Link to={PATHS.ROOT}>
           <img alt="logo" className="rounded-lg" height="100" src="./lantern.webp" width="100" />
         </Link>

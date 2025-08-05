@@ -4,7 +4,6 @@
   grid-template-columns: auto auto 1fr auto;
   grid-template-areas: 'logo theme navi profile';
   column-gap: 32px;
-  row-gap: 16px;
 
   a {
     color: #000;
@@ -15,15 +14,21 @@
   }
 }
 
+.logo {
+  grid-area: logo;
+
+  width: 64px;
+}
+
 .nav {
+  grid-area: navi;
   display: flex;
   gap: 16px;
-  grid-area: navi;
 }
 
 .switch {
-  justify-self: end;
   grid-area: theme;
+  justify-self: end;
 }
 
 .profile {
