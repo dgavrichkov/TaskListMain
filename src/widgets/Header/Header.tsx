@@ -20,7 +20,13 @@ export const Header: FC<THeaderProps> = ({ pageClass }) => {
     <header className={cn(pageClass, styles.header)}>
       <div className={styles.logo}>
         <Link to={PATHS.ROOT}>
-          <img alt="logo" className="rounded-lg" height="100" src="./lantern.webp" width="100" />
+          <img
+            alt="logo"
+            className="rounded-lg"
+            height="100"
+            src="./dvergr-lantern-64.png"
+            width="100"
+          />
         </Link>
       </div>
       <div className={styles.nav}>
