@@ -5,6 +5,7 @@ import TaskApp from './ReducerContext';
 import BuggyCounter from './ui/BuggyCounter';
 import CounterErrorBoundary from './ui/CounterErrorBoundary';
 import { ExampleContainer } from './ui/ExampleContainer';
+import { usersStore } from '@/shared/lib/mobx-rq-integrator/usersStore';
 
 export const Examples = () => {
   return (
@@ -37,6 +38,13 @@ export const Examples = () => {
       <hr style={{ margin: '12px 0' }} />
       <ExampleContainer>
         <SearchComponent />
+      </ExampleContainer>
+      <ExampleContainer>
+        {usersStore.filteredUsers.map((u: any) => (
+          <div className="mb-2" key={u.id}>
+            <span className="font-bold">{u.name}</span>
+          </div>
+        ))}
       </ExampleContainer>
     </>
   );
