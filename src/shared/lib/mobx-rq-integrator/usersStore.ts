@@ -24,13 +24,12 @@ class UsersStore {
   );
 
   constructor() {
-    console.log('UsersStore initialized');
     makeAutoObservable(this);
   }
 
   get filteredUsers() {
     const res = this.usersQuery.result();
-    console.log('Filtered users accessed', res);
+
     return res.data ?? [];
   }
 }
