@@ -17,30 +17,32 @@ export const BlockNotionMain = () => {
     if (content == null || content === '') return;
 
     // TODO - получение контента из компонента, ответственного за тип блока
-    const nodeData: TCreateBlockNode = {
-      content,
+    const nodeData: TCreateBlockNode<'text'> = {
       parentId: null,
       position: 0,
       targetId,
       targetType,
-      type: 'text',
+      blocktype: 'text',
+      content,
     };
 
     addNode(nodeData);
   };
 
   const handleEditBlockNode = (id: string, data: TBlockNode) => {
-    const newContent = window.prompt('Введите текст узла:', data.content)?.trim();
+    if (data.blocktype === 'text') {
+      const newContent = window.prompt('Введите текст узла:', data.content)?.trim();
 
-    const updData = {
-      ...data,
-      content: newContent,
-    };
+      const updData = {
+        ...data,
+        content: newContent,
+      };
 
-    editNode({
-      id,
-      data: updData,
-    });
+      editNode({
+        id,
+        data: updData,
+      });
+    }
   };
 
   const handleDeleteBlockNode = (id: string) => {
@@ -67,7 +69,7 @@ export const BlockNotionMain = () => {
           ) : (
             data.map((item) => (
               <li className="pb-2 mb-2" key={item.id}>
-                {item.content}
+                {item.blocktype === 'text' && item.content}
                 <span className="ml-4">
                   <button
                     className="cursor-pointer"

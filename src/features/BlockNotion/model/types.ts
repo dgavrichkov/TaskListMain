@@ -1,4 +1,5 @@
-// backend type - группа блокнодов
+import { BlockDataMap } from './blocktypes';
+
 export interface Document {
   id: string; // UUID
   title: string;
@@ -6,43 +7,48 @@ export interface Document {
   updatedAt: string;
 }
 
-// backend type
-export interface TBlockNode {
+type BlockType =
+  | 'text'
+  | 'image'
+  | 'pageLink'
+  | 'callout'
+  | 'list'
+  | 'listItem'
+  | 'quote'
+  | 'code'
+  | 'divider';
+
+export type BaseBlock = {
   id: string;
   targetType: BlockNodeTargetType;
   targetId: string;
   parentId: string | null;
   position: number;
-  type: 'text';
-  content: string;
+  blocktype: BlockType;
+  // дети храним отдельно (по parentId), но фронту можно отдавать уже собранным деревом
   createdAt: string;
   updatedAt: string;
-}
+};
 
-// ?
-export interface BlockNodeTree extends TBlockNode {
-  children: BlockNodeTree[];
-}
+// Mapped Union
+export type TBlockNode = {
+  [K in BlockType]: BaseBlock & { blocktype: K; content: BlockDataMap[K] };
+}[BlockType];
 
 // для полиморфной связи блокноды и других сущностей
 export type BlockNodeTargetType = 'base' | 'habit' | 'flashcard' | 'workout' | 'timer';
 
-// ?
-export class CreateBlockNodeDto {
-  targetType!: BlockNodeTargetType;
-  targetId!: string;
-  parentId?: string | null;
-  position!: number;
-  type!: 'text';
-  content!: string;
-}
-
-// ?
-export class UpdateBlockNodeDto {
-  content?: string;
-  position?: number;
-  parentId?: string | null;
-}
-
 // временно?
-export type TCreateBlockNode = Omit<TBlockNode, 'id' | 'createdAt' | 'updatedAt'>;
+// Тип для создания конкретного блока
+export type TCreateBlockNode<K extends BlockType = BlockType> = Omit<
+  BaseBlock,
+  'id' | 'createdAt' | 'updatedAt'
+> & {
+  blocktype: K;
+  content: BlockDataMap[K];
+};
+
+// Удобный сужающий type guard (не обязателен, но приятно читается)
+export function isTextBlock(n: TBlockNode): n is Extract<TBlockNode, { blocktype: 'text' }> {
+  return n.blocktype === 'text';
+}
