@@ -8,6 +8,7 @@ import { PATHS } from '../../shared/constants/paths';
 import { Layout } from '../Layout';
 import { Habits } from '@/pages/habits';
 import { Training } from '@/pages/Training';
+import { Categories } from '@/pages/Categories';
 
 export const Router: FC = () => (
   <Routes>
@@ -26,6 +27,7 @@ export const Router: FC = () => (
       <Route element={<Verbs />} path={PATHS.VERBS} />
       <Route element={<Habits />} path={PATHS.HABITS} />
       <Route element={<Training />} path={PATHS.TRAINING} />
+      <Route element={<Categories />} path={PATHS.CATEGORIES} />
     </Route>
   </Routes>
 );

@@ -36,4 +36,9 @@ export const MAIN_MENU_ITEMS = [
     label: 'Training',
     path: PATHS.TRAINING,
   },
+  {
+    id: 8,
+    label: 'Categories',
+    path: PATHS.CATEGORIES,
+  },
 ];

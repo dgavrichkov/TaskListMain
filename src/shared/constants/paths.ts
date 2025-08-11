@@ -9,4 +9,5 @@ export const PATHS = {
   VERBS: 'verbs',
   HABITS: 'habits',
   TRAINING: 'training',
+  CATEGORIES: 'categories',
 };
