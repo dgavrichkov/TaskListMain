@@ -10,7 +10,7 @@ type ImageData = {
 };
 
 type PageLinkData = {
-  pageId: string; // ссылка на другой документ/страницу
+  linkedDocumentId: string; // ссылка на другой документ/страницу
   title?: string;
 };
 

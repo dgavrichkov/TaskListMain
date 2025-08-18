@@ -1,5 +1,9 @@
 import { BlockDataMap } from './blocktypes';
 
+// для полиморфной связи блокноды и других сущностей
+// Типы модулей, которые могут иметь документ
+type TargetType = 'base' | 'habit' | 'flashcard' | 'workout' | 'timer';
+
 export interface Document {
   id: string; // UUID
   title: string;
@@ -20,8 +24,7 @@ type BlockType =
 
 export type BaseBlock = {
   id: string;
-  targetType: BlockNodeTargetType;
-  targetId: string;
+  documentId: string;
   parentId: string | null;
   position: number;
   blocktype: BlockType;
@@ -35,20 +38,30 @@ export type TBlockNode = {
   [K in BlockType]: BaseBlock & { blocktype: K; content: BlockDataMap[K] };
 }[BlockType];
 
-// для полиморфной связи блокноды и других сущностей
-export type BlockNodeTargetType = 'base' | 'habit' | 'flashcard' | 'workout' | 'timer';
-
-// временно?
-// Тип для создания конкретного блока
-export type TCreateBlockNode<K extends BlockType = BlockType> = Omit<
-  BaseBlock,
-  'id' | 'createdAt' | 'updatedAt'
-> & {
-  blocktype: K;
-  content: BlockDataMap[K];
-};
+export type BlockTreeNode = TBlockNode & { children: BlockTreeNode[] };
 
 // Удобный сужающий type guard (не обязателен, но приятно читается)
 export function isTextBlock(n: TBlockNode): n is Extract<TBlockNode, { blocktype: 'text' }> {
   return n.blocktype === 'text';
 }
+
+// Ответы API
+export type DocumentTarget = {
+  id: string;
+  documentId: string;
+  targetType: TargetType;
+  targetId: string;
+  role?: 'primary' | 'reference';
+  createdAt: string;
+};
+
+export type DocumentWithBlocksFlat = {
+  document: Document;
+  blocks: TBlockNode[];
+  targets?: DocumentTarget[];
+};
+export type DocumentWithBlocksTree = {
+  document: Document;
+  blocks: BlockTreeNode[];
+  targets?: DocumentTarget[];
+};

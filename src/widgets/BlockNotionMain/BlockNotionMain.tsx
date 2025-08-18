@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader } from '@/shared/ui/Card';
-import { TBlockNode, TCreateBlockNode } from '@/features/BlockNotion/model/types';
 import { useBlockNotionMainQuery } from './useBlockNotionMainQuery';
 import { Button } from '@/shared/ui/Button';
+import { BlockNodeDto, CreateBlockNodeDto } from '@/shared/api/generated/data-contracts';
 
 const targetType = 'base';
 const targetId = 'i-do-not-know-yet';
@@ -17,11 +17,10 @@ export const BlockNotionMain = () => {
     if (content == null || content === '') return;
 
     // TODO - получение контента из компонента, ответственного за тип блока
-    const nodeData: TCreateBlockNode<'text'> = {
-      parentId: null,
+    const nodeData: CreateBlockNodeDto = {
+      parentId: '',
       position: 0,
-      targetId,
-      targetType,
+      documentId: '1',
       blocktype: 'text',
       content,
     };
@@ -29,9 +28,11 @@ export const BlockNotionMain = () => {
     addNode(nodeData);
   };
 
-  const handleEditBlockNode = (id: string, data: TBlockNode) => {
+  const handleEditBlockNode = (id: string, data: BlockNodeDto) => {
     if (data.blocktype === 'text') {
       const newContent = window.prompt('Введите текст узла:', data.content)?.trim();
+
+      if (!newContent) return;
 
       const updData = {
         ...data,
