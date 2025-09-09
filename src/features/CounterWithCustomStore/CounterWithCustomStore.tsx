@@ -1,11 +1,15 @@
 import React, { DetailedHTMLProps, HTMLAttributes } from 'react';
 import { createUseStore } from '../../shared/lib/CustomStore';
+import { Button } from '@/shared/ui';
 
-export const useCountStore = createUseStore(0);
+const INITIAL_STATE = 0;
+// создается экземпляр хранилища; сам стор там в замыкании находится, и не пересоздается.
+export const useCountStore = createUseStore<number>(INITIAL_STATE);
 
 type TProps = DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
 
 export function CounterWithCustomStore(props: TProps) {
+  // вызываем хук хранилища, получаем данные и сеттер данных
   const [count, setCount] = useCountStore();
 
   const increment = () => {
@@ -19,8 +23,8 @@ export function CounterWithCustomStore(props: TProps) {
   return (
     <div {...props}>
       <p>Count: {count}</p>
-      <button onClick={increment}>Increment</button>
-      <button onClick={decrement}>Decrement</button>
+      <Button onClick={increment}>Increment</Button>
+      <Button onClick={decrement}>Decrement</Button>
     </div>
   );
 }
