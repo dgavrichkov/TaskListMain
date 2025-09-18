@@ -1,15 +1,19 @@
-import { TBlockNode, TCreateBlockNode } from '@/features/BlockNotion/model/types';
+import {
+  BlockNodeDto,
+  CreateBlockNodeDto,
+  UpdateBlockNodeDto,
+} from '@/shared/api/generated/data-contracts';
 
 const BASE_URL = import.meta.env.VITE_APP_BACKEND_URL;
 const ENDPOINT = `${BASE_URL}/block-node`;
 
-export const fetchBlockNodes = async (): Promise<TBlockNode[]> => {
+export const fetchBlockNodes = async (): Promise<BlockNodeDto[]> => {
   const response = await fetch(`${ENDPOINT}`);
 
   return await response.json();
 };
 
-export const postBlockNode = async (data: TCreateBlockNode): Promise<TBlockNode> => {
+export const postBlockNode = async (data: CreateBlockNodeDto): Promise<BlockNodeDto> => {
   const response = await fetch(`${ENDPOINT}`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -21,7 +25,7 @@ export const postBlockNode = async (data: TCreateBlockNode): Promise<TBlockNode>
   return await response.json();
 };
 
-export const deleteBlockNode = async (id: string): Promise<TBlockNode> => {
+export const deleteBlockNode = async (id: string): Promise<BlockNodeDto> => {
   const response = await fetch(`${ENDPOINT}/${id}`, {
     method: 'DELETE',
     headers: { 'Content-Type': 'application/json' },
@@ -37,8 +41,8 @@ export const editBlockNode = async ({
   data,
 }: {
   id: string;
-  data: Partial<TBlockNode>;
-}): Promise<TBlockNode> => {
+  data: Partial<UpdateBlockNodeDto>;
+}): Promise<BlockNodeDto> => {
   const response = await fetch(`${ENDPOINT}/${id}`, {
     method: 'PATCH',
     headers: { 'Content-Type': 'application/json' },

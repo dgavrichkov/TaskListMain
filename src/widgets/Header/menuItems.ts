@@ -41,4 +41,9 @@ export const MAIN_MENU_ITEMS = [
     label: 'Categories',
     path: PATHS.CATEGORIES,
   },
+  {
+    id: 9,
+    label: 'Dictionary',
+    path: PATHS.DICTIONARY,
+  },
 ];

@@ -9,6 +9,7 @@ import { Layout } from '../Layout';
 import { Habits } from '@/pages/habits';
 import { Training } from '@/pages/Training';
 import { Categories } from '@/pages/Categories';
+import { Dictionary } from '@/pages/Dictionary/Dictionary';
 
 export const Router: FC = () => (
   <Routes>
@@ -28,6 +29,7 @@ export const Router: FC = () => (
       <Route element={<Habits />} path={PATHS.HABITS} />
       <Route element={<Training />} path={PATHS.TRAINING} />
       <Route element={<Categories />} path={PATHS.CATEGORIES} />
+      <Route element={<Dictionary />} path={PATHS.DICTIONARY} />
     </Route>
   </Routes>
 );

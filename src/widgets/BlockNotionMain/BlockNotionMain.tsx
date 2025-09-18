@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader } from '@/shared/ui/Card';
-import { TBlockNode, TCreateBlockNode } from '@/features/BlockNotion/model/types';
 import { useBlockNotionMainQuery } from './useBlockNotionMainQuery';
 import { Button } from '@/shared/ui/Button';
+import { BlockNodeDto, CreateBlockNodeDto } from '@/shared/api/generated/data-contracts';
 
 const targetType = 'base';
 const targetId = 'i-do-not-know-yet';
@@ -17,30 +17,33 @@ export const BlockNotionMain = () => {
     if (content == null || content === '') return;
 
     // TODO - получение контента из компонента, ответственного за тип блока
-    const nodeData: TCreateBlockNode = {
-      content,
-      parentId: null,
+    const nodeData: CreateBlockNodeDto = {
+      parentId: '',
       position: 0,
-      targetId,
-      targetType,
-      type: 'text',
+      documentId: '1',
+      blocktype: 'text',
+      content,
     };
 
     addNode(nodeData);
   };
 
-  const handleEditBlockNode = (id: string, data: TBlockNode) => {
-    const newContent = window.prompt('Введите текст узла:', data.content)?.trim();
+  const handleEditBlockNode = (id: string, data: BlockNodeDto) => {
+    if (data.blocktype === 'text') {
+      const newContent = window.prompt('Введите текст узла:', data.content)?.trim();
 
-    const updData = {
-      ...data,
-      content: newContent,
-    };
+      if (!newContent) return;
 
-    editNode({
-      id,
-      data: updData,
-    });
+      const updData = {
+        ...data,
+        content: newContent,
+      };
+
+      editNode({
+        id,
+        data: updData,
+      });
+    }
   };
 
   const handleDeleteBlockNode = (id: string) => {
@@ -67,7 +70,7 @@ export const BlockNotionMain = () => {
           ) : (
             data.map((item) => (
               <li className="pb-2 mb-2" key={item.id}>
-                {item.content}
+                {item.blocktype === 'text' && item.content}
                 <span className="ml-4">
                   <button
                     className="cursor-pointer"
