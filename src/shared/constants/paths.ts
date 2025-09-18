@@ -10,4 +10,5 @@ export const PATHS = {
   HABITS: 'habits',
   TRAINING: 'training',
   CATEGORIES: 'categories',
+  DICTIONARY: 'dictionary',
 };

@@ -8,6 +8,7 @@ import { ExampleContainer } from './ui/ExampleContainer';
 import { usersStore } from '@/shared/lib/mobx-rq-integrator/usersStore';
 
 export const Examples = () => {
+  console.log(usersStore.filteredUsers);
   return (
     <>
       <h1>Examples</h1>
