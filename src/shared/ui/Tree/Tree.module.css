@@ -1,0 +1,73 @@
+.rtRoot {
+  --rt-indent: 16px;
+  user-select: none;
+  color: #0f172a;
+}
+
+/* item container */
+.rtItem {
+  position: relative;
+}
+
+/* row button: stretches and keeps hit-area */
+.rtRow {
+  display: grid;
+  grid-template-columns: 16px 1fr;
+  align-items: center;
+  column-gap: 6px;
+  width: 100%;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  padding: 3px 6px;
+  border-radius: 6px;
+  cursor: default;
+}
+
+.rtRow:hover {
+  background: #f1f5f9;
+}
+
+.rtRow:focus-visible {
+  outline: 2px solid #38bdf8;
+  outline-offset: 1px;
+}
+
+.rtCaret {
+  width: 10px;
+  height: 10px;
+  display: inline-block;
+  transform: rotate(-90deg);
+  transition: transform 120ms ease-out;
+  clip-path: polygon(20% 10%, 80% 50%, 20% 90%);
+  background: #64748b;
+}
+
+.rtCaretOpen {
+  transform: rotate(0deg);
+}
+.rtDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: #cbd5e1;
+  display: inline-block;
+  margin-left: 2px;
+}
+
+/* label */
+.rtLabel {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* children group */
+.rtGroup {
+  margin-left: 0;
+}
+
+/* perf: isolate tree rows from rest of layout */
+.rtRoot {
+  contain: content;
+}
