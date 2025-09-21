@@ -6,12 +6,16 @@ import BuggyCounter from './ui/BuggyCounter';
 import CounterErrorBoundary from './ui/CounterErrorBoundary';
 import { ExampleContainer } from './ui/ExampleContainer';
 import { usersStore } from '@/shared/lib/mobx-rq-integrator/usersStore';
+import { NavigationExample } from './TreeNavExample';
 
 export const Examples = () => {
-  console.log(usersStore.filteredUsers);
   return (
     <>
       <h1>Examples</h1>
+      <hr style={{ margin: '12px 0' }} />
+      <ExampleContainer>
+        <NavigationExample />
+      </ExampleContainer>
       <hr style={{ margin: '12px 0' }} />
       <ExampleContainer>
         <CounterErrorBoundary>
@@ -47,6 +51,7 @@ export const Examples = () => {
           </div>
         ))}
       </ExampleContainer>
+      <hr style={{ margin: '12px 0' }} />
     </>
   );
 };
