@@ -14,7 +14,7 @@ export function IndependedButtonExample() {
             render: () => <>Custom content</>,
             clientX: e.clientX,
             clientY: e.clientY,
-            isOnClickPoint: true,
+            anchorEl: e.currentTarget as HTMLElement,
           });
         }}
       >

@@ -88,7 +88,6 @@ export default function DemoTree() {
           menu.open({
             clientX: e.clientX,
             clientY: e.clientY,
-            isOnClickPoint: true,
             render: MAP_NODE_TO_RENDER.get(node.id) ?? FALLBACK_RENDERER,
           });
         }}

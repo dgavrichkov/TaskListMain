@@ -1,13 +1,3 @@
-export function clampToViewport(x: number, y: number, w: number, h: number, margin = 8) {
-  const vw = window.innerWidth;
-  const vh = window.innerHeight;
-  let nx = x;
-  let ny = y;
-  if (nx + w + margin > vw) nx = Math.max(margin, vw - w - margin);
-  if (ny + h + margin > vh) ny = Math.max(margin, vh - h - margin);
-  return { x: nx, y: ny };
-}
-
 export function debounce<T extends (...args: any[]) => void>(fn: T, wait = 120) {
   let t: number | undefined;
   return (...args: Parameters<T>) => {
@@ -16,30 +6,69 @@ export function debounce<T extends (...args: any[]) => void>(fn: T, wait = 120) 
   };
 }
 
-export const HAS_POPOVER =
+export const _HAS_POPOVER =
   typeof document !== 'undefined' && 'showPopover' in (document.createElement('div') as any);
+export const HAS_POPOVER = true;
 
-export function getScrollableAncestors(el: HTMLElement | null): (HTMLElement | Document)[] {
-  const result: (HTMLElement | Document)[] = [];
-  if (!el) return result;
+const GAP = 8; // зазор от точки/якоря
+const MARGIN = 8; // поля от краёв вьюпорта
 
-  const canScroll = (node: HTMLElement) => {
-    const cs = getComputedStyle(node);
-    const y = cs.overflowY;
-    const x = cs.overflowX;
-    const scrollY = /auto|scroll|overlay/.test(y) && node.scrollHeight > node.clientHeight;
-    const scrollX = /auto|scroll|overlay/.test(x) && node.scrollWidth > node.clientWidth;
-    return scrollY || scrollX;
-  };
+/**
+ * Возвращает координаты left/top и ориентацию (для transform-origin) относительно точки клика.
+ * @param pt  Координаты клика (clientX/clientY)
+ * @param size  Размер поповера (из getBoundingClientRect)
+ * @param opts  margin — отступ от края вьюпорта; gap — отступ от точки клика
+ */
+export function computePointPopupPosition(
+  pt: { x: number; y: number },
+  size: { w: number; h: number },
+  opts: { margin?: number; gap?: number } = {},
+) {
+  /** минимальные поля вокруг поповера */
+  const m = opts.margin ?? 8;
+  /** зазор от точки клика */
+  const g = opts.gap ?? 8;
 
-  let node: HTMLElement | null = el.parentElement;
-  while (node) {
-    if (canScroll(node)) result.push(node);
-    node = node.parentElement;
-  }
+  const vw = window.innerWidth;
+  const vh = window.innerHeight;
 
-  // ВАЖНО: корневой скролл слушаем на document
-  if (!result.includes(document)) result.push(document);
+  const spaceRight = vw - pt.x;
+  const spaceBottom = vh - pt.y;
 
-  return result;
+  // Базовый выбор стороны по вместимости
+  const sideX = spaceRight >= size.w + g ? 'right' : 'left';
+  const sideY = spaceBottom >= size.h + g ? 'bottom' : 'top';
+
+  // Сырые координаты относительно точки клика
+  let left = sideX === 'right' ? pt.x + g : pt.x - size.w - g;
+  let top = sideY === 'bottom' ? pt.y + g : pt.y - size.h - g;
+
+  // Клампим во вьюпорт (сохраняем поля m)
+  left = Math.min(Math.max(m, left), Math.max(m, vw - size.w - m));
+  top = Math.min(Math.max(m, top), Math.max(m, vh - size.h - m));
+
+  return { left, top, sideX, sideY } as const;
+}
+
+/**
+ * Прилипание к anchorEl: по умолчанию — под якорём и по левому краю; флипы: вверх и/или правый край
+ */
+export function computeAnchorPopupPosition(ar: DOMRect, pop: { w: number; h: number }) {
+  const vw = window.innerWidth,
+    vh = window.innerHeight;
+  const spaceRight = vw - ar.left;
+  const spaceBottom = vh - ar.bottom;
+
+  let sideX: 'leftEdges' | 'rightEdges' = spaceRight >= pop.w + MARGIN ? 'leftEdges' : 'rightEdges';
+  const sideY: 'below' | 'above' = spaceBottom >= pop.h + GAP + MARGIN ? 'below' : 'above';
+
+  if (sideY === 'above') sideX = 'rightEdges';
+
+  let left = sideX === 'leftEdges' ? ar.left : ar.right - pop.w;
+  let top = sideY === 'below' ? ar.bottom + GAP : ar.top - pop.h - GAP;
+
+  left = Math.min(Math.max(MARGIN, left), Math.max(MARGIN, vw - pop.w - MARGIN));
+  top = Math.min(Math.max(MARGIN, top), Math.max(MARGIN, vh - pop.h - MARGIN));
+
+  return { left: Math.round(left), top: Math.round(top) } as const;
 }

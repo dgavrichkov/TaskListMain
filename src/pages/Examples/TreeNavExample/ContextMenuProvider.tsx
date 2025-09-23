@@ -11,15 +11,18 @@ import { createPortal } from 'react-dom';
 import style from './ContextMenu.module.css';
 import { MenuRenderer } from './types';
 import { CtxMenuBody } from './CtxMenuBody';
-import { clampToViewport, debounce, getScrollableAncestors, HAS_POPOVER } from './helpers';
+import {
+  computeAnchorPopupPosition,
+  computePointPopupPosition,
+  debounce,
+  HAS_POPOVER,
+} from './helpers';
 
 type OpenOpts = {
   clientX: number;
   clientY: number;
   render: MenuRenderer;
-  //TODO - переделать хорошо бы
-  anchorEl?: HTMLElement | null; // если есть — меню “прилипает” к узлу
-  isOnClickPoint?: boolean; // если есть — меню прилипает к точке клика ??
+  anchorEl?: HTMLElement | null;
 };
 
 type Ctx = {
@@ -29,16 +32,12 @@ type Ctx = {
 
 const CtxMenuContext = createContext<Ctx | null>(null);
 
-// один контекст - один поповер.
-
 export const ContextMenuProvider = ({ children }: { children: React.ReactNode }) => {
   const menuRef = useRef<HTMLDivElement | null>(null);
   const anchorRef = useRef<HTMLElement | null>(null);
-  const clickPointModeRef = useRef<boolean>(false);
   const [isOpen, setOpen] = useState(false);
   const [fallbackPoint, setFallbackPoint] = useState<{ x: number; y: number } | null>(null);
   const [renderer, setRenderer] = useState<MenuRenderer | null>(null);
-  const scrollUnsubsRef = useRef<Array<() => void>>([]);
 
   const handleClose = useCallback(() => {
     setOpen(false);
@@ -56,7 +55,6 @@ export const ContextMenuProvider = ({ children }: { children: React.ReactNode })
 
   const handleOpen = useCallback((opts: OpenOpts) => {
     anchorRef.current = opts.anchorEl ?? null;
-    clickPointModeRef.current = !!opts.isOnClickPoint;
     setFallbackPoint({ x: opts.clientX, y: opts.clientY });
     setRenderer(() => opts.render ?? null);
     setOpen(true);
@@ -67,21 +65,6 @@ export const ContextMenuProvider = ({ children }: { children: React.ReactNode })
     if (!isOpen || !menuRef.current || !fallbackPoint) return;
     const el = menuRef.current;
 
-    scrollUnsubsRef.current.forEach((fn) => fn());
-    scrollUnsubsRef.current = [];
-
-    console.log('anchorref', anchorRef.current);
-
-    const ancestors = getScrollableAncestors(anchorRef.current);
-
-    console.log('ancestors', ancestors);
-
-    ancestors.forEach((container) => {
-      const onScroll = () => handleClose();
-      container.addEventListener('scroll', onScroll, { capture: true, passive: true });
-      scrollUnsubsRef.current.push(() => container.removeEventListener('scroll', onScroll));
-    });
-
     // показать popover сразу (если доступно), чтобы размеры были корректны
     if (HAS_POPOVER && (el as any).showPopover) {
       try {
@@ -91,28 +74,21 @@ export const ContextMenuProvider = ({ children }: { children: React.ReactNode })
       }
     }
 
-    // функция, выполняющая задание элементу координат через инлайн-стиль
+    // обновленный плейс, который меняет ось положения поповера при нехватке места у края
     const place = () => {
       const rect = el.getBoundingClientRect();
-
-      let x = fallbackPoint.x;
-      let y = fallbackPoint.y;
-
-      // Если НЕ режим «по точке клика» и есть anchor — прилипнем к узлу,
-      // иначе остаёмся в координатах клика.
-      const anchor = anchorRef.current;
-
-      if (!clickPointModeRef.current && anchor) {
-        const ar = anchor.getBoundingClientRect();
-        x = ar.right + 8; // небольшое смещение от узла
-        y = ar.top;
-      }
-
-      // Клампим, чтобы меню полностью вошло в вьюпорт
-      const { x: nx, y: ny } = clampToViewport(x, y, rect.width, rect.height, 8);
-      // Записываем полученные координаты в css элемента
-      el.style.left = `${nx - 20}px`;
-      el.style.top = `${ny}px`;
+      const ankorEl = anchorRef.current;
+      const pos = ankorEl
+        ? computeAnchorPopupPosition(ankorEl.getBoundingClientRect(), {
+            w: rect.width,
+            h: rect.height,
+          })
+        : computePointPopupPosition(
+            { x: fallbackPoint.x, y: fallbackPoint.y },
+            { w: rect.width, h: rect.height },
+          );
+      el.style.left = `${pos.left}px`;
+      el.style.top = `${pos.top}px`;
     };
 
     // первичная расстановка
@@ -135,14 +111,19 @@ export const ContextMenuProvider = ({ children }: { children: React.ReactNode })
       if (!menuRef.current.contains(e.target as Node)) handleClose();
     };
 
+    const onScroll = () => {
+      handleClose();
+    };
+
+    window.addEventListener('scroll', onScroll);
     window.addEventListener('keydown', onKey);
     window.addEventListener('pointerdown', onPointerDown, true);
 
     // отменяем подписки
     return () => {
       cancelAnimationFrame(id);
-      scrollUnsubsRef.current.forEach((fn) => fn());
-      scrollUnsubsRef.current = [];
+
+      window.removeEventListener('scroll', onScroll);
       window.removeEventListener('resize', relayout);
       window.removeEventListener('keydown', onKey);
       window.removeEventListener('pointerdown', onPointerDown, true);
@@ -158,6 +139,7 @@ export const ContextMenuProvider = ({ children }: { children: React.ReactNode })
     <div
       ref={menuRef}
       {...(HAS_POPOVER ? { popover: 'manual' as any } : {})}
+      data-cm
       className={style.menuWindow}
       role="menu"
       tabIndex={-1}

@@ -13,9 +13,9 @@ export const Examples = () => {
     <>
       <h1>Examples</h1>
       <hr style={{ margin: '12px 0' }} />
-      <ExampleContainer>
+      {/* <ExampleContainer>
         <NavigationExample />
-      </ExampleContainer>
+      </ExampleContainer> */}
       <hr style={{ margin: '12px 0' }} />
       <ExampleContainer>
         <CounterErrorBoundary>
@@ -52,6 +52,9 @@ export const Examples = () => {
         ))}
       </ExampleContainer>
       <hr style={{ margin: '12px 0' }} />
+      <ExampleContainer>
+        <NavigationExample />
+      </ExampleContainer>
     </>
   );
 };
