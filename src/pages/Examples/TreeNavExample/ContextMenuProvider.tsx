@@ -11,7 +11,7 @@ import { createPortal } from 'react-dom';
 import style from './ContextMenu.module.css';
 import { MenuRenderer } from './types';
 import { CtxMenuBody } from './CtxMenuBody';
-import { clampToViewport, debounce, HAS_POPOVER } from './helpers';
+import { clampToViewport, debounce, getScrollableAncestors, HAS_POPOVER } from './helpers';
 
 type OpenOpts = {
   clientX: number;
@@ -34,10 +34,11 @@ const CtxMenuContext = createContext<Ctx | null>(null);
 export const ContextMenuProvider = ({ children }: { children: React.ReactNode }) => {
   const menuRef = useRef<HTMLDivElement | null>(null);
   const anchorRef = useRef<HTMLElement | null>(null);
-  const clickPointModeRef = React.useRef<boolean>(false);
+  const clickPointModeRef = useRef<boolean>(false);
   const [isOpen, setOpen] = useState(false);
   const [fallbackPoint, setFallbackPoint] = useState<{ x: number; y: number } | null>(null);
   const [renderer, setRenderer] = useState<MenuRenderer | null>(null);
+  const scrollUnsubsRef = useRef<Array<() => void>>([]);
 
   const handleClose = useCallback(() => {
     setOpen(false);
@@ -65,6 +66,21 @@ export const ContextMenuProvider = ({ children }: { children: React.ReactNode })
   useLayoutEffect(() => {
     if (!isOpen || !menuRef.current || !fallbackPoint) return;
     const el = menuRef.current;
+
+    scrollUnsubsRef.current.forEach((fn) => fn());
+    scrollUnsubsRef.current = [];
+
+    console.log('anchorref', anchorRef.current);
+
+    const ancestors = getScrollableAncestors(anchorRef.current);
+
+    console.log('ancestors', ancestors);
+
+    ancestors.forEach((container) => {
+      const onScroll = () => handleClose();
+      container.addEventListener('scroll', onScroll, { capture: true, passive: true });
+      scrollUnsubsRef.current.push(() => container.removeEventListener('scroll', onScroll));
+    });
 
     // показать popover сразу (если доступно), чтобы размеры были корректны
     if (HAS_POPOVER && (el as any).showPopover) {
@@ -125,6 +141,8 @@ export const ContextMenuProvider = ({ children }: { children: React.ReactNode })
     // отменяем подписки
     return () => {
       cancelAnimationFrame(id);
+      scrollUnsubsRef.current.forEach((fn) => fn());
+      scrollUnsubsRef.current = [];
       window.removeEventListener('resize', relayout);
       window.removeEventListener('keydown', onKey);
       window.removeEventListener('pointerdown', onPointerDown, true);

@@ -18,3 +18,28 @@ export function debounce<T extends (...args: any[]) => void>(fn: T, wait = 120) 
 
 export const HAS_POPOVER =
   typeof document !== 'undefined' && 'showPopover' in (document.createElement('div') as any);
+
+export function getScrollableAncestors(el: HTMLElement | null): (HTMLElement | Document)[] {
+  const result: (HTMLElement | Document)[] = [];
+  if (!el) return result;
+
+  const canScroll = (node: HTMLElement) => {
+    const cs = getComputedStyle(node);
+    const y = cs.overflowY;
+    const x = cs.overflowX;
+    const scrollY = /auto|scroll|overlay/.test(y) && node.scrollHeight > node.clientHeight;
+    const scrollX = /auto|scroll|overlay/.test(x) && node.scrollWidth > node.clientWidth;
+    return scrollY || scrollX;
+  };
+
+  let node: HTMLElement | null = el.parentElement;
+  while (node) {
+    if (canScroll(node)) result.push(node);
+    node = node.parentElement;
+  }
+
+  // ВАЖНО: корневой скролл слушаем на document
+  if (!result.includes(document)) result.push(document);
+
+  return result;
+}
