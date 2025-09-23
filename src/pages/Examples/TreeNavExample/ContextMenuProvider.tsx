@@ -39,6 +39,8 @@ export const ContextMenuProvider = ({ children }: { children: React.ReactNode })
   const [fallbackPoint, setFallbackPoint] = useState<{ x: number; y: number } | null>(null);
   const [renderer, setRenderer] = useState<MenuRenderer | null>(null);
 
+  console.log('CTX PROVIDER RendeR!');
+
   const handleClose = useCallback(() => {
     setOpen(false);
     anchorRef.current = null;
