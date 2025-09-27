@@ -1,48 +1,55 @@
 /* eslint-disable react/prop-types */
 import { TREE_DATA } from './constants';
-import { useContextMenu } from './ContextMenuProvider';
 import { Tree } from '../../../shared/ui/Tree';
-import { MenuComponent, MenuRenderer } from './types';
+import { TPopoverContentComponent, TPopoverContentRenderer } from '@/shared/ui/Popover';
 import { ReactNode } from 'react';
 import { ensureRenderer } from './menu.utils';
+import { usePopover } from '@/shared/ui/Popover/hooks/usePopover';
+import { CtxMenuBody } from './CtxMenuBody';
 
-const DefaultMenu: MenuComponent<{ children?: ReactNode }> = ({ api }) => (
-  <div role="none">
-    <button className="cm-item" onClick={api.onClose}>
-      Закрыть
-    </button>
-  </div>
+const DefaultMenu: TPopoverContentComponent<{ children?: ReactNode }> = ({ api }) => (
+  <CtxMenuBody>
+    <div role="none">
+      <button className="cm-item" onClick={api.onClose}>
+        Закрыть
+      </button>
+    </div>
+  </CtxMenuBody>
 );
 
-const FolderMenu: MenuComponent<{ name: string }> = ({ api, name }) => (
-  <div className="grid gap-1 justify-items-start" role="none">
-    <div style={{ opacity: 0.8 }}>Папка: {name}</div>
-    <button className="cm-item" onClick={api.onClose}>
-      Открыть
-    </button>
-    <button className="cm-item" onClick={api.onClose}>
-      Новый файл…
-    </button>
-  </div>
+const FolderMenu: TPopoverContentComponent<{ name: string }> = ({ api, name }) => (
+  <CtxMenuBody>
+    <div className="grid gap-1 justify-items-start" role="none">
+      <div style={{ opacity: 0.8 }}>Папка: {name}</div>
+      <button className="cm-item" onClick={api.onClose}>
+        Открыть
+      </button>
+      <button className="cm-item" onClick={api.onClose}>
+        Новый файл…
+      </button>
+    </div>
+  </CtxMenuBody>
 );
 
-const FileMenu: MenuComponent<{ name: string }> = ({ api, name }) => (
-  <div className="grid gap-1 justify-items-start" role="none">
-    <div style={{ opacity: 0.8 }}>Файл: {name}</div>
-    <button className="cm-item" onClick={api.onClose}>
-      Открыть
-    </button>
-    <button className="cm-item" onClick={api.onClose}>
-      Скачать
-    </button>
-  </div>
+const FileMenu: TPopoverContentComponent<{ name: string }> = ({ api, name }) => (
+  <CtxMenuBody>
+    <div className="grid gap-1 justify-items-start" role="none">
+      <div style={{ opacity: 0.8 }}>Файл: {name}</div>
+      <button className="cm-item" onClick={api.onClose}>
+        Открыть
+      </button>
+      <button className="cm-item" onClick={api.onClose}>
+        Скачать
+      </button>
+    </div>
+  </CtxMenuBody>
 );
 
 /**
  * Маппинг: nodeId → MenuRenderer
  * Значения — либо готовый renderer, либо кортеж [Компонент, props], который нормализуем в renderer.
  */
-const RAW_MAP = new Map<string, MenuRenderer | [MenuComponent<any>, any]>([
+const RAW_MAP = new Map<string, TPopoverContentRenderer | [TPopoverContentComponent<any>, any]>([
   ['root-1', [FolderMenu, { name: 'src' }]],
   ['root-2', [FolderMenu, { name: 'public' }]],
   ['n2', [FileMenu, { name: 'App.tsx' }]],
@@ -61,16 +68,16 @@ const RAW_MAP = new Map<string, MenuRenderer | [MenuComponent<any>, any]>([
 ]);
 
 /** Гарантированно возвращаем MenuRenderer */
-export const MAP_NODE_TO_RENDER: ReadonlyMap<string, MenuRenderer> = new Map(
+export const MAP_NODE_TO_RENDER: ReadonlyMap<string, TPopoverContentRenderer> = new Map(
   Array.from(RAW_MAP, ([k, v]) => [k, ensureRenderer(v)] as const),
 );
 
 /** Фоллбэк-рендерер (на случай отсутствия id в мапе) */
-export const FALLBACK_RENDERER: MenuRenderer = (api) => <DefaultMenu api={api} />;
+export const FALLBACK_RENDERER: TPopoverContentRenderer = (api) => <DefaultMenu api={api} />;
 
 export default function DemoTree() {
   // Из провайдера контекстного меню мы получаем объект управления поповером
-  const menu = useContextMenu();
+  const popoverControl = usePopover();
 
   console.log('TREE RENDER');
 
@@ -85,10 +92,11 @@ export default function DemoTree() {
 
           console.log('context on', node);
 
-          menu.open({
+          popoverControl.open({
             clientX: e.clientX,
             clientY: e.clientY,
-            render: MAP_NODE_TO_RENDER.get(node.id) ?? FALLBACK_RENDERER,
+            anchorEl: e.target as HTMLElement,
+            renderer: MAP_NODE_TO_RENDER.get(node.id) ?? FALLBACK_RENDERER,
           });
         }}
         onSelect={(node) => console.log('select', node)}

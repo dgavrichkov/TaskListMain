@@ -1,17 +1,16 @@
-import style from './ContextMenu.module.css';
+import { usePopover } from '@/shared/ui/Popover/hooks/usePopover';
 import { Button } from '@/shared/ui';
-import { useContextMenu } from './ContextMenuProvider';
+import { CtxMenuBody } from './CtxMenuBody';
 
 export function IndependedButtonExample() {
-  const menu = useContextMenu();
+  const menu = usePopover();
 
   return (
     <div className="flex gap-4 mt-4">
       <Button
-        className={style.button}
         onClick={(e) => {
           menu.open({
-            render: () => <>Custom content</>,
+            renderer: () => <CtxMenuBody>Custom content</CtxMenuBody>,
             clientX: e.clientX,
             clientY: e.clientY,
             anchorEl: e.currentTarget as HTMLElement,
@@ -20,21 +19,22 @@ export function IndependedButtonExample() {
       >
         Click for Popover
       </Button>
-      <Button
-        onMouseEnter={(e) => {
+      {/* а вот ховер теперь не работает нормально... */}
+      {/* <Button
+        onPointerEnter={(e) => {
           menu.open({
-            render: () => <>Custom Content</>,
+            renderer: () => <>Custom Content</>,
             clientX: e.clientX,
             clientY: e.clientY,
             anchorEl: e.currentTarget as HTMLElement,
           });
         }}
-        onMouseLeave={() => {
+        onPointerLeave={() => {
           menu.close();
         }}
       >
         Hover for Popover
-      </Button>
+      </Button> */}
     </div>
   );
 }

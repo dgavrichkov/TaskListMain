@@ -1,17 +1,21 @@
 import React from 'react';
-import type { MenuAPI, MenuRenderer, MenuComponent } from './types';
+import type {
+  TPopoverAPI,
+  TPopoverContentRenderer,
+  TPopoverContentComponent,
+} from '@/shared/ui/Popover/types';
 
 /** Превращает компонент меню в render-колбэк для провайдера */
 export function asRenderer<P extends NonNullable<unknown>>(
-  Comp: MenuComponent<P>,
+  Comp: TPopoverContentComponent<P>,
   fixedProps: P,
-): MenuRenderer {
-  return (api: MenuAPI) => <Comp {...fixedProps} api={api} />;
+): TPopoverContentRenderer {
+  return (api: TPopoverAPI) => <Comp {...fixedProps} api={api} />;
 }
 
 /** Нормализатор: принимает либо уже renderer, либо компонент с props → renderer */
 export function ensureRenderer<P extends NonNullable<unknown>>(
-  entry: MenuRenderer | [MenuComponent<P>, P],
-): MenuRenderer {
+  entry: TPopoverContentRenderer | [TPopoverContentComponent<P>, P],
+): TPopoverContentRenderer {
   return Array.isArray(entry) ? asRenderer(entry[0], entry[1]) : entry;
 }

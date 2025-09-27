@@ -65,6 +65,8 @@ export const PopoverProvider = ({ children }: { children: ReactNode }) => {
       return;
     }
 
+    console.log('layout!');
+
     const popoverElement = popoverElRef.current;
     const overlayElement = overlayElRef.current;
 

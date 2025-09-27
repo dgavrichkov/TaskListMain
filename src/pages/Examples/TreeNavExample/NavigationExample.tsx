@@ -1,13 +1,13 @@
 import { IndependedButtonExample } from './IndependentButton';
-import { ContextMenuProvider } from './ContextMenuProvider';
 import DemoTree from './DemoTree';
+import { PopoverProvider } from '@/shared/ui/Popover/PopoverProvider';
 
 export const NavigationExample = () => {
   return (
-    <ContextMenuProvider>
+    <PopoverProvider>
       <h1 className="mb-2 font-bold">Tree demo with ctx menu</h1>
       <DemoTree />
       <IndependedButtonExample />
-    </ContextMenuProvider>
+    </PopoverProvider>
   );
 };
