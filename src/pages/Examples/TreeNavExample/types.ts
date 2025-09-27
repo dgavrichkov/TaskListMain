@@ -1,8 +1,5 @@
-export type MenuAPI = { onClose: () => void };
+/** api, предоставляемый поповером своим потомкам */
+export type TPopoverAPI = { onClose: () => void };
 
-export type MenuRenderer = (api: MenuAPI) => React.ReactNode;
-
-/** Компонент меню (если предпочитаете хранить компоненты) */
-export type MenuComponent<P extends NonNullable<unknown>> = React.ComponentType<
-  P & { api: MenuAPI }
->;
+/** функция рендера контента поповера */
+export type TPopoverContentRenderer = (api: TPopoverAPI) => React.ReactNode;

@@ -1,11 +1,3 @@
-export function debounce<T extends (...args: any[]) => void>(fn: T, wait = 120) {
-  let t: number | undefined;
-  return (...args: Parameters<T>) => {
-    if (t) window.clearTimeout(t);
-    t = window.setTimeout(() => fn(...args), wait);
-  };
-}
-
 export const _HAS_POPOVER =
   typeof document !== 'undefined' && 'showPopover' in (document.createElement('div') as any);
 export const HAS_POPOVER = true;
