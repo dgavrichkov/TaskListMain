@@ -8,8 +8,6 @@ import { BrowserRouter } from 'react-router-dom';
 import { persistor, store } from './store';
 import { PersistGate } from 'redux-persist/integration/react';
 import { ErrorBoundary } from '../shared/ui/ErrorBoundary';
-import './styles/global.css';
-import './styles/index.css';
 import { queryClient } from '@/shared/api/client';
 
 export const App: FC = function () {
