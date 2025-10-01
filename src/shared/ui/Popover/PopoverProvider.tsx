@@ -27,6 +27,7 @@ export type TPopoverOpenOptions = {
   anchorEl: HTMLElement;
   /** должен ли поповер прилипать к краю якорного элемента */
   shouldStickToAnchor?: boolean;
+  isSecondary?: boolean;
 };
 
 export type TPopoverContext = {
@@ -36,36 +37,61 @@ export type TPopoverContext = {
   close: () => void;
 };
 
+type ComplexState = {
+  renderer: TPopoverContentRenderer;
+  coords: {
+    x: number;
+    y: number;
+  };
+  anchorElement: HTMLElement;
+  isStickToAnchor: boolean;
+  isSecondary: boolean;
+};
+
+// NEW
+type PopoverEntry = {
+  id: number; // уникальный ключ (инкремент)
+  renderer: TPopoverContentRenderer;
+  coords: { x: number; y: number };
+  anchorElement: HTMLElement;
+  isStickToAnchor: boolean;
+};
+
 export const PopoverContext = createContext<TPopoverContext | null>(null);
 
 export const PopoverProvider = ({ children }: { children: ReactNode }) => {
   const popoverElRef = useRef<HTMLDivElement | null>(null);
+  const popoverRefs = useRef<Map<number, HTMLDivElement>>(new Map());
   const anchorElRef = useRef<HTMLElement | null>(null);
   const overlayElRef = useRef<HTMLDivElement | null>(null);
-  const [initialPoint, setInitialPoint] = useState<{ x: number; y: number } | null>(null);
-  const [isStickToAnchor, setIsStickToAnchor] = useState<boolean>(false);
-  const [renderer, setRenderer] = useState<TPopoverContentRenderer | null>(null);
-  const isOpen = Boolean(renderer);
+  const [complexState, setComplexState] = useState<ComplexState | null>(null);
+  const isOpen = Boolean(complexState);
 
   const handleOpen = useCallback((options: TPopoverOpenOptions) => {
     anchorElRef.current = options.anchorEl;
-    setInitialPoint({ x: options.clientX, y: options.clientY });
-    setRenderer(() => options.renderer);
-    setIsStickToAnchor(Boolean(options.shouldStickToAnchor));
+
+    setComplexState({
+      anchorElement: options.anchorEl,
+      coords: {
+        x: options.clientX,
+        y: options.clientY,
+      },
+      isStickToAnchor: !!options.shouldStickToAnchor,
+      isSecondary: !!options.isSecondary,
+      renderer: options.renderer,
+    });
   }, []);
 
   const handleClose = useCallback(() => {
-    setInitialPoint(null);
-    setRenderer(null);
     anchorElRef.current = null;
+
+    setComplexState(null);
   }, []);
 
   useLayoutEffect(() => {
-    if (!popoverElRef.current || !initialPoint) {
+    if (!popoverElRef.current || !complexState) {
       return;
     }
-
-    console.log('layout!');
 
     const popoverElement = popoverElRef.current;
     const overlayElement = overlayElRef.current;
@@ -74,15 +100,15 @@ export const PopoverProvider = ({ children }: { children: ReactNode }) => {
       const rect = popoverElement.getBoundingClientRect();
       const anchorElement = anchorElRef.current;
       const position =
-        anchorElement && isStickToAnchor
+        anchorElement && complexState.isStickToAnchor
           ? computeAnchorPopupPosition({
               anchorRect: anchorElement.getBoundingClientRect(),
               popoverWidth: rect.width,
               popoverHeight: rect.height,
             })
           : computePointPopupPosition({
-              pointX: initialPoint.x,
-              pointY: initialPoint.y,
+              pointX: complexState.coords.x,
+              pointY: complexState.coords.y,
               popoverWidth: rect.width,
               popoverHeight: rect.height,
             });
@@ -142,7 +168,7 @@ export const PopoverProvider = ({ children }: { children: ReactNode }) => {
       cancelAnimationFrame(id);
       abortController.abort();
     };
-  }, [handleClose, initialPoint, isStickToAnchor]);
+  }, [handleClose, complexState]);
 
   const value = useMemo<TPopoverContext>(
     () => ({ open: handleOpen, close: handleClose }),
@@ -153,7 +179,7 @@ export const PopoverProvider = ({ children }: { children: ReactNode }) => {
     <>
       <div className="overlay" ref={overlayElRef} />
       <div className="popover" ref={popoverElRef}>
-        {renderer?.({ onClose: handleClose })}
+        {complexState?.renderer?.({ onClose: handleClose })}
       </div>
     </>
   );

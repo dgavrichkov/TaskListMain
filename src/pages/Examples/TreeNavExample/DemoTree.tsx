@@ -17,19 +17,24 @@ const DefaultMenu: TPopoverContentComponent<{ children?: ReactNode }> = ({ api }
   </CtxMenuBody>
 );
 
-const FolderMenu: TPopoverContentComponent<{ name: string }> = ({ api, name }) => (
-  <CtxMenuBody>
-    <div className="grid gap-1 justify-items-start" role="none">
-      <div style={{ opacity: 0.8 }}>Папка: {name}</div>
-      <button className="cm-item" onClick={api.onClose}>
-        Открыть
-      </button>
-      <button className="cm-item" onClick={api.onClose}>
-        Новый файл…
-      </button>
-    </div>
-  </CtxMenuBody>
-);
+const FolderMenu: TPopoverContentComponent<{ name: string }> = ({ api, name }) => {
+  const popoverController = usePopover();
+
+  return (
+    <CtxMenuBody>
+      <div className="grid gap-1 justify-items-start" role="none">
+        <div style={{ opacity: 0.8 }}>Папка: {name}</div>
+        <button className="cm-item" onClick={api.onClose}>
+          Открыть
+        </button>
+        <button className="cm-item" onClick={api.onClose}>
+          Новый файл…
+        </button>
+        <button onClick={(e) => {}}>Подменю →</button>
+      </div>
+    </CtxMenuBody>
+  );
+};
 
 const FileMenu: TPopoverContentComponent<{ name: string }> = ({ api, name }) => (
   <CtxMenuBody>

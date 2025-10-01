@@ -1,3 +1,4 @@
+import React from 'react';
 import { SearchComponent } from '@/pages/Examples/ui/SearchComponent';
 import { SimpleTicker, IntervalTicker } from '../../features/Clock';
 import { CounterWithCustomStore } from '../../features/CounterWithCustomStore';
@@ -7,15 +8,17 @@ import CounterErrorBoundary from './ui/CounterErrorBoundary';
 import { ExampleContainer } from './ui/ExampleContainer';
 import { usersStore } from '@/shared/lib/mobx-rq-integrator/usersStore';
 import { NavigationExample } from './TreeNavExample';
+import { TryDialog } from './TryDialog/TryDialog';
+import { Button } from '@/shared/ui';
 
 export const Examples = () => {
   return (
     <>
       <h1>Examples</h1>
       <hr style={{ margin: '12px 0' }} />
-      {/* <ExampleContainer>
-        <NavigationExample />
-      </ExampleContainer> */}
+      <ExampleContainer>
+        <TryDialog />
+      </ExampleContainer>
       <hr style={{ margin: '12px 0' }} />
       <ExampleContainer>
         <CounterErrorBoundary>
