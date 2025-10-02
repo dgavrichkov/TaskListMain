@@ -7,5 +7,5 @@ import '../styles/index.css';
 export const StyleProvider = ({ children }: PropsWithChildren) => {
   // const { theme } = useAppSelector((state) => state.theme);
 
-  return <div>{children}</div>;
+  return <>{children}</>;
 };

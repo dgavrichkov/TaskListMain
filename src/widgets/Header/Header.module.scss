@@ -2,7 +2,7 @@
   display: grid;
   align-items: center;
   grid-template-columns: auto auto 1fr auto;
-  grid-template-areas: 'logo theme navi profile';
+  grid-template-areas: 'theme navi profile';
   column-gap: 32px;
 
   a {
