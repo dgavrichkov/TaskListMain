@@ -1,4 +1,3 @@
-export * from './Header';
 export * from './CreateNoteForm';
 export * from './CreateTaskForm';
 export * from './Note';

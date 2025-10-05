@@ -4,11 +4,21 @@ import {
   SidebarContent,
   SidebarFooter,
   SidebarGroup,
+  SidebarGroupContent,
+  SidebarGroupLabel,
   SidebarHeader,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
 } from '@/shared/shadcn/ui/sidebar';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
+import { Avatar, Button } from '@/shared/ui';
+import { useAuth } from '@/app/providers/AuthProvider';
+import { MAIN_MENU_ITEMS } from '@/shared/constants/mainMenu';
 
 export const AppSidebar = () => {
+  const { token, logout } = useAuth();
+
   return (
     <Sidebar>
       <SidebarHeader>
@@ -25,10 +35,36 @@ export const AppSidebar = () => {
         </figure>
       </SidebarHeader>
       <SidebarContent>
-        <SidebarGroup />
-        <SidebarGroup />
+        <SidebarGroup>
+          <SidebarGroupLabel>Main Menu</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {MAIN_MENU_ITEMS.map((item) => (
+                <SidebarMenuItem key={item.id}>
+                  <NavLink to={item.path}>
+                    {({ isActive, isPending, isTransitioning }) => (
+                      <SidebarMenuButton isActive={isActive}>{item.label}</SidebarMenuButton>
+                    )}
+                  </NavLink>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
       </SidebarContent>
-      <SidebarFooter>Just footer</SidebarFooter>
+      <SidebarFooter>
+        <div>
+          {token ? (
+            <>
+              <Avatar />
+              <NavLink to={PATHS.PROFILE}>Profile</NavLink>
+              <Button onClick={logout}>Logout</Button>
+            </>
+          ) : (
+            <NavLink to="login">Login</NavLink>
+          )}
+        </div>
+      </SidebarFooter>
     </Sidebar>
   );
 };
