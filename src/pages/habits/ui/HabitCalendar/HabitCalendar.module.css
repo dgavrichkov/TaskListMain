@@ -4,7 +4,8 @@
   grid-auto-flow: column;
   gap: 10px;
   width: max-content;
-  max-width: calc(100vw - 64px - 15px - 30px - 24px - 50px);
+  /* max-width: calc(100vw - 64px - 15px - 30px - 24px - 50px - 260px); */
+  max-width: calc(100cqw - 30px - 24px - 32px);
   overflow-x: auto;
   padding-bottom: 15px;
 }

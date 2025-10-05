@@ -1,4 +1,4 @@
-import { Dialog, DialogContent, DialogTrigger } from '@/shared/ui/Dialog';
+import { Dialog, DialogContent, DialogTitle, DialogTrigger } from '@/shared/ui/Dialog';
 import { HabitCreateForm } from '../HabitCreateForm';
 import { SquarePlusIcon } from 'lucide-react';
 import { Button } from '@/shared/ui';
@@ -18,7 +18,7 @@ export const HabitCreation = () => {
       </DialogTrigger>
       <DialogContent>
         <div className="grid gap-4">
-          <h2 className="text-lg font-semibold">Создание привычки</h2>
+          <DialogTitle>Создание привычки</DialogTitle>
           <HabitCreateForm />
         </div>
       </DialogContent>

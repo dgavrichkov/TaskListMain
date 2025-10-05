@@ -1,2 +1,7 @@
 .habitsPage {
 }
+
+.habitCard {
+  container-type: inline-size;
+  container-name: habitcard;
+}
