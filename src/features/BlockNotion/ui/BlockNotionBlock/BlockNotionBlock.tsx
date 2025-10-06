@@ -1,5 +1,9 @@
+import { useState } from 'react';
+import { Pencil, Trash2 } from 'lucide-react';
 import { BlockNodeDto } from '@/shared/api/generated/data-contracts';
+import { Button } from '@/shared/ui';
 import { useBlockNodeItemQuery } from '../../hooks/useBlockNodeItemQuery';
+import { BlockNodeForm } from '../BlockNotionDocument/ui/BlockNodeForm/BlockNodeForm';
 
 type TProps = {
   item: BlockNodeDto;
@@ -10,48 +14,75 @@ type TProps = {
  * Но пока предполагается, что у нас есть только текст.
  */
 export const BlockNotionBlock = ({ item }: TProps) => {
-  const { deleteNode, editNode, isDeleting, isEditing } = useBlockNodeItemQuery(
+  const [isEditing, setIsEditing] = useState(false);
+  const { deleteNode, editNode } = useBlockNodeItemQuery(
     ['mutateBlockNode', item.id],
     ['blockNodes', item.documentId],
   );
 
-  const handleEditBlockNode = (id: string, data: BlockNodeDto) => {
-    if (data.blocktype === 'text') {
-      const newContent = window.prompt('Введите текст узла:', data.content)?.trim();
-
-      if (!newContent) return;
-
-      const updData = {
-        ...data,
-        content: newContent,
-      };
-
-      editNode({
-        id,
-        data: updData,
-      });
+  const handleEditBlockNode = () => {
+    if (item.blocktype === 'text') {
+      setIsEditing(true);
     }
   };
 
-  const handleDeleteBlockNode = (id: string) => {
-    deleteNode(id);
+  const handleDeleteBlockNode = () => {
+    deleteNode(item.id);
+  };
+
+  const handleCancelEdit = () => {
+    setIsEditing(false);
+  };
+
+  const handleConfirmEdit = (payload: string) => {
+    const newContent = payload;
+    const updData = {
+      ...item,
+      content: newContent,
+    };
+
+    editNode({
+      id: item.id,
+      data: updData,
+    });
+
+    setIsEditing(false);
   };
 
   return (
-    <div>
-      {item.blocktype === 'text' && item.content}
-      <span className="ml-4">
-        <button
-          className="cursor-pointer"
-          title="delete node"
-          onClick={() => handleDeleteBlockNode(item.id)}
-        >
-          {isDeleting ? '🔃' : '➖'}
-        </button>
-        <button className="ml-2 cursor-pointer" onClick={() => handleEditBlockNode(item.id, item)}>
-          {isEditing ? '🔃' : '🖍️'}
-        </button>
-      </span>
-    </div>
+    <>
+      {!isEditing && (
+        <div className="flex gap-4">
+          <div>{item.blocktype === 'text' && item.content}</div>
+          <div className="flex gap-2 ml-auto">
+            <Button
+              className="ml-2 cursor-pointer"
+              size={'icon'}
+              variant={'outline'}
+              onClick={handleEditBlockNode}
+            >
+              <Pencil />
+            </Button>
+            <Button
+              className="cursor-pointer"
+              size={'icon'}
+              title="delete node"
+              variant={'destructive'}
+              onClick={handleDeleteBlockNode}
+            >
+              <Trash2 />
+            </Button>
+          </div>
+        </div>
+      )}
+      {isEditing && (
+        <BlockNodeForm
+          data={item.content}
+          documentId={item.documentId}
+          onCancel={handleCancelEdit}
+          onConfirm={handleConfirmEdit}
+        />
+      )}
+    </>
   );
 };
