@@ -3,6 +3,7 @@ import { Portal } from '../../shared/lib/Portal';
 import { CreateNoteForm, NotesList } from '../../widgets';
 import { StyledListPageWrap } from '../../shared/layouts';
 import { Filter } from '../../features';
+import { TOOLBAR_SLOTS } from '@/shared/constants/toolbarSlots';
 
 export const Notes: FC = () => {
   return (
@@ -17,7 +18,7 @@ export const Notes: FC = () => {
       <section className="content">
         <NotesList />
       </section>
-      <Portal portalId="header-portal"></Portal>
+      <Portal portalId={TOOLBAR_SLOTS.WORKSPACE}>NOTES PORTAL</Portal>
     </StyledListPageWrap>
   );
 };
