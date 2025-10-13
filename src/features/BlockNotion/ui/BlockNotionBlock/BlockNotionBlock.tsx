@@ -20,7 +20,7 @@ export const BlockNotionBlock = ({ item }: TProps) => {
     ['blockNodes', item.documentId],
   );
 
-  const handleEditBlockNode = () => {
+  const handleStartEditBlockNode = () => {
     if (item.blocktype === 'text') {
       setIsEditing(true);
     }
@@ -53,13 +53,13 @@ export const BlockNotionBlock = ({ item }: TProps) => {
     <>
       {!isEditing && (
         <div className="flex gap-4">
-          <div>{item.blocktype === 'text' && item.content}</div>
+          <div onClick={handleStartEditBlockNode}>{item.blocktype === 'text' && item.content}</div>
           <div className="flex gap-2 ml-auto">
             <Button
               className="ml-2 cursor-pointer"
               size={'icon'}
               variant={'outline'}
-              onClick={handleEditBlockNode}
+              onClick={handleStartEditBlockNode}
             >
               <Pencil />
             </Button>
