@@ -4,6 +4,8 @@ import { Check, CircleX } from 'lucide-react';
 import { Button } from '@/shared/ui';
 import { useCallback, useEffect, useRef } from 'react';
 
+import './BlockNodeForm.css';
+
 type TProps = {
   documentId: string;
   // TODO - extend it
@@ -69,7 +71,7 @@ export const BlockNodeForm = ({ documentId, data, onConfirm, onCancel }: TProps)
         {({ state, handleChange }) => (
           <Input
             autoFocus={true}
-            className="input input-bordered w-full"
+            className="input input-bordered w-full blockTextInput"
             placeholder="введите ваш текст"
             type="text"
             value={state.value}

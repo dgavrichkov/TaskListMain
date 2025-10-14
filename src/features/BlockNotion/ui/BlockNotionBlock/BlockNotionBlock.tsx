@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { Pencil, Trash2 } from 'lucide-react';
 import { BlockNodeDto } from '@/shared/api/generated/data-contracts';
 import { Button } from '@/shared/ui';
@@ -14,6 +14,7 @@ type TProps = {
  * Но пока предполагается, что у нас есть только текст.
  */
 export const BlockNotionBlock = ({ item }: TProps) => {
+  const textRef = useRef<HTMLDivElement | null>(null);
   const [isEditing, setIsEditing] = useState(false);
   const { deleteNode, editNode } = useBlockNodeItemQuery(
     ['mutateBlockNode', item.id],
@@ -22,6 +23,7 @@ export const BlockNotionBlock = ({ item }: TProps) => {
 
   const handleStartEditBlockNode = () => {
     if (item.blocktype === 'text') {
+      console.log('Edit!');
       setIsEditing(true);
     }
   };
@@ -52,8 +54,10 @@ export const BlockNotionBlock = ({ item }: TProps) => {
   return (
     <>
       {!isEditing && (
-        <div className="flex gap-4">
-          <div onClick={handleStartEditBlockNode}>{item.blocktype === 'text' && item.content}</div>
+        <div className="flex gap-2">
+          <div className="flex items-center" ref={textRef} onClick={handleStartEditBlockNode}>
+            {item.blocktype === 'text' && item.content}
+          </div>
           <div className="flex gap-2 ml-auto">
             <Button
               className="ml-2 cursor-pointer"
