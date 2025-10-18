@@ -1,6 +1,5 @@
 import React from 'react';
 import { SearchComponent } from '@/pages/Examples/ui/SearchComponent';
-import { SimpleTicker, IntervalTicker } from '../../features/Clock';
 import { CounterWithCustomStore } from '../../features/CounterWithCustomStore';
 import TaskApp from './ReducerContext';
 import BuggyCounter from './ui/BuggyCounter';
@@ -65,11 +64,6 @@ export const Examples = () => {
         <CounterWithCustomStore />
         <hr style={{ margin: '12px 0' }} />
         <CounterWithCustomStore />
-      </ExampleContainer>
-      <hr style={{ margin: '12px 0' }} />
-      <ExampleContainer columns={2}>
-        <SimpleTicker />
-        <IntervalTicker />
       </ExampleContainer>
       <hr style={{ margin: '12px 0' }} />
       <ExampleContainer>

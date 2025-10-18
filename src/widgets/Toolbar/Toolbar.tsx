@@ -5,7 +5,8 @@ export const Toolbar = () => {
   return (
     <div className="grid grid-cols-12">
       <div id={TOOLBAR_SLOTS.SIDEBAR}></div>
-      <div className="col-span-11 flex justify-end" id={TOOLBAR_SLOTS.WORKSPACE}></div>
+      <div className="col-span-10 flex justify-end" id={TOOLBAR_SLOTS.WORKSPACE}></div>
+      <div className="flex justify-end" id={TOOLBAR_SLOTS.RIGHT}></div>
     </div>
   );
 };
