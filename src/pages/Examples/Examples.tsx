@@ -19,11 +19,16 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from '@/shared/shadcn/ui/drawer';
+import { TrySocket } from './TrySocket/TrySocket';
 
 export const Examples = () => {
   return (
     <>
       <h1>Examples</h1>
+      <hr style={{ margin: '12px 0' }} />
+      <ExampleContainer>
+        <TrySocket />
+      </ExampleContainer>
       <hr style={{ margin: '12px 0' }} />
       <ExampleContainer>
         <Drawer direction="right">

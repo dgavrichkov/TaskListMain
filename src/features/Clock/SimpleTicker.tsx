@@ -4,6 +4,7 @@ import ClockFace from './ClockFace';
 import './ticker.css';
 
 export const SimpleTicker = () => {
+  // хук принимает формат времени и возвращает само время, которое передается циферблату
   const time = useClock('HH:mm:ss');
 
   return (
