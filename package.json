@@ -9,7 +9,7 @@
     "build": "tsc && vite build",
     "serve": "vite preview",
     "api": "json-server --watch db.json --port 5400",
-    "gen:t": "openapi-typescript http://localhost:3000/api-json -o src/shared/api/api-types.ts",
+    "gen:t": "openapi-typescript http://localhost:3001/api-json -o src/shared/api/api-types.ts",
     "gen:api": "node openapi/generateApi.mjs",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"

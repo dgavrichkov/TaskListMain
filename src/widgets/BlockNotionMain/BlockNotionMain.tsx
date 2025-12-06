@@ -1,15 +1,13 @@
 import { Card, CardContent, CardHeader } from '@/shared/ui/Card';
-import { BlockNotionDocument } from '@/features/BlockNotion/ui/BlockNotionDocument';
+import { BlockNotionDocumentsList } from '@/features/BlockNotion/ui/BlockNotionDocumentsList';
 
-export const BlockNotionMain = () => {
-  return (
-    <Card>
-      <CardHeader className="font-bold">
-        <h2>БлокНоды с основного эндпоинта</h2>
-      </CardHeader>
-      <CardContent>
-        <BlockNotionDocument documentId="1" />
-      </CardContent>
-    </Card>
-  );
-};
+export const BlockNotionMain = () => (
+  <Card>
+    <CardHeader className="font-bold">
+      <h2>Список документов</h2>
+    </CardHeader>
+    <CardContent>
+      <BlockNotionDocumentsList />
+    </CardContent>
+  </Card>
+);

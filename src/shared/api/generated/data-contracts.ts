@@ -10,6 +10,24 @@
  * ---------------------------------------------------------------
  */
 
+export interface AuthLoginDto {
+  email: string;
+  password: string;
+}
+
+export interface AuthRegisterDto {
+  displayName: string;
+  email: string;
+  password: string;
+}
+
+export interface BlockNodeContentDto {
+  blocktype: string;
+  content: string;
+  parentId?: string;
+  position: number;
+}
+
 export interface BlockNodeDto {
   blocktype: string;
   content: string;
@@ -25,7 +43,7 @@ export interface CreateBlockNodeDto {
   blocktype: string;
   content: string;
   documentId: string;
-  parentId: string;
+  parentId?: string;
   position: number;
 }
 
@@ -35,10 +53,54 @@ export interface CreateCatDto {
   name: string;
 }
 
-export interface DocumentControllerGetOneParams {
+export interface CreateDocumentDto {
+  title: string;
+}
+
+export interface CreateExerciseDto {
+  description: string;
+  tags: string[];
+  title: string;
+}
+
+export interface CreateFlashcardDto {
+  /** Блок-нод контент для "задней" стороны */
+  backDocumentNodes: BlockNodeContentDto[];
+  /** Необязательный id колоды, куда сразу положить карту */
+  deckId?: string;
+  /** Блок-нод контент для лицевой стороны */
+  faceDocumentNodes: BlockNodeContentDto[];
+}
+
+export interface CreateTemplateDto {
+  clusters: TrainingClusterDto[];
+  title: string;
+}
+
+export type CreateTimesliceDto = object;
+
+export interface DocumentResponseDto {
+  createdAt: string;
   id: string;
-  includeTargets: string;
-  shape: string;
+  title: string;
+  updatedAt: string;
+}
+
+export interface DocumentWithBlocksResponseDto {
+  blocks: BlockNodeDto[];
+  createdAt: string;
+  id: string;
+  title?: string;
+  updatedAt: string;
+}
+
+export interface TrainingClusterDto {
+  sets: TrainingSetDto[];
+}
+
+export interface TrainingSetDto {
+  count: number;
+  exerciseId: string;
 }
 
 export interface UpdateBlockNodeDto {
@@ -54,3 +116,5 @@ export interface UpdateCatDto {
   breed: string;
   name: string;
 }
+
+export type UpdateTimesliceDto = object;

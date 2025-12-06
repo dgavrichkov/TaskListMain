@@ -10,7 +10,7 @@ const __dirname = path.dirname(__filename);
 // === настройки ===
 // можно прокинуть URL спецификации через переменную окружения OPENAPI_URL,
 // либо путь к локальному файлу openapi.json через OPENAPI_PATH
-const OPENAPI_URL = process.env.OPENAPI_URL || 'http://localhost:3000/api-json';
+const OPENAPI_URL = process.env.OPENAPI_URL || 'http://localhost:3001/api-json';
 const OPENAPI_PATH = process.env.OPENAPI_PATH || '';
 
 const OUTPUT_DIR = path.resolve(process.cwd(), 'src/shared/api/generated');

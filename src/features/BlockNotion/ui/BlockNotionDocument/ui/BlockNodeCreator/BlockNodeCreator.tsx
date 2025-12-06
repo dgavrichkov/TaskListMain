@@ -2,17 +2,17 @@ import React from 'react';
 import { CirclePlus } from 'lucide-react';
 import { CreateBlockNodeDto } from '@/shared/api/generated/data-contracts';
 import { Button } from '@/shared/ui';
-import { useBlockNodeListQuery } from '@/features/BlockNotion/hooks/useBlockNodeListQuery';
+import { useAddBlockNodeMutation } from '@/features/BlockNotion/hooks/useAddBlockNodeMutation';
 import { BlockNodeForm } from '../BlockNodeForm/BlockNodeForm';
 
 type TProps = {
   documentId: string;
+  queryKey: string[];
 };
 
-export const BlockNodeCreator = ({ documentId }: TProps) => {
+export const BlockNodeCreator = ({ documentId, queryKey }: TProps) => {
   const [isCreating, setIsCreating] = React.useState(false);
-  const queryKey = ['blockNodes', documentId];
-  const { addNode } = useBlockNodeListQuery(queryKey);
+  const { addNode } = useAddBlockNodeMutation(queryKey);
 
   const handleCreateBlockNode = () => {
     setIsCreating(true);
