@@ -9,6 +9,7 @@ import {
 const BASE_URL = import.meta.env.VITE_APP_BACKEND_URL;
 const ENDPOINT = `${BASE_URL}/block-node`;
 
+/** создание блок-ноды */
 export const postBlockNode = async (data: CreateBlockNodeDto): Promise<BlockNodeDto> => {
   const response = await fetch(`${ENDPOINT}`, {
     method: 'POST',

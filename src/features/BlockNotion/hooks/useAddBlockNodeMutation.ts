@@ -5,7 +5,7 @@ export const useAddBlockNodeMutation = (queryKey: string[]) => {
   const qc = useQueryClient();
 
   // создание
-  const { mutateAsync: addNode, isPending: isAdding } = useMutation({
+  const { mutateAsync: createBlockNode, isPending: isAdding } = useMutation({
     mutationFn: postBlockNode,
     onSuccess: () => {
       qc.invalidateQueries({ queryKey });
@@ -13,7 +13,7 @@ export const useAddBlockNodeMutation = (queryKey: string[]) => {
   });
 
   return {
-    addNode,
+    createBlockNode,
     isAdding,
   };
 };

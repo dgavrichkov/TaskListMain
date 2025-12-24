@@ -4,22 +4,21 @@ import { Check, CircleX } from 'lucide-react';
 import { Button } from '@/shared/ui';
 import { useCallback, useEffect, useRef } from 'react';
 
-import './BlockNodeForm.css';
+import './BlockNodeTextForm.css';
 
 type TProps = {
-  documentId: string;
-  // TODO - extend it
   onConfirm: (payload: string) => void;
   onCancel: () => void;
-  data?: string;
+  textcontent?: string;
 };
 
-export const BlockNodeForm = ({ documentId, data, onConfirm, onCancel }: TProps) => {
+/** Редактор текстового блока */
+export const BlockNodeTextForm = ({ textcontent, onConfirm, onCancel }: TProps) => {
   const formRef = useRef<HTMLDivElement | null>(null);
 
   const { Field, handleSubmit, reset } = useForm({
     defaultValues: {
-      textInput: data || '',
+      textInput: textcontent || '',
     },
     onSubmit: ({ value }) => {
       onConfirm?.(value.textInput);

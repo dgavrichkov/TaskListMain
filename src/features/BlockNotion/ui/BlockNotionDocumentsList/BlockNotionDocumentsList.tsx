@@ -1,12 +1,13 @@
+import { useState } from 'react';
 import { Card, CardContent } from '@/shared/ui/Card';
-import { useDocumentsListQuery } from '../../hooks/useDocumentsListQuery';
 import { Button } from '@/shared/ui';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/shared/ui/Dialog';
+import { useDocumentsListQuery } from '../../hooks/useDocumentsListQuery';
 import { BlockNotionDocument } from '../BlockNotionDocument/BlockNotionDocument';
-import { useState } from 'react';
 
 const queryKey = ['Documents'];
 
+/** Просто список документов. Может быть виджетом, на самом деле */
 export const BlockNotionDocumentsList = () => {
   const [open, setOpen] = useState(false);
   const [selectedId, setSelectedId] = useState<string | null>(null);

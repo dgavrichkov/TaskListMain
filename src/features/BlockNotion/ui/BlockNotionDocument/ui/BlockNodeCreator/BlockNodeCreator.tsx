@@ -2,17 +2,18 @@ import React from 'react';
 import { CirclePlus } from 'lucide-react';
 import { CreateBlockNodeDto } from '@/shared/api/generated/data-contracts';
 import { Button } from '@/shared/ui';
-import { useAddBlockNodeMutation } from '@/features/BlockNotion/hooks/useAddBlockNodeMutation';
-import { BlockNodeForm } from '../BlockNodeForm/BlockNodeForm';
+import { BlockNodeTextForm } from '../BlockNodeText/BlockNodeTextForm';
+
+type TBlockNodeEditorBody = Omit<CreateBlockNodeDto, 'documentId'>;
 
 type TProps = {
-  documentId: string;
-  queryKey: string[];
+  onCreateBlock: (dto: TBlockNodeEditorBody) => void;
 };
 
-export const BlockNodeCreator = ({ documentId, queryKey }: TProps) => {
+/** Кнопка создания нового блокнода */
+export const BlockNodeCreator = ({ onCreateBlock }: TProps) => {
+  // TODO спустить ниже
   const [isCreating, setIsCreating] = React.useState(false);
-  const { addNode } = useAddBlockNodeMutation(queryKey);
 
   const handleCreateBlockNode = () => {
     setIsCreating(true);
@@ -20,15 +21,16 @@ export const BlockNodeCreator = ({ documentId, queryKey }: TProps) => {
 
   const handleConfirm = (payload: string) => {
     // TODO - получение контента из компонента, ответственного за тип блока
-    const nodeData: CreateBlockNodeDto = {
+    const nodeData: TBlockNodeEditorBody = {
       parentId: '',
       position: 0,
-      documentId,
       blocktype: 'text',
       content: payload,
     };
 
-    addNode(nodeData);
+    // создатель блокнода передает инфу о блокноде наверх, а там уже решают, куда ее пихать, не наше дело.
+    onCreateBlock(nodeData);
+
     setIsCreating(false);
   };
 
@@ -36,11 +38,11 @@ export const BlockNodeCreator = ({ documentId, queryKey }: TProps) => {
     setIsCreating(false);
   };
 
+  // TODO возможность сменить тип создаваемого блока; здесь должна появиться какая-то диспетчеризация компонентов
+
   return (
     <>
-      {isCreating && (
-        <BlockNodeForm documentId={documentId} onCancel={handleCancel} onConfirm={handleConfirm} />
-      )}
+      {isCreating && <BlockNodeTextForm onCancel={handleCancel} onConfirm={handleConfirm} />}
       {!isCreating && (
         <Button
           className="cursor-pointer"

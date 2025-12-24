@@ -1,25 +1,21 @@
-import { useRef, useState } from 'react';
-import { Pencil, Trash2 } from 'lucide-react';
+import { useState } from 'react';
 import { BlockNodeDto } from '@/shared/api/generated/data-contracts';
-import { Button } from '@/shared/ui';
-import { useBlockNodeItemQuery } from '../../hooks/useBlockNodeItemQuery';
-import { BlockNodeForm } from '../BlockNotionDocument/ui/BlockNodeForm/BlockNodeForm';
+import { BlockNodeText } from '../BlockNotionDocument/ui/BlockNodeText/BlockNodeText';
 
 type TProps = {
   item: BlockNodeDto;
+  onUpdate: (upd: { id: string; data: any }) => void;
+  onDelete: (id: string) => void;
 };
 
 /** компонент рендера блок-ноды
  * здесь должна быть какая-то диспетчеризация по типам блок-нод
  * Но пока предполагается, что у нас есть только текст.
  */
-export const BlockNotionBlock = ({ item }: TProps) => {
-  const textRef = useRef<HTMLDivElement | null>(null);
+export const BlockNotionBlock = ({ item, onUpdate, onDelete }: TProps) => {
   const [isEditing, setIsEditing] = useState(false);
-  const { deleteNode, editNode } = useBlockNodeItemQuery(
-    ['mutateBlockNode', item.id],
-    ['blockNodes', item.documentId],
-  );
+
+  // надо убрать прямое обращение к апи
 
   const handleStartEditBlockNode = () => {
     if (item.blocktype === 'text') {
@@ -28,12 +24,12 @@ export const BlockNotionBlock = ({ item }: TProps) => {
     }
   };
 
-  const handleDeleteBlockNode = () => {
-    deleteNode(item.id);
-  };
-
   const handleCancelEdit = () => {
     setIsEditing(false);
+  };
+
+  const handleDeleteBlockNode = () => {
+    onDelete(item.id);
   };
 
   const handleConfirmEdit = (payload: string) => {
@@ -43,7 +39,7 @@ export const BlockNotionBlock = ({ item }: TProps) => {
       content: newContent,
     };
 
-    editNode({
+    onUpdate({
       id: item.id,
       data: updData,
     });
@@ -53,38 +49,14 @@ export const BlockNotionBlock = ({ item }: TProps) => {
 
   return (
     <>
-      {!isEditing && (
-        <div className="flex gap-2">
-          <div className="flex items-center" ref={textRef} onClick={handleStartEditBlockNode}>
-            {item.blocktype === 'text' && item.content}
-          </div>
-          <div className="flex gap-2 ml-auto">
-            <Button
-              className="ml-2 cursor-pointer"
-              size={'icon'}
-              variant={'outline'}
-              onClick={handleStartEditBlockNode}
-            >
-              <Pencil />
-            </Button>
-            <Button
-              className="cursor-pointer"
-              size={'icon'}
-              title="delete node"
-              variant={'destructive'}
-              onClick={handleDeleteBlockNode}
-            >
-              <Trash2 />
-            </Button>
-          </div>
-        </div>
-      )}
-      {isEditing && (
-        <BlockNodeForm
-          data={item.content}
-          documentId={item.documentId}
-          onCancel={handleCancelEdit}
-          onConfirm={handleConfirmEdit}
+      {item.blocktype === 'text' && (
+        <BlockNodeText
+          isEditing={isEditing}
+          item={item}
+          onCancelEdit={handleCancelEdit}
+          onConfirmEdit={handleConfirmEdit}
+          onDelete={handleDeleteBlockNode}
+          onEdit={handleStartEditBlockNode}
         />
       )}
     </>
