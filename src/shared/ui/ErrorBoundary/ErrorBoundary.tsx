@@ -15,8 +15,8 @@ export class ErrorBoundary extends React.Component<Props> {
   render() {
     if (this.state.hasError) {
       return (
-        <div style={{ padding: '20px' }}>
-          {this.props.fallback || <h2>Something went wrong.</h2>}
+        <div>
+          {this.props.fallback || <h2 style={{ padding: '20px' }}>Something went wrong.</h2>}
         </div>
       );
     }

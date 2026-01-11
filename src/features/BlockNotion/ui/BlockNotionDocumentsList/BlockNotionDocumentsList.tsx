@@ -13,12 +13,8 @@ export const BlockNotionDocumentsList = () => {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const { data, status } = useDocumentsListQuery(queryKey);
 
-  if (status === 'pending') {
-    return 'loading...';
-  }
-
   if (status === 'error') {
-    return 'error ;(';
+    throw new Error();
   }
 
   const handleOpen = (id: string) => {

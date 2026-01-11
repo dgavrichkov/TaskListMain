@@ -1,11 +1,11 @@
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useQueryClient, useSuspenseQuery } from '@tanstack/react-query';
 import { loadAllDocuments } from '../api';
 
 export const useDocumentsListQuery = (queryKey: string[]) => {
   const qc = useQueryClient();
 
   // получение
-  const { data, status } = useQuery({
+  const { data, status } = useSuspenseQuery({
     queryKey,
     queryFn: loadAllDocuments,
   });
