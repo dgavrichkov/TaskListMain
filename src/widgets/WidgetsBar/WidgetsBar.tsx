@@ -1,6 +1,6 @@
 import { BodyMeasures } from '@/features/BodyMeasures';
 import { SimpleTicker } from '@/features/Clock';
-import { MinutesTimer } from '@/features/MinutesTimer';
+import { FoodLogWidget } from '@/features/FoodLog';
 import {
   Sidebar,
   SidebarContent,
@@ -31,8 +31,9 @@ export const WidgetsBar = () => {
           <SidebarGroupContent>Memento Mori</SidebarGroupContent>
         </SidebarGroup>
         <SidebarGroup>
+          <SidebarGroupLabel>Food Log</SidebarGroupLabel>
           <SidebarGroupContent>
-            <MinutesTimer />
+            <FoodLogWidget />
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
