@@ -4,6 +4,8 @@ import { foodLogApiRepository } from '../../infra/foodLog.repository.api';
 import { foodLogKeys } from '../../infra/foodLog.queryKeys';
 
 // Adapter к React — TanStack Query hooks
+// Адаптеры используются прямо в UI компонентах
+// для реализации используются имплементации репозитория и юзкейсы
 
 export function useCreateFoodEntry() {
   const qc = useQueryClient();

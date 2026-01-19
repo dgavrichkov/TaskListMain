@@ -33,6 +33,8 @@ export const FoodLogForm = () => {
       <div>
         <input
           className="border rounded p-2"
+          id="food-log-time"
+          title="eatenAt"
           type="datetime-local"
           value={eatenAt}
           onChange={(e) => setEatenAt(e.target.value)}
@@ -49,11 +51,13 @@ export const FoodLogForm = () => {
       </div>
       <textarea
         className="w-full border rounded p-2"
+        id="food-log-text"
+        name="food-log-text"
         placeholder="Что ты ел?"
         value={text}
         onChange={(e) => setText(e.target.value)}
       />
-      <Button disabled={create.isPending} onClick={submit}>
+      <Button disabled={create.isPending} role="button" onClick={submit}>
         Сохранить
       </Button>
     </div>
