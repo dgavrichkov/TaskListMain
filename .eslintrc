@@ -1,34 +1,32 @@
 {
   "root": true,
+  "env": {
+    "browser": true,
+    "es2022": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": ["@typescript-eslint", "react", "react-hooks"],
   "extends": [
-    "react-app",
     "eslint:recommended",
-    "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:prettier/recommended"
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "prettier"
   ],
-  "plugins": ["react", "react-hooks", "import", "@typescript-eslint", "prettier"],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
   "rules": {
-    "eol-last": ["warn", "always"],
-    "prefer-const": "warn",
-    "no-unused-vars": "warn",
-    "@typescript-eslint/no-unused-vars": "warn",
-    "no-multiple-empty-lines": "warn",
-    "jsx-quotes": ["warn", "prefer-double"],
-    "react-hooks/rules-of-hooks": "warn",
-    "react-hooks/exhaustive-deps": "warn",
-    "@typescript-eslint/no-empty-function": "warn",
-    "@typescript-eslint/explicit-module-boundary-types": "off",
-    "react/display-name": "off",
     "react/react-in-jsx-scope": "off",
-    "react/jsx-sort-props": [
-      "warn",
-      {
-        "callbacksLast": true,
-        "shorthandFirst": true,
-        "noSortAlphabetically": false
-      }
-    ],
-    "prettier/prettier": "warn"
+    "no-unused-vars": "warn",
+    "react/display-name": "warn",
+    "@typescript-eslint/no-unused-vars": "warn",
+    "@typescript-eslint/no-explicit-any": "warn"
   }
 }
