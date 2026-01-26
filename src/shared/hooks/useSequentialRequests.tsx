@@ -1,4 +1,5 @@
 import { useCallback, useRef } from 'react';
+import { useLatest } from './useLatest';
 
 type TRequestFn<T> = (signal: AbortSignal) => Promise<T>;
 
@@ -19,14 +20,6 @@ const buildCancelableFetch = <T,>(requestFn: TRequestFn<T>) => {
     },
   };
 };
-
-// хелпер, который помогает сохранить некое значение в рефе и его обновлять.
-function useLatest<T>(value: T) {
-  const ref = useRef(value);
-  ref.current = value;
-
-  return ref;
-}
 
 /** This hook can cancel previous requests if they are still ongoing and only return the most recent data.  */
 export function useSequentialRequest<T>(requestFn: TRequestFn<T>) {
