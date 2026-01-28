@@ -13,6 +13,10 @@ const config: StorybookConfig = {
   ],
   framework: { name: '@storybook/react-vite', options: {} },
 
+  // docs: {
+  //   autodocs: 'tag',
+  // },
+
   async viteFinal(viteConfig) {
     // убрать дубликаты, если вдруг уже подключён
     viteConfig.plugins = (viteConfig.plugins || []).filter(
