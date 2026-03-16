@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useState } from 'react';
+import { useEffect, useReducer } from 'react';
 
 const BASE_URL = 'https://swapi.dev/api';
 
@@ -24,12 +24,41 @@ type TPerson = {
   vehicles: any[];
 };
 
-export const FetchReducer = () => {
-  // логика состояния размазана по коду
-  // состояние легко сломать, возможны недопустимые комбинации
-  const [peopleData, setPeopleData] = useState<TPerson[]>([]);
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
-  const [error, setError] = useState<string | null>(null);
+type FetchState =
+  | { status: 'idle' }
+  | { status: 'loading' }
+  | { status: 'success'; data: any }
+  | { status: 'error'; message: string };
+
+type FetchAction =
+  | { type: 'FETCH' }
+  | { type: 'RESOLVE'; payload: any }
+  | { type: 'REJECT'; payload: any };
+
+function fetchReducer(state: FetchState, action: FetchAction): FetchState {
+  switch (state.status) {
+    case 'idle':
+      if (action.type === 'FETCH') return { status: 'loading' };
+      return state;
+    case 'loading':
+      if (action.type === 'RESOLVE')
+        return {
+          status: 'success',
+          data: action.payload,
+        };
+      if (action.type === 'REJECT')
+        return {
+          status: 'error',
+          message: action.payload,
+        };
+      return state;
+    default:
+      return state;
+  }
+}
+
+export const FetchReducerComponent = () => {
+  const [fetchState, dispatch] = useReducer(fetchReducer, { status: 'idle' });
 
   useEffect(() => {
     const controller = new AbortController();
@@ -47,33 +76,30 @@ export const FetchReducer = () => {
       return data.results;
     };
 
-    setStatus('loading');
+    dispatch({ type: 'FETCH' });
 
     fetchPeople()
       .then((results) => {
-        setPeopleData(results);
-        setStatus('success');
+        dispatch({ type: 'RESOLVE', payload: results });
       })
       .catch((e) => {
         console.log(e);
-        setStatus('error');
-        setError(e.message);
+        dispatch({ type: 'REJECT', payload: e.message });
       });
 
     return () => {
       controller.abort();
-      setStatus('idle');
     };
   }, []);
 
   return (
     <section>
       <h2>Star Wars People</h2>
-      {status === 'loading' && <div>...LOADING...</div>}
-      {status === 'error' && error && <p>произошла ошибка :( - {error}</p>}
-      {status === 'success' && peopleData.length > 0 && (
+      {fetchState.status === 'loading' && <div>...LOADING...</div>}
+      {fetchState.status === 'error' && <p>произошла ошибка :( - {fetchState.message}</p>}
+      {fetchState.status === 'success' && (
         <ul>
-          {peopleData?.map((item) => (
+          {fetchState.data.map((item: TPerson) => (
             <li key={item.name}>
               <p>{item.name}</p>
             </li>

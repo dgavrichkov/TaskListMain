@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { FetchReducer } from './FetchReducerExample';
+import { FetchReducerComponent } from './FetchReducerExample';
 
 const App = () => {
   return (
     <div>
-      <FetchReducer />
+      <FetchReducerComponent />
     </div>
   );
 };
