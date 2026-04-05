@@ -14,6 +14,7 @@ const meta: Meta<typeof App> = {
   component: App,
   tags: ['autodocs'],
 };
+
 export default meta;
 
 type Story = StoryObj<typeof App>;
