@@ -11,4 +11,5 @@ export const PATHS = {
   TRAINING: 'training',
   CATEGORIES: 'categories',
   DICTIONARY: 'dictionary',
+  DASHBOARD: 'dashboard',
 };

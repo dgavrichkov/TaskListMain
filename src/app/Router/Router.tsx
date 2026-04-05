@@ -10,11 +10,13 @@ import { Habits } from '@/pages/habits';
 import { Training } from '@/pages/Training';
 import { Categories } from '@/pages/Categories';
 import { Dictionary } from '@/pages/Dictionary/Dictionary';
+import { Dashboard } from '@/pages/Dashboard/Dashboard';
 
 export const Router: FC = () => (
   <Routes>
     <Route element={<Layout />} path="/">
       <Route index element={<Greeting />} />
+      <Route element={<Dashboard />} path={PATHS.DASHBOARD} />
       <Route element={<Login />} path={PATHS.LOGIN} />
       {/* <Route element={<ProtectedRoute />}> */}
       <Route element={<Tasks />} path={PATHS.TASKS} />

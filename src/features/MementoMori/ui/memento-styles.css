@@ -1,0 +1,15 @@
+.memento-square {
+  width: 24px;
+  height: 24px;
+  border: 1px solid black;
+}
+
+.memento-square--filled {
+  background-color: #000;
+}
+
+.memento-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}

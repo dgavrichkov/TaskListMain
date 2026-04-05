@@ -2,6 +2,11 @@ import { PATHS } from '@/shared/constants/paths';
 
 export const MAIN_MENU_ITEMS = [
   {
+    id: 0,
+    label: 'Dashboard',
+    path: PATHS.DASHBOARD,
+  },
+  {
     id: 1,
     label: 'Tasks',
     path: PATHS.TASKS,
