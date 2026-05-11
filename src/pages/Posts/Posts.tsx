@@ -3,6 +3,7 @@ import { Button, Spacer } from '../../shared/ui/';
 import { usePosts } from './usePosts';
 import { Card, CardContent } from '@/shared/ui/Card';
 import { PostsList } from './ui/PostsList';
+import { List } from '@/shared/ui/List/List';
 
 export const Posts: FC = () => {
   const { data, status, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage } = usePosts();
@@ -26,17 +27,20 @@ export const Posts: FC = () => {
           {data &&
             data.pages.map((page, i) => (
               <React.Fragment key={i}>
-                {page.posts.map((post) => (
-                  <Card className="mb-4" key={post.id}>
-                    <CardContent>
-                      <h3>
-                        <b>{post.id}. </b>
-                        {post.title}
-                      </h3>
-                      <p>{post.body}</p>
-                    </CardContent>
-                  </Card>
-                ))}
+                <List
+                  data={page.posts}
+                  renderData={(post) => (
+                    <Card className="mb-4" key={post.id}>
+                      <CardContent>
+                        <h3>
+                          <b>{post.id}. </b>
+                          {post.title}
+                        </h3>
+                        <p>{post.body}</p>
+                      </CardContent>
+                    </Card>
+                  )}
+                />
               </React.Fragment>
             ))}
         </section>
