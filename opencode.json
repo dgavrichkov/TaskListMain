@@ -9,13 +9,13 @@
         "apiKey": "lmstudio"
       },
       "models": {
-        "qwen3.5-4b": {
-          "name": "Qwen 3.5 4B",
+        "qwen3.5-9b": {
+          "name": "Qwen 3.5 9B",
           "context_length": 32768,
           "max_tokens": 4096
         }
       }
     }
   },
-  "model": "qwen3.5-4b"
+  "model": "qwen3.5-9b"
 }
